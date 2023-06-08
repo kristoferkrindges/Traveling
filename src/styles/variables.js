@@ -1,5 +1,10 @@
 import { css } from "styled-components";
 
+export const font = {
+	700: `2rem`,
+	500: `1rem`,
+};
+
 export const v = {
 	sidebarWidth: `300px`,
 	smSpacing: `8px`,

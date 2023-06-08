@@ -1,7 +1,12 @@
 import React from "react";
+import TopMenu from "../../components/TopMenu";
 
 function HomePage() {
-	return <h1>Oi</h1>;
+	return (
+		<>
+			<TopMenu></TopMenu>
+		</>
+	);
 }
 
 export default HomePage;
