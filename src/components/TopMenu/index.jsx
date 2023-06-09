@@ -1,74 +1,27 @@
 import React, { useState } from "react";
-import {
-	Container,
-	NavbarContainer,
-	NavLink,
-	Title,
-	SearchBar,
-	ContainerInput,
-	InputSearch,
-	TextInput,
-	IconSearch,
-	Create,
-	Profile,
-	ProfileLink,
-	Li,
-} from "./style";
+import { Nav, NavbarContainer, NavLink, Title, Create } from "./style";
 import { Link } from "react-router-dom";
+import ButtonPrimary from "../ButtonPrimary";
+import ProfileButton from "../ProfileButton";
+import SearchBar from "../SearchBar";
 
 export default function TopMenu() {
-	const [search, setSearch] = useState();
-	const [hero, setHero] = useState(false);
-
-	function HandlerOpen() {
-		if (hero == false) {
-			setHero(true);
-		} else {
-			setHero(false);
-		}
-	}
+	const [data, setData] = useState([
+		{ product: "Maria" },
+		{ product: "Mauro" },
+	]);
 	return (
-		<Container>
+		<Nav>
 			<NavbarContainer>
 				<NavLink to="/">
 					<Title>Traveling</Title>
 				</NavLink>
-				<SearchBar>
-					<ContainerInput>
-						<TextInput>
-							<IconSearch />
-						</TextInput>
-						<InputSearch
-							type="text"
-							placeholder=""
-							value={search}
-							onChange={(e) => {
-								setSearch(e.target.value);
-							}}
-						/>
-						<Create>
-							<Profile>
-								<img
-									onClick={HandlerOpen}
-									src={
-										"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
-									}
-									alt=""
-								/>
-								<ProfileLink
-									style={hero ? { display: "block" } : { display: "none" }}
-								>
-									<Li>
-										<Link to="/">
-											<IconSearch></IconSearch> Perfil
-										</Link>
-									</Li>
-								</ProfileLink>
-							</Profile>
-						</Create>
-					</ContainerInput>
-				</SearchBar>
+				<SearchBar placeholder="Search for posts" data={data} />
+				<Create>
+					<ButtonPrimary label="Create" />
+					<ProfileButton />
+				</Create>
 			</NavbarContainer>
-		</Container>
+		</Nav>
 	);
 }
