@@ -8,6 +8,8 @@ export const Button = styled.label`
 	transition: all 300ms ease;
 	background-color: ${({ theme }) => theme.secondColor};
 	color: white;
+	/* text-transform: uppercase;
+	letter-spacing: 0.2em; */
 
 	&:hover {
 		opacity: 0.8;

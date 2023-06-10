@@ -26,6 +26,7 @@ export const NavLink = styled(Link)`
 
 export const Title = styled.h1`
 	color: ${({ theme }) => theme.text};
+	/* letter-spacing: 0.1em; */
 	&.hover {
 		color: whitesmoke;
 	}
