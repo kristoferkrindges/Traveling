@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { IoSearch } from "react-icons/io5";
+import { IoSearch, IoReorderFourOutline } from "react-icons/io5";
 
 export const IconSearch = styled(IoSearch)`
 	width: 20px;

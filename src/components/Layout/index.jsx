@@ -4,6 +4,8 @@ import InfoUser from "../InfoUser";
 import Stories from "../Stories";
 import CreatePost from "../CreatePost";
 import Feeds from "../Feeds";
+import MessagesCard from "../MessagesCard";
+import Options from "../Options";
 
 export default function Layout() {
 	return (
@@ -18,13 +20,8 @@ export default function Layout() {
 					<Feeds />
 				</Middle>
 				<Right>
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur
-					eum dicta recusandae impedit doloribus nemo officia, voluptatibus
-					quaerat molestias libero rerum odio dolore, animi dolor illo aperiam.
-					Labore, qui animi! Lorem ipsum, dolor sit amet consectetur adipisicing
-					elit. Consequuntur eum dicta recusandae impedit doloribus nemo
-					officia, voluptatibus quaerat molestias libero rerum odio dolore,
-					animi dolor illo aperiam. Labore, qui animi!
+					<Options></Options>
+					<MessagesCard></MessagesCard>
 				</Right>
 			</Container>
 		</MainContainer>

@@ -20,4 +20,9 @@ export const Left = styled.div`
 export const Middle = styled.div`
 	/* margin-left: 12%; */
 `;
-export const Right = styled.div``;
+export const Right = styled.div`
+	height: max-content;
+	position: sticky;
+	top: 5.4rem;
+	bottom: 0;
+`;

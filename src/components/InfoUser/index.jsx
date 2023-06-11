@@ -53,7 +53,7 @@ export default function InfoUser() {
 				<Photo>
 					<img
 						src={
-							"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+							"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
 						}
 						alt=""
 					/>
