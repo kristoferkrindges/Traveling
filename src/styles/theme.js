@@ -7,6 +7,8 @@ export const lightTheme = {
 	secondColor: "hsl(252, 75%, 60%)",
 	textMuted: "#999",
 	success: "hsl(120, 95%, 65%)",
+	bg3: "rgb(230,230,230)",
+	primary: "rgb(52, 131, 235)",
 };
 export const darkTheme = {
 	container: "hsl(252, 30%, 10%)",
@@ -17,4 +19,6 @@ export const darkTheme = {
 	secondColor: "hsl(252, 75%, 60%)",
 	textMuted: "#999",
 	success: "hsl(120, 95%, 65%)",
+	bg3: "rgb(50,50,50)",
+	primary: "rgb(52, 131, 235)",
 };

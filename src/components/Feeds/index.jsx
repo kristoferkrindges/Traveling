@@ -26,9 +26,20 @@ import {
 	Pharase,
 	HarshTag,
 	TextMuted,
+	DropMenu,
+	Item,
+	NavLink,
 } from "./style";
-
+import { Link } from "react-router-dom";
 export default function Feeds() {
+	const [dropdown, setDropdown] = useState(false);
+	function HandlerOpen() {
+		if (dropdown == false) {
+			setDropdown(true);
+		} else {
+			setDropdown(false);
+		}
+	}
 	const [posts, setPosts] = useState([
 		{
 			userPhoto:
@@ -89,7 +100,17 @@ export default function Feeds() {
 								</Ingo>
 							</User>
 							<Edit>
-								<Ellips />
+								<Ellips onClick={HandlerOpen} />
+								{dropdown ? (
+									<DropMenu>
+										<Item>
+											<NavLink>Report</NavLink>
+											<NavLink>Other</NavLink>
+										</Item>
+									</DropMenu>
+								) : (
+									<></>
+								)}
 							</Edit>
 						</Head>
 						<Photo>

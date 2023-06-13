@@ -8,6 +8,7 @@ export const Form = styled.form`
 	background-color: ${({ theme }) => theme.container};
 	padding: 0.4rem 1rem;
 	border-radius: 2rem;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 `;
 export const ProfilePhoto = styled.div`
 	img {

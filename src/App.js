@@ -5,6 +5,7 @@ import { darkTheme, lightTheme } from "./styles/theme";
 import Routed from "./routes/routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+
 export const ThemeContext = React.createContext(null);
 
 function App() {

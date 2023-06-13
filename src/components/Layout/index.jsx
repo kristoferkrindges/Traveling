@@ -7,6 +7,8 @@ import Feeds from "../Feeds";
 import MessagesCard from "../MessagesCard";
 import Options from "../Options";
 import ControllerBoxChat from "../ControllerBoxChat";
+import SideBar from "../SideBar";
+import { MessageProvider } from "../../context/messageContext";
 
 export default function Layout() {
 	return (
@@ -14,6 +16,7 @@ export default function Layout() {
 			<Container>
 				<Left>
 					<InfoUser />
+					<SideBar />
 				</Left>
 				<Middle>
 					<Stories />
@@ -21,9 +24,11 @@ export default function Layout() {
 					<Feeds />
 				</Middle>
 				<Right>
-					<Options></Options>
-					<MessagesCard />
-					<ControllerBoxChat />
+					{/* <Options></Options> */}
+					<MessageProvider>
+						<MessagesCard />
+						<ControllerBoxChat />
+					</MessageProvider>
 				</Right>
 			</Container>
 		</MainContainer>
