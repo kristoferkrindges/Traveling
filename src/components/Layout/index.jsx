@@ -6,6 +6,7 @@ import CreatePost from "../CreatePost";
 import Feeds from "../Feeds";
 import MessagesCard from "../MessagesCard";
 import Options from "../Options";
+import ControllerBoxChat from "../ControllerBoxChat";
 
 export default function Layout() {
 	return (
@@ -21,7 +22,8 @@ export default function Layout() {
 				</Middle>
 				<Right>
 					<Options></Options>
-					<MessagesCard></MessagesCard>
+					<MessagesCard />
+					<ControllerBoxChat />
 				</Right>
 			</Container>
 		</MainContainer>
