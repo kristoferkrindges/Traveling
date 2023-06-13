@@ -32,33 +32,39 @@ export const Ellipsis = styled(IoEllipsisHorizontal)`
 `;
 
 export const IconSend = styled(IoSendOutline)`
-	width: 20px;
-	height: 20px;
-	stroke: ${({ theme }) => theme.text};
+	stroke: ${({ theme }) => theme.secondColor};
 	cursor: pointer;
 	&:hover {
 		opacity: 0.5;
 	}
 `;
 
-export const Wrapper = styled.div``;
-export const BoxToggle = styled.div``;
+export const Wrapper = styled.div`
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	width: 4rem;
+	height: 4rem;
+`;
 export const BoxMessage = styled.div`
 	background: ${({ theme }) => theme.background};
 	border-radius: 1rem;
-	margin-top: 1rem;
-	box-shadow: 0.25rem 0.25rem 1.5rem rgba(0, 0, 0, 0.1);
+	box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.1);
+	position: absolute;
+	/* right: 10rem; */
+	bottom: calc(100% - 1.5rem);
+	right: 0;
+	width: 20vw;
+	overflow: hidden;
+	transition: all 0.3s ease;
 `;
 export const Header = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	//padding: 1rem;
 	padding: 0.75rem 1.5rem;
 	background: ${({ theme }) => theme.container};
 	border-radius: 1rem 1rem 0 0;
-	//
-	margin-bottom: 1rem;
 `;
 export const ProfilePhoto = styled.div`
 	display: flex;
@@ -131,7 +137,12 @@ export const Sent = styled.div`
 	border-radius: 0.75rem 0 0.75rem 0.75rem;
 `;
 export const Text = styled.span``;
-export const Time = styled.span``;
+export const Time = styled.span`
+	float: right;
+	font-size: 0.75rem;
+	margin-top: 0.5rem;
+	display: inline-block;
+`;
 export const Received = styled.div`
 	width: 90%;
 	padding: 1rem;
@@ -139,7 +150,39 @@ export const Received = styled.div`
 	border-radius: 0 0.75rem 0.75rem 0.75rem;
 	box-shadow: 0.25rem 0.25rem 1.5rem rgba(0, 0, 0, 0.05);
 `;
-export const Bottom = styled.div``;
-export const Form = styled.form``;
-export const TextArea = styled.textarea``;
-export const ButtonSend = styled.button``;
+export const Bottom = styled.div`
+	background: ${({ theme }) => theme.container};
+	padding: 0.75rem 1.5rem;
+	border-radius: 0 0 1rem 1rem;
+`;
+export const Form = styled.form`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: ${({ theme }) => theme.background};
+	border-radius: 0.5rem;
+	padding: 0.5rem 1.25rem;
+`;
+export const TextArea = styled.textarea`
+	background: transparent;
+	outline: none;
+	border: none;
+	resize: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+`;
+export const ButtonSend = styled.button`
+	font-size: 1.25rem;
+	color: ${({ theme }) => theme.secondColor};
+	border: none;
+	outline: none;
+`;
+
+export const NoMessage = styled.h4`
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-align: center;
+`;

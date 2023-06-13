@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
 	Wrapper,
-	BoxToggle,
 	BoxMessage,
 	Header,
 	ProfilePhoto,
@@ -22,10 +21,11 @@ import {
 	TextArea,
 	ButtonSend,
 	IconSend,
+	NoMessage,
 } from "./style";
 import { Link } from "react-router-dom";
 
-export default function BoxChat({ label }) {
+export default function BoxChat({ array }) {
 	const [dropdown, setDropdown] = useState(false);
 	function HandlerOpen() {
 		if (dropdown == false) {
@@ -36,7 +36,6 @@ export default function BoxChat({ label }) {
 	}
 	return (
 		<Wrapper>
-			<BoxToggle></BoxToggle>
 			<BoxMessage>
 				<Header>
 					<ProfilePhoto>
@@ -66,14 +65,30 @@ export default function BoxChat({ label }) {
 					</Dropdown>
 				</Header>
 				<Content>
-					<Sent>
-						<Text>Lorem ipsum dolor sit amet consectetur</Text>
-						<Time>08:30</Time>
-					</Sent>
-					<Received>
-						<Text>Lorem ipsum dolor sit amet consectetur!</Text>
-						<Time>08:30</Time>
-					</Received>
+					{array.length > 1 ? (
+						<>
+							<Sent>
+								<Text>Lorem ipsum dolor sit amet consectetur</Text>
+								<Time>08:30</Time>
+							</Sent>
+							<Received>
+								<Text>Lorem ipsum dolor sit amet consectetur!</Text>
+								<Time>08:30</Time>
+							</Received>
+							<Received>
+								<Text>Lorem ipsum dolor sit amet consectetur!</Text>
+								<Time>08:30</Time>
+							</Received>
+							<Sent>
+								<Text>Lorem ipsum dolor sit amet consectetur</Text>
+								<Time>08:30</Time>
+							</Sent>
+						</>
+					) : (
+						<>
+							<NoMessage>You don't have message</NoMessage>
+						</>
+					)}
 				</Content>
 				<Bottom>
 					<Form>
