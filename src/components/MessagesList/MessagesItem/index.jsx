@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
 	Message,
 	ProfilePhoto,
@@ -7,10 +7,15 @@ import {
 	TextMuted,
 	Online,
 } from "./style";
-
+import { MessageContext } from "../../../context/messageContext";
 export default function MessagesItem({ photo, name, message, online }) {
+	const { HandlerMessage, TestOpen } = useContext(MessageContext);
+	function Click() {
+		TestOpen();
+		HandlerMessage("id");
+	}
 	return (
-		<Message>
+		<Message onClick={Click}>
 			<ProfilePhoto>
 				<img src={photo} alt="" />
 				{online ? <Online /> : <></>}

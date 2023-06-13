@@ -11,6 +11,7 @@ import {
 	Ellipsis,
 	DropMenu,
 	Item,
+	NavLink,
 	Content,
 	Sent,
 	Text,
@@ -25,7 +26,7 @@ import {
 } from "./style";
 import { Link } from "react-router-dom";
 
-export default function BoxChat({ array }) {
+export default function BoxChat({ array, TestOpen }) {
 	const [dropdown, setDropdown] = useState(false);
 	function HandlerOpen() {
 		if (dropdown == false) {
@@ -52,11 +53,12 @@ export default function BoxChat({ array }) {
 					</ProfilePhoto>
 					<Dropdown>
 						<Ellipsis onClick={HandlerOpen} />
+						{/* <h2 onClick={TestOpen}>oi</h2> */}
 						{dropdown ? (
 							<DropMenu>
 								<Item>
-									<Link>Close</Link>
-									<Link>Report</Link>
+									<NavLink onClick={TestOpen}>Close</NavLink>
+									<NavLink>All</NavLink>
 								</Item>
 							</DropMenu>
 						) : (

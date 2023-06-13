@@ -1,8 +1,32 @@
 import styled from "styled-components";
+import { NavLink as Link } from "react-router-dom";
+import {
+	IoPersonCircleOutline,
+	IoNotificationsOutline,
+	IoMailOutline,
+} from "react-icons/io5";
 
-import { IoSearch, IoReorderFourOutline } from "react-icons/io5";
+export const IoPerson = styled(IoPersonCircleOutline)`
+	width: 20px;
+	height: 20px;
+	stroke: ${({ theme }) => theme.text};
+	cursor: pointer;
+	&:hover {
+		opacity: 0.5;
+	}
+`;
 
-export const IconSearch = styled(IoSearch)`
+export const IoNotifications = styled(IoNotificationsOutline)`
+	width: 20px;
+	height: 20px;
+	stroke: ${({ theme }) => theme.text};
+	cursor: pointer;
+	&:hover {
+		opacity: 0.5;
+	}
+`;
+
+export const IoMail = styled(IoMailOutline)`
 	width: 20px;
 	height: 20px;
 	stroke: ${({ theme }) => theme.text};
@@ -21,6 +45,12 @@ export const Profile = styled.div`
 		border-radius: 50%;
 		object-fit: cover;
 		cursor: pointer;
+
+		&:hover {
+			transform: rotate(-10deg);
+			cursor: pointer;
+			opacity: 0.7;
+		}
 	}
 `;
 
@@ -30,26 +60,26 @@ export const ProfileLink = styled.ul`
 	right: 0;
 	background: ${({ theme }) => theme.container};
 	padding: 10px 0;
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
 	border-radius: 10px;
 	width: 160px;
-	opacity: 1;
-	pointer-events: none;
 	transition: all 0.3s ease;
 `;
 
-export const Li = styled.li`
-	& a {
-		padding: 10px 16px;
-		display: flex;
-		grid-gap: 10px;
-		font-size: 14px;
-		color: black;
-		align-items: center;
-		transition: all 0.3s ease;
-		cursor: pointer;
-	}
-	& a:hover {
-		background: ${({ theme }) => theme.buttons};
+export const Li = styled.li``;
+
+export const NavLink = styled(Link)`
+	cursor: pointer;
+	font-weight: bold;
+	padding: 0.5rem 1rem;
+	display: flex;
+	grid-gap: 10px;
+	font-size: 0.85rem;
+	color: ${({ theme }) => theme.text};
+	align-items: center;
+	transition: all 0.3s ease;
+	&:hover {
+		background: ${({ theme }) => theme.secondColor};
+		border-radius: 1rem;
 	}
 `;

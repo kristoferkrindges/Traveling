@@ -6,8 +6,14 @@ import {
 	IoShareSocialOutline,
 	IoBookmarkOutline,
 } from "react-icons/io5";
+import { NavLink as Link } from "react-router-dom";
 
-export const Ellips = styled(IoEllipsisHorizontal)``;
+export const Ellips = styled(IoEllipsisHorizontal)`
+	cursor: pointer;
+	&:hover {
+		opacity: 0.5;
+	}
+`;
 export const Heart = styled(IoHeartOutline)``;
 export const Comment = styled(IoChatbubbleEllipsesOutline)``;
 export const Share = styled(IoShareSocialOutline)``;
@@ -21,6 +27,7 @@ export const Feed = styled.div`
 	margin: 1rem 0;
 	font-size: 0.85rem;
 	line-height: 1.5;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 `;
 export const Head = styled.div`
 	display: flex;
@@ -42,7 +49,10 @@ export const ProfilePhoto = styled.div`
 export const Ingo = styled.div``;
 export const Name = styled.h3``;
 export const Small = styled.small``;
-export const Edit = styled.span``;
+export const Edit = styled.span`
+	position: relative;
+	font-size: 1.3rem;
+`;
 export const Photo = styled.div`
 	border-radius: 1rem;
 	overflow: hidden;
@@ -86,3 +96,32 @@ export const Caption = styled.div``;
 export const Pharase = styled.p``;
 export const HarshTag = styled.span``;
 export const TextMuted = styled.div``;
+export const DropMenu = styled.ul`
+	position: absolute;
+	top: 80%;
+	right: 0;
+	background: ${({ theme }) => theme.container};
+	padding: 0.5rem 0;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.9);
+	border-radius: 1rem;
+	opacity: 1;
+	transition: all 0.3s ease;
+	font-weight: 600;
+`;
+export const Item = styled.li``;
+
+export const NavLink = styled(Link)`
+	cursor: pointer;
+	font-weight: bold;
+	padding: 0.5rem 1rem;
+	display: flex;
+	grid-gap: 10px;
+	font-size: 0.85rem;
+	color: ${({ theme }) => theme.text};
+	align-items: center;
+	transition: all 0.3s ease;
+	&:hover {
+		color: ${({ theme }) => theme.secondColor};
+		background: ${({ theme }) => theme.background};
+	}
+`;

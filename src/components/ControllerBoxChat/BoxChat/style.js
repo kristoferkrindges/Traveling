@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { NavLink as Link } from "react-router-dom";
 import {
 	IoCloseOutline,
 	IoEllipsisHorizontal,
@@ -49,11 +49,11 @@ export const Wrapper = styled.div`
 export const BoxMessage = styled.div`
 	background: ${({ theme }) => theme.background};
 	border-radius: 1rem;
-	box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.1);
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
 	position: absolute;
-	/* right: 10rem; */
+	right: 5rem;
 	bottom: calc(100% - 1.5rem);
-	right: 0;
+	/* right: 0; */
 	width: 20vw;
 	overflow: hidden;
 	transition: all 0.3s ease;
@@ -99,35 +99,42 @@ export const DropMenu = styled.ul`
 	padding: 0.5rem 0;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 	border-radius: 1rem;
-	opacity: 1;
-	pointer-events: none;
 	transition: all 0.3s ease;
 	font-weight: 600;
 `;
-export const Item = styled.li`
+export const Item = styled.li``;
+
+export const NavLink = styled(Link)`
 	cursor: pointer;
-	text-decoration: none;
-	a {
-		padding: 0.5rem 1rem;
-		display: flex;
-		grid-gap: 10px;
-		font-size: 0.85rem;
-		color: ${({ theme }) => theme.text};
-		align-items: center;
-		transition: all 0.3s ease;
-	}
-	a:hover {
-		color: ${({ theme }) => theme.secondColor};
-		background: ${({ theme }) => theme.background};
+	font-weight: bold;
+	padding: 0.5rem 1rem;
+	display: flex;
+	grid-gap: 10px;
+	font-size: 0.85rem;
+	color: ${({ theme }) => theme.text};
+	align-items: center;
+	transition: all 0.3s ease;
+	&:hover {
+		background: ${({ theme }) => theme.secondColor};
+		border-radius: 1rem;
 	}
 `;
 
 export const Content = styled.div`
 	background: ${({ theme }) => theme.background};
+	border-right: 1px solid ${({ theme }) => theme.container};
+	border-left: 1px solid ${({ theme }) => theme.container};
 	padding: 1.5rem;
 	display: flex;
 	flex-direction: column;
 	grid-row-gap: 1rem;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 30vh;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 `;
 export const Sent = styled.div`
 	width: 90%;
@@ -177,8 +184,10 @@ export const TextArea = styled.textarea`
 export const ButtonSend = styled.button`
 	font-size: 1.25rem;
 	color: ${({ theme }) => theme.secondColor};
+	background: ${({ theme }) => theme.background};
 	border: none;
 	outline: none;
+	text-align: center;
 `;
 
 export const NoMessage = styled.h4`

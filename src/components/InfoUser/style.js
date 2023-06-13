@@ -8,7 +8,7 @@ export const Card = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 `;
 
 export const BoxOne = styled.div`
@@ -49,6 +49,7 @@ export const BoxTwo = styled.div`
 	height: 220px;
 	background-color: ${({ theme }) => theme.container};
 	border-radius: 15px;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 
 	&::before {
 		content: "";

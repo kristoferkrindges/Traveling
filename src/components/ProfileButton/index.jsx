@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Profile, ProfileLink, Li, IconSearch } from "./style";
+import {
+	Profile,
+	ProfileLink,
+	Li,
+	IoMail,
+	IoPerson,
+	IoNotifications,
+	NavLink,
+} from "./style";
 import { Link } from "react-router-dom";
 
 export default function ProfileButton({ label }) {
@@ -23,14 +31,19 @@ export default function ProfileButton({ label }) {
 			/>
 			<ProfileLink style={hero ? { display: "block" } : { display: "none" }}>
 				<Li>
-					<Link to="/">
-						<IconSearch></IconSearch> Perfil
-					</Link>
+					<NavLink to="/">
+						<IoMail /> Profile
+					</NavLink>
 				</Li>
 				<Li>
-					<Link to="/">
-						<IconSearch></IconSearch> Perfil
-					</Link>
+					<NavLink to="/">
+						<IoPerson /> Messages
+					</NavLink>
+				</Li>
+				<Li>
+					<NavLink to="/">
+						<IoNotifications /> Notifications
+					</NavLink>
 				</Li>
 			</ProfileLink>
 		</Profile>
