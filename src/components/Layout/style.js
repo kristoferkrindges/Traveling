@@ -18,10 +18,7 @@ export const Container = styled.div`
 	}
 
 	@media only screen and (max-width: 992px) {
-		grid-template-columns: 0 auto 5rem;
-		gap: 0;
-		//Mudar
-		/* grid-template-columns: 5rem auto 0; */
+		grid-template-columns: 5rem auto 0;
 	}
 `;
 
@@ -33,13 +30,6 @@ export const Left = styled.div`
 	@media only screen and (max-width: 1200px) {
 		width: 5rem;
 		z-index: 5;
-	}
-	//Rever, talvez inverter
-	@media only screen and (max-width: 992px) {
-		grid-column: 3/4;
-		position: fixed;
-		bottom: 0;
-		right: 0;
 	}
 `;
 export const Middle = styled.div`
@@ -53,14 +43,6 @@ export const Right = styled.div`
 	position: sticky;
 	top: 5.4rem;
 	bottom: 0;
-
-	/* @media only screen and (max-width: 992px) {
-		grid-column: 3/4;
-		position: fixed;
-		bottom: 0;
-		right: 0;
-	} */
-
 	@media only screen and (max-width: 992px) {
 		display: none;
 	}

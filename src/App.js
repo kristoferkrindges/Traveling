@@ -5,7 +5,7 @@ import { darkTheme, lightTheme } from "./styles/theme";
 import Routed from "./routes/routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-
+import { MenuProvider } from "./context/menuContext";
 export const ThemeContext = React.createContext(null);
 
 function App() {
@@ -16,7 +16,9 @@ function App() {
 		<ThemeContext.Provider value={{ setTheme, theme }}>
 			<ThemeProvider theme={themeStyle}>
 				<GlobalStyle />
-				<Routed></Routed>
+				<MenuProvider>
+					<Routed></Routed>
+				</MenuProvider>
 				<ToastContainer></ToastContainer>
 			</ThemeProvider>
 		</ThemeContext.Provider>
