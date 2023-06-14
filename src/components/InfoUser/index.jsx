@@ -12,7 +12,6 @@ import {
 	List,
 	Button,
 } from "./style";
-import ButtonPrimary from "../ButtonPrimary";
 
 export default function InfoUser() {
 	return (

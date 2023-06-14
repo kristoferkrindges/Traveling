@@ -19,6 +19,10 @@ export const Messages = styled.div`
 	border-radius: 1rem;
 	padding: 1rem;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+
+	@media only screen and (max-width: 992px) {
+		display: none;
+	}
 `;
 export const Heading = styled.div`
 	display: flex;

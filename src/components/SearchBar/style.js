@@ -6,6 +6,10 @@ export const CloseIcon = styled(IoClose)``;
 
 export const NavSearchBar = styled.div`
 	width: 100%;
+
+	@media only screen and (max-width: 992px) {
+		display: none;
+	}
 `;
 
 export const SearchInputs = styled.div`
