@@ -6,6 +6,10 @@ export const Context = styled.div`
 	padding: 1rem;
 	background: ${({ theme }) => theme.container};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+
+	@media only screen and (max-width: 1200px) {
+		display: none;
+	}
 `;
 
 export const SDivider = styled.div`

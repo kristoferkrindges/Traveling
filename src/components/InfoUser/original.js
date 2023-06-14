@@ -2,29 +2,26 @@ import styled from "styled-components";
 
 export const Card = styled.div`
 	position: relative;
+	width: 320px;
+	height: 430px;
 	background-color: ${({ theme }) => theme.background};
-	height: 350px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin-bottom: 3.7rem;
-
-	@media only screen and (max-width: 1200px) {
-		display: none;
-	}
+	margin-bottom: 2rem;
 `;
 
 export const BoxOne = styled.div`
 	position: relative;
-	width: 100%;
-	height: 150px;
-	background-color: ${({ theme }) => theme.secondColor};
+	width: 110%;
+	height: 200px;
+	background-color: orange;
 	border-radius: 15px;
 
 	&::before {
 		content: "";
 		position: absolute;
-		top: 75px;
+		top: 105px;
 		left: -1px;
 		width: 23px;
 		height: 20px;
@@ -36,10 +33,8 @@ export const BoxOne = styled.div`
 	&::after {
 		content: "";
 		position: absolute;
-		/* bottom: -6px;
-		left: 82px; */
 		bottom: -1px;
-		left: 80px;
+		left: 105px;
 		width: 23px;
 		height: 20px;
 		background-color: transparent;
@@ -50,8 +45,8 @@ export const BoxOne = styled.div`
 `;
 export const BoxTwo = styled.div`
 	position: relative;
-	width: 90%;
-	height: 190px;
+	width: 100%;
+	height: 220px;
 	background-color: ${({ theme }) => theme.container};
 	border-radius: 15px;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
@@ -59,7 +54,7 @@ export const BoxTwo = styled.div`
 	&::before {
 		content: "";
 		position: absolute;
-		bottom: 78px;
+		bottom: 106px;
 		left: -1px;
 		width: 20px;
 		height: 20px;
@@ -71,12 +66,8 @@ export const BoxTwo = styled.div`
 	&::after {
 		content: "";
 		position: absolute;
-		top: -5px;
-		left: 86px;
-		/* top: -1px;
-		left: 109px; */
 		top: -1px;
-		left: 88px;
+		left: 109px;
 		width: 20px;
 		height: 20px;
 		background-color: transparent;
@@ -90,8 +81,8 @@ export const Circle = styled.div`
 	top: 50%;
 	left: -70px;
 	transform: translateY(-50%);
-	width: 160px;
-	height: 160px;
+	width: 180px;
+	height: 180px;
 	background: green;
 	border-radius: 50%;
 	border: 10px solid ${({ theme }) => theme.background};
@@ -125,60 +116,28 @@ export const Modal = styled.div`
 export const Content = styled.div`
 	position: absolute;
 	inset: 0;
-	padding: 1.7rem 0.7rem 1.2rem;
+	padding: 30px 10px 20px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	gap: 1.2rem;
+	gap: 20px;
 `;
 export const Name = styled.h2`
 	width: 100%;
-	/* padding-left: 120px; */
-	padding-left: 6.5rem;
+	padding-left: 120px;
 	text-transform: uppercase;
-	font-size: 1rem;
-	letter-spacing: 0.1rem;
+	font-size: 1.15em;
+	letter-spacing: 0.1em;
 	font-weight: 600;
 	line-height: 1.1em;
 	color: ${({ theme }) => theme.text};
 
 	span {
-		font-size: 0.65rem;
+		font-size: 0.75em;
 		font-weight: 400;
 		letter-spacing: 0.05em;
 		color: ${({ theme }) => theme.text};
 		text-transform: initial;
-	}
-
-	@media only screen and (max-width: 1600px) {
-		font-size: 0.8rem;
-		span {
-			font-size: 0.5rem;
-		}
-	}
-
-	@media only screen and (max-width: 1280px) {
-		font-size: 0.7rem;
-		span {
-			font-size: 0.5rem;
-		}
-		letter-spacing: 0;
-	}
-
-	@media only screen and (max-width: 1100px) {
-		font-size: 0.6rem;
-		span {
-			font-size: 0.4rem;
-		}
-		padding-left: 5.5rem;
-	}
-
-	@media only screen and (max-width: 980px) {
-		font-size: 0.55rem;
-		span {
-			font-size: 0.38rem;
-		}
-		padding-left: 5.4rem;
 	}
 `;
 export const Lists = styled.ul`
@@ -189,18 +148,6 @@ export const Lists = styled.ul`
 	justify-content: space-evenly;
 	width: 100%;
 	padding: 0 10px;
-
-	@media only screen and (max-width: 1600px) {
-		top: 25px;
-	}
-
-	@media only screen and (max-width: 1280px) {
-		top: 32px;
-	}
-
-	@media only screen and (max-width: 1100px) {
-		top: 36px;
-	}
 `;
 export const List = styled.li`
 	list-style: none;
@@ -218,27 +165,6 @@ export const List = styled.li`
 		font-size: 1.65em;
 		color: ${({ theme }) => theme.text};
 	}
-
-	@media only screen and (max-width: 1600px) {
-		font-size: 0.8rem;
-		span {
-			font-size: 1.5em;
-		}
-	}
-
-	@media only screen and (max-width: 1300px) {
-		font-size: 0.7rem;
-		span {
-			font-size: 1.2em;
-		}
-	}
-
-	@media only screen and (max-width: 1100px) {
-		font-size: 0.6rem;
-		span {
-			font-size: 1em;
-		}
-	}
 `;
 export const Button = styled.button`
 	position: relative;
@@ -255,7 +181,7 @@ export const Button = styled.button`
 	background-color: ${({ theme }) => theme.secondColor};
 	color: white;
 	font-size: 1rem;
-	border: 4px solid ${({ theme }) => theme.background};
+	border: 5px solid ${({ theme }) => theme.background};
 	box-shadow: 0 0 0 10px ${({ theme }) => theme.container};
 	transition: 0.5s;
 	/* text-transform: uppercase;
@@ -263,7 +189,7 @@ export const Button = styled.button`
 	&::before {
 		content: "";
 		position: absolute;
-		top: 5px;
+		top: 24px;
 		left: -29px;
 		width: 20px;
 		height: 20px;
@@ -274,7 +200,7 @@ export const Button = styled.button`
 	&::after {
 		content: "";
 		position: absolute;
-		top: 5px;
+		top: 24px;
 		right: -29px;
 		width: 20px;
 		height: 20px;
@@ -285,27 +211,5 @@ export const Button = styled.button`
 	&:hover {
 		opacity: 0.8;
 		letter-spacing: 0.5em;
-	}
-
-	@media only screen and (max-width: 1674px) {
-		&::before {
-			top: 0px;
-		}
-		&::after {
-			top: 0px;
-		}
-	}
-
-	@media only screen and (max-width: 1450px) {
-		padding: 0.3rem 1.4rem;
-		font-size: 0.8rem;
-	}
-
-	@media only screen and (max-width: 1280px) {
-		top: 35px;
-	}
-
-	@media only screen and (max-width: 1100px) {
-		top: 40px;
 	}
 `;

@@ -9,6 +9,7 @@ import Options from "../Options";
 import ControllerBoxChat from "../ControllerBoxChat";
 import SideBar from "../SideBar";
 import { MessageProvider } from "../../context/messageContext";
+import Events from "../Events";
 
 export default function Layout() {
 	return (
@@ -27,6 +28,7 @@ export default function Layout() {
 					{/* <Options></Options> */}
 					<MessageProvider>
 						<MessagesCard />
+						<Events />
 						<ControllerBoxChat />
 					</MessageProvider>
 				</Right>

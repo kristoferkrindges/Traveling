@@ -27,7 +27,7 @@ export default function Friends({ photo, name, message }) {
 				</Info>
 				<ActionButtons>
 					<ButtonPrimary label="Accept" />
-					<ButtonPrimary color={true} label="Decline" />
+					<ButtonPrimary color={"gray"} label="Decline" />
 				</ActionButtons>
 			</Request>
 		</Friend>
