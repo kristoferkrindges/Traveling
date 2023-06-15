@@ -13,6 +13,7 @@ import MenuMobile from "../MenuMobile";
 import { MenuContext } from "../../context/menuContext";
 import Profile from "../Profile";
 import CardProfile from "../CardProfile";
+import OptionsProfile from "../OptionsProfile";
 export default function Layout({ type }) {
 	const { openMenu } = useContext(MenuContext);
 	return (
@@ -37,13 +38,6 @@ export default function Layout({ type }) {
 					{type == "Profile" ? (
 						<>
 							<Profile />
-						</>
-					) : (
-						<></>
-					)}
-					{type == "Teste" ? (
-						<>
-							<CardProfile />
 						</>
 					) : (
 						<></>

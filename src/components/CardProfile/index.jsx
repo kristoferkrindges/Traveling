@@ -13,6 +13,7 @@ import {
 	FaEdit,
 	EditPhotoProfile,
 	FaCam,
+	EditPhotoCover,
 } from "./style";
 import { Link } from "react-router-dom";
 export default function CardProfile() {
@@ -25,6 +26,10 @@ export default function CardProfile() {
 					}
 					alt=""
 				/>
+				<EditPhotoCover>
+					<FaCam />
+					Edit Cover Photo
+				</EditPhotoCover>
 			</Head>
 			<Bottom>
 				<Image>
@@ -33,17 +38,17 @@ export default function CardProfile() {
 							"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
 						}
 					/>
+					<EditPhotoProfile>
+						<FaCam />
+					</EditPhotoProfile>
 				</Image>
-				<EditPhotoProfile>
-					<FaCam />
-				</EditPhotoProfile>
 				<Info>
 					<Name>Kristofer Rossoni Krindges</Name>
 					<Sign>@KristoferRK</Sign>
 				</Info>
 				<Lists>
 					<List>
-						Posts<span>{50}</span>
+						Posts<span>{40}</span>
 					</List>
 					<List>
 						Followers<span>{50}</span>

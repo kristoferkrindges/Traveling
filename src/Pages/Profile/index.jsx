@@ -6,7 +6,7 @@ function ProfilePage() {
 	return (
 		<>
 			<TopMenu />
-			<Layout type="Teste" />
+			<Layout type="Profile" />
 		</>
 	);
 }

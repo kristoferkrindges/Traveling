@@ -35,7 +35,7 @@ export default function InfoUser() {
 					</Name>
 					<Lists>
 						<List>
-							Posts<span>{50}</span>
+							Posts<span>{40}</span>
 						</List>
 						<List>
 							Followers<span>{50}</span>

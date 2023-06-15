@@ -9,11 +9,10 @@ export const FaCam = styled(FaCamera)`
 	}
 `;
 
-export const Context = styled.div``;
 export const Container = styled.div`
-	/* background-color: red; */
+	/* background-color: ${({ theme }) => theme.container}; */
 	border-radius: 1rem;
-	padding: 4px;
+	/* padding: 4px; */
 	font-size: 0.85rem;
 	line-height: 1.5;
 	/* box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1); */
@@ -25,6 +24,7 @@ export const Container = styled.div`
 `;
 
 export const Head = styled.div`
+	position: relative;
 	display: flex;
 	border-radius: 1rem;
 	overflow: hidden;
@@ -71,6 +71,44 @@ export const Image = styled.div`
 		}
 	}
 `;
+
+export const EditPhotoProfile = styled.div`
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 300ms ease;
+	background-color: ${({ theme }) => theme.container};
+	border: 3px solid ${({ theme }) => theme.container};
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.1rem;
+	gap: 10px;
+	z-index: 10;
+	&:hover {
+		opacity: 0.8;
+	}
+`;
+
+// export const EditPhotoProfile = styled.div`
+// 	position: absolute;
+// 	top: 15px;
+// 	right: 250px;
+// 	width: 2rem;
+// 	height: 2rem;
+// 	border-radius: 50%;
+// 	border: 3px solid ${({ theme }) => theme.container};
+// 	background-color: ${({ theme }) => theme.container};
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: center;
+// 	font-size: 1.1rem;
+// 	cursor: pointer;
+// `;
 
 export const Info = styled.div`
 	position: relative;
@@ -200,27 +238,31 @@ export const Button = styled.button`
 		font-size: 0.8rem;
 	}
 
-	@media only screen and (max-width: 1280px) {
-		top: 35px;
-	}
-
 	@media only screen and (max-width: 1100px) {
-		top: 40px;
 	}
 `;
 
-export const EditPhotoProfile = styled.div`
+export const EditPhotoCover = styled.div`
 	position: absolute;
-	top: 15px;
-	right: 250px;
-	width: 2rem;
-	height: 2rem;
-	border-radius: 50%;
-	border: 3px solid ${({ theme }) => theme.container};
-	background-color: ${({ theme }) => theme.container};
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.1rem;
+	top: 1rem;
+	right: 1rem;
+	padding: 0.6rem 1rem;
+	font-weight: 500;
+	border-radius: 2rem;
 	cursor: pointer;
+	transition: all 300ms ease;
+	background-color: ${({ theme }) => theme.secondColor};
+	color: white;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	&:hover {
+		opacity: 0.8;
+	}
+
+	@media only screen and (max-width: 1100px) {
+		font-size: 0.6rem;
+	}
 `;
