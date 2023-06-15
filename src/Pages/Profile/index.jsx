@@ -2,13 +2,13 @@ import React from "react";
 import TopMenu from "../../components/TopMenu";
 import Layout from "../../components/Layout";
 
-function HomePage() {
+function ProfilePage() {
 	return (
 		<>
 			<TopMenu />
-			<Layout type="Home" />
+			<Layout type="Teste" />
 		</>
 	);
 }
 
-export default HomePage;
+export default ProfilePage;
