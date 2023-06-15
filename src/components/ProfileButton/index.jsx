@@ -31,7 +31,7 @@ export default function ProfileButton({ label }) {
 			/>
 			<ProfileLink style={hero ? { display: "block" } : { display: "none" }}>
 				<Li>
-					<NavLink to="/">
+					<NavLink to="/profile">
 						<IoMail /> Profile
 					</NavLink>
 				</Li>

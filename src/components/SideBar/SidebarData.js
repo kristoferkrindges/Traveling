@@ -34,11 +34,12 @@ export const SidebarData = [
 
 export const Settings = [
 	{
-		label: "Configurações",
+		label: "Settings",
 		icon: <AiOutlineSetting />,
+		to: "/settings",
 	},
 	{
-		label: "Sair",
+		label: "Logout",
 		icon: <MdLogout />,
 	},
 ];

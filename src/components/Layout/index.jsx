@@ -5,14 +5,16 @@ import Stories from "../Stories";
 import CreatePost from "../CreatePost";
 import Feeds from "../Feeds";
 import MessagesCard from "../MessagesCard";
-import Options from "../Options";
 import ControllerBoxChat from "../ControllerBoxChat";
 import SideBar from "../SideBar";
 import { MessageProvider } from "../../context/messageContext";
 import Events from "../Events";
 import MenuMobile from "../MenuMobile";
 import { MenuContext } from "../../context/menuContext";
-export default function Layout() {
+import Profile from "../Profile";
+import CardProfile from "../CardProfile";
+import OptionsProfile from "../OptionsProfile";
+export default function Layout({ type }) {
 	const { openMenu } = useContext(MenuContext);
 	return (
 		<MainContainer>
@@ -24,12 +26,24 @@ export default function Layout() {
 					<SideBar />
 				</Left>
 				<Middle>
-					<Stories />
-					<CreatePost />
-					<Feeds />
+					{type == "Home" ? (
+						<>
+							<Stories />
+							<CreatePost />
+							<Feeds />
+						</>
+					) : (
+						<></>
+					)}
+					{type == "Profile" ? (
+						<>
+							<Profile />
+						</>
+					) : (
+						<></>
+					)}
 				</Middle>
 				<Right>
-					{/* <Options></Options> */}
 					<MessageProvider>
 						<MessagesCard />
 						<Events />

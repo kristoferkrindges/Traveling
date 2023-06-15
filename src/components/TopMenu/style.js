@@ -22,7 +22,7 @@ export const Nav = styled.div`
 	padding: 0.7rem 0;
 	position: fixed;
 	top: 0;
-	z-index: 10;
+	z-index: 999;
 `;
 
 export const NavbarContainer = styled.div`

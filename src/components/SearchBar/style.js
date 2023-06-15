@@ -38,7 +38,7 @@ export const SearchInputs = styled.div`
 		font-size: 28px;
 	}
 	& svg:hover {
-		color: black;
+		opacity: 0.7;
 	}
 `;
 
@@ -102,7 +102,7 @@ export const TextInput = styled.h3`
 	border-radius: 0 25px 25px 0;
 	text-align: center;
 	line-height: 50px;
-	color: ${({ theme }) => theme.textInverse};
+	color: white;
 	font-size: 20px;
 `;
 

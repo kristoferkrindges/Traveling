@@ -35,9 +35,9 @@ export default function SideBar(props) {
 				</SLinkContainer>
 			))}
 			<SDivider />
-			{Settings.map(({ icon, label }) => (
+			{Settings.map(({ icon, label, to }) => (
 				<SLinkContainer key={label}>
-					<SLink to="/">
+					<SLink to={to}>
 						<SLinkIcon>{icon}</SLinkIcon>
 						<SLinkLabel>{label}</SLinkLabel>
 					</SLink>
