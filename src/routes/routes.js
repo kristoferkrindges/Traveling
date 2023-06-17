@@ -5,6 +5,7 @@ import { UserProvider } from "../context/userContext";
 import HomePage from "../Pages/Home";
 import LoginPage from "../Pages/Login";
 import ProfilePage from "../Pages/Profile";
+import ChatPage from "../Pages/Chat";
 export default function Routed() {
 	return (
 		<Router>
@@ -16,6 +17,9 @@ export default function Routed() {
 					</Route>
 					<Route path="/profile" element={<PrivateRouter />}>
 						<Route path="/profile" element={<ProfilePage />}></Route>
+					</Route>
+					<Route path="/messages" element={<PrivateRouter />}>
+						<Route path="/messages" element={<ChatPage />}></Route>
 					</Route>
 					<Route path="/settings" element={<PrivateRouter />}>
 						<Route path="/settings" element={<ProfilePage />}></Route>

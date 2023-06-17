@@ -30,7 +30,7 @@ export const Context = styled.div`
 		text-decoration: none;
 	}
 
-	@media only screen and (max-width: 992px) {
+	@media only screen and (max-width: 1200px) {
 		display: block;
 	}
 `;

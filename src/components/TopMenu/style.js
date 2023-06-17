@@ -11,9 +11,13 @@ export const IoAppss = styled(IoApps)`
 		opacity: 0.5;
 		cursor: pointer;
 	}
-	@media only screen and (max-width: 992px) {
+	@media only screen and (max-width: 1200px) {
 		display: inline-block;
+		margin-right: 1rem;
 	}
+	/* @media only screen and (max-width: 992px) {
+		display: inline-block;
+	} */
 `;
 
 export const Nav = styled.div`

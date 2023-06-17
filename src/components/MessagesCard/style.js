@@ -14,6 +14,17 @@ export const Mail = styled(IoMailOutline)`
 `;
 export const Search = styled(IoSearchOutline)``;
 
+export const Other = styled.div`
+	background: ${({ theme }) => theme.container};
+	border-radius: 1rem;
+	padding: 1rem;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	display: none;
+	@media only screen and (max-width: 992px) {
+		display: block;
+	}
+`;
+
 export const Messages = styled.div`
 	background: ${({ theme }) => theme.container};
 	border-radius: 1rem;

@@ -239,6 +239,16 @@ export const Button = styled.button`
 	}
 
 	@media only screen and (max-width: 1100px) {
+		padding: 0.6rem 1.7rem;
+		font-size: 0.8rem;
+		&::before {
+			top: -10px;
+			left: -23px;
+		}
+		&::after {
+			top: -10px;
+			right: -23px;
+		}
 	}
 `;
 
