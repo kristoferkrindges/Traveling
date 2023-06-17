@@ -36,7 +36,7 @@ export default function ProfileButton({ label }) {
 					</NavLink>
 				</Li>
 				<Li>
-					<NavLink to="/">
+					<NavLink to="/messages">
 						<IoPerson /> Messages
 					</NavLink>
 				</Li>

@@ -7,15 +7,9 @@ import {
 	TextMuted,
 	Online,
 } from "./style";
-import { MessageContext } from "../../../context/messageContext";
-export default function MessagesItem({ photo, name, message, online }) {
-	const { HandlerMessage, TestOpen } = useContext(MessageContext);
-	function Click() {
-		TestOpen();
-		HandlerMessage("id");
-	}
+export default function MessagesItem({ photo, name, message, online, type }) {
 	return (
-		<Message onClick={Click}>
+		<Message onClick={type}>
 			<ProfilePhoto>
 				<img src={photo} alt="" />
 				{online ? <Online /> : <></>}

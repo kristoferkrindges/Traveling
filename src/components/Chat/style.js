@@ -4,15 +4,26 @@ import {
 	IoCloseOutline,
 	IoEllipsisHorizontal,
 	IoSendOutline,
+	IoArrowBack,
 } from "react-icons/io5";
 
-export const Close = styled(IoCloseOutline)`
-	width: 20px;
-	height: 20px;
+export const IoArrow = styled(IoArrowBack)`
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 1.8rem;
+	height: 1.8rem;
+	font-size: 1rem;
+	border-radius: 50%;
+	margin-right: 1rem;
 	stroke: ${({ theme }) => theme.text};
 	cursor: pointer;
 	&:hover {
 		opacity: 0.5;
+	}
+
+	@media only screen and (max-width: 992px) {
+		display: flex;
 	}
 `;
 
@@ -54,10 +65,20 @@ export const BoxMessage = styled.div`
 	right: 5rem;
 	bottom: calc(100% - 1.5rem);
 	/* right: 0; */
-	width: 20vw;
+	/* width: 20vw; */
+	width: 400px;
 	overflow: hidden;
 	transition: all 0.3s ease;
 `;
+
+export const BoxChat = styled.div`
+	background: ${({ theme }) => theme.background};
+	border-radius: 1rem;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
+	overflow: hidden;
+	transition: all 0.3s ease;
+`;
+
 export const Header = styled.div`
 	display: flex;
 	align-items: center;
@@ -66,10 +87,11 @@ export const Header = styled.div`
 	background: ${({ theme }) => theme.container};
 	border-radius: 1rem 1rem 0 0;
 `;
+
 export const ProfilePhoto = styled.div`
 	display: flex;
 	align-items: center;
-	grid-gap: 0.5rem;
+	grid-gap: 0.6rem;
 	img {
 		width: 3rem;
 		height: 3rem;
@@ -83,6 +105,7 @@ export const BoxName = styled.div``;
 export const Name = styled.h5`
 	font-weight: 600;
 `;
+
 export const Status = styled.p`
 	font-size: 0.9rem;
 	font-weight: 500;
@@ -121,6 +144,23 @@ export const NavLink = styled(Link)`
 `;
 
 export const Content = styled.div`
+	background: ${({ theme }) => theme.background};
+	border-right: 1px solid ${({ theme }) => theme.container};
+	border-left: 1px solid ${({ theme }) => theme.container};
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	grid-row-gap: 1rem;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 71vh;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+`;
+
+export const ContentOther = styled.div`
 	background: ${({ theme }) => theme.background};
 	border-right: 1px solid ${({ theme }) => theme.container};
 	border-left: 1px solid ${({ theme }) => theme.container};
@@ -169,6 +209,7 @@ export const Form = styled.form`
 	background: ${({ theme }) => theme.background};
 	border-radius: 0.5rem;
 	padding: 0.5rem 1.25rem;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
 `;
 export const TextArea = styled.textarea`
 	background: transparent;

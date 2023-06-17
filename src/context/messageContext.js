@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const MessageContext = React.createContext(null);
 
 function MessageProvider({ children }) {
 	const [openMessage, setOpenMessage] = useState(false);
+	const [message, setMessage] = useState(false);
+	//window.innerWidth <= 992 ? true : false
+	function AlterStateMessage() {
+		if (message) {
+			setMessage(false);
+		} else {
+			setMessage(true);
+		}
+	}
+
 	function TestOpen() {
 		if (openMessage) {
 			setOpenMessage(false);
@@ -13,7 +23,7 @@ function MessageProvider({ children }) {
 	}
 	function HandlerMessage(id) {
 		console.log("carregar chat com id");
-		setOpenMessage(true);
+		// setOpenMessage(true);
 	}
 	return (
 		<MessageContext.Provider
@@ -21,6 +31,8 @@ function MessageProvider({ children }) {
 				openMessage,
 				HandlerMessage,
 				TestOpen,
+				message,
+				AlterStateMessage,
 			}}
 		>
 			{children}

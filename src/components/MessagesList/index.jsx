@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {} from "./style";
 import MessageItem from "./MessagesItem";
-export default function MessagesList() {
+import { MessageContext } from "../../context/messageContext";
+export default function MessagesList({ type }) {
+	const { HandlerMessage, TestOpen, AlterStateMessage } =
+		useContext(MessageContext);
+	function Click() {
+		TestOpen();
+		HandlerMessage("id");
+	}
+	function ClickMessage() {
+		AlterStateMessage();
+		// HandlerMessage("id");
+	}
 	const [messages, setMessages] = useState([
 		{
 			photo:
@@ -55,6 +66,7 @@ export default function MessagesList() {
 						name={value.name}
 						message={value.message[value.message.length - 1]}
 						online={value.online}
+						type={type ? Click : ClickMessage}
 					/>
 				))}
 		</>
