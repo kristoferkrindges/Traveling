@@ -21,29 +21,3 @@ export const Container = styled.div`
 		grid-template-columns: 5rem auto 0;
 	}
 `;
-
-export const Left = styled.div`
-	height: max-content;
-	position: sticky;
-	top: 5.4rem;
-
-	@media only screen and (max-width: 1200px) {
-		width: 5rem;
-		z-index: 5;
-	}
-`;
-export const Middle = styled.div`
-	/* margin-left: 12%; */
-	@media only screen and (max-width: 992px) {
-		grid-column: 1/3;
-	}
-`;
-export const Right = styled.div`
-	height: max-content;
-	position: sticky;
-	top: 5.4rem;
-	bottom: 0;
-	@media only screen and (max-width: 992px) {
-		display: none;
-	}
-`;

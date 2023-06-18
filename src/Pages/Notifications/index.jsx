@@ -2,13 +2,13 @@ import React from "react";
 import TopMenu from "../../components/TopMenu";
 import LayoutMain from "../../Layouts/LayoutMain";
 
-function ProfilePage() {
+function NotificationsPage() {
 	return (
 		<>
 			<TopMenu />
-			<LayoutMain type="Profile" />
+			<LayoutMain type="Notifications" />
 		</>
 	);
 }
 
-export default ProfilePage;
+export default NotificationsPage;

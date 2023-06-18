@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-	IoOptionsOutline,
-	IoMailOutline,
-	IoMailOpenOutline,
-	IoSearchOutline,
-} from "react-icons/io5";
+import { IoMailOutline, IoSearchOutline } from "react-icons/io5";
 export const Mail = styled(IoMailOutline)`
 	&:hover {
 		transform: rotate(-10deg);
@@ -64,23 +59,3 @@ export const SearchMessages = styled.input`
 	font-size: 0.9rem;
 	color: ${({ theme }) => theme.text};
 `;
-export const Category = styled.div`
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 1rem;
-
-	h6 {
-		width: 100%;
-		text-align: center;
-		border-bottom: 4px solid ${({ theme }) => theme.container};
-		padding-bottom: 0.5rem;
-		font-size: 0.85rem;
-		cursor: pointer;
-	}
-	& .active {
-		border-color: ${({ theme }) => theme.invertedBackground};
-	}
-`;
-export const Primary = styled.h6``;
-export const General = styled.h6``;
-export const Requests = styled.h6``;

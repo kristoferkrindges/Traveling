@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
-import {} from "./style";
-import MessageItem from "./MessagesItem";
+import Messages from "../../components/Messages";
 import { MessageContext } from "../../context/messageContext";
-export default function MessagesList({ type }) {
+export default function ControllerMessages({ type }) {
 	const { HandlerMessage, TestOpen, AlterStateMessage } =
 		useContext(MessageContext);
 	function Click() {
@@ -60,7 +59,7 @@ export default function MessagesList({ type }) {
 		<>
 			{messages.length > 0 &&
 				messages.map((value, key) => (
-					<MessageItem
+					<Messages
 						key={key}
 						photo={value.photo}
 						name={value.name}
