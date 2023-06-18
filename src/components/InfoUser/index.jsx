@@ -12,7 +12,7 @@ import {
 	List,
 	Button,
 } from "./style";
-
+import { Link } from "react-router-dom";
 export default function InfoUser() {
 	return (
 		<Card>
@@ -44,8 +44,9 @@ export default function InfoUser() {
 							Following<span>{150}</span>
 						</List>
 					</Lists>
-					{/* <ButtonPrimary label="Profile" /> */}
-					<Button>Profile</Button>
+					<Link to="/profile">
+						<Button>Profile</Button>
+					</Link>
 				</Content>
 			</BoxTwo>
 			<Circle>

@@ -1,12 +1,12 @@
 import React from "react";
 import TopMenu from "../../components/TopMenu";
-import Layout from "../../components/Layout";
+import LayoutMain from "../../Layouts/LayoutMain";
 
 function HomePage() {
 	return (
 		<>
 			<TopMenu />
-			<Layout type="Home" />
+			<LayoutMain type="Home" />
 		</>
 	);
 }

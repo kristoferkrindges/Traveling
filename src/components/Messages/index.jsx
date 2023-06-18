@@ -7,7 +7,7 @@ import {
 	TextMuted,
 	Online,
 } from "./style";
-export default function MessagesItem({ photo, name, message, online, type }) {
+export default function Messages({ photo, name, message, online, type }) {
 	return (
 		<Message onClick={type}>
 			<ProfilePhoto>

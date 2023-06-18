@@ -1,12 +1,12 @@
 import React from "react";
 import TopMenu from "../../components/TopMenu";
-import Layout from "../../components/Layout";
+import LayoutMain from "../../Layouts/LayoutMain";
 
 function ChatPage() {
 	return (
 		<>
 			<TopMenu />
-			<Layout type="Chat" />
+			<LayoutMain type="Chat" />
 		</>
 	);
 }

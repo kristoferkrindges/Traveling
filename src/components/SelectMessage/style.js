@@ -1,74 +1,68 @@
 import styled from "styled-components";
-import { IoArrowForward } from "react-icons/io5";
+import { IoArrowForward, IoMail } from "react-icons/io5";
 
-export const Arrow = styled(IoArrowForward)`
-	width: 20rem;
-	height: 20rem;
+export const IMail = styled(IoMail)`
+	width: 4rem;
+	height: 4rem;
 	&:hover {
 		cursor: pointer;
 	}
 `;
+
+export const Arrow = styled(IoArrowForward)`
+	/* width: 5rem;
+	height: 5rem; */
+`;
 export const Container = styled.div`
 	background: ${({ theme }) => theme.container};
 	border-radius: 1rem;
-	padding: 1.2rem;
+	/* padding: 1.2rem; */
+	padding: 15px 30px 30px 30px;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s ease;
-	height: 85vh;
+	height: 400px;
+	text-align: center;
 
 	@media only screen and (max-width: 992px) {
 		display: none;
 	}
-`;
 
-export const ProfilePhoto = styled.div`
-	position: relative;
-	overflow: visible;
-	img {
-		width: 45px;
-		height: 45px;
-		border-radius: 50%;
-		object-fit: cover;
-		cursor: pointer;
+	@media only screen and (max-width: 1684px) {
+		height: 430px;
 	}
 `;
 
 export const Heading = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 3rem;
-
+	height: 130px;
+	background-color: ${({ theme }) => theme.secondColor};
+	padding: 12px 0 0 0;
+	clip-path: polygon(0 0, 100% 0, 100% 53%, 49% 100%, 0 53%);
+	font-size: 1.7rem;
+	font-weight: bold;
+	color: #ffff;
 	svg {
-		font-size: 1.4rem;
+		font-size: 1rem;
 	}
 `;
-export const Title = styled.h4``;
+export const Title = styled.div``;
 
 export const Mid = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	gap: 5rem;
-
-	svg {
-		font-size: 1.4rem;
-	}
-`;
-
-export const Text = styled.p`
 	font-size: 2rem;
-	font-weight: bold;
+	margin: 4rem 0 4rem 0;
 `;
 
-export const Online = styled.div`
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 0.8rem;
-	height: 0.8rem;
-	border-radius: 50%;
-	border: 3px solid ${({ theme }) => theme.container};
-	background-color: ${({ theme }) => theme.success};
+export const Button = styled.button`
+	outline: none;
+	border: none;
+	height: 50px;
+	display: block;
+	margin-top: 30px;
+	width: 100%;
+	cursor: initial;
+	background: ${({ theme }) => theme.secondColor};
+	color: #ffff;
+	border-radius: 15px;
+	font-size: 3.2rem;
 `;
+
+export const Text = styled.p``;
