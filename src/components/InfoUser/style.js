@@ -252,7 +252,6 @@ export const Button = styled.button`
 	border-radius: 2rem;
 	cursor: pointer;
 	transition: all 300ms ease;
-	background-color: ${({ theme }) => theme.secondColor};
 	color: white;
 	font-size: 1rem;
 	border: 4px solid ${({ theme }) => theme.background};

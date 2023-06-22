@@ -46,7 +46,7 @@ export default function Feeds() {
 				"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg",
 			photo:
 				"https://escolaeducacao.com.br/wp-content/uploads/2019/07/praias-Praia-de-Taipu-de-Fora-Pen%C3%ADnsula-de-Mara%C3%BA-Bahia-12.jpg",
-			userName: "Your Story",
+			userName: "Kristofer Krindges",
 		},
 		{
 			userPhoto:
