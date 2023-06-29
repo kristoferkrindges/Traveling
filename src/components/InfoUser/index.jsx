@@ -13,6 +13,7 @@ import {
 	Button,
 } from "./style";
 import { Link } from "react-router-dom";
+import Kris from "../../assets/images/foto3.png";
 export default function InfoUser() {
 	return (
 		<Card>
@@ -51,12 +52,7 @@ export default function InfoUser() {
 			</BoxTwo>
 			<Circle>
 				<Photo>
-					<img
-						src={
-							"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
-						}
-						alt=""
-					/>
+					<img src={Kris} alt="" />
 				</Photo>
 			</Circle>
 		</Card>

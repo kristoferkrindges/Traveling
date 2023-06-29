@@ -30,7 +30,7 @@ export default function TopMenu() {
 
 				<SearchBar placeholder="Search for posts" data={data} />
 				<Create>
-					<ButtonPrimary label="Create" />
+					<ButtonPrimary label="Post" />
 					<ProfileButton />
 				</Create>
 			</NavbarContainer>

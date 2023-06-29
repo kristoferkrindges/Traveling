@@ -8,7 +8,7 @@ import {
 	IoNotifications,
 	NavLink,
 } from "./style";
-import { Link } from "react-router-dom";
+import Kris from "../../assets/images/foto3.png";
 
 export default function ProfileButton({ label }) {
 	const [hero, setHero] = useState(false);
@@ -22,13 +22,7 @@ export default function ProfileButton({ label }) {
 	}
 	return (
 		<Profile>
-			<img
-				onClick={HandlerOpen}
-				src={
-					"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
-				}
-				alt=""
-			/>
+			<img onClick={HandlerOpen} src={Kris} alt="" />
 			<ProfileLink style={hero ? { display: "block" } : { display: "none" }}>
 				<Li>
 					<NavLink to="/profile">

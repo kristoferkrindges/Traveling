@@ -26,6 +26,7 @@ import {
 	IoVideocam,
 	IoEmoji,
 } from "./style";
+import Kris from "../../assets/images/foto3.png";
 
 export default function ModalPost({ click }) {
 	const [dropdown, setDropdown] = useState(false);
@@ -59,9 +60,10 @@ export default function ModalPost({ click }) {
 					<User>
 						<ProfilePhoto>
 							<img
-								src={
-									"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
-								}
+								// src={
+								// 	"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
+								// }
+								src={Kris}
 								alt=""
 							/>
 						</ProfilePhoto>
@@ -84,7 +86,7 @@ export default function ModalPost({ click }) {
 							<IoVideocam />
 							<IoEmoji />
 						</Icons>
-						<Button>Create</Button>
+						<Button>Post</Button>
 					</Send>
 				</Content>
 			</Modal>

@@ -46,12 +46,12 @@ export default function Chat({ click, type, TestOpen }) {
 							<ProfilePhoto>
 								<img
 									src={
-										"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
+										"https://vikingstotem.files.wordpress.com/2013/04/vikings_ragnar_3-p1.jpeg?w=584"
 									}
 									alt=""
 								/>
 								<BoxName>
-									<Name>Kristofer Krindges</Name>
+									<Name>Ragnar Lothbroke</Name>
 									<Status>online</Status>
 								</BoxName>
 							</ProfilePhoto>
@@ -113,12 +113,12 @@ export default function Chat({ click, type, TestOpen }) {
 							<IoArrow onClick={click} />
 							<img
 								src={
-									"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
+									"https://vikingstotem.files.wordpress.com/2013/04/vikings_ragnar_3-p1.jpeg?w=584"
 								}
 								alt=""
 							/>
 							<BoxName>
-								<Name>Kristofer Krindges</Name>
+								<Name>Ragnar Lothbroke</Name>
 								<Status>online</Status>
 							</BoxName>
 						</ProfilePhoto>

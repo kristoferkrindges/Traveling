@@ -11,6 +11,7 @@ import {
 } from "./style";
 import ButtonPrimary from "../ButtonPrimary";
 import ModalPost from "../ModalPost";
+import Kris from "../../assets/images/foto3.png";
 
 export default function CreatePost() {
 	const [modal, setModal] = useState(false);
@@ -27,7 +28,7 @@ export default function CreatePost() {
 			{modal ? <ModalPost click={click} /> : <></>}
 			<Form onClick={click}>
 				<ProfilePhoto>
-					<img src="https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg" />
+					<img src={Kris} />
 				</ProfilePhoto>
 				<Input
 					onClick={click}

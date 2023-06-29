@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MainContainer, Story, ProfilePhoto, UserName } from "./style";
+import Kris from "../../assets/images/foto3.png";
 
 export default function Stories() {
 	const [sidebarOpen, setSidebarOpen] = useState();
@@ -7,8 +8,7 @@ export default function Stories() {
 		{
 			storie:
 				"https://www.queroviajarmais.com/wp-content/uploads/2020/08/lago-louise.jpg",
-			photo:
-				"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg",
+			photo: Kris,
 			name: "Your Story",
 		},
 		{

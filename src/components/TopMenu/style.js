@@ -59,6 +59,11 @@ export const NavLink = styled(Link)`
 
 export const Title = styled.h1`
 	color: ${({ theme }) => theme.text};
+	text-transform: uppercase;
+	font-size: 1.5rem;
+	letter-spacing: 0.1rem;
+	font-weight: 600;
+	line-height: 1.1em;
 	/* letter-spacing: 0.1em; */
 	&.hover {
 		color: whitesmoke;

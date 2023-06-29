@@ -15,7 +15,7 @@ import {
 	FaCam,
 	EditPhotoCover,
 } from "./style";
-import { Link } from "react-router-dom";
+import Kris from "../../assets/images/foto3.png";
 export default function CardProfile() {
 	return (
 		<Container>
@@ -33,11 +33,7 @@ export default function CardProfile() {
 			</Head>
 			<Bottom>
 				<Image>
-					<img
-						src={
-							"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
-						}
-					/>
+					<img src={Kris} />
 					<EditPhotoProfile>
 						<FaCam />
 					</EditPhotoProfile>
