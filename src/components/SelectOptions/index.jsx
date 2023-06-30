@@ -154,7 +154,7 @@ export default function SelectOptions({ type }) {
 						General
 					</Posts>
 					<Posts className={activeRequests} onClick={handlerActiveRequests}>
-						Blocked(2)
+						Blocked
 					</Posts>
 				</Category>
 			) : (

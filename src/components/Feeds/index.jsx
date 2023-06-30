@@ -42,17 +42,17 @@ export default function Feeds() {
 	}
 	const [posts, setPosts] = useState([
 		{
+			userPhoto: Kris,
+			photo:
+				"https://escolaeducacao.com.br/wp-content/uploads/2019/07/praias-Praia-de-Taipu-de-Fora-Pen%C3%ADnsula-de-Mara%C3%BA-Bahia-12.jpg",
+			userName: "Kristofer Krindges",
+		},
+		{
 			userPhoto:
 				"https://p2.trrsf.com/image/fget/cf/1200/1600/middle/images.terra.com/2023/04/14/594335823-harry-potter.jpg",
 			photo:
 				"https://img.freepik.com/fotos-premium/panorama-da-ilha-de-phi-phi_104337-9599.jpg",
 			userName: "Harry Potter",
-		},
-		{
-			userPhoto: Kris,
-			photo:
-				"https://escolaeducacao.com.br/wp-content/uploads/2019/07/praias-Praia-de-Taipu-de-Fora-Pen%C3%ADnsula-de-Mara%C3%BA-Bahia-12.jpg",
-			userName: "Kristofer Krindges",
 		},
 		{
 			userPhoto:
