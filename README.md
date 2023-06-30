@@ -43,13 +43,20 @@
   <img src="./src/assets/images/TravelingPost.png" width="800"/>
 </p>
 
-<h2 id="stack">Stack Technological 👨‍💻</h2>
+<h2 id="stack">Stack Technological 🛠</h2>
 - React
 - Styled Components
 - React Icons
 - React Router DOM
 - React Toastify
 - Axios
+
+<h2 id="stack">Start Project 👨‍💻</h2>
+
+```bash
+npm install
+npm start
+```
 
 <h2 id="api">API 👨‍💻</h2>
 <a align="center" href="https://github.com/kristoferkrindges/TravelingApi" />
