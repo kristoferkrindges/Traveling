@@ -20,7 +20,7 @@
 <h3>Home</h3>
 <p align="center">
   <img src="./src/assets/images/TravelingHomeWhite.png" width="400"/>
-  <img src="./src/assets/images/TravelingHomeDark" width="400"/>
+  <img src="./src/assets/images/TravelingHomeDark.png" width="400"/>
 </p>
 <h3>Home-Chat</h3>
 <p align="center">
