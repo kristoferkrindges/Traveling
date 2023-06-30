@@ -29,6 +29,7 @@ import {
 	DropMenu,
 	Item,
 	NavLink,
+	Space,
 } from "./style";
 import Kris from "../../assets/images/foto3.png";
 export default function Feeds() {
@@ -42,17 +43,19 @@ export default function Feeds() {
 	}
 	const [posts, setPosts] = useState([
 		{
-			userPhoto: Kris,
-			photo:
-				"https://escolaeducacao.com.br/wp-content/uploads/2019/07/praias-Praia-de-Taipu-de-Fora-Pen%C3%ADnsula-de-Mara%C3%BA-Bahia-12.jpg",
-			userName: "Kristofer Krindges",
-		},
-		{
 			userPhoto:
 				"https://p2.trrsf.com/image/fget/cf/1200/1600/middle/images.terra.com/2023/04/14/594335823-harry-potter.jpg",
 			photo:
 				"https://img.freepik.com/fotos-premium/panorama-da-ilha-de-phi-phi_104337-9599.jpg",
 			userName: "Harry Potter",
+			time: 6,
+		},
+		{
+			userPhoto: Kris,
+			photo:
+				"https://escolaeducacao.com.br/wp-content/uploads/2019/07/praias-Praia-de-Taipu-de-Fora-Pen%C3%ADnsula-de-Mara%C3%BA-Bahia-12.jpg",
+			userName: "Kristofer Krindges",
+			time: 2,
 		},
 		{
 			userPhoto:
@@ -60,6 +63,7 @@ export default function Feeds() {
 			photo:
 				"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
 			userName: "Samanta Lok",
+			time: 2,
 		},
 		{
 			userPhoto:
@@ -67,6 +71,7 @@ export default function Feeds() {
 			photo:
 				"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
 			userName: "Jessica Almeida",
+			time: 2,
 		},
 		{
 			userPhoto:
@@ -74,6 +79,7 @@ export default function Feeds() {
 			photo:
 				"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
 			userName: "Carlos Teves",
+			time: 2,
 		},
 		{
 			userPhoto:
@@ -81,6 +87,7 @@ export default function Feeds() {
 			photo:
 				"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
 			userName: "Kristofer RK",
+			time: 2,
 		},
 	]);
 	return (
@@ -95,7 +102,10 @@ export default function Feeds() {
 								</ProfilePhoto>
 								<Ingo>
 									<Name>{value.userName}</Name>
-									<Small>Poa, 15 MINUTES AGO</Small>
+									<Small>
+										{value.time}
+										<Space>h</Space>
+									</Small>
 								</Ingo>
 							</User>
 							<Edit>

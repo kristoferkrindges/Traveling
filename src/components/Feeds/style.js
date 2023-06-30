@@ -49,6 +49,9 @@ export const ProfilePhoto = styled.div`
 export const Ingo = styled.div``;
 export const Name = styled.h3``;
 export const Small = styled.small``;
+export const Space = styled.span`
+	margin-left: 2px;
+`;
 export const Edit = styled.span`
 	position: relative;
 	font-size: 1.3rem;
