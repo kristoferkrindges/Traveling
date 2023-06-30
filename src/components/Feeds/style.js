@@ -88,6 +88,17 @@ export const Span = styled.span`
 	&:first-child {
 		margin: 0;
 	}
+
+	img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+		border-radius: 50%;
+		cursor: pointer;
+		&:hover {
+			opacity: 0.5;
+		}
+	}
 `;
 export const P = styled.p`
 	margin-left: 0.5rem;

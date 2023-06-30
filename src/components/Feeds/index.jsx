@@ -42,17 +42,17 @@ export default function Feeds() {
 	}
 	const [posts, setPosts] = useState([
 		{
-			userPhoto: Kris,
-			photo:
-				"https://escolaeducacao.com.br/wp-content/uploads/2019/07/praias-Praia-de-Taipu-de-Fora-Pen%C3%ADnsula-de-Mara%C3%BA-Bahia-12.jpg",
-			userName: "Kristofer Krindges",
-		},
-		{
 			userPhoto:
 				"https://p2.trrsf.com/image/fget/cf/1200/1600/middle/images.terra.com/2023/04/14/594335823-harry-potter.jpg",
 			photo:
 				"https://img.freepik.com/fotos-premium/panorama-da-ilha-de-phi-phi_104337-9599.jpg",
 			userName: "Harry Potter",
+		},
+		{
+			userPhoto: Kris,
+			photo:
+				"https://escolaeducacao.com.br/wp-content/uploads/2019/07/praias-Praia-de-Taipu-de-Fora-Pen%C3%ADnsula-de-Mara%C3%BA-Bahia-12.jpg",
+			userName: "Kristofer Krindges",
 		},
 		{
 			userPhoto:
@@ -137,7 +137,7 @@ export default function Feeds() {
 							<Span>
 								<img
 									src={
-										"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+										"https://i.scdn.co/image/ab67706c0000da84c498e529d7a388a8c655eb33"
 									}
 									alt=""
 								/>
@@ -145,7 +145,7 @@ export default function Feeds() {
 							<Span>
 								<img
 									src={
-										"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+										"https://i.pinimg.com/736x/2e/c2/28/2ec228e768083b48b308247288ad3b0e.jpg"
 									}
 									alt=""
 								/>
@@ -153,22 +153,22 @@ export default function Feeds() {
 							<Span>
 								<img
 									src={
-										"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+										"https://upload.wikimedia.org/wikipedia/commons/3/3a/Ralph_Macchio_Photo_Op_GalaxyCon_Richmond_2019.jpg"
 									}
 									alt=""
 								/>
 							</Span>
 							<P>
-								Liked by <b>Ernest Achiever</b> and <b>2,323 others</b>
+								Liked by <b>Samanta Larusso </b> and <b>1,147 others</b>
 							</P>
 						</LikedBy>
 						<Caption>
 							<Pharase>
-								<b>Kristofer RK</b>Do you speak English?
-								<HarshTag>#english</HarshTag>
+								<b>Harry Potter</b> Do you speak English?
+								<HarshTag> #English</HarshTag>
 							</Pharase>
 						</Caption>
-						<TextMuted>View all 277 comments</TextMuted>
+						<TextMuted>View all 124 comments</TextMuted>
 					</Feed>
 				))}
 		</FeedsContainer>

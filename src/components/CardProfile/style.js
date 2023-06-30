@@ -94,22 +94,6 @@ export const EditPhotoProfile = styled.div`
 	}
 `;
 
-// export const EditPhotoProfile = styled.div`
-// 	position: absolute;
-// 	top: 15px;
-// 	right: 250px;
-// 	width: 2rem;
-// 	height: 2rem;
-// 	border-radius: 50%;
-// 	border: 3px solid ${({ theme }) => theme.container};
-// 	background-color: ${({ theme }) => theme.container};
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: center;
-// 	font-size: 1.1rem;
-// 	cursor: pointer;
-// `;
-
 export const Info = styled.div`
 	position: relative;
 	/* top: 4rem; */
