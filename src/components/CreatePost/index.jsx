@@ -16,7 +16,6 @@ import Kris from "../../assets/images/foto3.png";
 export default function CreatePost() {
 	const [modal, setModal] = useState(false);
 	function click() {
-		console.log("clicou!");
 		if (modal) {
 			setModal(false);
 		} else {
