@@ -16,7 +16,15 @@ import {
 	EditPhotoCover,
 } from "./style";
 import Kris from "../../assets/images/foto3.png";
+import ModalEditUser from "../ModalEditUser";
 export default function CardProfile() {
+	const [modal, setModal] = useState(false);
+	function clickClose() {
+		setModal(false);
+	}
+	function clickOpen() {
+		setModal(true);
+	}
 	return (
 		<Container>
 			<Head>
@@ -53,9 +61,10 @@ export default function CardProfile() {
 						Following<span>{150}</span>
 					</List>
 				</Lists>
-				<Button>
+				<Button onClick={clickOpen}>
 					<FaEdit />
 				</Button>
+				{modal ? <ModalEditUser clickClose={clickClose} /> : <></>}
 			</Bottom>
 		</Container>
 	);
