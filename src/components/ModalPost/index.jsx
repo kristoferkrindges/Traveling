@@ -28,7 +28,7 @@ import {
 } from "./style";
 import Kris from "../../assets/images/foto3.png";
 
-export default function ModalPost({ click }) {
+export default function ModalPost({ id = "modal", click }) {
 	const [dropdown, setDropdown] = useState(false);
 	function HandlerOpen() {
 		if (dropdown == false) {
@@ -37,8 +37,11 @@ export default function ModalPost({ click }) {
 			setDropdown(false);
 		}
 	}
+	const handleOutsideClick = (e) => {
+		if (e.target.id == id) click();
+	};
 	return (
-		<Overlay>
+		<Overlay id={id} onClick={handleOutsideClick}>
 			<Modal>
 				<Content>
 					<Heading>

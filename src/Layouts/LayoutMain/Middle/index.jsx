@@ -6,8 +6,10 @@ import CreatePost from "../../../components/CreatePost";
 import Feeds from "../../../components/Feeds";
 import LayoutNotifications from "../../LayoutNotifications";
 import LayoutProfile from "../../LayoutProfile";
+import LayoutOnlyPost from "../../LayoutOnlyPost";
 
 import ControllerChat from "../../../Controllers/ControllerChat";
+import ControllerPost from "../../../Controllers/ControllerPost";
 
 export default function Middle({ type }) {
 	return (
@@ -16,7 +18,8 @@ export default function Middle({ type }) {
 				<>
 					<Stories />
 					<CreatePost />
-					<Feeds />
+					{/* <Feeds /> */}
+					<ControllerPost type={false} />
 				</>
 			) : (
 				<></>
@@ -38,6 +41,13 @@ export default function Middle({ type }) {
 			{type == "Notifications" ? (
 				<>
 					<LayoutNotifications />
+				</>
+			) : (
+				<></>
+			)}
+			{type == "OnlyPost" ? (
+				<>
+					<LayoutOnlyPost />
 				</>
 			) : (
 				<></>
