@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { btnReset, v } from "../../styles/variables";
+import { btnReset, v } from "../../../styles/variables";
 
 import { IoApps } from "react-icons/io5";
 

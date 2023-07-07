@@ -43,7 +43,7 @@ export const Ellipsis = styled(IoEllipsisHorizontal)`
 `;
 
 export const IconSend = styled(IoSendOutline)`
-	stroke: ${({ theme }) => theme.secondColor};
+	stroke: ${({ theme }) => theme.text};
 	cursor: pointer;
 	&:hover {
 		opacity: 0.5;

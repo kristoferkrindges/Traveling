@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Container } from "./style";
 import InfoUser from "../../../components/InfoUser";
-import SideBar from "../../../components/SideBar";
-import MenuMobile from "../../../components//MenuMobile";
+import SideBar from "../../../components/Menus/SideBar";
+import MenuMobile from "../../../components/Menus/MenuMobile";
 
 import { MenuContext } from "../../../context/menuContext";
 

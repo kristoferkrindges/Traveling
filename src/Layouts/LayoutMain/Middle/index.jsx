@@ -2,12 +2,14 @@ import React from "react";
 import { Container } from "./style";
 
 import Stories from "../../../components/Stories";
-import CreatePost from "../../../components/CreatePost";
+import CreatePost from "../../../components/Create/CreatePost";
 import Feeds from "../../../components/Feeds";
 import LayoutNotifications from "../../LayoutNotifications";
 import LayoutProfile from "../../LayoutProfile";
+import LayoutOnlyPost from "../../LayoutOnlyPost";
 
 import ControllerChat from "../../../Controllers/ControllerChat";
+import ControllerPost from "../../../Controllers/ControllerPost";
 
 export default function Middle({ type }) {
 	return (
@@ -16,7 +18,8 @@ export default function Middle({ type }) {
 				<>
 					<Stories />
 					<CreatePost />
-					<Feeds />
+					{/* <Feeds /> */}
+					<ControllerPost type={false} />
 				</>
 			) : (
 				<></>
@@ -38,6 +41,13 @@ export default function Middle({ type }) {
 			{type == "Notifications" ? (
 				<>
 					<LayoutNotifications />
+				</>
+			) : (
+				<></>
+			)}
+			{type == "OnlyPost" ? (
+				<>
+					<LayoutOnlyPost />
 				</>
 			) : (
 				<></>

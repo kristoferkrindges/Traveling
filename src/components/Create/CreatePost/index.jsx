@@ -9,9 +9,9 @@ import {
 	IoImages,
 	IoVideocam,
 } from "./style";
-import ButtonPrimary from "../ButtonPrimary";
-import ModalPost from "../ModalPost";
-import Kris from "../../assets/images/foto3.png";
+import ButtonPrimary from "../../ButtonPrimary";
+import ModalPost from "../../Modal/ModalPost";
+import Kris from "../../../assets/images/foto3.png";
 
 export default function CreatePost() {
 	const [modal, setModal] = useState(false);

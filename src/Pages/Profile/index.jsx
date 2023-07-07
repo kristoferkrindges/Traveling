@@ -1,5 +1,5 @@
 import React from "react";
-import TopMenu from "../../components/TopMenu";
+import TopMenu from "../../components/Menus/TopMenu";
 import LayoutMain from "../../Layouts/LayoutMain";
 
 function ProfilePage() {

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import {
 	Context,
 	SDivider,
@@ -12,8 +12,7 @@ import {
 	SThemeToggler,
 	SToggleThumb,
 } from "./style";
-import { Link } from "react-router-dom";
-import { ThemeContext } from "./../../App";
+import { ThemeContext } from ".././../../App";
 import { SidebarData, Settings } from "./SidebarData";
 import { useLocation } from "react-router-dom";
 

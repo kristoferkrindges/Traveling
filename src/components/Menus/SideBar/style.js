@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { btnReset, v } from "../../styles/variables";
+import { btnReset, v } from "../../../styles/variables";
 import { Link } from "react-router-dom";
 export const Context = styled.div`
 	border-radius: 1rem;

@@ -16,7 +16,7 @@ import {
 	Name,
 } from "./style";
 import { SidebarData, Settings } from "../SideBar/SidebarData";
-import { ThemeContext } from "../../App";
+import { ThemeContext } from "../../../App";
 import { useLocation, Link } from "react-router-dom";
 
 export default function MenuMobile(props) {

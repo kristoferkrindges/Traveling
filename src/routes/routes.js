@@ -7,6 +7,7 @@ import LoginPage from "../Pages/Login";
 import ProfilePage from "../Pages/Profile";
 import ChatPage from "../Pages/Chat";
 import NotificationsPage from "../Pages/Notifications";
+import OnlyPost from "../Pages/OnlyPost";
 export default function Routed() {
 	return (
 		<Router>
@@ -27,6 +28,9 @@ export default function Routed() {
 							path="/notifications"
 							element={<NotificationsPage />}
 						></Route>
+					</Route>
+					<Route path="/post/:id" element={<PrivateRouter />}>
+						<Route path="/post/:id" element={<OnlyPost />}></Route>
 					</Route>
 					<Route path="/settings" element={<PrivateRouter />}>
 						<Route path="/settings" element={<ProfilePage />}></Route>

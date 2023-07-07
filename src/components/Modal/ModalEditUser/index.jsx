@@ -32,8 +32,8 @@ import {
 	ContextCalendar,
 	Save,
 } from "./style";
-import Kris from "../../assets/images/foto3.png";
-import ButtonPrimary from "../ButtonPrimary";
+import Kris from "../../../assets/images/foto3.png";
+import ButtonPrimary from "../../ButtonPrimary";
 
 export default function ModalEditUser({ id = "overlay", clickClose }) {
 	const [dropdown, setDropdown] = useState(false);
