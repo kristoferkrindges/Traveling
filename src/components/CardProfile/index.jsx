@@ -16,7 +16,7 @@ import {
 	EditPhotoCover,
 } from "./style";
 import Kris from "../../assets/images/foto3.png";
-import ModalEditUser from "../ModalEditUser";
+import ModalEditUser from "../Modal/ModalEditUser";
 export default function CardProfile() {
 	const [modal, setModal] = useState(false);
 	function clickClose() {

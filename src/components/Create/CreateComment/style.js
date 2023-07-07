@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IoSendOutline } from "react-icons/io5";
 export const IconSend = styled(IoSendOutline)`
-	stroke: ${({ theme }) => theme.text};
+	stroke: white;
 	cursor: pointer;
 	&:hover {
 		opacity: 0.5;
@@ -32,15 +32,29 @@ export const ProfilePhoto = styled.div`
 	}
 `;
 
+export const Area = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	margin-left: 1rem;
+`;
+
 export const TextArea = styled.textarea`
 	background: transparent;
 	outline: none;
 	border: none;
 	resize: none;
 	scrollbar-width: none;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	width: 100%;
 
 	&::-webkit-scrollbar {
 		display: none;
+	}
+	&:focus {
+		height: 100%;
 	}
 `;
 

@@ -11,6 +11,8 @@ export default function ControllerPost({ type }) {
 				"https://img.freepik.com/fotos-premium/panorama-da-ilha-de-phi-phi_104337-9599.jpg",
 			userName: "Harry Potter",
 			time: 6,
+			pharase: "Live your life to the fullest while you can.",
+			hashtag: "English",
 		},
 		{
 			userPhoto: Kris,
@@ -18,6 +20,9 @@ export default function ControllerPost({ type }) {
 				"https://escolaeducacao.com.br/wp-content/uploads/2019/07/praias-Praia-de-Taipu-de-Fora-Pen%C3%ADnsula-de-Mara%C3%BA-Bahia-12.jpg",
 			userName: "Kristofer Krindges",
 			time: 2,
+			pharase:
+				"I believed in the impossible, challenged limits, and conquered.",
+			hashtag: "Impossible",
 		},
 		{
 			userPhoto:
@@ -26,6 +31,8 @@ export default function ControllerPost({ type }) {
 				"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
 			userName: "Samanta Lok",
 			time: 2,
+			pharase: "Live your life to the fullest while you can.",
+			hashtag: "English",
 		},
 		{
 			userPhoto:
@@ -34,6 +41,8 @@ export default function ControllerPost({ type }) {
 				"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
 			userName: "Jessica Almeida",
 			time: 2,
+			pharase: "Live your life to the fullest while you can.",
+			hashtag: "English",
 		},
 		{
 			userPhoto:
@@ -42,6 +51,8 @@ export default function ControllerPost({ type }) {
 				"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
 			userName: "Carlos Teves",
 			time: 2,
+			pharase: "Live your life to the fullest while you can.",
+			hashtag: "English",
 		},
 		{
 			userPhoto:
@@ -50,6 +61,8 @@ export default function ControllerPost({ type }) {
 				"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
 			userName: "Kristofer RK",
 			time: 2,
+			pharase: "Live your life to the fullest while you can.",
+			hashtag: "English",
 		},
 	]);
 	return (
@@ -67,7 +80,8 @@ export default function ControllerPost({ type }) {
 							time={value.time}
 							likes={"13,7 thousand"}
 							comments={"8,2 thousand"}
-							pharase={"Live your life to the fullest while you can."}
+							pharase={value.pharase}
+							hashtag={value.hashtag}
 						/>
 					</Container>
 				))

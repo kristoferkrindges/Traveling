@@ -26,7 +26,7 @@ import {
 	IoVideocam,
 	IoEmoji,
 } from "./style";
-import Kris from "../../assets/images/foto3.png";
+import Kris from "../../../assets/images/foto3.png";
 
 export default function ModalPost({ id = "modal", click }) {
 	const [dropdown, setDropdown] = useState(false);

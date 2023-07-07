@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
 import Chat from "../../components/Chat";
 import { MessageContext } from "../../context/messageContext";
 

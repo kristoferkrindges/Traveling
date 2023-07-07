@@ -5,6 +5,8 @@ import {
 	IoChatbubbleOutline,
 	IoShareOutline,
 	IoBookmarkOutline,
+	IoCloudUploadOutline,
+	IoCloseCircleOutline,
 } from "react-icons/io5";
 import { NavLink as Link } from "react-router-dom";
 
@@ -14,6 +16,8 @@ export const Ellips = styled(IoEllipsisHorizontal)`
 		opacity: 0.5;
 	}
 `;
+export const IoCloudUpload = styled(IoCloudUploadOutline)``;
+export const DeletIcon = styled(IoCloseCircleOutline)``;
 export const Heart = styled(IoHeartOutline)``;
 export const Comment = styled(IoChatbubbleOutline)``;
 export const Share = styled(IoShareOutline)``;
@@ -46,13 +50,34 @@ export const Edit = styled.span`
 	font-size: 1.3rem;
 `;
 export const Photo = styled.div`
+	position: relative;
 	border-radius: 1rem;
 	overflow: hidden;
 	margin: 0.7rem 0;
 	img {
 		width: 100%;
+		/* filter: brightness(0.25) opacity(0.75); */
 	}
 `;
+export const EditPhoto = styled.div`
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 2rem;
+	top: 48%;
+	left: 43%;
+	font-size: 3rem;
+	color: white;
+`;
+export const InputFile = styled.input`
+	display: none;
+`;
+
+export const LabelFile = styled.label`
+	display: flex;
+`;
+
 export const ActionButtons = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -133,9 +158,9 @@ export const DropMenu = styled.ul`
 	padding: 0.5rem 0;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.9);
 	border-radius: 1rem;
-	opacity: 1;
 	transition: all 0.3s ease;
 	font-weight: 600;
+	z-index: 2;
 `;
 export const Item = styled.li``;
 
@@ -153,4 +178,10 @@ export const NavLink = styled(Link)`
 		color: ${({ theme }) => theme.secondColor};
 		background: ${({ theme }) => theme.background};
 	}
+`;
+
+export const SaveContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;

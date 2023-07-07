@@ -6,6 +6,7 @@ import { MessageProvider } from "../../context/messageContext";
 import Left from "./Left";
 import Middle from "./Middle";
 import Right from "./Right";
+import { PostProvider } from "../../context/postContext";
 
 export default function LayoutMain({ type }) {
 	return (
@@ -13,7 +14,9 @@ export default function LayoutMain({ type }) {
 			<MainContainer>
 				<Container>
 					<Left />
-					<Middle type={type} />
+					<PostProvider>
+						<Middle type={type} />
+					</PostProvider>
 					<Right type={type} />
 				</Container>
 			</MainContainer>
