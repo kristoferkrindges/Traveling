@@ -4,5 +4,5 @@ import { Context } from "./userContext";
 
 export const PrivateRouter = () => {
 	const { authenticated } = useContext(Context);
-	return authenticated ? <Outlet /> : <Navigate to="/login" />;
+	return authenticated ? <Outlet /> : <Navigate to="/auth" />;
 };
