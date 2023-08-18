@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
 	ContainerLogin,
 	Logo,
@@ -19,9 +19,24 @@ import {
 	ContainerIcon,
 } from "./style";
 import Infinite from "../../../assets/images/infinite-removebg-preview.png";
+import { Context } from "../../../context/userContext";
 export default function Login({ controllerOrder }) {
+	const { login } = useContext(Context);
 	const [emailFocused, setEmailFocused] = useState(false);
 	const [passwordFocused, setPasswordFocused] = useState(false);
+
+	const [emailChange, setEmailChange] = useState();
+	const [passwordChange, setPassowordChange] = useState();
+
+	function handlerButtonSignIn(evt) {
+		evt.preventDefault();
+		const user = {
+			email: emailChange,
+			password: passwordChange,
+		};
+		login(user);
+	}
+
 	return (
 		<ContainerLogin>
 			<Logo src={Infinite} />
@@ -32,11 +47,14 @@ export default function Login({ controllerOrder }) {
 						<UserCircle />
 					</FormIcon>
 					<FormInput>
-						{!emailFocused ? <Label>Email</Label> : <></>}
+						{!emailFocused && !emailChange ? <Label>Email</Label> : null}
 						<Input
 							type="text"
 							onFocus={() => setEmailFocused(true)}
 							onBlur={() => setEmailFocused(false)}
+							onChange={(e) => {
+								setEmailChange(e.target.value);
+							}}
 						/>
 					</FormInput>
 				</Fields>
@@ -45,18 +63,29 @@ export default function Login({ controllerOrder }) {
 						<Lock />
 					</FormIcon>
 					<FormInput>
-						{!passwordFocused ? <Label>Password</Label> : <></>}
+						{!passwordFocused && !passwordChange ? (
+							<Label>Password</Label>
+						) : null}
 						<Input
 							type="password"
 							onFocus={() => setPasswordFocused(true)}
 							onBlur={() => setPasswordFocused(false)}
+							onChange={(e) => {
+								setPassowordChange(e.target.value);
+							}}
 						/>
 					</FormInput>
 				</Fields>
 				<OrderController onClick={controllerOrder}>
 					Don't have an account?
 				</OrderController>
-				<Button type="submit" value="Sign in"></Button>
+				<Button
+					type="submit"
+					value="Sign in"
+					onClick={(evt) => {
+						handlerButtonSignIn(evt);
+					}}
+				></Button>
 				<ContainerGoogle>
 					<Text>Our login with</Text>
 					<ContainerIcon>
