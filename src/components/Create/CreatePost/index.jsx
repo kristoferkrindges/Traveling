@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
 	Form,
 	ProfilePhoto,
@@ -9,12 +9,12 @@ import {
 	IoImages,
 	IoVideocam,
 } from "./style";
-import ButtonPrimary from "../../ButtonPrimary";
 import ModalPost from "../../Modal/ModalPost";
-import Kris from "../../../assets/images/foto3.png";
+import { Context } from "../../../context/userContext";
 
 export default function CreatePost() {
 	const [modal, setModal] = useState(false);
+	const { userInfo } = useContext(Context);
 	function click() {
 		if (modal) {
 			setModal(false);
@@ -24,10 +24,10 @@ export default function CreatePost() {
 	}
 	return (
 		<Container>
-			{modal ? <ModalPost click={click} /> : <></>}
+			{modal ? <ModalPost click={click} userInfo={userInfo} /> : <></>}
 			<Form onClick={click}>
 				<ProfilePhoto>
-					<img src={Kris} />
+					<img src={userInfo.photo} />
 				</ProfilePhoto>
 				<Input
 					onClick={click}
@@ -40,11 +40,11 @@ export default function CreatePost() {
 			<Buttons>
 				<Button>
 					<IoImages />
-					Foto/Vídeo
+					Photo/Video
 				</Button>
 				<Button>
 					<IoVideocam />
-					Vídeo ao vivo
+					Live video
 				</Button>
 			</Buttons>
 		</Container>

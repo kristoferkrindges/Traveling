@@ -13,12 +13,19 @@ import {
 	SToggleThumb,
 } from "./style";
 import { ThemeContext } from ".././../../App";
+import { Context as userContext } from "../../../context/userContext";
 import { SidebarData, Settings } from "./SidebarData";
 import { useLocation } from "react-router-dom";
 
 export default function SideBar(props) {
-	const { setTheme, theme } = useContext(ThemeContext);
+	const { theme } = useContext(ThemeContext);
+	const { alterDarkMode } = useContext(userContext);
 	const { pathname } = useLocation();
+
+	function handlerButton(evt) {
+		evt.preventDefault();
+		alterDarkMode();
+	}
 	return (
 		<Context>
 			{SidebarData.map(({ icon, label, notification, to }) => (
@@ -47,7 +54,9 @@ export default function SideBar(props) {
 				<SThemeLabel>Modo escuro</SThemeLabel>
 				<SThemeToggler
 					isActive={theme === "dark"}
-					onClick={() => setTheme((p) => (p === "light" ? "dark" : "light"))}
+					onClick={(evt) => {
+						handlerButton(evt);
+					}}
 				>
 					<SToggleThumb style={theme === "dark" ? { right: "1px" } : {}} />
 				</SThemeToggler>

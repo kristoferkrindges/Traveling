@@ -1,21 +1,24 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { PrivateRouter } from "../context/privateContext";
+import { PrivateRouter, PrivateLogin } from "../context/privateContext";
 import { UserProvider } from "../context/userContext";
-import HomePage from "../Pages/Home";
-import LoginPage from "../Pages/Login";
-import ProfilePage from "../Pages/Profile";
-import ChatPage from "../Pages/Chat";
-import NotificationsPage from "../Pages/Notifications";
-import OnlyPost from "../Pages/OnlyPost";
+import HomePage from "../pages/Home";
+import ProfilePage from "../pages/Profile";
+import ChatPage from "../pages/Chat";
+import NotificationsPage from "../pages/Notifications";
+import OnlyPost from "../pages/OnlyPost";
+import AuthPage from "../pages/Auth";
 export default function Routed() {
 	return (
 		<Router>
 			<UserProvider>
 				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/login" element={<PrivateRouter />}>
-						<Route path="/login" element={<LoginPage />}></Route>
+					{/* <Route path="/auth" element={<AuthPage />}></Route> */}
+					<Route path="/auth" element={<PrivateLogin />}>
+						<Route path="/auth" element={<AuthPage />}></Route>
+					</Route>
+					<Route path="/" element={<PrivateRouter />}>
+						<Route path="/" element={<HomePage />}></Route>
 					</Route>
 					<Route path="/profile" element={<PrivateRouter />}>
 						<Route path="/profile" element={<ProfilePage />}></Route>
