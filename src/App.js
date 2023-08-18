@@ -1,5 +1,6 @@
 import { GlobalStyle } from "./styles/GlobalStyles";
 import React, { useState } from "react";
+import { UserProvider } from "./context/userContext";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/theme";
 import Routed from "./routes/routes";

@@ -1,14 +1,25 @@
 import api from "../services/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ThemeContext } from "../App";
 export default function useAuth() {
 	const [authenticated, setAuthenticated] = useState(false);
 	const [userInfo, setUserInfo] = useState({});
+	const { setTheme, theme } = useContext(ThemeContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		getToken();
+	}, []);
+
+	useEffect(() => {
+		const darkmode = localStorage.getItem("darkmode");
+		if (darkmode) {
+			setTheme(darkmode);
+		} else {
+			checkConfigUser();
+		}
 	}, []);
 
 	async function register(user) {
@@ -64,6 +75,7 @@ export default function useAuth() {
 				api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
 				setAuthenticated(true);
 				await checkUser();
+				await checkConfigUser();
 				return;
 			} else {
 				setAuthenticated(false);
@@ -89,6 +101,44 @@ export default function useAuth() {
 			navigate("/auth");
 		}
 	}
+	async function checkConfigUser() {
+		const darkmode = localStorage.getItem("darkmode");
+		if (!darkmode) {
+			try {
+				const darkmode = await api
+					.get("/users/configuration")
+					.then((response) => {
+						return response.data;
+					});
+				if (darkmode) {
+					localStorage.setItem("darkmode", "dark");
+					setTheme("dark");
+				} else {
+					localStorage.setItem("darkmode", "light");
+					setTheme("light");
+				}
+			} catch (error) {
+				console.log("Erro", error);
+			}
+		}
+	}
+	async function alterDarkMode() {
+		try {
+			await api.post("/users/darkmode").then((response) => {
+				return response;
+			});
+			if (theme == "light") {
+				setTheme("dark");
+				localStorage.setItem("darkmode", "dark");
+			} else {
+				setTheme("light");
+				localStorage.setItem("darkmode", "light");
+			}
+			return;
+		} catch (error) {
+			console.log("Error", error);
+		}
+	}
 	function logout() {
 		console.log("disconnect");
 		setAuthenticated(false);
@@ -97,5 +147,13 @@ export default function useAuth() {
 		setUserInfo(undefined);
 	}
 
-	return { authenticated, register, login, userInfo, logout };
+	return {
+		authenticated,
+		register,
+		login,
+		userInfo,
+		logout,
+		getToken,
+		alterDarkMode,
+	};
 }

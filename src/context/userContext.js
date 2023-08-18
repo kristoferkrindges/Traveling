@@ -3,7 +3,8 @@ import useAuth from "../hooks/useAuth";
 
 const Context = createContext();
 function UserProvider({ children }) {
-	const { authenticated, register, login, userInfo } = useAuth();
+	const { authenticated, register, login, userInfo, getToken, alterDarkMode } =
+		useAuth();
 	return (
 		<Context.Provider
 			value={{
@@ -11,6 +12,8 @@ function UserProvider({ children }) {
 				register,
 				login,
 				userInfo,
+				getToken,
+				alterDarkMode,
 			}}
 		>
 			{children}

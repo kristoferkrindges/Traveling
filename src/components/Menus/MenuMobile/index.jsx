@@ -17,12 +17,19 @@ import {
 } from "./style";
 import { SidebarData, Settings } from "../SideBar/SidebarData";
 import { ThemeContext } from "../../../App";
+import { Context as userContext } from "../../../context/userContext";
 import { useLocation, Link } from "react-router-dom";
 
 export default function MenuMobile(props) {
-	const { setTheme, theme } = useContext(ThemeContext);
+	const { theme } = useContext(ThemeContext);
+	const { alterDarkMode } = useContext(userContext);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const { pathname } = useLocation();
+
+	function handlerButton(evt) {
+		evt.preventDefault();
+		alterDarkMode();
+	}
 	return (
 		<Context
 			isOpen={sidebarOpen}
@@ -79,7 +86,9 @@ export default function MenuMobile(props) {
 				{sidebarOpen && <SThemeLabel>Modo escuro</SThemeLabel>}
 				<SThemeToggler
 					isActive={theme === "dark"}
-					onClick={() => setTheme((p) => (p === "light" ? "dark" : "light"))}
+					onClick={(evt) => {
+						handlerButton(evt);
+					}}
 				>
 					<SToggleThumb style={theme === "dark" ? { right: "1px" } : {}} />
 				</SThemeToggler>
