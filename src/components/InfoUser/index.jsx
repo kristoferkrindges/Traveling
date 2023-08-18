@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
 	Card,
 	BoxOne,
@@ -13,36 +13,32 @@ import {
 	Button,
 } from "./style";
 import { Link } from "react-router-dom";
-import Kris from "../../assets/images/foto3.png";
+import { Context } from "../../context/userContext";
 export default function InfoUser() {
+	const { userInfo } = useContext(Context);
 	return (
 		<Card>
 			<BoxOne>
 				<Modal>
-					<img
-						src={
-							"https://images.ctfassets.net/hrltx12pl8hq/5KiKmVEsCQPMNrbOE6w0Ot/341c573752bf35cb969e21fcd279d3f9/hero-img_copy.jpg?fit=fill&w=600&h=400"
-						}
-						alt=""
-					/>
+					<img src={userInfo.banner} alt="" />
 				</Modal>
 			</BoxOne>
 			<BoxTwo>
 				<Content>
 					<Name>
-						Kristofer R.K
+						{userInfo.firstname}
 						<br />
-						<span>@KristoferRK</span>
+						<span>@{userInfo.at}</span>
 					</Name>
 					<Lists>
 						<List>
-							Posts<span>{40}</span>
+							Posts<span>{userInfo.posts}</span>
 						</List>
 						<List>
-							Followers<span>{50}</span>
+							Followers<span>{userInfo.followers}</span>
 						</List>
 						<List>
-							Following<span>{150}</span>
+							Following<span>{userInfo.followings}</span>
 						</List>
 					</Lists>
 					<Link to="/profile">
@@ -52,7 +48,7 @@ export default function InfoUser() {
 			</BoxTwo>
 			<Circle>
 				<Photo>
-					<img src={Kris} alt="" />
+					<img src={userInfo.photo} alt="" />
 				</Photo>
 			</Circle>
 		</Card>

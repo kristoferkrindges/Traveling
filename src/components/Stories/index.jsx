@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { MainContainer, Story, ProfilePhoto, UserName } from "./style";
-import Kris from "../../assets/images/foto3.png";
+import { Context } from "../../context/userContext";
 
 export default function Stories() {
-	const [sidebarOpen, setSidebarOpen] = useState();
+	const { userInfo } = useContext(Context);
 	const [stories, setStories] = useState([
 		{
 			storie:
 				"https://www.queroviajarmais.com/wp-content/uploads/2020/08/lago-louise.jpg",
-			photo: Kris,
+			photo: userInfo.photo,
 			name: "Your Story",
 		},
 		{

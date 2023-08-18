@@ -12,8 +12,10 @@ import ButtonPrimary from "../../ButtonPrimary";
 import ProfileButton from "../../ProfileButton";
 import SearchBar from "../../SearchBar";
 import { MenuContext } from "../../../context/menuContext";
+import { Context } from "../../../context/userContext";
 export default function TopMenu() {
 	const { TryOpen } = useContext(MenuContext);
+	const { userInfo } = useContext(Context);
 	const [data, setData] = useState([
 		{ product: "Maria" },
 		{ product: "Mauro" },
@@ -31,7 +33,7 @@ export default function TopMenu() {
 				<SearchBar placeholder="Search for posts" data={data} />
 				<Create>
 					<ButtonPrimary label="Post" />
-					<ProfileButton />
+					<ProfileButton photo={userInfo.photo} />
 				</Create>
 			</NavbarContainer>
 		</Nav>

@@ -26,9 +26,8 @@ import {
 	IoVideocam,
 	IoEmoji,
 } from "./style";
-import Kris from "../../../assets/images/foto3.png";
 
-export default function ModalPost({ id = "modal", click }) {
+export default function ModalPost({ id = "modal", click, userInfo }) {
 	const [dropdown, setDropdown] = useState(false);
 	function HandlerOpen() {
 		if (dropdown == false) {
@@ -62,16 +61,10 @@ export default function ModalPost({ id = "modal", click }) {
 					<Separator />
 					<User>
 						<ProfilePhoto>
-							<img
-								// src={
-								// 	"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
-								// }
-								src={Kris}
-								alt=""
-							/>
+							<img src={userInfo.photo} alt="" />
 						</ProfilePhoto>
 						<Ingo>
-							<Name>Kristofer Krindges</Name>
+							<Name>{userInfo.firstname + " " + userInfo.lastname}</Name>
 							<Small>Publish for everyone</Small>
 						</Ingo>
 					</User>
