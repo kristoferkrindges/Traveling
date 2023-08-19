@@ -34,8 +34,14 @@ import {
 } from "./style";
 import Kris from "../../../assets/images/foto3.png";
 import ButtonPrimary from "../../ButtonPrimary";
+import AvatarNone from "../../../assets/images/avatarnone.png";
 
-export default function ModalEditUser({ id = "overlay", clickClose }) {
+export default function ModalEditUser({
+	id = "overlay",
+	clickClose,
+	photo,
+	banner,
+}) {
 	const [dropdown, setDropdown] = useState(false);
 	function HandlerOpen() {
 		if (dropdown == false) {
@@ -70,12 +76,7 @@ export default function ModalEditUser({ id = "overlay", clickClose }) {
 					</Heading>
 					<Separator />
 					<UserCover>
-						<img
-							src={
-								"https://images.ctfassets.net/hrltx12pl8hq/5KiKmVEsCQPMNrbOE6w0Ot/341c573752bf35cb969e21fcd279d3f9/hero-img_copy.jpg?fit=fill&w=600&h=400"
-							}
-							alt=""
-						/>
+						<img src={banner || !banner == "" ? banner : AvatarNone} alt="" />
 						<EditPhotoCover>
 							<FaCam />
 							Edit Cover Photo
@@ -83,7 +84,7 @@ export default function ModalEditUser({ id = "overlay", clickClose }) {
 					</UserCover>
 					<UserPhoto>
 						<Image>
-							<img src={Kris} />
+							<img src={photo || !photo == "" ? photo : AvatarNone} />
 							<EditPhotoProfile>
 								<FaCam />
 							</EditPhotoProfile>

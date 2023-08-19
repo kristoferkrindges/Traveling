@@ -15,14 +15,16 @@ import {
 	Img,
 	Name,
 } from "./style";
-import { SidebarData, Settings } from "../SideBar/SidebarData";
+import { SidebarData } from "../SideBar/SidebarData";
 import { ThemeContext } from "../../../App";
 import { Context as userContext } from "../../../context/userContext";
 import { useLocation, Link } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
+import { AiOutlineSetting } from "react-icons/ai";
 
 export default function MenuMobile(props) {
 	const { theme } = useContext(ThemeContext);
-	const { alterDarkMode } = useContext(userContext);
+	const { alterDarkMode, logout } = useContext(userContext);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const { pathname } = useLocation();
 
@@ -30,6 +32,11 @@ export default function MenuMobile(props) {
 		evt.preventDefault();
 		alterDarkMode();
 	}
+	function handlerLogout(evt) {
+		evt.preventDefault();
+		logout();
+	}
+
 	return (
 		<Context
 			isOpen={sidebarOpen}
@@ -73,14 +80,30 @@ export default function MenuMobile(props) {
 				</SLinkContainer>
 			))}
 			<SDivider />
-			{Settings.map(({ icon, label }) => (
-				<SLinkContainer key={label}>
-					<SLink to="/" style={!sidebarOpen ? { width: `fit-content` } : {}}>
-						<SLinkIcon>{icon}</SLinkIcon>
-						{sidebarOpen && <SLinkLabel>{label}</SLinkLabel>}
-					</SLink>
-				</SLinkContainer>
-			))}
+			<SLinkContainer>
+				<SLink
+					to="/settings"
+					style={!sidebarOpen ? { width: `fit-content` } : {}}
+				>
+					<SLinkIcon>
+						<AiOutlineSetting />
+					</SLinkIcon>
+					{sidebarOpen && <SLinkLabel>Settings</SLinkLabel>}
+				</SLink>
+			</SLinkContainer>
+			<SLinkContainer>
+				<SLink
+					onClick={(evt) => {
+						handlerLogout(evt);
+					}}
+					style={!sidebarOpen ? { width: `fit-content` } : {}}
+				>
+					<SLinkIcon>
+						<MdLogout />
+					</SLinkIcon>
+					{sidebarOpen && <SLinkLabel>Logout</SLinkLabel>}
+				</SLink>
+			</SLinkContainer>
 			<SDivider />
 			<STheme>
 				{sidebarOpen && <SThemeLabel>Modo escuro</SThemeLabel>}

@@ -98,7 +98,7 @@ export default function useAuth() {
 			return;
 		} catch (error) {
 			console.log(error.response);
-			navigate("/auth");
+			logout();
 		}
 	}
 	async function checkConfigUser() {
@@ -145,6 +145,7 @@ export default function useAuth() {
 		localStorage.removeItem("token");
 		api.defaults.headers.Authorization = undefined;
 		setUserInfo(undefined);
+		navigate("/auth");
 	}
 
 	return {

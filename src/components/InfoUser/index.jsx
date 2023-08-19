@@ -14,13 +14,21 @@ import {
 } from "./style";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/userContext";
+import AvatarNone from "../../assets/images/avatarnone.png";
 export default function InfoUser() {
 	const { userInfo } = useContext(Context);
 	return (
 		<Card>
 			<BoxOne>
 				<Modal>
-					<img src={userInfo.banner} alt="" />
+					<img
+						src={
+							userInfo.banner || !userInfo.banner == ""
+								? userInfo.banner
+								: AvatarNone
+						}
+						alt="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+					/>
 				</Modal>
 			</BoxOne>
 			<BoxTwo>
@@ -48,7 +56,14 @@ export default function InfoUser() {
 			</BoxTwo>
 			<Circle>
 				<Photo>
-					<img src={userInfo.photo} alt="" />
+					<img
+						src={
+							userInfo.photo || !userInfo.photo == ""
+								? userInfo.photo
+								: AvatarNone
+						}
+						alt=""
+					/>
 				</Photo>
 			</Circle>
 		</Card>

@@ -101,6 +101,7 @@ export const Input = styled.input`
 	background: none;
 	padding: 0.5rem 0.75rem;
 	font-size: 1.2rem;
+	color: ${({ theme }) => theme.text};
 `;
 
 export const OrderController = styled.p`

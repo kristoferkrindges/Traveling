@@ -26,7 +26,7 @@ import {
 	IoVideocam,
 	IoEmoji,
 } from "./style";
-
+import AvatarNone from "../../../assets/images/avatarnone.png";
 export default function ModalPost({ id = "modal", click, userInfo }) {
 	const [dropdown, setDropdown] = useState(false);
 	function HandlerOpen() {
@@ -61,7 +61,14 @@ export default function ModalPost({ id = "modal", click, userInfo }) {
 					<Separator />
 					<User>
 						<ProfilePhoto>
-							<img src={userInfo.photo} alt="" />
+							<img
+								src={
+									userInfo.photo || !userInfo.photo == ""
+										? userInfo.photo
+										: AvatarNone
+								}
+								alt=""
+							/>
 						</ProfilePhoto>
 						<Ingo>
 							<Name>{userInfo.firstname + " " + userInfo.lastname}</Name>

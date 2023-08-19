@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { UserProvider } from "./context/userContext";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/theme";
-import Routed from "./routes/routes";
+import Routed from "./routes/routed";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { MenuProvider } from "./context/menuContext";
