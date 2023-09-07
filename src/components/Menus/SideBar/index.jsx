@@ -14,17 +14,23 @@ import {
 } from "./style";
 import { ThemeContext } from ".././../../App";
 import { Context as userContext } from "../../../context/userContext";
-import { SidebarData, Settings } from "./SidebarData";
+import { SidebarData } from "./SidebarData";
 import { useLocation } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
+import { AiOutlineSetting } from "react-icons/ai";
 
 export default function SideBar(props) {
 	const { theme } = useContext(ThemeContext);
-	const { alterDarkMode } = useContext(userContext);
+	const { alterDarkMode, logout } = useContext(userContext);
 	const { pathname } = useLocation();
 
 	function handlerButton(evt) {
 		evt.preventDefault();
 		alterDarkMode();
+	}
+	function handlerLogout(evt) {
+		evt.preventDefault();
+		logout();
 	}
 	return (
 		<Context>
@@ -41,14 +47,26 @@ export default function SideBar(props) {
 				</SLinkContainer>
 			))}
 			<SDivider />
-			{Settings.map(({ icon, label, to }) => (
-				<SLinkContainer key={label}>
-					<SLink to={to}>
-						<SLinkIcon>{icon}</SLinkIcon>
-						<SLinkLabel>{label}</SLinkLabel>
-					</SLink>
-				</SLinkContainer>
-			))}
+			<SLinkContainer>
+				<SLink to="/settings">
+					<SLinkIcon>
+						<AiOutlineSetting />
+					</SLinkIcon>
+					<SLinkLabel>Settings</SLinkLabel>
+				</SLink>
+			</SLinkContainer>
+			<SLinkContainer>
+				<SLink
+					onClick={(evt) => {
+						handlerLogout(evt);
+					}}
+				>
+					<SLinkIcon>
+						<MdLogout />
+					</SLinkIcon>
+					<SLinkLabel>Logout</SLinkLabel>
+				</SLink>
+			</SLinkContainer>
 			<SDivider />
 			<STheme>
 				<SThemeLabel>Modo escuro</SThemeLabel>

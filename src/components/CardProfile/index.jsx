@@ -17,6 +17,7 @@ import {
 } from "./style";
 import ModalEditUser from "../Modal/ModalEditUser";
 import { Context } from "../../context/userContext";
+import AvatarNone from "../../assets/images/avatarnone.png";
 export default function CardProfile() {
 	const [modal, setModal] = useState(false);
 	const { userInfo } = useContext(Context);
@@ -29,7 +30,14 @@ export default function CardProfile() {
 	return (
 		<Container>
 			<Head>
-				<img src={userInfo.banner} alt="" />
+				<img
+					src={
+						userInfo.banner || !userInfo.banner == ""
+							? userInfo.banner
+							: AvatarNone
+					}
+					alt=""
+				/>
 				<EditPhotoCover>
 					<FaCam />
 					Edit Cover Photo
@@ -37,7 +45,13 @@ export default function CardProfile() {
 			</Head>
 			<Bottom>
 				<Image>
-					<img src={userInfo.photo} />
+					<img
+						src={
+							userInfo.photo || !userInfo.photo == ""
+								? userInfo.photo
+								: AvatarNone
+						}
+					/>
 					<EditPhotoProfile>
 						<FaCam />
 					</EditPhotoProfile>
@@ -60,7 +74,15 @@ export default function CardProfile() {
 				<Button onClick={clickOpen}>
 					<FaEdit />
 				</Button>
-				{modal ? <ModalEditUser clickClose={clickClose} /> : <></>}
+				{modal ? (
+					<ModalEditUser
+						clickClose={clickClose}
+						photo={userInfo.photo}
+						banner={userInfo.banner}
+					/>
+				) : (
+					<></>
+				)}
 			</Bottom>
 		</Container>
 	);

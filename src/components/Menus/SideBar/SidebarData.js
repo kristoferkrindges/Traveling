@@ -1,5 +1,4 @@
-import { AiOutlineHome, AiOutlineSetting } from "react-icons/ai";
-import { MdLogout } from "react-icons/md";
+import { AiOutlineHome } from "react-icons/ai";
 import {
 	IoPersonCircleOutline,
 	IoNotificationsOutline,
@@ -29,17 +28,5 @@ export const SidebarData = [
 		icon: <IoNotificationsOutline />,
 		to: "/notifications",
 		notification: 3,
-	},
-];
-
-export const Settings = [
-	{
-		label: "Settings",
-		icon: <AiOutlineSetting />,
-		to: "/settings",
-	},
-	{
-		label: "Logout",
-		icon: <MdLogout />,
 	},
 ];

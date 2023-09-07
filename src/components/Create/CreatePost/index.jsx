@@ -11,7 +11,7 @@ import {
 } from "./style";
 import ModalPost from "../../Modal/ModalPost";
 import { Context } from "../../../context/userContext";
-
+import AvatarNone from "../../../assets/images/avatarnone.png";
 export default function CreatePost() {
 	const [modal, setModal] = useState(false);
 	const { userInfo } = useContext(Context);
@@ -27,7 +27,13 @@ export default function CreatePost() {
 			{modal ? <ModalPost click={click} userInfo={userInfo} /> : <></>}
 			<Form onClick={click}>
 				<ProfilePhoto>
-					<img src={userInfo.photo} />
+					<img
+						src={
+							userInfo.photo || !userInfo.photo == ""
+								? userInfo.photo
+								: AvatarNone
+						}
+					/>
 				</ProfilePhoto>
 				<Input
 					onClick={click}

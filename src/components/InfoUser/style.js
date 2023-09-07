@@ -92,9 +92,9 @@ export const Circle = styled.div`
 	transform: translateY(-50%);
 	width: 160px;
 	height: 160px;
-	background: green;
+	background: ${({ theme }) => theme.background};
 	border-radius: 50%;
-	border: 10px solid ${({ theme }) => theme.background};
+	border: 10px solid transparent;
 `;
 
 export const Photo = styled.div`

@@ -8,7 +8,7 @@ import {
 	IoNotifications,
 	NavLink,
 } from "./style";
-
+import AvatarNone from "../../assets/images/avatarnone.png";
 export default function ProfileButton({ label, photo }) {
 	const [hero, setHero] = useState(false);
 
@@ -21,7 +21,11 @@ export default function ProfileButton({ label, photo }) {
 	}
 	return (
 		<Profile>
-			<img onClick={HandlerOpen} src={photo} alt="" />
+			<img
+				onClick={HandlerOpen}
+				src={photo || !photo == "" ? photo : AvatarNone}
+				alt=""
+			/>
 			<ProfileLink style={hero ? { display: "block" } : { display: "none" }}>
 				<Li>
 					<NavLink to="/profile">
