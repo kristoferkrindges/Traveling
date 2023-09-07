@@ -58,6 +58,22 @@ export default function useAuth() {
 		}
 	}
 
+	async function update(user) {
+		try {
+			const data = await api.put("/users").then((response) => {
+				return response.data;
+			});
+			let user = userInfo;
+			user.firstname = data.firstname;
+			user.lastname = data.lastname;
+			user.at = data.at;
+			setUserInfo(user);
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
 	async function authUser(data) {
 		try {
 			localStorage.setItem("token", JSON.stringify(data.token));
@@ -110,7 +126,7 @@ export default function useAuth() {
 					.then((response) => {
 						return response.data;
 					});
-				if (darkmode) {
+				if (darkmode.darkMode) {
 					localStorage.setItem("darkmode", "dark");
 					setTheme("dark");
 				} else {
@@ -121,6 +137,7 @@ export default function useAuth() {
 				console.log("Erro", error);
 			}
 		}
+		return;
 	}
 	async function alterDarkMode() {
 		try {
@@ -143,6 +160,7 @@ export default function useAuth() {
 		console.log("disconnect");
 		setAuthenticated(false);
 		localStorage.removeItem("token");
+		localStorage.removeItem("darkmode");
 		api.defaults.headers.Authorization = undefined;
 		setUserInfo(undefined);
 		navigate("/auth");
@@ -156,5 +174,6 @@ export default function useAuth() {
 		logout,
 		getToken,
 		alterDarkMode,
+		update,
 	};
 }

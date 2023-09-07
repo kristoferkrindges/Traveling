@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
 	Overlay,
 	Modal,
@@ -35,6 +35,7 @@ import {
 import Kris from "../../../assets/images/foto3.png";
 import ButtonPrimary from "../../ButtonPrimary";
 import AvatarNone from "../../../assets/images/avatarnone.png";
+import { Context } from "../../../context/userContext";
 
 export default function ModalEditUser({
 	id = "overlay",
@@ -43,6 +44,7 @@ export default function ModalEditUser({
 	banner,
 }) {
 	const [dropdown, setDropdown] = useState(false);
+	const {userInfo, update} = useContext(Context);
 	function HandlerOpen() {
 		if (dropdown == false) {
 			setDropdown(true);

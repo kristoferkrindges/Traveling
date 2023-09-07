@@ -11,6 +11,7 @@ function UserProvider({ children }) {
 		getToken,
 		alterDarkMode,
 		logout,
+		update,
 	} = useAuth();
 	return (
 		<Context.Provider
@@ -22,6 +23,7 @@ function UserProvider({ children }) {
 				getToken,
 				alterDarkMode,
 				logout,
+				update,
 			}}
 		>
 			{children}
