@@ -12,6 +12,19 @@ function UserProvider({ children }) {
 		alterDarkMode,
 		logout,
 		update,
+		deleteAccount,
+		findUserById,
+		findPostsUser,
+		findStoriesUser,
+		updatePassword,
+		follow,
+		unfollow,
+		getFollowers,
+		getFollowings,
+		likePost,
+		favoritePost,
+		getPostsWithLiked,
+		getPostsWithFavorites,
 	} = useAuth();
 	return (
 		<Context.Provider
@@ -24,6 +37,19 @@ function UserProvider({ children }) {
 				alterDarkMode,
 				logout,
 				update,
+				deleteAccount,
+				findUserById,
+				findPostsUser,
+				findStoriesUser,
+				updatePassword,
+				follow,
+				unfollow,
+				getFollowers,
+				getFollowings,
+				likePost,
+				favoritePost,
+				getPostsWithLiked,
+				getPostsWithFavorites,
 			}}
 		>
 			{children}

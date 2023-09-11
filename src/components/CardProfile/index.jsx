@@ -74,15 +74,7 @@ export default function CardProfile() {
 				<Button onClick={clickOpen}>
 					<FaEdit />
 				</Button>
-				{modal ? (
-					<ModalEditUser
-						clickClose={clickClose}
-						photo={userInfo.photo}
-						banner={userInfo.banner}
-					/>
-				) : (
-					<></>
-				)}
+				{modal ? <ModalEditUser clickClose={clickClose} /> : <></>}
 			</Bottom>
 		</Container>
 	);
