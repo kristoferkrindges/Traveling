@@ -60,14 +60,161 @@ export default function useAuth() {
 
 	async function update(user) {
 		try {
-			const data = await api.put("/users").then((response) => {
+			const data = await api.put("/users", user).then((response) => {
 				return response.data;
 			});
-			let user = userInfo;
-			user.firstname = data.firstname;
-			user.lastname = data.lastname;
-			user.at = data.at;
-			setUserInfo(user);
+			let newUser = userInfo;
+			newUser.firstname = user.firstname;
+			newUser.lastname = user.lastname;
+			newUser.at = user.at;
+			setUserInfo(newUser);
+			console.log(userInfo);
+			toast.success("Updated with success!");
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function deleteAccount() {
+		try {
+			const data = await api.delete("/users").then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function findUserById(id) {
+		try {
+			const data = await api.get(`/users/${id}`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function findPostsUser(id) {
+		try {
+			const data = await api.get(`/users/${id}/posts`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function findStoriesUser(id) {
+		try {
+			const data = await api.get(`/users/${id}/stories`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function updatePassword(passwordUp) {
+		try {
+			const data = await api
+				.patch("/users/updatepassword", passwordUp)
+				.then((response) => {
+					return response.data;
+				});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function follow(id) {
+		try {
+			const data = await api.post(`/users/${id}/follow`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function unfollow(id) {
+		try {
+			const data = await api.post(`/users/${id}/unfollow`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function getFollowers(id) {
+		try {
+			const data = await api.get(`/users/${id}/followers`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function getFollowings(id) {
+		try {
+			const data = await api.get(`/users/${id}/followings`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function likePost(id) {
+		try {
+			const data = await api.post(`/users/like/${id}`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function favoritePost(id) {
+		try {
+			const data = await api.post(`/users/favorites/${id}`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function getPostsWithLiked() {
+		try {
+			const data = await api.get("/users/like").then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
+	async function getPostsWithFavorites() {
+		try {
+			const data = await api.get("/users/favorites").then((response) => {
+				return response.data;
+			});
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
@@ -175,5 +322,18 @@ export default function useAuth() {
 		getToken,
 		alterDarkMode,
 		update,
+		deleteAccount,
+		findUserById,
+		findPostsUser,
+		findStoriesUser,
+		updatePassword,
+		follow,
+		unfollow,
+		getFollowers,
+		getFollowings,
+		likePost,
+		favoritePost,
+		getPostsWithLiked,
+		getPostsWithFavorites,
 	};
 }

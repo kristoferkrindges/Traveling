@@ -2,9 +2,9 @@ import React from "react";
 import { Button } from "./style";
 
 export default function ButtonPrimary({ label, color, click }) {
-	function handler() {
+	function handler(evt) {
 		if (click) {
-			click();
+			click(evt);
 		}
 	}
 	if (color) {
@@ -14,6 +14,14 @@ export default function ButtonPrimary({ label, color, click }) {
 			</Button>
 		);
 	} else {
-		return <Button onClick={handler}>{label}</Button>;
+		return (
+			<Button
+				onClick={(evt) => {
+					handler(evt);
+				}}
+			>
+				{label}
+			</Button>
+		);
 	}
 }

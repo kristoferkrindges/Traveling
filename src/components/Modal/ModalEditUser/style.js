@@ -212,18 +212,18 @@ export const Controller = styled.div`
 	flex-direction: column;
 	width: 40%;
 	font-size: 100%;
+`;
 
-	span {
-		display: flex;
-		justify-content: flex-start;
-		margin-left: 1.2rem;
-		margin-bottom: 3%;
-		font-size: 1.2em;
-		color: ${({ theme }) => theme.title};
+export const Label = styled.span`
+	display: flex;
+	justify-content: flex-start;
+	margin-left: 1.2rem;
+	margin-bottom: 3%;
+	font-size: 1.2em;
+	color: ${({ theme }) => theme.title};
 
-		@media (max-width: 700px) {
-			font-size: 1em;
-		}
+	@media (max-width: 700px) {
+		font-size: 1em;
 	}
 `;
 
@@ -268,6 +268,43 @@ export const InputName = styled.input`
 	&:focus {
 		background-color: rgba(0, 0, 0, 0.1);
 		color: #fff;
+	}
+`;
+
+export const InputDate = styled.input`
+	position: absolute;
+	height: 45px;
+	width: 100%;
+	border-radius: 25px;
+	background: ${({ theme }) => theme.background};
+	outline: none;
+	padding-left: 20px;
+	padding-right: 10px;
+	font-size: 1em;
+	color: ${({ theme }) => theme.text};
+	transition: background-color 0.5s ease-in;
+	border: 1px solid ${({ theme }) => theme.background};
+	transition: all 0.3s ease;
+
+	@media (max-width: 580px) {
+		font-size: 0.9em;
+	}
+
+	@media (max-width: 545px) {
+		font-size: 0.8em;
+	}
+
+	@media (max-width: 520px) {
+		font-size: 0.7em;
+	}
+
+	&:focus {
+		background-color: rgba(0, 0, 0, 0.1);
+		color: #fff;
+	}
+	&::-webkit-calendar-picker-indicator {
+		z-index: 999;
+		opacity: 0;
 	}
 `;
 

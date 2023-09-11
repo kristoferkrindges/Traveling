@@ -69,7 +69,7 @@ export default function SideBar(props) {
 			</SLinkContainer>
 			<SDivider />
 			<STheme>
-				<SThemeLabel>Modo escuro</SThemeLabel>
+				<SThemeLabel>Darkmode</SThemeLabel>
 				<SThemeToggler
 					isActive={theme === "dark"}
 					onClick={(evt) => {
