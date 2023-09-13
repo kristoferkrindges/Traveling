@@ -30,6 +30,7 @@ export const Head = styled.div`
 	overflow: hidden;
 	width: 100%;
 	height: 20vh;
+	background-color: ${({ theme }) => theme.secondColor};
 	img {
 		width: 100%;
 		object-fit: cover;
@@ -72,7 +73,7 @@ export const Image = styled.div`
 	}
 `;
 
-export const EditPhotoProfile = styled.div`
+export const EditPhotoProfile = styled.label`
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
@@ -236,7 +237,7 @@ export const Button = styled.button`
 	}
 `;
 
-export const EditPhotoCover = styled.div`
+export const EditPhotoCover = styled.label`
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
@@ -246,6 +247,7 @@ export const EditPhotoCover = styled.div`
 	cursor: pointer;
 	transition: all 300ms ease;
 	background-color: ${({ theme }) => theme.secondColor};
+	border: 1px solid ${({ theme }) => theme.text};
 	color: white;
 	text-align: center;
 	display: flex;
@@ -259,4 +261,8 @@ export const EditPhotoCover = styled.div`
 	@media only screen and (max-width: 1100px) {
 		font-size: 0.6rem;
 	}
+`;
+
+export const InputFile = styled.input`
+	display: none;
 `;

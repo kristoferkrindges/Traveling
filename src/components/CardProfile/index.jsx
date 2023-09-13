@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { ref, uploadBytesResumable } from "firebase/storage";
 import {
 	Container,
 	Head,
@@ -14,13 +15,28 @@ import {
 	EditPhotoProfile,
 	FaCam,
 	EditPhotoCover,
+	InputFile,
 } from "./style";
 import ModalEditUser from "../Modal/ModalEditUser";
 import { Context } from "../../context/userContext";
 import AvatarNone from "../../assets/images/avatarnone.png";
+import { storage } from "../../services/firebase";
 export default function CardProfile() {
+	const { userInfo, updatePhoto, updateBanner } = useContext(Context);
 	const [modal, setModal] = useState(false);
-	const { userInfo } = useContext(Context);
+
+	const handleUploadPhoto = (e) => {
+		const file = e.target.files[0];
+		if (!file) return;
+		updatePhoto(file);
+	};
+
+	const handleUploadBanner = (e) => {
+		const file = e.target.files[0];
+		if (!file) return;
+		updateBanner(file);
+	};
+
 	function clickClose() {
 		setModal(false);
 	}
@@ -30,15 +46,16 @@ export default function CardProfile() {
 	return (
 		<Container>
 			<Head>
-				<img
-					src={
-						userInfo.banner || !userInfo.banner == ""
-							? userInfo.banner
-							: AvatarNone
-					}
-					alt=""
+				{userInfo.banner || !userInfo.banner == "" ? (
+					<img src={userInfo.banner} alt={"banner " + userInfo.firstname} />
+				) : null}
+				<InputFile
+					type="file"
+					id="banner"
+					acceppt="image/*"
+					onChange={handleUploadBanner}
 				/>
-				<EditPhotoCover>
+				<EditPhotoCover htmlFor="banner">
 					<FaCam />
 					Edit Cover Photo
 				</EditPhotoCover>
@@ -52,7 +69,13 @@ export default function CardProfile() {
 								: AvatarNone
 						}
 					/>
-					<EditPhotoProfile>
+					<InputFile
+						type="file"
+						id="photo"
+						acceppt="image/*"
+						onChange={handleUploadPhoto}
+					/>
+					<EditPhotoProfile htmlFor="photo">
 						<FaCam />
 					</EditPhotoProfile>
 				</Image>
