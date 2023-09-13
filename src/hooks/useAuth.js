@@ -3,7 +3,9 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ThemeContext } from "../App";
+import useFirebase from "./useFirebase";
 export default function useAuth() {
+	const { uploadImage } = useFirebase();
 	const [authenticated, setAuthenticated] = useState(false);
 	const [userInfo, setUserInfo] = useState({});
 	const { setTheme, theme } = useContext(ThemeContext);
@@ -63,12 +65,7 @@ export default function useAuth() {
 			const data = await api.put("/users", user).then((response) => {
 				return response.data;
 			});
-			let newUser = userInfo;
-			newUser.firstname = user.firstname;
-			newUser.lastname = user.lastname;
-			newUser.at = user.at;
-			setUserInfo(newUser);
-			console.log(userInfo);
+			await checkUser();
 			toast.success("Updated with success!");
 		} catch (error) {
 			console.log(error.response.data.message);
@@ -130,6 +127,48 @@ export default function useAuth() {
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
+		}
+	}
+
+	async function updatePhoto(file) {
+		try {
+			const img = await uploadImage(file);
+			const photo = {
+				imageUrl: img,
+			};
+			const data = await api
+				.patch("/users/updatephoto", photo)
+				.then((response) => {
+					return response.data;
+				});
+			userInfo.photo = img;
+			await checkUser();
+			console.log(data.response.message);
+			toast.success("Photo updated with success!");
+		} catch (error) {
+			// console.log(error.response.data.message);
+			// toast.error(error.response.data.message);
+		}
+	}
+
+	async function updateBanner(file) {
+		try {
+			const img = await uploadImage(file);
+			const photo = {
+				imageUrl: img,
+			};
+			const data = await api
+				.patch("/users/updatebanner", photo)
+				.then((response) => {
+					return response.data;
+				});
+			userInfo.banner = img;
+			await checkUser();
+			toast.success("Banner updated with success!");
+		} catch (error) {
+			// console.log(error.response.data.message);
+			console.log(error.response);
+			// toast.error(error.response.data.message);
 		}
 	}
 
@@ -335,5 +374,7 @@ export default function useAuth() {
 		favoritePost,
 		getPostsWithLiked,
 		getPostsWithFavorites,
+		updatePhoto,
+		updateBanner,
 	};
 }

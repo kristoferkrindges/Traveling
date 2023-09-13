@@ -21,14 +21,9 @@ export default function InfoUser() {
 		<Card>
 			<BoxOne>
 				<Modal>
-					<img
-						src={
-							userInfo.banner || !userInfo.banner == ""
-								? userInfo.banner
-								: AvatarNone
-						}
-						alt="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
-					/>
+					{userInfo.banner || !userInfo.banner == "" ? (
+						<img src={userInfo.banner} alt={"photo " + userInfo.firstname} />
+					) : null}
 				</Modal>
 			</BoxOne>
 			<BoxTwo>
