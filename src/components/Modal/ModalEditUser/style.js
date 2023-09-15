@@ -129,7 +129,7 @@ export const UserPhoto = styled.div`
 	height: 6vh;
 `;
 
-export const EditPhotoCover = styled.div`
+export const EditPhotoCover = styled.label`
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
@@ -175,7 +175,7 @@ export const Image = styled.div`
 	}
 `;
 
-export const EditPhotoProfile = styled.div`
+export const EditPhotoProfile = styled.label`
 	position: absolute;
 	bottom: 0.3rem;
 	right: 1rem;
@@ -385,4 +385,8 @@ export const Save = styled.div`
 	display: flex;
 	justify-content: center;
 	margin-top: 1rem;
+`;
+
+export const InputFile = styled.input`
+	display: none;
 `;

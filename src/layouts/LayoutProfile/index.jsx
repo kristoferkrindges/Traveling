@@ -1,29 +1,22 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 
-import {
-	Container,
-	ContainerOptions,
-	ContextContainer,
-	CardContent,
-} from "./style";
-
-import CardProfile from "../../components/CardProfile";
+import ControllerProfile from "../../controllers/ControllerProfile";
+import { Container } from "./style";
 import Feeds from "../../components/Feeds";
-import SelectOptions from "../../components/SelectOptions";
+import { Link } from "react-router-dom";
 
 export default function LayoutProfile() {
 	return (
+		// <>
+		// 	<Container>
+		// 		<Feeds />
+		// 	</Container>
+		// </>
 		<>
-			<CardProfile />
-			<ContainerOptions>
-				<ContextContainer>
-					<CardContent>
-						<SelectOptions type="Profile" />
-					</CardContent>
-				</ContextContainer>
-			</ContainerOptions>
+			<ControllerProfile />
 			<Container>
-				<Feeds />
+				{/* <Feeds /> */}
+				<Link to="/profile/Amandinha">Oi</Link>
 			</Container>
 		</>
 	);

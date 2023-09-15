@@ -44,7 +44,7 @@ export default function InfoUser() {
 							Following<span>{userInfo.followings}</span>
 						</List>
 					</Lists>
-					<Link to="/profile">
+					<Link to={"/profile/" + userInfo.at}>
 						<Button>Profile</Button>
 					</Link>
 				</Content>

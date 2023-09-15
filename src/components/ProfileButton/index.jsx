@@ -9,7 +9,7 @@ import {
 	NavLink,
 } from "./style";
 import AvatarNone from "../../assets/images/avatarnone.png";
-export default function ProfileButton({ label, photo }) {
+export default function ProfileButton({ label, photo, at }) {
 	const [hero, setHero] = useState(false);
 
 	function HandlerOpen() {
@@ -28,7 +28,7 @@ export default function ProfileButton({ label, photo }) {
 			/>
 			<ProfileLink style={hero ? { display: "block" } : { display: "none" }}>
 				<Li>
-					<NavLink to="/profile">
+					<NavLink to={`/profile/${at}`}>
 						<IoMail /> Profile
 					</NavLink>
 				</Li>

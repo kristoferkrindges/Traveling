@@ -21,7 +21,7 @@ import { AiOutlineSetting } from "react-icons/ai";
 
 export default function SideBar(props) {
 	const { theme } = useContext(ThemeContext);
-	const { alterDarkMode, logout } = useContext(userContext);
+	const { alterDarkMode, logout, userInfo } = useContext(userContext);
 	const { pathname } = useLocation();
 
 	function handlerButton(evt) {
@@ -36,7 +36,7 @@ export default function SideBar(props) {
 		<Context>
 			{SidebarData.map(({ icon, label, notification, to }) => (
 				<SLinkContainer key={label} isActive={pathname === to}>
-					<SLink to={to}>
+					<SLink to={to === "/profile" ? `/profile/${userInfo.at}` : to}>
 						<SLinkIcon>{icon}</SLinkIcon>
 						<SLinkLabel>{label}</SLinkLabel>
 						{/* if notifications are at 0 or null, do not display */}

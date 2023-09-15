@@ -27,6 +27,7 @@ function UserProvider({ children }) {
 		getPostsWithFavorites,
 		updatePhoto,
 		updateBanner,
+		findUserByAt,
 	} = useAuth();
 	return (
 		<Context.Provider
@@ -54,6 +55,7 @@ function UserProvider({ children }) {
 				getPostsWithFavorites,
 				updatePhoto,
 				updateBanner,
+				findUserByAt,
 			}}
 		>
 			{children}

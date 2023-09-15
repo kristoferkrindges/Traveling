@@ -31,10 +31,6 @@ export const Head = styled.div`
 	width: 100%;
 	height: 20vh;
 	background-color: ${({ theme }) => theme.secondColor};
-	img {
-		width: 100%;
-		object-fit: cover;
-	}
 `;
 export const Bottom = styled.div`
 	position: relative;
@@ -61,16 +57,6 @@ export const Image = styled.div`
 	border-radius: 50%;
 	padding: 3px;
 	background: ${({ theme }) => theme.container};
-	img {
-		height: 100%;
-		width: 100%;
-		object-fit: cover;
-		border-radius: 50%;
-		border: 3px solid ${({ theme }) => theme.container};
-		&:hover {
-			opacity: 0.5;
-		}
-	}
 `;
 
 export const EditPhotoProfile = styled.label`
@@ -110,7 +96,7 @@ export const Name = styled.span`
 	top: -3rem;
 	left: 12rem; */
 	margin-top: 2.5rem;
-	font-weight: bold;
+	font-weight: 600;
 	letter-spacing: 0.1rem;
 	font-size: 1.2rem;
 
@@ -121,7 +107,7 @@ export const Name = styled.span`
 
 export const Sign = styled.span`
 	font-size: 0.75rem;
-	color: #999;
+	font-weight: 100;
 
 	@media only screen and (max-width: 992px) {
 		font-size: 0.7rem;
@@ -144,14 +130,11 @@ export const List = styled.li`
 	text-align: center;
 	padding: 0 10px;
 	font-size: 1rem;
-	font-weight: 500;
-	color: #999;
+	font-weight: 200;
+	/* color: #999; */
+	color: ${({ theme }) => theme.text};
 	&:not(:last-child) {
 		border-right: 1px solid #ccc;
-	}
-	span {
-		font-size: 1.65em;
-		color: ${({ theme }) => theme.text};
 	}
 
 	@media only screen and (max-width: 992px) {
@@ -162,6 +145,19 @@ export const List = styled.li`
 	}
 `;
 
+export const Numbers = styled.span`
+	font-size: 1.65em;
+	color: ${({ theme }) => theme.text};
+	font-weight: 700;
+
+	@media only screen and (max-width: 992px) {
+		font-size: 1.3em;
+	}
+`;
+
+export const Space = styled.div`
+	margin: 1rem;
+`;
 export const Button = styled.button`
 	position: relative;
 	top: 25px;
@@ -265,4 +261,20 @@ export const EditPhotoCover = styled.label`
 
 export const InputFile = styled.input`
 	display: none;
+`;
+
+export const UserPhoto = styled.img`
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 3px solid ${({ theme }) => theme.container};
+	&:hover {
+		opacity: 0.5;
+	}
+`;
+
+export const Banner = styled.img`
+	width: 100%;
+	object-fit: cover;
 `;

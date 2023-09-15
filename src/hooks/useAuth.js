@@ -31,7 +31,7 @@ export default function useAuth() {
 				return response.data;
 			});
 			await authUser(data);
-			navigate("/profile");
+			navigate(`/profile/${userInfo.at}`);
 			return;
 		} catch (error) {
 			try {
@@ -81,6 +81,18 @@ export default function useAuth() {
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
+		}
+	}
+
+	async function findUserByAt(at) {
+		try {
+			const response = await api.get(`/users/profile/${at}`);
+			console.log(response);
+			return response.data;
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+			throw error;
 		}
 	}
 
@@ -376,5 +388,6 @@ export default function useAuth() {
 		getPostsWithFavorites,
 		updatePhoto,
 		updateBanner,
+		findUserByAt,
 	};
 }

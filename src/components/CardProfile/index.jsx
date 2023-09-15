@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
-import { ref, uploadBytesResumable } from "firebase/storage";
+import React, { useState } from "react";
 import {
 	Container,
 	Head,
@@ -16,13 +15,19 @@ import {
 	FaCam,
 	EditPhotoCover,
 	InputFile,
+	UserPhoto,
+	Banner,
+	Space,
+	Numbers,
 } from "./style";
 import ModalEditUser from "../Modal/ModalEditUser";
-import { Context } from "../../context/userContext";
 import AvatarNone from "../../assets/images/avatarnone.png";
-import { storage } from "../../services/firebase";
-export default function CardProfile() {
-	const { userInfo, updatePhoto, updateBanner } = useContext(Context);
+export default function CardProfile({
+	user,
+	equal,
+	updatePhoto,
+	updateBanner,
+}) {
 	const [modal, setModal] = useState(false);
 
 	const handleUploadPhoto = (e) => {
@@ -46,57 +51,65 @@ export default function CardProfile() {
 	return (
 		<Container>
 			<Head>
-				{userInfo.banner || !userInfo.banner == "" ? (
-					<img src={userInfo.banner} alt={"banner " + userInfo.firstname} />
+				{user.banner || !user.banner === "" ? (
+					<Banner src={user.banner} alt={"banner " + user.firstname} />
 				) : null}
-				<InputFile
-					type="file"
-					id="banner"
-					acceppt="image/*"
-					onChange={handleUploadBanner}
-				/>
-				<EditPhotoCover htmlFor="banner">
-					<FaCam />
-					Edit Cover Photo
-				</EditPhotoCover>
+				{equal === "Owner" ? (
+					<>
+						<InputFile
+							type="file"
+							id="banner"
+							acceppt="image/*"
+							onChange={handleUploadBanner}
+						/>
+						<EditPhotoCover htmlFor="banner">
+							<FaCam />
+							Edit Cover Photo
+						</EditPhotoCover>
+					</>
+				) : null}
 			</Head>
 			<Bottom>
 				<Image>
-					<img
-						src={
-							userInfo.photo || !userInfo.photo == ""
-								? userInfo.photo
-								: AvatarNone
-						}
+					<UserPhoto
+						src={user.photo || !user.photo === "" ? user.photo : AvatarNone}
 					/>
-					<InputFile
-						type="file"
-						id="photo"
-						acceppt="image/*"
-						onChange={handleUploadPhoto}
-					/>
-					<EditPhotoProfile htmlFor="photo">
-						<FaCam />
-					</EditPhotoProfile>
+					{equal === "Owner" ? (
+						<>
+							<InputFile
+								type="file"
+								id="photo"
+								acceppt="image/*"
+								onChange={handleUploadPhoto}
+							/>
+							<EditPhotoProfile htmlFor="photo">
+								<FaCam />
+							</EditPhotoProfile>
+						</>
+					) : null}
 				</Image>
 				<Info>
-					<Name>{userInfo.firstname + " " + userInfo.lastname}</Name>
-					<Sign>@{userInfo.at}</Sign>
+					<Name>{user.firstname + " " + user.lastname}</Name>
+					<Sign>@{user.at}</Sign>
 				</Info>
 				<Lists>
 					<List>
-						Posts<span>{userInfo.posts}</span>
+						Posts<Numbers>{user.posts}</Numbers>
 					</List>
 					<List>
-						Followers<span>{userInfo.followers}</span>
+						Followers<Numbers>{user.followers}</Numbers>
 					</List>
 					<List>
-						Following<span>{userInfo.followings}</span>
+						Following<Numbers>{user.followings}</Numbers>
 					</List>
 				</Lists>
-				<Button onClick={clickOpen}>
-					<FaEdit />
-				</Button>
+				{equal === "Owner" ? (
+					<Button onClick={clickOpen}>
+						<FaEdit />
+					</Button>
+				) : (
+					<Space />
+				)}
 				{modal ? <ModalEditUser clickClose={clickClose} /> : <></>}
 			</Bottom>
 		</Container>
