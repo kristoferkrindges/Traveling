@@ -23,9 +23,7 @@ export default function ControllerProfile({ type }) {
 	}, [id]);
 
 	async function findUserAt() {
-		console.log("Antes de chamar findUserByAt");
 		const response = await findUserByAt(id);
-		console.log("Depois de chamar findUserByAt");
 		console.log(response);
 		setUser(response);
 		setEqual("Profile");

@@ -189,20 +189,9 @@ export default function useAuth() {
 			const data = await api.post(`/users/${id}/follow`).then((response) => {
 				return response.data;
 			});
+			await checkUser();
 		} catch (error) {
 			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
-		}
-	}
-
-	async function unfollow(id) {
-		try {
-			const data = await api.post(`/users/${id}/unfollow`).then((response) => {
-				return response.data;
-			});
-		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
 		}
 	}
 
@@ -213,7 +202,6 @@ export default function useAuth() {
 			});
 		} catch (error) {
 			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
 		}
 	}
 
@@ -379,7 +367,6 @@ export default function useAuth() {
 		findStoriesUser,
 		updatePassword,
 		follow,
-		unfollow,
 		getFollowers,
 		getFollowings,
 		likePost,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Container,
 	Head,
@@ -22,6 +22,8 @@ import {
 } from "./style";
 import ModalEditUser from "../Modal/ModalEditUser";
 import AvatarNone from "../../assets/images/avatarnone.png";
+import ControllerButtonFollow from "../../controllers/ControllerButtonFollow";
+import Loader from "../Loader";
 export default function CardProfile({
 	user,
 	equal,
@@ -29,7 +31,16 @@ export default function CardProfile({
 	updateBanner,
 }) {
 	const [modal, setModal] = useState(false);
-
+	const [followers, setFollowers] = useState(0);
+	const [stateFollow, setStateFollow] = useState(false);
+	console.log(followers);
+	console.log(user.followers);
+	useEffect(() => {
+		if (user) {
+			setFollowers(user.followers || 0);
+			setStateFollow(user.follow);
+		}
+	}, [user]);
 	const handleUploadPhoto = (e) => {
 		const file = e.target.files[0];
 		if (!file) return;
@@ -48,7 +59,22 @@ export default function CardProfile({
 	function clickOpen() {
 		setModal(true);
 	}
-	return (
+	function follow() {
+		setFollowers((previousValue) => {
+			console.log(user.follow);
+			if (stateFollow) {
+				return previousValue - 1 <= 0 ? 0 : previousValue - 1;
+			} else {
+				return previousValue + 1;
+			}
+		});
+		if (stateFollow) {
+			setStateFollow(false);
+		} else {
+			setStateFollow(true);
+		}
+	}
+	return user ? (
 		<Container>
 			<Head>
 				{user.banner || !user.banner === "" ? (
@@ -97,7 +123,7 @@ export default function CardProfile({
 						Posts<Numbers>{user.posts}</Numbers>
 					</List>
 					<List>
-						Followers<Numbers>{user.followers}</Numbers>
+						Followers<Numbers>{followers}</Numbers>
 					</List>
 					<List>
 						Following<Numbers>{user.followings}</Numbers>
@@ -108,10 +134,16 @@ export default function CardProfile({
 						<FaEdit />
 					</Button>
 				) : (
-					<Space />
+					<ControllerButtonFollow
+						state={user.follow}
+						id={user.id}
+						func={() => follow()}
+					/>
 				)}
 				{modal ? <ModalEditUser clickClose={clickClose} /> : <></>}
 			</Bottom>
 		</Container>
+	) : (
+		<Loader />
 	);
 }
