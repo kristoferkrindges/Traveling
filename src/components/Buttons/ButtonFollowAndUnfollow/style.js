@@ -74,3 +74,19 @@ export const Button = styled.button`
 		}
 	}
 `;
+export const ButtonFollowers = styled.button`
+	border: none;
+	outline: none;
+	display: inline-block;
+	padding: 0.6rem 2rem;
+	font-weight: 500;
+	border-radius: 2rem;
+	cursor: pointer;
+	transition: all 300ms ease;
+	background-color: ${({ theme }) => theme.secondColor};
+	color: white;
+	font-size: 1rem;
+	&:hover {
+		opacity: 0.8;
+	}
+`;

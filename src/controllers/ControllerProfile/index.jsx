@@ -3,20 +3,31 @@ import { useParams } from "react-router-dom";
 import { Context as userContext } from "../../context/userContext";
 import CardProfile from "../../components/CardProfile";
 import LayoutMenuOptions from "../../layouts/LayoutMenuOptions";
+import Followers from "../../components/Followers";
 export default function ControllerProfile({ type }) {
 	let { id } = useParams();
 
-	const { userInfo, findUserByAt, updatePhoto, updateBanner } =
-		useContext(userContext);
+	const {
+		userInfo,
+		findUserByAt,
+		updatePhoto,
+		updateBanner,
+		getFollowers,
+		getFollowings,
+	} = useContext(userContext);
 
 	const [user, setUser] = useState({});
 	const [equal, setEqual] = useState();
+	const [followers, setFollowers] = useState([]);
+	const [followings, setFollowings] = useState([]);
+	const [search, setSearch] = useState("Followings");
 
 	useEffect(() => {
 		if (id === userInfo.at) {
 			setUser(userInfo);
 			setEqual("Owner");
 			console.log("entrou");
+			findFollowings(userInfo.id);
 		} else {
 			findUserAt();
 		}
@@ -24,11 +35,37 @@ export default function ControllerProfile({ type }) {
 
 	async function findUserAt() {
 		const response = await findUserByAt(id);
-		console.log(response);
+		findFollowings(response.id);
 		setUser(response);
 		setEqual("Profile");
 	}
 
+	async function findFollowers(userId) {
+		let response;
+		if (equal === "Owner") {
+			console.log(user.id);
+			response = await getFollowers(userId);
+			setFollowers(response || []);
+		} else {
+			response = await getFollowers(userId);
+			setFollowers(response || []);
+		}
+		setSearch("Followers");
+	}
+
+	async function findFollowings(userId) {
+		let response;
+		console.log("olá");
+		if (equal === "Owner") {
+			response = await getFollowings(userId);
+			console.log(response);
+			setFollowings(response || []);
+		} else {
+			response = await getFollowings(userId);
+			setFollowings(response || []);
+		}
+		setSearch("Followings");
+	}
 	return (
 		<>
 			<CardProfile
@@ -37,7 +74,37 @@ export default function ControllerProfile({ type }) {
 				updatePhoto={updatePhoto}
 				updateBanner={updateBanner}
 			/>
-			<LayoutMenuOptions equal={equal} />
+			<LayoutMenuOptions
+				equal={equal}
+				followers={findFollowers}
+				followings={findFollowings}
+			/>
+			{search === "Followers" &&
+				followers.length > 0 &&
+				followers.map((value, key) => (
+					<Followers
+						key={key}
+						photo={value.photo}
+						firstname={value.firstname}
+						lastname={value.lastname}
+						id={value.id}
+						at={value.at}
+						follow={value.follow}
+					/>
+				))}
+			{search === "Followings" &&
+				followings.length > 0 &&
+				followings.map((value, key) => (
+					<Followers
+						key={key}
+						photo={value.photo}
+						firstname={value.firstname}
+						lastname={value.lastname}
+						id={value.id}
+						at={value.at}
+						follow={value.follow}
+					/>
+				))}
 		</>
 	);
 }

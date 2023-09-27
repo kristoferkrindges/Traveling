@@ -138,6 +138,7 @@ export default function CardProfile({
 						state={user.follow}
 						id={user.id}
 						func={() => follow()}
+						card={true}
 					/>
 				)}
 				{modal ? <ModalEditUser clickClose={clickClose} /> : <></>}

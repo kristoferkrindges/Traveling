@@ -197,9 +197,8 @@ export default function useAuth() {
 
 	async function getFollowers(id) {
 		try {
-			const data = await api.get(`/users/${id}/followers`).then((response) => {
-				return response.data;
-			});
+			const response = await api.get(`/users/${id}/followers`);
+			return response.data;
 		} catch (error) {
 			console.log(error.response.data.message);
 		}
@@ -207,9 +206,8 @@ export default function useAuth() {
 
 	async function getFollowings(id) {
 		try {
-			const data = await api.get(`/users/${id}/followings`).then((response) => {
-				return response.data;
-			});
+			const response = await api.get(`/users/${id}/followings`);
+			return response.data;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
