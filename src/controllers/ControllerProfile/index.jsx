@@ -43,11 +43,10 @@ export default function ControllerProfile({ type }) {
 	async function findFollowers(userId) {
 		let response;
 		if (equal === "Owner") {
-			console.log(user.id);
-			response = await getFollowers(userId);
+			response = await getFollowers(userId ? userId : user.id);
 			setFollowers(response || []);
 		} else {
-			response = await getFollowers(userId);
+			response = await getFollowers(userId ? userId : user.id);
 			setFollowers(response || []);
 		}
 		setSearch("Followers");
@@ -55,13 +54,11 @@ export default function ControllerProfile({ type }) {
 
 	async function findFollowings(userId) {
 		let response;
-		console.log("olá");
 		if (equal === "Owner") {
-			response = await getFollowings(userId);
-			console.log(response);
+			response = await getFollowings(userId ? userId : user.id);
 			setFollowings(response || []);
 		} else {
-			response = await getFollowings(userId);
+			response = await getFollowings(userId ? userId : user.id);
 			setFollowings(response || []);
 		}
 		setSearch("Followings");
@@ -76,8 +73,8 @@ export default function ControllerProfile({ type }) {
 			/>
 			<LayoutMenuOptions
 				equal={equal}
-				followers={findFollowers}
-				followings={findFollowings}
+				findFollowers={findFollowers}
+				findFollowings={findFollowings}
 			/>
 			{search === "Followers" &&
 				followers.length > 0 &&

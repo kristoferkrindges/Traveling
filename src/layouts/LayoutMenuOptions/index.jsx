@@ -1,16 +1,20 @@
 import React from "react";
-import { ContainerOptions, ContextContainer, CardContent } from "./style";
+import { ContainerOptions } from "./style";
 
 import ControllerSelectOptionsProfile from "../../controllers/ControllerSelectOptions/ControllerSelectOptionsProfile";
 
-export default function LayoutMenuOptions({ equal }) {
+export default function LayoutMenuOptions({
+	equal,
+	findFollowers,
+	findFollowings,
+}) {
 	return (
 		<ContainerOptions>
-			<ContextContainer>
-				<CardContent>
-					<ControllerSelectOptionsProfile equal={equal} />
-				</CardContent>
-			</ContextContainer>
+			<ControllerSelectOptionsProfile
+				equal={equal}
+				findFollowers={findFollowers}
+				findFollowings={findFollowings}
+			/>
 		</ContainerOptions>
 	);
 }

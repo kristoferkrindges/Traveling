@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
 	Container,
 	Left,
@@ -9,6 +9,8 @@ import {
 	TextMuted,
 } from "./style";
 import ControllerButtonFollow from "../../controllers/ControllerButtonFollow";
+import { Link } from "react-router-dom";
+import { Context as userContext } from "../../context/userContext";
 
 export default function Followers({
 	photo,
@@ -18,18 +20,23 @@ export default function Followers({
 	id,
 	follow,
 }) {
+	const { userInfo } = useContext(userContext);
 	return (
 		<Container>
-			<Left>
-				<Photo>
-					<img src={photo} alt="" />
-				</Photo>
-				<MessageBody>
-					<Name>{firstname + " " + lastname}</Name>
-					<TextMuted>{"@" + at}</TextMuted>
-				</MessageBody>
-			</Left>
-			<ControllerButtonFollow state={follow} id={id} card={false} />
+			<Link to={`/profile/${at}`}>
+				<Left>
+					<Photo>
+						<img src={photo} alt="" />
+					</Photo>
+					<MessageBody>
+						<Name>{firstname + " " + lastname}</Name>
+						<TextMuted>{"@" + at}</TextMuted>
+					</MessageBody>
+				</Left>
+			</Link>
+			{userInfo.at === at ? null : (
+				<ControllerButtonFollow state={follow} id={id} card={false} />
+			)}
 		</Container>
 	);
 }

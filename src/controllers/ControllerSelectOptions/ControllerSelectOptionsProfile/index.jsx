@@ -1,9 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import SelectOptionsProfile from "../../../components/SelectOptions/SelectOptionsProfile";
 import { Context } from "../../../context/userContext";
-export default function ControllerSelectOptionsProfile({ equal }) {
-	const { userInfo } = useContext(Context);
-
+export default function ControllerSelectOptionsProfile({
+	equal,
+	findFollowers,
+	findFollowings,
+}) {
 	const [activePosts, setActivePosts] = useState("active");
 	const [activeFav, setActiveFav] = useState("");
 	const [activeLikes, setActiveLikes] = useState("");
@@ -39,10 +41,12 @@ export default function ControllerSelectOptionsProfile({ equal }) {
 	function handlerActiveFollowers() {
 		resetSets();
 		setActiveFollowers("active");
+		findFollowers();
 	}
 	function handlerActiveFollowing() {
 		resetSets();
 		setActiveFollowing("active");
+		findFollowings();
 	}
 	function resetSets() {
 		setActivePosts("");

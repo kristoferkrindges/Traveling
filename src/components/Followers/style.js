@@ -49,6 +49,8 @@ export const Photo = styled.div`
 export const MessageBody = styled.div``;
 export const Name = styled.h5`
 	font-weight: bold;
+	text-decoration: none;
+	color: ${({ theme }) => theme.text};
 `;
 
 export const TextMuted = styled.p`
