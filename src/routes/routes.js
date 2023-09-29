@@ -22,9 +22,9 @@ export default function ControllerRoute() {
 					element={userInfo ? <HomePage /> : <LoaderPage />}
 				></Route>
 			</Route>
-			<Route path="/profile" element={<PrivateRouter />}>
+			<Route path="/profile/:id" element={<PrivateRouter />}>
 				<Route
-					path="/profile"
+					path="/profile/:id"
 					element={userInfo ? <ProfilePage /> : <LoaderPage />}
 				></Route>
 			</Route>

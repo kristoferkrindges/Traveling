@@ -97,7 +97,7 @@ export const Img = styled.img`
 	width: 100%;
 	object-fit: cover;
 	border-radius: 50%;
-	border: 1px solid ${({ theme }) => theme.buttons};
+	/* border: 1px solid ${({ theme }) => theme.buttons}; */
 `;
 
 export const Name = styled.h2`

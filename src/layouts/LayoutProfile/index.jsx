@@ -1,30 +1,16 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 
-import {
-	Container,
-	ContainerOptions,
-	ContextContainer,
-	CardContent,
-} from "./style";
-
-import CardProfile from "../../components/CardProfile";
-import Feeds from "../../components/Feeds";
-import SelectOptions from "../../components/SelectOptions";
+import ControllerProfile from "../../controllers/ControllerProfile";
 
 export default function LayoutProfile() {
 	return (
+		// <>
+		// 	<Container>
+		// 		<Feeds />
+		// 	</Container>
+		// </>
 		<>
-			<CardProfile />
-			<ContainerOptions>
-				<ContextContainer>
-					<CardContent>
-						<SelectOptions type="Profile" />
-					</CardContent>
-				</ContextContainer>
-			</ContainerOptions>
-			<Container>
-				<Feeds />
-			</Container>
+			<ControllerProfile />
 		</>
 	);
 }

@@ -33,7 +33,7 @@ export default function TopMenu() {
 				<SearchBar placeholder="Search for posts" data={data} />
 				<Create>
 					<ButtonPrimary label="Post" />
-					<ProfileButton photo={userInfo.photo} />
+					<ProfileButton photo={userInfo.photo} at={userInfo.at} />
 				</Create>
 			</NavbarContainer>
 		</Nav>

@@ -18,7 +18,6 @@ function UserProvider({ children }) {
 		findStoriesUser,
 		updatePassword,
 		follow,
-		unfollow,
 		getFollowers,
 		getFollowings,
 		likePost,
@@ -27,6 +26,7 @@ function UserProvider({ children }) {
 		getPostsWithFavorites,
 		updatePhoto,
 		updateBanner,
+		findUserByAt,
 	} = useAuth();
 	return (
 		<Context.Provider
@@ -45,7 +45,6 @@ function UserProvider({ children }) {
 				findStoriesUser,
 				updatePassword,
 				follow,
-				unfollow,
 				getFollowers,
 				getFollowings,
 				likePost,
@@ -54,6 +53,7 @@ function UserProvider({ children }) {
 				getPostsWithFavorites,
 				updatePhoto,
 				updateBanner,
+				findUserByAt,
 			}}
 		>
 			{children}

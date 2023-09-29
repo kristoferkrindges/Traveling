@@ -24,7 +24,7 @@ import { AiOutlineSetting } from "react-icons/ai";
 
 export default function MenuMobile(props) {
 	const { theme } = useContext(ThemeContext);
-	const { alterDarkMode, logout } = useContext(userContext);
+	const { alterDarkMode, logout, userInfo } = useContext(userContext);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const { pathname } = useLocation();
 
@@ -46,14 +46,9 @@ export default function MenuMobile(props) {
 					: {}
 			}
 		>
-			<Link to="/login">
+			<Link to={`/profile/${userInfo.at}`}>
 				<Logo>
-					<Img
-						src={
-							"https://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
-						}
-						alt="logo"
-					></Img>
+					<Img src={userInfo.photo} alt="userphoto"></Img>
 					<Name
 						style={
 							!sidebarOpen ? { width: 0, padding: 0, display: "none" } : {}
@@ -66,7 +61,10 @@ export default function MenuMobile(props) {
 			<SDivider />
 			{SidebarData.map(({ icon, label, notification, to }) => (
 				<SLinkContainer key={label} isActive={pathname === to}>
-					<SLink to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>
+					<SLink
+						to={to === "/profile" ? `/profile/${userInfo.at}` : to}
+						style={!sidebarOpen ? { width: `fit-content` } : {}}
+					>
 						<SLinkIcon>{icon}</SLinkIcon>
 						{sidebarOpen && (
 							<>

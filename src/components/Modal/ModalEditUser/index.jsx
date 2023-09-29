@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import {
 	Overlay,
 	Modal,
@@ -27,13 +27,14 @@ import {
 	Label,
 	InputDate,
 	IoCalendar,
+	InputFile,
 } from "./style";
 import ButtonPrimary from "../../ButtonPrimary";
 import AvatarNone from "../../../assets/images/avatarnone.png";
 import { Context } from "../../../context/userContext";
 
 export default function ModalEditUser({ id = "overlay", clickClose }) {
-	const { userInfo, update } = useContext(Context);
+	const { userInfo, update, updatePhoto, updateBanner } = useContext(Context);
 	const [dropdown, setDropdown] = useState(false);
 	const [firstnameChange, setFirstnameChange] = useState(userInfo.firstname);
 	const [lastnameChange, setLastnameChange] = useState(userInfo.lastname);
@@ -46,6 +47,18 @@ export default function ModalEditUser({ id = "overlay", clickClose }) {
 			setDropdown(false);
 		}
 	}
+
+	const handleUploadPhoto = (e) => {
+		const file = e.target.files[0];
+		if (!file) return;
+		updatePhoto(file);
+	};
+
+	const handleUploadBanner = (e) => {
+		const file = e.target.files[0];
+		if (!file) return;
+		updateBanner(file);
+	};
 
 	const handleOutsideClick = (e) => {
 		if (e.target.id == id) clickClose();
@@ -91,7 +104,13 @@ export default function ModalEditUser({ id = "overlay", clickClose }) {
 							}
 							alt=""
 						/>
-						<EditPhotoCover>
+						<InputFile
+							type="file"
+							id="banner"
+							acceppt="image/*"
+							onChange={handleUploadBanner}
+						/>
+						<EditPhotoCover htmlFor="banner">
 							<FaCam />
 							Edit Cover Photo
 						</EditPhotoCover>
@@ -105,7 +124,13 @@ export default function ModalEditUser({ id = "overlay", clickClose }) {
 										: AvatarNone
 								}
 							/>
-							<EditPhotoProfile>
+							<InputFile
+								type="file"
+								id="photo"
+								acceppt="image/*"
+								onChange={handleUploadPhoto}
+							/>
+							<EditPhotoProfile htmlFor="photo">
 								<FaCam />
 							</EditPhotoProfile>
 						</Image>
