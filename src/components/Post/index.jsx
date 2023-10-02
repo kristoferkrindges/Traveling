@@ -43,14 +43,12 @@ import { PostContext } from "../../context/postContext";
 
 export default function Feeds({
 	type,
-	userPhoto,
+	user,
 	photo,
-	userName,
 	time,
 	likes,
 	comments,
 	pharase,
-	hashtag,
 }) {
 	const [dropdown, setDropdown] = useState(false);
 	const { edit, HandlerEdit } = useContext(PostContext);
@@ -67,10 +65,10 @@ export default function Feeds({
 			<Head>
 				<User>
 					<ProfilePhoto>
-						<img src={userPhoto} alt="" />
+						<img src={user.photo} alt="" />
 					</ProfilePhoto>
 					<Ingo>
-						<Name>{userName}</Name>
+						<Name>{user.firstname + " " + user.lastname}</Name>
 						<Small>
 							{time}
 							<Space>h</Space>
@@ -94,7 +92,7 @@ export default function Feeds({
 			<Caption>
 				<Pharase>
 					{pharase}
-					<HarshTag> #{hashtag}</HarshTag>
+					{/* <HarshTag> #{user.at}</HarshTag> */}
 				</Pharase>
 			</Caption>
 			<Photo>

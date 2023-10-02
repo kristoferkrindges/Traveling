@@ -4,8 +4,24 @@ import {
 	IoEllipsisHorizontal,
 	IoImagesOutline,
 	IoVideocamOutline,
+	IoCloudUploadOutline,
+	IoCloseCircleOutline,
 } from "react-icons/io5";
 import { NavLink as Link } from "react-router-dom";
+
+export const IoCloudUpload = styled(IoCloudUploadOutline)`
+	&:hover {
+		opacity: 0.7;
+		cursor: pointer;
+	}
+`;
+
+export const DeletIcon = styled(IoCloseCircleOutline)`
+	&:hover {
+		opacity: 0.7;
+		cursor: pointer;
+	}
+`;
 
 export const IoImages = styled(IoImagesOutline)``;
 
@@ -39,7 +55,8 @@ export const Modal = styled.div`
 	justify-content: center;
 	align-items: center;
 	z-index: 300;
-	top: 30%;
+	top: 10%;
+	left: -1%;
 `;
 
 export const Content = styled.div`
@@ -52,6 +69,51 @@ export const Content = styled.div`
 	/* width: 35%; */
 	/* width: 40vw; */
 	width: 700px;
+`;
+
+export const InputFile = styled.input`
+	display: none;
+`;
+
+export const SendPhoto = styled.label`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.1rem;
+	gap: 10px;
+	z-index: 10;
+	&:hover {
+		opacity: 0.8;
+	}
+`;
+
+export const PreviewPhoto = styled.img``;
+
+export const Photo = styled.div`
+	position: relative;
+	border-radius: 1rem;
+	overflow: hidden;
+	margin: 0.7rem 0;
+	img {
+		width: 100%;
+		filter: brightness(0.25) opacity(0.75);
+	}
+`;
+
+export const EditPhoto = styled.div`
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 2rem;
+	top: 48%;
+	left: 43%;
+	font-size: 3rem;
+	color: white;
+`;
+
+export const LabelFile = styled.label`
+	display: flex;
 `;
 
 export const Heading = styled.div`
@@ -132,7 +194,7 @@ export const TextArea = styled.textarea`
 	resize: none;
 	scrollbar-width: none;
 	width: 100%;
-	height: 200px;
+	min-height: 90px;
 	font-size: 1rem;
 	color: ${({ theme }) => theme.text};
 
