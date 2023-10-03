@@ -35,28 +35,69 @@ import {
 	LabelFile,
 	IoCloudUpload,
 	SaveContainer,
+	HeartPress,
+	BookPress,
 } from "./style";
 
 import ButtonPrimary from "../ButtonPrimary";
 
 import { PostContext } from "../../context/postContext";
+import { Context as userContext } from "../../context/userContext";
 
 export default function Feeds({
 	type,
 	user,
+	id,
 	photo,
 	time,
 	likes,
 	comments,
 	pharase,
+	favorites,
+	pressLike,
+	pressFavorite,
 }) {
 	const [dropdown, setDropdown] = useState(false);
 	const { edit, HandlerEdit } = useContext(PostContext);
+	const [like, setLike] = useState(likes);
+	const [stateLike, setStateLike] = useState(pressLike);
+	const [favorite, setFavorite] = useState(favorites);
+	const [stateFavorite, setStateFavorite] = useState(pressFavorite);
+	const { formatTimeDifference, likePost, favoritePost } =
+		useContext(userContext);
 	function HandlerOpen() {
 		if (dropdown == false) {
 			setDropdown(true);
 		} else {
 			setDropdown(false);
+		}
+	}
+
+	async function onPressLike() {
+		if (stateLike) {
+			await likePost(id);
+			setStateLike(false);
+			if (like > 0) {
+				setLike(like - 1);
+			}
+		} else {
+			await likePost(id);
+			setStateLike(true);
+			setLike(like + 1);
+		}
+	}
+
+	async function onPressFavorite() {
+		if (stateFavorite) {
+			await favoritePost(id);
+			setStateFavorite(false);
+			if (favorite > 0) {
+				setFavorite(favorite - 1);
+			}
+		} else {
+			await favoritePost(id);
+			setStateFavorite(true);
+			setFavorite(favorite + 1);
 		}
 	}
 
@@ -69,10 +110,7 @@ export default function Feeds({
 					</ProfilePhoto>
 					<Ingo>
 						<Name>{user.firstname + " " + user.lastname}</Name>
-						<Small>
-							{time}
-							<Space>h</Space>
-						</Small>
+						<Small>{formatTimeDifference(time)}</Small>
 					</Ingo>
 				</User>
 				<Edit>
@@ -117,8 +155,12 @@ export default function Feeds({
 				<ActionButtons>
 					<InteractionButtons>
 						<Icon>
-							<Heart />
-							<Numbers>{likes}</Numbers>
+							{stateLike ? (
+								<HeartPress onClick={onPressLike} />
+							) : (
+								<Heart onClick={onPressLike} />
+							)}
+							<Numbers>{like}</Numbers>
 						</Icon>
 						<Icon>
 							<Comment />
@@ -130,7 +172,12 @@ export default function Feeds({
 							<Share />
 						</Icon>
 						<Icon>
-							<Book />
+							{stateFavorite ? (
+								<BookPress onClick={onPressFavorite} />
+							) : (
+								<Book onClick={onPressFavorite} />
+							)}
+							<Numbers>{favorite}</Numbers>
 						</Icon>
 					</BookMark>
 				</ActionButtons>
@@ -172,7 +219,7 @@ export default function Feeds({
 			)}
 			{!edit ? (
 				!type ? (
-					<TextMuted>View all 124 comments</TextMuted>
+					<TextMuted>View all {comments} comments</TextMuted>
 				) : (
 					<></>
 				)

@@ -8,12 +8,13 @@ export default function usePost() {
 
 	async function findAll() {
 		try {
-			const response = await api.get("/posts");
-			return response.data;
+			const data = await api.get("/posts").then((response) => {
+				return response.data;
+			});
+			return data;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
-			throw error;
 		}
 	}
 

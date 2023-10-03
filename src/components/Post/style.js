@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import {
 	IoEllipsisHorizontal,
-	IoHeartOutline,
+	IoHeart,
 	IoChatbubbleOutline,
 	IoShareOutline,
 	IoBookmarkOutline,
 	IoCloudUploadOutline,
 	IoCloseCircleOutline,
+	IoHeartOutline,
+	IoBookmark,
 } from "react-icons/io5";
 import { NavLink as Link } from "react-router-dom";
 
@@ -18,10 +20,34 @@ export const Ellips = styled(IoEllipsisHorizontal)`
 `;
 export const IoCloudUpload = styled(IoCloudUploadOutline)``;
 export const DeletIcon = styled(IoCloseCircleOutline)``;
-export const Heart = styled(IoHeartOutline)``;
+export const Heart = styled(IoHeartOutline)`
+	&:hover {
+		color: red;
+		cursor: pointer;
+	}
+`;
+export const HeartPress = styled(IoHeart)`
+	color: red;
+	&:hover {
+		color: white;
+		cursor: pointer;
+	}
+`;
 export const Comment = styled(IoChatbubbleOutline)``;
 export const Share = styled(IoShareOutline)``;
-export const Book = styled(IoBookmarkOutline)``;
+export const Book = styled(IoBookmarkOutline)`
+	&:hover {
+		color: gold;
+		cursor: pointer;
+	}
+`;
+export const BookPress = styled(IoBookmark)`
+	color: gold;
+	&:hover {
+		color: white;
+		cursor: pointer;
+	}
+`;
 export const Head = styled.div`
 	display: flex;
 	justify-content: space-between;
