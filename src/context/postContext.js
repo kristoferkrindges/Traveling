@@ -13,18 +13,9 @@ function PostProvider({ children }) {
 		update,
 		deletePost,
 	} = usePost();
-	const [edit, setEdit] = useState(false);
-	function HandlerEdit() {
-		if (edit === false) {
-			setEdit(true);
-		} else {
-			setEdit(false);
-		}
-	}
 	return (
 		<PostContext.Provider
 			value={{
-				HandlerEdit,
 				findAll,
 				findById,
 				findUsersFavorites,

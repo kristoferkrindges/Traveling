@@ -22,12 +22,10 @@ import {
 	P,
 	Caption,
 	Pharase,
-	HarshTag,
 	TextMuted,
 	DropMenu,
 	Item,
 	NavLink,
-	Space,
 	Numbers,
 	EditPhoto,
 	InputFile,
@@ -37,12 +35,17 @@ import {
 	SaveContainer,
 	HeartPress,
 	BookPress,
+	EditPost,
+	ToHide,
+	Trash,
+	ToReport,
 } from "./style";
 
 import ButtonPrimary from "../ButtonPrimary";
 
 import { PostContext } from "../../context/postContext";
 import { Context as userContext } from "../../context/userContext";
+import { Link } from "react-router-dom";
 
 export default function Feeds({
 	type,
@@ -58,19 +61,33 @@ export default function Feeds({
 	pressFavorite,
 }) {
 	const [dropdown, setDropdown] = useState(false);
-	const { edit, HandlerEdit } = useContext(PostContext);
+	const { update } = useContext(PostContext);
 	const [like, setLike] = useState(likes);
 	const [stateLike, setStateLike] = useState(pressLike);
 	const [favorite, setFavorite] = useState(favorites);
 	const [stateFavorite, setStateFavorite] = useState(pressFavorite);
-	const { formatTimeDifference, likePost, favoritePost } =
+	const [linkPhoto, setLinkPhoto] = useState(photo);
+	const { userInfo, formatTimeDifference, likePost, favoritePost } =
 		useContext(userContext);
-	function HandlerOpen() {
-		if (dropdown == false) {
+	const [stateEditPost, setStateEditPost] = useState(false);
+	function HandlerEdit() {
+		if (stateEditPost === false) {
+			setStateEditPost(true);
+		} else {
+			setStateEditPost(false);
+		}
+	}
+	function HandlerOpen(evt) {
+		evt.preventDefault();
+		if (dropdown === false) {
 			setDropdown(true);
 		} else {
 			setDropdown(false);
 		}
+	}
+
+	async function updatePost() {
+		await updatePost;
 	}
 
 	async function onPressLike() {
@@ -100,26 +117,46 @@ export default function Feeds({
 			setFavorite(favorite + 1);
 		}
 	}
-
+	console.log(stateEditPost);
 	return (
-		<>
+		<Link to={`/post/${id}`}>
 			<Head>
 				<User>
-					<ProfilePhoto>
-						<img src={user.photo} alt="" />
-					</ProfilePhoto>
+					<Link to={`/profile/${user.at}`}>
+						<ProfilePhoto>
+							<img src={user.photo} alt="" />
+						</ProfilePhoto>
+					</Link>
 					<Ingo>
-						<Name>{user.firstname + " " + user.lastname}</Name>
+						<Link to={`/profile/${user.at}`}>
+							<Name>{user.firstname + " " + user.lastname}</Name>
+						</Link>
 						<Small>{formatTimeDifference(time)}</Small>
 					</Ingo>
 				</User>
 				<Edit>
-					<Ellips onClick={HandlerOpen} />
+					<Ellips onClick={(evt) => HandlerOpen(evt)} />
 					{dropdown ? (
 						<DropMenu>
 							<Item>
-								<NavLink>Report</NavLink>
-								<NavLink onClick={HandlerEdit}>Edit</NavLink>
+								<NavLink>
+									<ToReport /> Report
+								</NavLink>
+								<NavLink>
+									{" "}
+									<ToHide /> Hide
+								</NavLink>
+								{user.at === userInfo.at ? (
+									<>
+										<NavLink onClick={HandlerEdit}>
+											{" "}
+											<EditPost /> Edit
+										</NavLink>
+										<NavLink>
+											<Trash /> Delete
+										</NavLink>
+									</>
+								) : null}
 							</Item>
 						</DropMenu>
 					) : (
@@ -136,10 +173,12 @@ export default function Feeds({
 			<Photo>
 				<img
 					src={photo}
-					style={edit ? { filter: `brightness(0.25) opacity(0.75)` } : {}}
+					style={
+						stateEditPost ? { filter: `brightness(0.25) opacity(0.75)` } : {}
+					}
 					alt=""
 				/>
-				{edit ? (
+				{stateEditPost ? (
 					<EditPhoto>
 						<InputFile id="uploadBtn" type="file" />
 						<LabelFile for="uploadBtn">
@@ -151,7 +190,7 @@ export default function Feeds({
 					<></>
 				)}
 			</Photo>
-			{!edit ? (
+			{!stateEditPost ? (
 				<ActionButtons>
 					<InteractionButtons>
 						<Icon>
@@ -162,15 +201,19 @@ export default function Feeds({
 							)}
 							<Numbers>{like}</Numbers>
 						</Icon>
-						<Icon>
-							<Comment />
-							<Numbers>{comments}</Numbers>
-						</Icon>
+						<Link to={`/post/${id}`}>
+							<Icon>
+								<Comment />
+								<Numbers>{comments}</Numbers>
+							</Icon>
+						</Link>
 					</InteractionButtons>
 					<BookMark>
-						<Icon>
-							<Share />
-						</Icon>
+						{stateEditPost ? (
+							<Icon>
+								<Share />
+							</Icon>
+						) : null}
 						<Icon>
 							{stateFavorite ? (
 								<BookPress onClick={onPressFavorite} />
@@ -184,7 +227,7 @@ export default function Feeds({
 			) : (
 				<></>
 			)}
-			{!edit ? (
+			{!stateEditPost ? (
 				<LikedBy>
 					<Span>
 						<img
@@ -217,9 +260,11 @@ export default function Feeds({
 			) : (
 				<></>
 			)}
-			{!edit ? (
+			{!stateEditPost ? (
 				!type ? (
-					<TextMuted>View all {comments} comments</TextMuted>
+					<Link to={`/post/${id}`}>
+						<TextMuted>View all {comments} comments</TextMuted>
+					</Link>
 				) : (
 					<></>
 				)
@@ -227,13 +272,13 @@ export default function Feeds({
 				<></>
 			)}
 
-			{edit ? (
+			{stateEditPost ? (
 				<SaveContainer>
 					<ButtonPrimary label="Save" click={HandlerEdit} />
 				</SaveContainer>
 			) : (
 				<></>
 			)}
-		</>
+		</Link>
 	);
 }

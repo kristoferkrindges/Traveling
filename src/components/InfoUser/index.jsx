@@ -19,9 +19,9 @@ export default function InfoUser() {
 	const { userInfo } = useContext(Context);
 	return (
 		<Card>
-			<BoxOne>
+			<BoxOne style={userInfo.banner ? { backgroundColor: `transparent` } : {}}>
 				<Modal>
-					{userInfo.banner || !userInfo.banner == "" ? (
+					{userInfo.banner || !userInfo.banner === "" ? (
 						<img src={userInfo.banner} alt={"photo " + userInfo.firstname} />
 					) : null}
 				</Modal>
@@ -53,7 +53,7 @@ export default function InfoUser() {
 				<Photo>
 					<img
 						src={
-							userInfo.photo || !userInfo.photo == ""
+							userInfo.photo || !userInfo.photo === ""
 								? userInfo.photo
 								: AvatarNone
 						}

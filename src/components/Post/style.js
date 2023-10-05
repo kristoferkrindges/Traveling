@@ -9,6 +9,10 @@ import {
 	IoCloseCircleOutline,
 	IoHeartOutline,
 	IoBookmark,
+	IoColorWand,
+	IoEyeOff,
+	IoTrashBin,
+	IoSad,
 } from "react-icons/io5";
 import { NavLink as Link } from "react-router-dom";
 
@@ -19,6 +23,10 @@ export const Ellips = styled(IoEllipsisHorizontal)`
 	}
 `;
 export const IoCloudUpload = styled(IoCloudUploadOutline)``;
+export const ToHide = styled(IoEyeOff)``;
+export const ToReport = styled(IoSad)``;
+export const Trash = styled(IoTrashBin)``;
+export const EditPost = styled(IoColorWand)``;
 export const DeletIcon = styled(IoCloseCircleOutline)``;
 export const Heart = styled(IoHeartOutline)`
 	&:hover {
@@ -33,8 +41,18 @@ export const HeartPress = styled(IoHeart)`
 		cursor: pointer;
 	}
 `;
-export const Comment = styled(IoChatbubbleOutline)``;
-export const Share = styled(IoShareOutline)``;
+export const Comment = styled(IoChatbubbleOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+export const Share = styled(IoShareOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
 export const Book = styled(IoBookmarkOutline)`
 	&:hover {
 		color: gold;
@@ -115,6 +133,10 @@ export const ActionButtons = styled.div`
 export const InteractionButtons = styled.div`
 	display: flex;
 	gap: 2rem;
+
+	& a {
+		color: ${({ theme }) => theme.text};
+	}
 `;
 export const BookMark = styled.div`
 	display: flex;
@@ -200,6 +222,7 @@ export const NavLink = styled(Link)`
 	color: ${({ theme }) => theme.text};
 	align-items: center;
 	transition: all 0.3s ease;
+	border-radius: 1rem;
 	&:hover {
 		color: ${({ theme }) => theme.secondColor};
 		background: ${({ theme }) => theme.background};

@@ -254,7 +254,7 @@ export const Button = styled.button`
 	transition: all 300ms ease;
 	color: white;
 	font-size: 1rem;
-	border: 4px solid ${({ theme }) => theme.background};
+	border: 4px solid transparent;
 	box-shadow: 0 0 0 10px ${({ theme }) => theme.container};
 	transition: 0.5s;
 	/* text-transform: uppercase;
