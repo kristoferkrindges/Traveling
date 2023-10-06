@@ -195,6 +195,15 @@ export default function useAuth() {
 		}
 	}
 
+	async function getPostsUser(id) {
+		try {
+			const response = await api.get(`/users/${id}/posts`);
+			return response.data;
+		} catch (error) {
+			console.log(error.response.data.message);
+		}
+	}
+
 	async function getFollowers(id) {
 		try {
 			const response = await api.get(`/users/${id}/followers`);
@@ -241,6 +250,7 @@ export default function useAuth() {
 			const data = await api.get("/users/like").then((response) => {
 				return response.data;
 			});
+			return data;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
@@ -252,6 +262,7 @@ export default function useAuth() {
 			const data = await api.get("/users/favorites").then((response) => {
 				return response.data;
 			});
+			return data;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
@@ -394,5 +405,6 @@ export default function useAuth() {
 		updateBanner,
 		findUserByAt,
 		formatTimeDifference,
+		getPostsUser,
 	};
 }

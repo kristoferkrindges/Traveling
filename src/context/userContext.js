@@ -28,6 +28,7 @@ function UserProvider({ children }) {
 		updateBanner,
 		findUserByAt,
 		formatTimeDifference,
+		getPostsUser,
 	} = useAuth();
 	return (
 		<Context.Provider
@@ -56,6 +57,7 @@ function UserProvider({ children }) {
 				updateBanner,
 				findUserByAt,
 				formatTimeDifference,
+				getPostsUser,
 			}}
 		>
 			{children}

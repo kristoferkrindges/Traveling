@@ -5,6 +5,9 @@ export default function ControllerSelectOptionsProfile({
 	equal,
 	findFollowers,
 	findFollowings,
+	findPosts,
+	findPostsLikes,
+	findPostsFavorites,
 }) {
 	const [activePosts, setActivePosts] = useState("active");
 	const [activeFav, setActiveFav] = useState("");
@@ -29,14 +32,17 @@ export default function ControllerSelectOptionsProfile({
 	function handlerActivePosts() {
 		resetSets();
 		setActivePosts("active");
+		findPosts();
 	}
 	function handlerActiveFav() {
 		resetSets();
 		setActiveFav("active");
+		findPostsFavorites();
 	}
 	function handlerActiveLikes() {
 		resetSets();
 		setActiveLikes("active");
+		findPostsLikes();
 	}
 	function handlerActiveFollowers() {
 		resetSets();

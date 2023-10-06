@@ -23,8 +23,8 @@ export const Button = styled.button`
 	&::before {
 		content: "";
 		position: absolute;
-		top: 5px;
-		left: -29px;
+		top: -7px;
+		left: -27px;
 		width: 20px;
 		height: 20px;
 		background: transparent;
@@ -34,8 +34,8 @@ export const Button = styled.button`
 	&::after {
 		content: "";
 		position: absolute;
-		top: 5px;
-		right: -29px;
+		top: -7px;
+		right: -27px;
 		width: 20px;
 		height: 20px;
 		background: transparent;
