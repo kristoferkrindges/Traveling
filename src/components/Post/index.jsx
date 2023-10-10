@@ -59,14 +59,16 @@ export default function Feeds({
 	favorites,
 	pressLike,
 	pressFavorite,
+	alreadyEdit,
 }) {
 	const [dropdown, setDropdown] = useState(false);
-	const { update } = useContext(PostContext);
+	const { update, deletePost } = useContext(PostContext);
 	const [like, setLike] = useState(likes);
 	const [stateLike, setStateLike] = useState(pressLike);
 	const [favorite, setFavorite] = useState(favorites);
 	const [stateFavorite, setStateFavorite] = useState(pressFavorite);
 	const [linkPhoto, setLinkPhoto] = useState(photo);
+	const [stateEdit, setStateEdit] = useState(alreadyEdit);
 	const { userInfo, formatTimeDifference, likePost, favoritePost } =
 		useContext(userContext);
 	const [stateEditPost, setStateEditPost] = useState(false);
@@ -117,7 +119,11 @@ export default function Feeds({
 			setFavorite(favorite + 1);
 		}
 	}
-	console.log(stateEditPost);
+	function clickDeletePost(evt) {
+		evt.preventDefault();
+		HandlerOpen(evt);
+		deletePost(id);
+	}
 	return (
 		<Link to={`/post/${id}`}>
 			<Head>
@@ -131,7 +137,9 @@ export default function Feeds({
 						<Link to={`/profile/${user.at}`}>
 							<Name>{user.firstname + " " + user.lastname}</Name>
 						</Link>
-						<Small>{formatTimeDifference(time)}</Small>
+						<Small>
+							{formatTimeDifference(time)} {stateEdit && "Edit"}
+						</Small>
 					</Ingo>
 				</User>
 				<Edit>
@@ -152,7 +160,7 @@ export default function Feeds({
 											{" "}
 											<EditPost /> Edit
 										</NavLink>
-										<NavLink>
+										<NavLink onClick={(evt) => clickDeletePost(evt)}>
 											<Trash /> Delete
 										</NavLink>
 									</>

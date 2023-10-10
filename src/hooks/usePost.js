@@ -2,15 +2,23 @@ import api from "../services/api";
 import { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import useFirebase from "./useFirebase";
+import useAuth from "./useAuth";
 
 export default function usePost() {
 	const { uploadImage } = useFirebase();
+	const { checkUser } = useAuth();
+	const [allPosts, setAllPosts] = useState();
+
+	useEffect(() => {
+		findAll();
+	}, []);
 
 	async function findAll() {
 		try {
 			const data = await api.get("/posts").then((response) => {
 				return response.data;
 			});
+			setAllPosts(data);
 			return data;
 		} catch (error) {
 			console.log(error.response.data.message);
@@ -60,7 +68,9 @@ export default function usePost() {
 			const data = await api.post("/posts", post).then((response) => {
 				return response.data;
 			});
+			addPostCreated(data);
 			toast.success("Post created with success!");
+			await checkUser();
 			return;
 		} catch (error) {
 			try {
@@ -88,10 +98,22 @@ export default function usePost() {
 			const data = await api.delete(`/posts/${id}`).then((response) => {
 				return response.data;
 			});
+			removePostArray(id);
+			toast.success("Post deleted with success!");
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
 		}
+	}
+
+	function addPostCreated(post) {
+		const updateArray = [post].concat(allPosts);
+		setAllPosts(updateArray);
+	}
+
+	function removePostArray(postId) {
+		const updatedPosts = allPosts.filter((post) => post.id !== postId);
+		setAllPosts(updatedPosts);
 	}
 
 	return {
@@ -102,5 +124,6 @@ export default function usePost() {
 		insert,
 		update,
 		deletePost,
+		allPosts,
 	};
 }

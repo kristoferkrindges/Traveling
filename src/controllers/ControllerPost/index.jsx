@@ -4,21 +4,19 @@ import { Container } from "../../layouts/LayoutOnlyPost/style";
 import { PostContext } from "../../context/postContext";
 import Loader from "../../components/Loader";
 export default function ControllerPost({ type }) {
-	const [posts, setPosts] = useState([]);
-	const { findAll } = useContext(PostContext);
+	const { findAll, allPosts } = useContext(PostContext);
 	useEffect(() => {
 		searchPosts();
 	}, []);
 
 	const searchPosts = async () => {
-		const posts = await findAll();
-		setPosts(posts);
+		await findAll();
 	};
 
 	return (
 		<>
-			{posts && posts.length > 0 ? (
-				posts.map((value, key) => (
+			{allPosts && allPosts.length > 0 ? (
+				allPosts.map((value, key) => (
 					<Container>
 						<Post
 							type={type}
@@ -33,13 +31,16 @@ export default function ControllerPost({ type }) {
 							favorites={value.favorites}
 							pressLike={value.pressLike}
 							pressFavorite={value.pressFavorite}
+							alreadyEdit={value.edit}
 						/>
 					</Container>
 				))
 			) : (
 				<Container
 					style={
-						!posts ? { backgroundColor: "transparent", boxShadow: "none" } : {}
+						!allPosts
+							? { backgroundColor: "transparent", boxShadow: "none" }
+							: {}
 					}
 				>
 					<Loader />

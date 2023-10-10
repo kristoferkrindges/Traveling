@@ -6,6 +6,8 @@ import LayoutMenuOptions from "../../layouts/LayoutMenuOptions";
 import Followers from "../../components/Followers";
 import Post from "../../components/Post";
 import { Container } from "../../layouts/LayoutOnlyPost/style";
+import NoContent from "../../components/NoContent";
+import Loader from "../../components/Loader";
 export default function ControllerProfile({ type }) {
 	let { id } = useParams();
 
@@ -106,54 +108,86 @@ export default function ControllerProfile({ type }) {
 				findPostsLikes={findPostsLikes}
 				findPostsFavorites={findPostsFavorites}
 			/>
-			{search === "Followers" &&
-				followers.length > 0 &&
-				followers.map((value, key) => (
-					<Followers
-						key={key}
-						photo={value.photo}
-						firstname={value.firstname}
-						lastname={value.lastname}
-						id={value.id}
-						at={value.at}
-						follow={value.follow}
-					/>
-				))}
-			{search === "Followings" &&
-				followings.length > 0 &&
-				followings.map((value, key) => (
-					<Followers
-						key={key}
-						photo={value.photo}
-						firstname={value.firstname}
-						lastname={value.lastname}
-						id={value.id}
-						at={value.at}
-						follow={value.follow}
-					/>
-				))}
-			{search === "Posts" ? (
-				posts && posts.length > 0 ? (
-					posts.map((value, key) => (
-						<Container>
-							<Post
-								type={type}
+			{search === "Followers" ? (
+				followers ? (
+					followers.length > 0 ? (
+						followers.map((value, key) => (
+							<Followers
 								key={key}
+								photo={value.photo}
+								firstname={value.firstname}
+								lastname={value.lastname}
 								id={value.id}
-								pharase={value.phrase}
-								photo={value.img}
-								user={value.userAllResponse}
-								time={value.datepublic}
-								likes={value.likes}
-								comments={value.comments}
-								favorites={value.favorites}
-								pressLike={value.pressLike}
-								pressFavorite={value.pressFavorite}
+								at={value.at}
+								follow={value.follow}
 							/>
+						))
+					) : (
+						<Container>
+							<NoContent content={"No record yet"} />
 						</Container>
-					))
+					)
 				) : (
-					<h1>Erro!</h1>
+					<Container>
+						<Loader />
+					</Container>
+				)
+			) : null}
+			{search === "Followings" ? (
+				followings ? (
+					followings.length > 0 ? (
+						followings.map((value, key) => (
+							<Followers
+								key={key}
+								photo={value.photo}
+								firstname={value.firstname}
+								lastname={value.lastname}
+								id={value.id}
+								at={value.at}
+								follow={value.follow}
+							/>
+						))
+					) : (
+						<Container>
+							<NoContent content={"No record yet"} />
+						</Container>
+					)
+				) : (
+					<Container>
+						<Loader />
+					</Container>
+				)
+			) : null}
+			{search === "Posts" ? (
+				posts ? (
+					posts.length > 0 ? (
+						posts.map((value, key) => (
+							<Container>
+								<Post
+									type={type}
+									key={key}
+									id={value.id}
+									pharase={value.phrase}
+									photo={value.img}
+									user={value.userAllResponse}
+									time={value.datepublic}
+									likes={value.likes}
+									comments={value.comments}
+									favorites={value.favorites}
+									pressLike={value.pressLike}
+									pressFavorite={value.pressFavorite}
+								/>
+							</Container>
+						))
+					) : (
+						<Container>
+							<NoContent content={"No record yet"} />
+						</Container>
+					)
+				) : (
+					<Container>
+						<Loader />
+					</Container>
 				)
 			) : null}
 		</>

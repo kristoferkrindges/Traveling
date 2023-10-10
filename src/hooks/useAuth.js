@@ -380,6 +380,12 @@ export default function useAuth() {
 		}
 	}
 
+	function alterCountPosts() {
+		const updateUser = { ...userInfo };
+		updateUser.posts = updateUser.posts + 1;
+		setUserInfo(updateUser);
+	}
+
 	return {
 		authenticated,
 		register,
@@ -406,5 +412,7 @@ export default function useAuth() {
 		findUserByAt,
 		formatTimeDifference,
 		getPostsUser,
+		alterCountPosts,
+		checkUser,
 	};
 }

@@ -57,7 +57,6 @@ export const Image = styled.div`
 	border-radius: 50%;
 	padding: 3px;
 	background: ${({ theme }) => theme.background};
-	border-top: 1px solid ${({ theme }) => theme.background};
 `;
 
 export const EditPhotoProfile = styled.label`
@@ -69,8 +68,8 @@ export const EditPhotoProfile = styled.label`
 	border-radius: 50%;
 	cursor: pointer;
 	transition: all 300ms ease;
-	background-color: ${({ theme }) => theme.container};
-	border: 3px solid ${({ theme }) => theme.container};
+	background-color: ${({ theme }) => theme.background};
+	border: 3px solid ${({ theme }) => theme.background};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -267,11 +266,10 @@ export const UserPhoto = styled.img`
 	width: 100%;
 	object-fit: cover;
 	border-radius: 50%;
-	/* border: 3px solid ${({ theme }) => theme.container}; */
-	background-color: ${({ theme }) => theme.container};
-
+	background-color: ${({ theme }) => theme.background};
+	border: 3px solid ${({ theme }) => theme.background};
 	&:hover {
-		opacity: 0.8;
+		opacity: 0.5;
 	}
 `;
 

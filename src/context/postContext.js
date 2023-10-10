@@ -12,6 +12,7 @@ function PostProvider({ children }) {
 		insert,
 		update,
 		deletePost,
+		allPosts,
 	} = usePost();
 	return (
 		<PostContext.Provider
@@ -23,6 +24,7 @@ function PostProvider({ children }) {
 				insert,
 				update,
 				deletePost,
+				allPosts,
 			}}
 		>
 			{children}
