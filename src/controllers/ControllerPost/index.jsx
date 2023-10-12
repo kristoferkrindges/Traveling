@@ -12,7 +12,6 @@ export default function ControllerPost({ type }) {
 	const searchPosts = async () => {
 		await findAll();
 	};
-
 	return (
 		<>
 			{allPosts && allPosts.length > 0 ? (
@@ -32,6 +31,7 @@ export default function ControllerPost({ type }) {
 							pressLike={value.pressLike}
 							pressFavorite={value.pressFavorite}
 							alreadyEdit={value.edit}
+							usersLikes={value.usersLikes}
 						/>
 					</Container>
 				))

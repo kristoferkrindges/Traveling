@@ -10,7 +10,6 @@ import {
 	IoHeartOutline,
 	IoBookmark,
 	IoColorWand,
-	IoEyeOff,
 	IoTrashBin,
 	IoSad,
 } from "react-icons/io5";
@@ -22,8 +21,9 @@ export const Ellips = styled(IoEllipsisHorizontal)`
 		opacity: 0.5;
 	}
 `;
-export const IoCloudUpload = styled(IoCloudUploadOutline)``;
-export const ToHide = styled(IoEyeOff)``;
+export const IoCloudUpload = styled(IoCloudUploadOutline)`
+	cursor: pointer;
+`;
 export const ToReport = styled(IoSad)``;
 export const Trash = styled(IoTrashBin)``;
 export const EditPost = styled(IoColorWand)``;
@@ -114,6 +114,16 @@ export const EditPhoto = styled.div`
 	font-size: 3rem;
 	color: white;
 `;
+
+export const EditPhotoNoPhoto = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 3rem;
+	color: white;
+	margin-bottom: 1rem;
+`;
+
 export const InputFile = styled.input`
 	display: none;
 `;
@@ -233,4 +243,27 @@ export const SaveContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+`;
+
+export const Form = styled.form`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
+export const TextArea = styled.textarea`
+	background: ${({ theme }) => theme.background};
+	outline: none;
+	border: none;
+	resize: none;
+	scrollbar-width: none;
+	width: 100%;
+	min-height: 90px;
+	font-size: 1rem;
+	color: ${({ theme }) => theme.text};
+	padding: 1rem;
+	border-radius: 1rem;
+
+	/* &::-webkit-scrollbar {
+		display: none;
+	} */
 `;

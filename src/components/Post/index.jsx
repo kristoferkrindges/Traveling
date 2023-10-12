@@ -36,9 +36,11 @@ import {
 	HeartPress,
 	BookPress,
 	EditPost,
-	ToHide,
 	Trash,
 	ToReport,
+	EditPhotoNoPhoto,
+	Form,
+	TextArea,
 } from "./style";
 
 import ButtonPrimary from "../ButtonPrimary";
@@ -60,6 +62,7 @@ export default function Feeds({
 	pressLike,
 	pressFavorite,
 	alreadyEdit,
+	usersLikes,
 }) {
 	const [dropdown, setDropdown] = useState(false);
 	const { update, deletePost } = useContext(PostContext);
@@ -67,8 +70,10 @@ export default function Feeds({
 	const [stateLike, setStateLike] = useState(pressLike);
 	const [favorite, setFavorite] = useState(favorites);
 	const [stateFavorite, setStateFavorite] = useState(pressFavorite);
-	const [linkPhoto, setLinkPhoto] = useState(photo);
+	const [statePhoto, setStatePhoto] = useState(photo);
 	const [stateEdit, setStateEdit] = useState(alreadyEdit);
+	const [statePharase, setStatePharase] = useState(pharase);
+	const [file, setFile] = useState();
 	const { userInfo, formatTimeDifference, likePost, favoritePost } =
 		useContext(userContext);
 	const [stateEditPost, setStateEditPost] = useState(false);
@@ -91,7 +96,7 @@ export default function Feeds({
 	async function updatePost() {
 		await updatePost;
 	}
-
+	console.log(usersLikes[usersLikes.length - 1]);
 	async function onPressLike() {
 		if (stateLike) {
 			await likePost(id);
@@ -119,13 +124,41 @@ export default function Feeds({
 			setFavorite(favorite + 1);
 		}
 	}
+	function clickSaveEditPost(evt) {
+		evt.preventDefault();
+		HandlerEdit();
+	}
 	function clickDeletePost(evt) {
 		evt.preventDefault();
 		HandlerOpen(evt);
 		deletePost(id);
 	}
+	function clickButtonEdit(evt) {
+		HandlerEdit();
+		HandlerOpen(evt);
+	}
+	const handlePhoto = (e) => {
+		const file = e.target.files[0];
+		if (!file) {
+			return;
+		} else {
+			setFile(file);
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				setStatePhoto(e.target.result);
+			};
+
+			reader.readAsDataURL(file);
+		}
+	};
+	const deletePhoto = (evt) => {
+		evt.preventDefault();
+		setStatePhoto("");
+		setFile("");
+	};
 	return (
-		<Link to={`/post/${id}`}>
+		// <Link to={!stateEditPost ? `/post/${id}` : null}>
+		<>
 			<Head>
 				<User>
 					<Link to={`/profile/${user.at}`}>
@@ -150,13 +183,9 @@ export default function Feeds({
 								<NavLink>
 									<ToReport /> Report
 								</NavLink>
-								<NavLink>
-									{" "}
-									<ToHide /> Hide
-								</NavLink>
 								{user.at === userInfo.at ? (
 									<>
-										<NavLink onClick={HandlerEdit}>
+										<NavLink onClick={(evt) => clickButtonEdit(evt)}>
 											{" "}
 											<EditPost /> Edit
 										</NavLink>
@@ -173,27 +202,46 @@ export default function Feeds({
 				</Edit>
 			</Head>
 			<Caption>
-				<Pharase>
-					{pharase}
-					{/* <HarshTag> #{user.at}</HarshTag> */}
-				</Pharase>
+				{stateEditPost ? (
+					<Form>
+						<TextArea
+							rows="1"
+							value={statePharase}
+							onChange={(e) => {
+								setStatePharase(e.target.value);
+							}}
+							maxLength={140}
+						></TextArea>
+					</Form>
+				) : (
+					<Pharase>{statePharase}</Pharase>
+				)}
 			</Caption>
 			<Photo>
 				<img
-					src={photo}
+					src={statePhoto}
 					style={
 						stateEditPost ? { filter: `brightness(0.25) opacity(0.75)` } : {}
 					}
 					alt=""
 				/>
 				{stateEditPost ? (
-					<EditPhoto>
-						<InputFile id="uploadBtn" type="file" />
-						<LabelFile for="uploadBtn">
-							<IoCloudUpload />
-						</LabelFile>
-						<DeletIcon />
-					</EditPhoto>
+					photo ? (
+						<EditPhoto>
+							<InputFile id="uploadBtn" type="file" onChange={handlePhoto} />
+							<LabelFile for="uploadBtn">
+								<IoCloudUpload />
+							</LabelFile>
+							<DeletIcon onClick={deletePhoto} />
+						</EditPhoto>
+					) : (
+						<EditPhotoNoPhoto>
+							<InputFile id="uploadBtn" type="file" onChange={handlePhoto} />
+							<LabelFile for="uploadBtn">
+								<IoCloudUpload />
+							</LabelFile>
+						</EditPhotoNoPhoto>
+					)
 				) : (
 					<></>
 				)}
@@ -237,32 +285,20 @@ export default function Feeds({
 			)}
 			{!stateEditPost ? (
 				<LikedBy>
-					<Span>
-						<img
-							src={
-								"https://i.scdn.co/image/ab67706c0000da84c498e529d7a388a8c655eb33"
-							}
-							alt=""
-						/>
-					</Span>
-					<Span>
-						<img
-							src={
-								"https://i.pinimg.com/736x/2e/c2/28/2ec228e768083b48b308247288ad3b0e.jpg"
-							}
-							alt=""
-						/>
-					</Span>
-					<Span>
-						<img
-							src={
-								"https://upload.wikimedia.org/wikipedia/commons/3/3a/Ralph_Macchio_Photo_Op_GalaxyCon_Richmond_2019.jpg"
-							}
-							alt=""
-						/>
-					</Span>
+					{usersLikes.map((value, key) => (
+						<Span>
+							<img src={value.photo} alt="" />
+						</Span>
+					))}
+
 					<P>
-						Liked by <b>Samanta Larusso </b> and <b>{comments} others</b>
+						Liked by{" "}
+						<b>
+							{usersLikes[usersLikes.length - 1]
+								? usersLikes[usersLikes.length - 1].firstname
+								: null}{" "}
+						</b>{" "}
+						and <b>{comments} others</b>
 					</P>
 				</LikedBy>
 			) : (
@@ -287,6 +323,7 @@ export default function Feeds({
 			) : (
 				<></>
 			)}
-		</Link>
+		</>
+		// </Link>
 	);
 }
