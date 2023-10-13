@@ -19,17 +19,12 @@ export const IconComment = styled(IoChatbubbleOutline)``;
 export const Share = styled(IoShareOutline)``;
 export const Book = styled(IoBookmarkOutline)``;
 
-export const Container = styled.div`
-	margin-top: 1rem;
-	padding: 1rem;
-	border-radius: 1rem;
-	background-color: ${({ theme }) => theme.background};
-`;
-
 export const Controller = styled.div`
 	display: flex;
 	width: 100%;
 	gap: 1rem;
+	margin-top: 1rem;
+	margin-bottom: 3rem;
 `;
 
 export const Left = styled.div`

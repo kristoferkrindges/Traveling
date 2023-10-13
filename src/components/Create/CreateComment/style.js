@@ -10,19 +10,31 @@ export const IconSend = styled(IoSendOutline)`
 
 export const Container = styled.div`
 	display: flex;
-	justify-content: space-between;
+	gap: 0.5rem;
 	margin-top: 1rem;
-	padding: 1rem;
+	align-items: center;
+	padding: 1rem 0 1rem 0;
+	/* padding: 1rem;
 	border-radius: 1rem;
+	background-color: ${({ theme }) => theme.background}; */
+	/* border-top: 1px solid ${({ theme }) => theme.textMuted}; */
+	/* border-bottom: 1px solid ${({ theme }) => theme.textMuted}; */
+`;
+
+export const ContextText = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
 	background-color: ${({ theme }) => theme.background};
-	/* border-top: 1px solid ${({ theme }) => theme.textMuted};
-	border-bottom: 1px solid ${({ theme }) => theme.textMuted}; */
+	padding: 0.3rem;
+	border-radius: 1rem;
 `;
 
 export const ProfilePhoto = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	/* gap: 1rem; */
 	img {
 		width: 45px;
 		height: 45px;
@@ -49,12 +61,16 @@ export const TextArea = styled.textarea`
 	overflow-x: hidden;
 	overflow-y: scroll;
 	width: 100%;
+	min-height: 20px;
+	max-height: 40px;
+	font-size: 0.9rem;
+	color: ${({ theme }) => theme.text};
 
 	&::-webkit-scrollbar {
 		display: none;
 	}
 	&:focus {
-		height: 100%;
+		min-height: 60px;
 	}
 `;
 
