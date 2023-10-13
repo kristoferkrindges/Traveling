@@ -33,8 +33,6 @@ export default function CardProfile({
 	const [modal, setModal] = useState(false);
 	const [followers, setFollowers] = useState(0);
 	const [stateFollow, setStateFollow] = useState(false);
-	console.log(followers);
-	console.log(user.followers);
 	useEffect(() => {
 		if (user) {
 			setFollowers(user.followers || 0);

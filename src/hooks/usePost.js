@@ -59,10 +59,10 @@ export default function usePost() {
 		}
 	}
 
-	async function insert(post, photo) {
+	async function insert(post, file) {
 		try {
-			if (photo) {
-				const img = await uploadImage(photo);
+			if (file) {
+				const img = await uploadImage(file);
 				post.img = img;
 			}
 			const data = await api.post("/posts", post).then((response) => {
@@ -81,12 +81,17 @@ export default function usePost() {
 		}
 	}
 
-	async function update(post, id) {
+	async function update(id, post, file) {
 		try {
+			if (file) {
+				const img = await uploadImage(file);
+				post.img = img;
+			}
 			const data = await api.put(`/posts/${id}`, post).then((response) => {
 				return response.data;
 			});
 			toast.success("Updated with success!");
+			return;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
