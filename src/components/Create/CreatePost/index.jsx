@@ -46,7 +46,7 @@ export default function CreatePost() {
 			<Buttons>
 				<Button>
 					<IoImages />
-					Photo/Video
+					Photo
 				</Button>
 				{/* <Button>
 					<IoVideocam />

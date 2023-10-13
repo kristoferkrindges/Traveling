@@ -1,21 +1,30 @@
 import React, { createContext, useState } from "react";
+import usePost from "../hooks/usePost";
 
 const PostContext = createContext();
 
 function PostProvider({ children }) {
-	const [edit, setEdit] = useState(false);
-	function HandlerEdit() {
-		if (edit == false) {
-			setEdit(true);
-		} else {
-			setEdit(false);
-		}
-	}
+	const {
+		findAll,
+		findById,
+		findUsersFavorites,
+		findUsersLikes,
+		insert,
+		update,
+		deletePost,
+		allPosts,
+	} = usePost();
 	return (
 		<PostContext.Provider
 			value={{
-				edit,
-				HandlerEdit,
+				findAll,
+				findById,
+				findUsersFavorites,
+				findUsersLikes,
+				insert,
+				update,
+				deletePost,
+				allPosts,
 			}}
 		>
 			{children}

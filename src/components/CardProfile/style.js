@@ -56,7 +56,7 @@ export const Image = styled.div`
 	width: 180px;
 	border-radius: 50%;
 	padding: 3px;
-	background: ${({ theme }) => theme.container};
+	background: ${({ theme }) => theme.background};
 `;
 
 export const EditPhotoProfile = styled.label`
@@ -68,8 +68,8 @@ export const EditPhotoProfile = styled.label`
 	border-radius: 50%;
 	cursor: pointer;
 	transition: all 300ms ease;
-	background-color: ${({ theme }) => theme.container};
-	border: 3px solid ${({ theme }) => theme.container};
+	background-color: ${({ theme }) => theme.background};
+	border: 3px solid ${({ theme }) => theme.background};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -88,7 +88,7 @@ export const Info = styled.div`
 	flex-direction: column;
 	align-items: center;
 	color: ${({ theme }) => theme.text};
-	margin-top: 2rem;
+	margin-top: 3.5rem;
 `;
 
 export const Name = styled.span`
@@ -173,15 +173,13 @@ export const Button = styled.button`
 	background-color: ${({ theme }) => theme.secondColor};
 	color: white;
 	font-size: 1rem;
-	border: 4px solid ${({ theme }) => theme.background};
+	border: 4px solid transparent;
 	box-shadow: 0 0 0 10px ${({ theme }) => theme.container};
 	transition: 0.5s;
-	/* text-transform: uppercase;
-	letter-spacing: 0.2em; */
 	&::before {
 		content: "";
 		position: absolute;
-		top: 5px;
+		top: -9px;
 		left: -29px;
 		width: 20px;
 		height: 20px;
@@ -192,7 +190,7 @@ export const Button = styled.button`
 	&::after {
 		content: "";
 		position: absolute;
-		top: 5px;
+		top: -9px;
 		right: -29px;
 		width: 20px;
 		height: 20px;
@@ -268,7 +266,8 @@ export const UserPhoto = styled.img`
 	width: 100%;
 	object-fit: cover;
 	border-radius: 50%;
-	border: 3px solid ${({ theme }) => theme.container};
+	background-color: ${({ theme }) => theme.background};
+	border: 3px solid ${({ theme }) => theme.background};
 	&:hover {
 		opacity: 0.5;
 	}

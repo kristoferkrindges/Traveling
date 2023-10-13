@@ -7,6 +7,9 @@ export default function LayoutMenuOptions({
 	equal,
 	findFollowers,
 	findFollowings,
+	findPosts,
+	findPostsLikes,
+	findPostsFavorites,
 }) {
 	return (
 		<ContainerOptions>
@@ -14,6 +17,9 @@ export default function LayoutMenuOptions({
 				equal={equal}
 				findFollowers={findFollowers}
 				findFollowings={findFollowings}
+				findPosts={findPosts}
+				findPostsLikes={findPostsLikes}
+				findPostsFavorites={findPostsFavorites}
 			/>
 		</ContainerOptions>
 	);

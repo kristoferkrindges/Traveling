@@ -6,6 +6,10 @@ export const ContainerOnly = styled.div`
 	font-size: 0.85rem;
 	line-height: 1.5;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+
+	& a {
+		color: ${({ theme }) => theme.text};
+	}
 `;
 
 export const Container = styled.div`
@@ -16,4 +20,8 @@ export const Container = styled.div`
 	font-size: 0.85rem;
 	line-height: 1.5;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+
+	& a {
+		color: ${({ theme }) => theme.text};
+	}
 `;

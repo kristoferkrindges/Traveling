@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import {
 	IoEllipsisHorizontal,
-	IoHeartOutline,
+	IoHeart,
 	IoChatbubbleOutline,
 	IoShareOutline,
 	IoBookmarkOutline,
 	IoCloudUploadOutline,
 	IoCloseCircleOutline,
+	IoHeartOutline,
+	IoBookmark,
+	IoColorWand,
+	IoTrashBin,
+	IoSad,
 } from "react-icons/io5";
 import { NavLink as Link } from "react-router-dom";
 
@@ -16,12 +21,51 @@ export const Ellips = styled(IoEllipsisHorizontal)`
 		opacity: 0.5;
 	}
 `;
-export const IoCloudUpload = styled(IoCloudUploadOutline)``;
+export const IoCloudUpload = styled(IoCloudUploadOutline)`
+	cursor: pointer;
+`;
+export const ToReport = styled(IoSad)``;
+export const Trash = styled(IoTrashBin)``;
+export const EditPost = styled(IoColorWand)``;
 export const DeletIcon = styled(IoCloseCircleOutline)``;
-export const Heart = styled(IoHeartOutline)``;
-export const Comment = styled(IoChatbubbleOutline)``;
-export const Share = styled(IoShareOutline)``;
-export const Book = styled(IoBookmarkOutline)``;
+export const Heart = styled(IoHeartOutline)`
+	&:hover {
+		color: red;
+		cursor: pointer;
+	}
+`;
+export const HeartPress = styled(IoHeart)`
+	color: red;
+	&:hover {
+		color: white;
+		cursor: pointer;
+	}
+`;
+export const Comment = styled(IoChatbubbleOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+export const Share = styled(IoShareOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+export const Book = styled(IoBookmarkOutline)`
+	&:hover {
+		color: gold;
+		cursor: pointer;
+	}
+`;
+export const BookPress = styled(IoBookmark)`
+	color: gold;
+	&:hover {
+		color: white;
+		cursor: pointer;
+	}
+`;
 export const Head = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -70,6 +114,16 @@ export const EditPhoto = styled.div`
 	font-size: 3rem;
 	color: white;
 `;
+
+export const EditPhotoNoPhoto = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 3rem;
+	color: white;
+	margin-bottom: 1rem;
+`;
+
 export const InputFile = styled.input`
 	display: none;
 `;
@@ -89,6 +143,10 @@ export const ActionButtons = styled.div`
 export const InteractionButtons = styled.div`
 	display: flex;
 	gap: 2rem;
+
+	& a {
+		color: ${({ theme }) => theme.text};
+	}
 `;
 export const BookMark = styled.div`
 	display: flex;
@@ -174,6 +232,7 @@ export const NavLink = styled(Link)`
 	color: ${({ theme }) => theme.text};
 	align-items: center;
 	transition: all 0.3s ease;
+	border-radius: 1rem;
 	&:hover {
 		color: ${({ theme }) => theme.secondColor};
 		background: ${({ theme }) => theme.background};
@@ -184,4 +243,27 @@ export const SaveContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+`;
+
+export const Form = styled.form`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
+export const TextArea = styled.textarea`
+	background: ${({ theme }) => theme.background};
+	outline: none;
+	border: none;
+	resize: none;
+	scrollbar-width: none;
+	width: 100%;
+	min-height: 90px;
+	font-size: 1rem;
+	color: ${({ theme }) => theme.text};
+	padding: 1rem;
+	border-radius: 1rem;
+
+	/* &::-webkit-scrollbar {
+		display: none;
+	} */
 `;

@@ -4,6 +4,10 @@ import { Context as userContext } from "../../context/userContext";
 import CardProfile from "../../components/CardProfile";
 import LayoutMenuOptions from "../../layouts/LayoutMenuOptions";
 import Followers from "../../components/Followers";
+import Post from "../../components/Post";
+import { Container } from "../../layouts/LayoutOnlyPost/style";
+import NoContent from "../../components/NoContent";
+import Loader from "../../components/Loader";
 export default function ControllerProfile({ type }) {
 	let { id } = useParams();
 
@@ -14,20 +18,23 @@ export default function ControllerProfile({ type }) {
 		updateBanner,
 		getFollowers,
 		getFollowings,
+		getPostsWithLiked,
+		getPostsUser,
+		getPostsWithFavorites,
 	} = useContext(userContext);
 
 	const [user, setUser] = useState({});
 	const [equal, setEqual] = useState();
 	const [followers, setFollowers] = useState([]);
 	const [followings, setFollowings] = useState([]);
+	const [posts, setPosts] = useState([]);
 	const [search, setSearch] = useState("Followings");
 
 	useEffect(() => {
 		if (id === userInfo.at) {
 			setUser(userInfo);
 			setEqual("Owner");
-			console.log("entrou");
-			findFollowings(userInfo.id);
+			findPosts(id);
 		} else {
 			findUserAt();
 		}
@@ -35,9 +42,30 @@ export default function ControllerProfile({ type }) {
 
 	async function findUserAt() {
 		const response = await findUserByAt(id);
-		findFollowings(response.id);
+		findPosts(id);
 		setUser(response);
 		setEqual("Profile");
+	}
+
+	async function findPosts() {
+		const postsResponse = await getPostsUser(id);
+		setPosts([]);
+		setPosts(postsResponse);
+		setSearch("Posts");
+	}
+
+	async function findPostsLikes() {
+		const postsResponse = await getPostsWithLiked();
+		setPosts([]);
+		setPosts(postsResponse);
+		setSearch("Posts");
+	}
+
+	async function findPostsFavorites() {
+		const postsResponse = await getPostsWithFavorites();
+		setPosts([]);
+		setPosts(postsResponse);
+		setSearch("Posts");
 	}
 
 	async function findFollowers(userId) {
@@ -63,6 +91,7 @@ export default function ControllerProfile({ type }) {
 		}
 		setSearch("Followings");
 	}
+	console.log(posts);
 	return (
 		<>
 			<CardProfile
@@ -75,33 +104,92 @@ export default function ControllerProfile({ type }) {
 				equal={equal}
 				findFollowers={findFollowers}
 				findFollowings={findFollowings}
+				findPosts={findPosts}
+				findPostsLikes={findPostsLikes}
+				findPostsFavorites={findPostsFavorites}
 			/>
-			{search === "Followers" &&
-				followers.length > 0 &&
-				followers.map((value, key) => (
-					<Followers
-						key={key}
-						photo={value.photo}
-						firstname={value.firstname}
-						lastname={value.lastname}
-						id={value.id}
-						at={value.at}
-						follow={value.follow}
-					/>
-				))}
-			{search === "Followings" &&
-				followings.length > 0 &&
-				followings.map((value, key) => (
-					<Followers
-						key={key}
-						photo={value.photo}
-						firstname={value.firstname}
-						lastname={value.lastname}
-						id={value.id}
-						at={value.at}
-						follow={value.follow}
-					/>
-				))}
+			{search === "Followers" ? (
+				followers ? (
+					followers.length > 0 ? (
+						followers.map((value, key) => (
+							<Followers
+								key={key}
+								photo={value.photo}
+								firstname={value.firstname}
+								lastname={value.lastname}
+								id={value.id}
+								at={value.at}
+								follow={value.follow}
+							/>
+						))
+					) : (
+						<Container>
+							<NoContent content={"No record yet"} />
+						</Container>
+					)
+				) : (
+					<Container>
+						<Loader />
+					</Container>
+				)
+			) : null}
+			{search === "Followings" ? (
+				followings ? (
+					followings.length > 0 ? (
+						followings.map((value, key) => (
+							<Followers
+								key={key}
+								photo={value.photo}
+								firstname={value.firstname}
+								lastname={value.lastname}
+								id={value.id}
+								at={value.at}
+								follow={value.follow}
+							/>
+						))
+					) : (
+						<Container>
+							<NoContent content={"No record yet"} />
+						</Container>
+					)
+				) : (
+					<Container>
+						<Loader />
+					</Container>
+				)
+			) : null}
+			{search === "Posts" ? (
+				posts ? (
+					posts.length > 0 ? (
+						posts.map((value, key) => (
+							<Container>
+								<Post
+									type={type}
+									key={key}
+									id={value.id}
+									pharase={value.phrase}
+									photo={value.img}
+									user={value.userAllResponse}
+									time={value.datepublic}
+									likes={value.likes}
+									comments={value.comments}
+									favorites={value.favorites}
+									pressLike={value.pressLike}
+									pressFavorite={value.pressFavorite}
+								/>
+							</Container>
+						))
+					) : (
+						<Container>
+							<NoContent content={"No record yet"} />
+						</Container>
+					)
+				) : (
+					<Container>
+						<Loader />
+					</Container>
+				)
+			) : null}
 		</>
 	);
 }
