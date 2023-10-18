@@ -20,12 +20,15 @@ export default function ControllerPost({ type }) {
 	}, []);
 
 	const searchPosts = async () => {
-		await findAll();
+		try {
+			await findAll();
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	const searchPostId = async () => {
 		const post = await findById(id);
 		setPostId(post);
-		console.log(postId);
 	};
 	return (
 		<>
@@ -79,8 +82,7 @@ export default function ControllerPost({ type }) {
 						alreadyEdit={postId.edit}
 						usersLikes={postId.usersLikes}
 					/>
-					{!edit ? <CreateComment /> : <></>}
-					{!edit ? <ControllerComment /> : <></>}
+					{!edit ? <ControllerComment postId={postId.id} /> : <></>}
 				</ContainerOnly>
 			) : (
 				<Container

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context as userContext } from "../../context/userContext";
 import {
 	Left,
 	Controller,
@@ -25,16 +26,27 @@ import {
 	Space,
 	Numbers,
 	Border,
+	Form,
+	TextArea,
+	SaveContainer,
 } from "./style";
+import ButtonPrimary from "../ButtonPrimary";
+
 export default function Comment({
-	userPhoto,
-	userName,
+	user,
 	time,
 	likes,
 	pharase,
 	comments,
+	editComment,
+	deleteComment,
+	alreadyEdit,
 }) {
+	const { userInfo, formatTimeDifference } = useContext(userContext);
 	const [dropdown, setDropdown] = useState(false);
+	const [edit, setEdit] = useState(false);
+	const [alreadyEditComment, setAlreadyEditComment] = useState(alreadyEdit);
+	const [statePharase, setStatePharase] = useState(pharase);
 	function HandlerOpen() {
 		if (dropdown === false) {
 			setDropdown(true);
@@ -42,21 +54,32 @@ export default function Comment({
 			setDropdown(false);
 		}
 	}
+	function HandlerEdit() {
+		if (edit === false) {
+			setEdit(true);
+		} else {
+			setEdit(false);
+		}
+	}
+	function clickEdit() {
+		HandlerEdit();
+		HandlerOpen();
+	}
 	return (
 		<Controller>
 			<Extends>
 				<ProfilePhoto>
-					<img src={userPhoto} alt="" />
+					<img src={user ? user.photo : ""} alt="" />
 				</ProfilePhoto>
 				<Border></Border>
 			</Extends>
 			<Left>
 				<Ingo>
 					<NameContext>
-						<Name>{userName}</Name>
+						<Name>{user ? user.firstname + " " + user.lastname : null}</Name>
 						<Small>
-							{time}
-							<Space>h</Space>
+							{formatTimeDifference(time)}
+							{alreadyEditComment ? <Space>Edit</Space> : null}
 						</Small>
 					</NameContext>
 					<Edit>
@@ -65,7 +88,12 @@ export default function Comment({
 							<DropMenu>
 								<Item>
 									<NavLink>Report</NavLink>
-									<NavLink>Other</NavLink>
+									{userInfo.at === user.at ? (
+										<>
+											<NavLink onClick={clickEdit}>Edit</NavLink>
+											<NavLink>Delete</NavLink>
+										</>
+									) : null}
 								</Item>
 							</DropMenu>
 						) : (
@@ -73,26 +101,49 @@ export default function Comment({
 						)}
 					</Edit>
 				</Ingo>
+
 				<Caption>
-					<Pharase>{pharase}</Pharase>
+					{edit ? (
+						<Form>
+							<TextArea
+								rows="1"
+								value={statePharase}
+								onChange={(e) => {
+									setStatePharase(e.target.value);
+								}}
+								maxLength={140}
+							></TextArea>
+						</Form>
+					) : (
+						<Pharase>{statePharase}</Pharase>
+					)}
 				</Caption>
-				<ActionButtons>
-					<InteractionButtons>
-						<Icon>
-							<Heart />
-							<Numbers>{likes}</Numbers>
-						</Icon>
-						<Icon>
-							<IconComment />
-							<Numbers>{comments}</Numbers>
-						</Icon>
-					</InteractionButtons>
-					<BookMark>
-						<Icon>
-							<Share />
-						</Icon>
-					</BookMark>
-				</ActionButtons>
+
+				{edit ? (
+					<SaveContainer>
+						<ButtonPrimary label="Save" />
+					</SaveContainer>
+				) : (
+					<>
+						<ActionButtons>
+							<InteractionButtons>
+								<Icon>
+									<Heart />
+									<Numbers>{likes}</Numbers>
+								</Icon>
+								<Icon>
+									<IconComment />
+									<Numbers>{comments}</Numbers>
+								</Icon>
+							</InteractionButtons>
+							<BookMark>
+								<Icon>
+									<Share />
+								</Icon>
+							</BookMark>
+						</ActionButtons>
+					</>
+				)}
 			</Left>
 		</Controller>
 	);

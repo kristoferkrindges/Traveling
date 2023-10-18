@@ -34,7 +34,6 @@ export const ContextText = styled.div`
 export const ProfilePhoto = styled.div`
 	display: flex;
 	align-items: center;
-	/* gap: 1rem; */
 	img {
 		width: 45px;
 		height: 45px;

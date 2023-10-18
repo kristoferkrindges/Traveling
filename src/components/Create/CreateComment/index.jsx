@@ -9,10 +9,14 @@ import {
 	ContextText,
 } from "./style";
 import { Context as userContext } from "../../../context/userContext";
-export default function CreateComment() {
+export default function CreateComment({ createComment }) {
 	const [text, setText] = useState();
 	const [isFocused, setIsFocused] = useState(false);
 	const { userInfo } = useContext(userContext);
+	function create(evt) {
+		evt.preventDefault();
+		createComment(text);
+	}
 	return (
 		<Container>
 			<ProfilePhoto>
@@ -31,7 +35,7 @@ export default function CreateComment() {
 						onBlur={() => setIsFocused(false)}
 					></TextArea>
 				</Area>
-				<ButtonSend>
+				<ButtonSend onClick={create}>
 					<IconSend />
 				</ButtonSend>
 			</ContextText>

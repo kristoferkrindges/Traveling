@@ -90,7 +90,7 @@ export default function usePost() {
 			const data = await api.put(`/posts/${id}`, post).then((response) => {
 				return response.data;
 			});
-			toast.success("Updated with success!");
+			toast.success("Post updated with success!");
 			return;
 		} catch (error) {
 			console.log(error.response.data.message);
