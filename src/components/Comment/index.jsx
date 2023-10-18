@@ -34,6 +34,7 @@ import ButtonPrimary from "../ButtonPrimary";
 
 export default function Comment({
 	user,
+	id,
 	time,
 	likes,
 	pharase,
@@ -41,10 +42,12 @@ export default function Comment({
 	editComment,
 	deleteComment,
 	alreadyEdit,
+	postId,
 }) {
 	const { userInfo, formatTimeDifference } = useContext(userContext);
 	const [dropdown, setDropdown] = useState(false);
 	const [edit, setEdit] = useState(false);
+	const [timeDate, setTimeDate] = useState(time);
 	const [alreadyEditComment, setAlreadyEditComment] = useState(alreadyEdit);
 	const [statePharase, setStatePharase] = useState(pharase);
 	function HandlerOpen() {
@@ -65,6 +68,19 @@ export default function Comment({
 		HandlerEdit();
 		HandlerOpen();
 	}
+	async function saveEdit(evt) {
+		evt.preventDefault();
+		await editComment(id, statePharase);
+		HandlerEdit();
+		const currentTimeInMillis = new Date().getTime();
+		const currentTimeAsString = currentTimeInMillis.toString();
+		setTimeDate(currentTimeAsString);
+	}
+	async function deleteYourComment(evt) {
+		evt.preventDefault();
+		await deleteComment(id);
+		HandlerOpen();
+	}
 	return (
 		<Controller>
 			<Extends>
@@ -78,7 +94,7 @@ export default function Comment({
 					<NameContext>
 						<Name>{user ? user.firstname + " " + user.lastname : null}</Name>
 						<Small>
-							{formatTimeDifference(time)}
+							{formatTimeDifference(timeDate)}
 							{alreadyEditComment ? <Space>Edit</Space> : null}
 						</Small>
 					</NameContext>
@@ -91,7 +107,7 @@ export default function Comment({
 									{userInfo.at === user.at ? (
 										<>
 											<NavLink onClick={clickEdit}>Edit</NavLink>
-											<NavLink>Delete</NavLink>
+											<NavLink onClick={deleteYourComment}>Delete</NavLink>
 										</>
 									) : null}
 								</Item>
@@ -121,7 +137,7 @@ export default function Comment({
 
 				{edit ? (
 					<SaveContainer>
-						<ButtonPrimary label="Save" />
+						<ButtonPrimary label="Save" click={(evt) => saveEdit(evt)} />
 					</SaveContainer>
 				) : (
 					<>

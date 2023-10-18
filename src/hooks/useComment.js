@@ -50,7 +50,7 @@ export default function useComment() {
 			toast.success("Comment updated with success!");
 			return;
 		} catch (error) {
-			console.log(error.response.data.message);
+			console.log(error.response);
 			toast.error(error.response.data.message);
 		}
 	}
@@ -61,6 +61,7 @@ export default function useComment() {
 				return response.data;
 			});
 			toast.success("Comment deleted with success!");
+			return data;
 		} catch (error) {
 			// console.log(error.response.data.message);
 			console.log(error);

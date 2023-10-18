@@ -6,7 +6,7 @@ import CreateComment from "../../components/Create/CreateComment";
 import { format } from "date-fns-tz";
 
 export default function ControllerComment({ postId }) {
-	const { findCommentsPost, insertComment, updateComment } =
+	const { findCommentsPost, insertComment, updateComment, deleteComment } =
 		useContext(CommentContext);
 	const [comments, setComments] = useState([]);
 
@@ -29,17 +29,32 @@ export default function ControllerComment({ postId }) {
 		const newComment = await insertComment(comment);
 		setComments((prevComments) => [newComment, ...prevComments]);
 	}
-	async function editComment(id, commentEdit) {
-		commentEdit.datePublic = formatedTime();
-		const newComment = await updateComment(id, commentEdit);
-		const updatedComments = comments.map((comment) =>
-			comment.id === newComment.id ? newComment : comment
-		);
+	async function editComment(id, text) {
+		const updatedComments = comments.map((comment) => {
+			if (comment.id === id) {
+				const updatedComment = {
+					...comment,
+					phrase: text,
+					datePublic: formatedTime(),
+				};
+				return updatedComment;
+			}
+			return comment;
+		});
+		const newComment = {
+			img: "",
+			phrase: text,
+			datePublic: formatedTime(),
+			postId: postId,
+		};
+		await updateComment(id, newComment);
 		setComments(updatedComments);
 	}
 
-	async function deleteComment(commentId) {
+	async function deleteSingleComment(commentId) {
+		console.log("Entrou");
 		await deleteComment(commentId);
+		console.log("Passou pelo api");
 		const updatedComments = comments.filter(
 			(comment) => comment.id !== commentId
 		);
@@ -72,7 +87,7 @@ export default function ControllerComment({ postId }) {
 						alreadyEdit={value.edit}
 						postId={value.postId}
 						editComment={editComment}
-						deleteComment={deleteComment}
+						deleteComment={deleteSingleComment}
 					/>
 				))}
 		</>
