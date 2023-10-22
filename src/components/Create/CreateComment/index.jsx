@@ -16,6 +16,7 @@ export default function CreateComment({ createComment }) {
 	function create(evt) {
 		evt.preventDefault();
 		createComment(text);
+		setText("");
 	}
 	return (
 		<Container>
