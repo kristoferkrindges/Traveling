@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { IoSendOutline } from "react-icons/io5";
-export const IconSend = styled(IoSendOutline)`
+import { IoSend } from "react-icons/io5";
+export const IconSend = styled(IoSend)`
 	stroke: white;
+	color: ${({ theme }) => theme.text};
 	cursor: pointer;
 	&:hover {
 		opacity: 0.5;
@@ -68,9 +69,9 @@ export const TextArea = styled.textarea`
 	&::-webkit-scrollbar {
 		display: none;
 	}
-	&:focus {
+	/* &:focus {
 		min-height: 60px;
-	}
+	} */
 `;
 
 export const ButtonSend = styled.button`

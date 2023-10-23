@@ -9,14 +9,19 @@ import {
 	ContextText,
 } from "./style";
 import { Context as userContext } from "../../../context/userContext";
+import { toast } from "react-toastify";
 export default function CreateComment({ createComment }) {
 	const [text, setText] = useState();
 	const [isFocused, setIsFocused] = useState(false);
 	const { userInfo } = useContext(userContext);
-	function create(evt) {
+	async function create(evt) {
 		evt.preventDefault();
-		createComment(text);
-		setText("");
+		if (text) {
+			await createComment(text);
+			setText("");
+		} else {
+			toast.error("There is nothing to be published");
+		}
 	}
 	return (
 		<Container>
@@ -32,6 +37,7 @@ export default function CreateComment({ createComment }) {
 						onChange={(e) => {
 							setText(e.target.value);
 						}}
+						value={text}
 						onFocus={() => setIsFocused(true)}
 						onBlur={() => setIsFocused(false)}
 					></TextArea>

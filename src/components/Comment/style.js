@@ -3,8 +3,9 @@ import {
 	IoEllipsisHorizontal,
 	IoHeartOutline,
 	IoChatbubbleOutline,
-	IoShareOutline,
+	IoArrowRedoOutline,
 	IoBookmarkOutline,
+	IoHeart,
 } from "react-icons/io5";
 import { NavLink as Link } from "react-router-dom";
 
@@ -14,23 +15,49 @@ export const Ellips = styled(IoEllipsisHorizontal)`
 		opacity: 0.5;
 	}
 `;
-export const Heart = styled(IoHeartOutline)``;
-export const IconComment = styled(IoChatbubbleOutline)``;
-export const Share = styled(IoShareOutline)``;
+export const Heart = styled(IoHeartOutline)`
+	&:hover {
+		color: red;
+		cursor: pointer;
+	}
+`;
+export const HeartPress = styled(IoHeart)`
+	color: red;
+	&:hover {
+		color: white;
+		cursor: pointer;
+	}
+`;
+export const IconComment = styled(IoChatbubbleOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+export const Share = styled(IoArrowRedoOutline)``;
 export const Book = styled(IoBookmarkOutline)``;
+
+export const ContainerParentComment = styled.div``;
+
+export const ContainerComment = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 4rem;
+`;
 
 export const Controller = styled.div`
 	display: flex;
 	width: 100%;
-	gap: 1rem;
+	/* gap: 1rem; */
 	margin-top: 1rem;
-	margin-bottom: 3rem;
 `;
-
-export const Left = styled.div`
+export const Right = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+`;
+export const TopContainer = styled.div`
+	margin-left: 1rem;
 `;
 
 export const Extends = styled.div``;
@@ -41,7 +68,7 @@ export const Border = styled.div`
 	justify-content: center;
 	margin-left: 1.4rem;
 	padding: 1px;
-	height: 70%;
+	height: 100%;
 	border-left: 1px solid gray;
 `;
 

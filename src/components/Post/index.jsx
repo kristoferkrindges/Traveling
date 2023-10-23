@@ -332,7 +332,13 @@ export default function Feeds({
 											? usersLikes[usersLikes.length - 1].firstname
 											: null}{" "}
 									</b>{" "}
-									and <b>{comments} others</b>
+									{usersLikes.length - 1 > 0 ? "and " : null}
+									{usersLikes.length - 1 > 0 ? (
+										<b>
+											{usersLikes.length - 1} other
+											{usersLikes.length - 1 > 1 ? "s" : null}
+										</b>
+									) : null}
 								</P>
 							</LikedBy>
 						) : null
