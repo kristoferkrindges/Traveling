@@ -6,20 +6,48 @@ import {
 	ButtonSend,
 	IconSend,
 	Area,
+	ContextText,
+	Border,
 } from "./style";
-import Kris from "../../../assets/images/foto3.png";
-export default function CreateComment() {
+import { Context as userContext } from "../../../context/userContext";
+import { toast } from "react-toastify";
+export default function CreateComment({ createComment, type, idComment }) {
+	const [text, setText] = useState();
+	const [isFocused, setIsFocused] = useState(false);
+	const { userInfo } = useContext(userContext);
+	async function create(evt) {
+		evt.preventDefault();
+		if (text) {
+			await createComment(text, type, idComment);
+			setText("");
+		} else {
+			toast.error("There is nothing to be comment");
+		}
+	}
 	return (
 		<Container>
 			<ProfilePhoto>
-				<img src={Kris} alt="" />
+				<img src={userInfo.photo} alt="" />
+				{type ? <Border /> : null}
 			</ProfilePhoto>
-			<Area>
-				<TextArea rows="1" placeholder="Type comment..."></TextArea>
-			</Area>
-			<ButtonSend>
-				<IconSend />
-			</ButtonSend>
+			<ContextText>
+				<Area>
+					<TextArea
+						rows="1"
+						placeholder={isFocused ? "" : "Type comment..."}
+						maxLength={140}
+						onChange={(e) => {
+							setText(e.target.value);
+						}}
+						value={text}
+						onFocus={() => setIsFocused(true)}
+						onBlur={() => setIsFocused(false)}
+					></TextArea>
+				</Area>
+				<ButtonSend onClick={create}>
+					<IconSend />
+				</ButtonSend>
+			</ContextText>
 		</Container>
 	);
 }

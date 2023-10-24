@@ -21,8 +21,7 @@ export default function usePost() {
 			setAllPosts(data);
 			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -31,8 +30,8 @@ export default function usePost() {
 			const response = await api.get(`/posts/${id}`);
 			return response.data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			// console.log(error.response.data.message);
+			console.log(error);
 			throw error;
 		}
 	}
@@ -42,8 +41,7 @@ export default function usePost() {
 			const response = await api.get(`/posts/favorites/${id}`);
 			return response.data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 			throw error;
 		}
 	}
@@ -53,8 +51,8 @@ export default function usePost() {
 			const response = await api.get(`/posts/likes/${id}`);
 			return response.data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
+			// toast.error(error.response.data.message);
 			throw error;
 		}
 	}
@@ -90,7 +88,7 @@ export default function usePost() {
 			const data = await api.put(`/posts/${id}`, post).then((response) => {
 				return response.data;
 			});
-			toast.success("Updated with success!");
+			toast.success("Post updated with success!");
 			return;
 		} catch (error) {
 			console.log(error.response.data.message);

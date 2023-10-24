@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { IoSendOutline } from "react-icons/io5";
-export const IconSend = styled(IoSendOutline)`
+import { IoSend } from "react-icons/io5";
+export const IconSend = styled(IoSend)`
 	stroke: white;
+	color: white;
 	cursor: pointer;
 	&:hover {
 		opacity: 0.5;
@@ -10,19 +11,32 @@ export const IconSend = styled(IoSendOutline)`
 
 export const Container = styled.div`
 	display: flex;
-	justify-content: space-between;
+	gap: 0.5rem;
 	margin-top: 1rem;
-	padding: 1rem;
+	margin-bottom: 1rem;
+	align-items: center;
+	padding: 1rem 0 1rem 0;
+	/* padding: 1rem;
 	border-radius: 1rem;
+	background-color: ${({ theme }) => theme.background}; */
+	/* border-top: 1px solid ${({ theme }) => theme.textMuted}; */
+	/* border-bottom: 1px solid ${({ theme }) => theme.textMuted}; */
+`;
+
+export const ContextText = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
 	background-color: ${({ theme }) => theme.background};
-	/* border-top: 1px solid ${({ theme }) => theme.textMuted};
-	border-bottom: 1px solid ${({ theme }) => theme.textMuted}; */
+	padding: 0.3rem;
+	border-radius: 1rem;
 `;
 
 export const ProfilePhoto = styled.div`
+	position: relative;
 	display: flex;
 	align-items: center;
-	gap: 1rem;
 	img {
 		width: 45px;
 		height: 45px;
@@ -30,6 +44,15 @@ export const ProfilePhoto = styled.div`
 		object-fit: cover;
 		cursor: pointer;
 	}
+`;
+
+export const Border = styled.div`
+	position: absolute;
+	padding: 1px;
+	left: -1.4rem;
+	top: 1.3rem;
+	width: 1.2rem;
+	border-top: 1px solid gray;
 `;
 
 export const Area = styled.div`
@@ -49,13 +72,17 @@ export const TextArea = styled.textarea`
 	overflow-x: hidden;
 	overflow-y: scroll;
 	width: 100%;
+	min-height: 20px;
+	max-height: 40px;
+	font-size: 0.9rem;
+	color: ${({ theme }) => theme.text};
 
 	&::-webkit-scrollbar {
 		display: none;
 	}
-	&:focus {
-		height: 100%;
-	}
+	/* &:focus {
+		min-height: 60px;
+	} */
 `;
 
 export const ButtonSend = styled.button`

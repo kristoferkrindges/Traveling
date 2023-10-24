@@ -200,7 +200,7 @@ export default function useAuth() {
 			const response = await api.get(`/users/${id}/posts`);
 			return response.data;
 		} catch (error) {
-			console.log(error.response.data.message);
+			console.log(error);
 		}
 	}
 

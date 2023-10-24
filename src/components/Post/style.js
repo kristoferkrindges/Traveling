@@ -167,6 +167,7 @@ export const Numbers = styled.span`
 `;
 export const LikedBy = styled.div`
 	display: flex;
+	align-items: center;
 `;
 export const Span = styled.span`
 	width: 1.4rem;

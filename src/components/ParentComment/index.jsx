@@ -1,45 +1,34 @@
 import React, { useState, useContext } from "react";
 import { Context as userContext } from "../../context/userContext";
+import { Controller, Extends, Border, ProfilePhoto } from "./style";
 import {
+	Right,
 	TopContainer,
-	Controller,
-	Extends,
-	ProfilePhoto,
 	Ingo,
 	NameContext,
 	Name,
 	Small,
+	Space,
 	Edit,
 	Ellips,
-	ActionButtons,
-	InteractionButtons,
-	BookMark,
-	Heart,
-	IconComment,
-	DontReply,
-	Reply,
-	Icon,
-	Caption,
-	Pharase,
 	DropMenu,
 	Item,
 	NavLink,
-	Space,
-	Numbers,
-	Border,
+	Caption,
 	Form,
 	TextArea,
+	Pharase,
 	SaveContainer,
+	ActionButtons,
+	InteractionButtons,
+	Icon,
 	HeartPress,
-	Right,
-	ContainerParentComment,
-} from "./style";
+	Heart,
+	Numbers,
+} from "../Comment/style";
 import ButtonPrimary from "../ButtonPrimary";
-import ParentComment from "../ParentComment";
-import CreateComment from "../Create/CreateComment";
-import ModalLoader from "../Modal/ModalLoader";
-
-export default function Comment({
+import { toast } from "react-toastify";
+export default function ParentComment({
 	user,
 	id,
 	time,
@@ -49,10 +38,9 @@ export default function Comment({
 	editComment,
 	deleteComment,
 	alreadyEdit,
+	postId,
 	pressLike,
 	likeComment,
-	findChildsComments,
-	createComment,
 }) {
 	const { userInfo, formatTimeDifference } = useContext(userContext);
 	const [dropdown, setDropdown] = useState(false);
@@ -63,12 +51,9 @@ export default function Comment({
 	);
 	const [timeDate, setTimeDate] = useState(time);
 	const [alreadyEditComment, setAlreadyEditComment] = useState(alreadyEdit);
-	const [statePharase, setStatePharase] = useState(pharase);
+	const [stateText, setStateText] = useState(pharase);
 	const [stateLike, setStateLike] = useState(pressLike);
 	const [stateCountLike, setStateCountLike] = useState(likes);
-	const [stateParentComment, setStateParentComment] = useState(false);
-	const [parentsComments, setParentsComments] = useState([]);
-	const [progressChildren, setProgressChildren] = useState(false);
 	function HandlerOpen() {
 		if (dropdown === false) {
 			setDropdown(true);
@@ -89,12 +74,17 @@ export default function Comment({
 	}
 	async function saveEdit(evt) {
 		evt.preventDefault();
-		await editComment(id, statePharase);
-		HandlerEdit();
-		const currentTimeInMillis = new Date().getTime();
-		const currentTimeAsString = currentTimeInMillis.toString();
-		setTimeDate(currentTimeAsString);
-		setAlreadyEditComment(true);
+		if (stateText) {
+			await editComment(id, stateText);
+			HandlerEdit();
+			const currentTimeInMillis = new Date().getTime();
+			const currentTimeAsString = currentTimeInMillis.toString();
+			setTimeDate(currentTimeAsString);
+		} else {
+			toast.error("There is nothing to be comment");
+			HandlerEdit();
+			setStateText(pharase);
+		}
 	}
 	async function deleteYourComment(evt) {
 		evt.preventDefault();
@@ -114,28 +104,13 @@ export default function Comment({
 			setStateCountLike(stateCountLike + 1);
 		}
 	}
-	async function searchParentsComments() {
-		const parents = await findChildsComments(id);
-		setParentsComments(parents);
-	}
-	async function replyComment(evt) {
-		evt.preventDefault();
-		if (stateParentComment) {
-			setStateParentComment(false);
-		} else {
-			setProgressChildren(true);
-			await searchParentsComments();
-			setStateParentComment(true);
-			setProgressChildren(false);
-		}
-	}
 	return (
 		<Controller>
+			<Border></Border>
 			<Extends>
 				<ProfilePhoto>
 					<img src={statePhoto} alt="" />
 				</ProfilePhoto>
-				<Border></Border>
 			</Extends>
 			<Right>
 				<TopContainer>
@@ -166,24 +141,22 @@ export default function Comment({
 							)}
 						</Edit>
 					</Ingo>
-
 					<Caption>
 						{edit ? (
 							<Form>
 								<TextArea
 									rows="1"
-									value={statePharase}
+									value={stateText}
 									onChange={(e) => {
-										setStatePharase(e.target.value);
+										setStateText(e.target.value);
 									}}
 									maxLength={140}
 								></TextArea>
 							</Form>
 						) : (
-							<Pharase>{statePharase}</Pharase>
+							<Pharase>{stateText}</Pharase>
 						)}
 					</Caption>
-
 					{edit ? (
 						<SaveContainer>
 							<ButtonPrimary label="Save" click={(evt) => saveEdit(evt)} />
@@ -200,59 +173,12 @@ export default function Comment({
 										)}
 										<Numbers>{stateCountLike}</Numbers>
 									</Icon>
-									<Icon>
-										<IconComment onClick={(evt) => replyComment(evt)} />
-										<Numbers>{comments}</Numbers>
-									</Icon>
 								</InteractionButtons>
-								<BookMark>
-									<Icon>
-										{stateParentComment ? (
-											<DontReply onClick={(evt) => replyComment(evt)} />
-										) : (
-											<Reply onClick={(evt) => replyComment(evt)} />
-										)}
-									</Icon>
-								</BookMark>
 							</ActionButtons>
 						</>
 					)}
 				</TopContainer>
-				<ContainerParentComment>
-					{!edit
-						? stateParentComment
-							? parentsComments.length > 0 &&
-							  parentsComments.map((value, key) => (
-									<ParentComment
-										key={key}
-										id={value.id}
-										user={value.userAllResponse}
-										time={value.datepublic}
-										likes={value.likes}
-										comments={value.comments}
-										pharase={value.phrase}
-										alreadyEdit={value.edit}
-										postId={value.postId}
-										editComment={editComment}
-										deleteComment={deleteComment}
-										pressLike={value.pressLike}
-										likeComment={likeComment}
-									/>
-							  ))
-							: null
-						: null}
-					{!edit ? (
-						stateParentComment ? (
-							<CreateComment
-								type={true}
-								idComment={id}
-								createComment={createComment}
-							/>
-						) : null
-					) : null}
-				</ContainerParentComment>
 			</Right>
-			{progressChildren && <ModalLoader />}
 		</Controller>
 	);
 }
