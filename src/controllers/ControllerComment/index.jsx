@@ -14,6 +14,7 @@ export default function ControllerComment({ postId }) {
 		updateComment,
 		deleteComment,
 		likeComment,
+		findChildsComments,
 	} = useContext(CommentContext);
 	const [comments, setComments] = useState([]);
 	const [progress, setProgress] = useState(false);
@@ -27,14 +28,24 @@ export default function ControllerComment({ postId }) {
 		const newComments = await findCommentsPost(postId);
 		setComments(newComments);
 	}
-	async function createComment(text) {
+	async function createComment(text, type, idComment) {
 		setProgress(true);
-		const comment = {
-			phrase: text,
-			img: "",
-			datePublic: formatedTime(),
-			postId: postId,
-		};
+		let comment;
+		if (type) {
+			comment = {
+				phrase: text,
+				img: "",
+				datePublic: formatedTime(),
+				parentComment: idComment,
+			};
+		} else {
+			comment = {
+				phrase: text,
+				img: "",
+				datePublic: formatedTime(),
+				postId: postId,
+			};
+		}
 		// const newComment = await insertComment(comment);
 		// setComments((prevComments) => [newComment, ...prevComments]);
 		await insertComment(comment);
@@ -89,7 +100,11 @@ export default function ControllerComment({ postId }) {
 	return (
 		<>
 			{!progress || <ModalLoader />}
-			<CreateComment postId={postId} createComment={createComment} />
+			<CreateComment
+				postId={postId}
+				createComment={createComment}
+				type={false}
+			/>
 			<ContainerComment>
 				{comments.length > 0 &&
 					comments.map((value, key) => (
@@ -107,6 +122,8 @@ export default function ControllerComment({ postId }) {
 							deleteComment={deleteSingleComment}
 							pressLike={value.pressLike}
 							likeComment={likeComment}
+							findChildsComments={findChildsComments}
+							createComment={createComment}
 						/>
 					))}
 			</ContainerComment>

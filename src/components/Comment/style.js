@@ -6,6 +6,7 @@ import {
 	IoArrowRedoOutline,
 	IoBookmarkOutline,
 	IoHeart,
+	IoArrowUndoOutline,
 } from "react-icons/io5";
 import { NavLink as Link } from "react-router-dom";
 
@@ -34,7 +35,19 @@ export const IconComment = styled(IoChatbubbleOutline)`
 		cursor: pointer;
 	}
 `;
-export const Share = styled(IoArrowRedoOutline)``;
+export const Reply = styled(IoArrowRedoOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+
+export const DontReply = styled(IoArrowUndoOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
 export const Book = styled(IoBookmarkOutline)``;
 
 export const ContainerParentComment = styled.div``;
@@ -42,14 +55,15 @@ export const ContainerParentComment = styled.div``;
 export const ContainerComment = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 4rem;
+	gap: 1rem;
+	height: 100%;
 `;
 
 export const Controller = styled.div`
 	display: flex;
 	width: 100%;
-	/* gap: 1rem; */
-	margin-top: 1rem;
+	height: 100%;
+	margin-bottom: 1rem;
 `;
 export const Right = styled.div`
 	display: flex;
@@ -60,7 +74,10 @@ export const TopContainer = styled.div`
 	margin-left: 1rem;
 `;
 
-export const Extends = styled.div``;
+export const Extends = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
 
 export const Border = styled.div`
 	display: flex;

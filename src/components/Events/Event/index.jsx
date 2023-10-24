@@ -22,9 +22,7 @@ export default function Event({ name, photo, date }) {
 					<TextMuted>{date}</TextMuted>
 				</MessageBody>
 			</Left>
-			<Right>
-				<ButtonPrimary label={"View"} />
-			</Right>
+			<Right>{/* <ButtonPrimary label={"View"} /> */}</Right>
 		</SectionEvent>
 	);
 }

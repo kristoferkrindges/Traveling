@@ -63,8 +63,8 @@ export default function useComment() {
 			toast.success("Comment deleted with success!");
 			return data;
 		} catch (error) {
-			// console.log(error.response.data.message);
-			console.log(error);
+			console.log(error.response.data.message);
+			// console.log(error);
 		}
 	}
 

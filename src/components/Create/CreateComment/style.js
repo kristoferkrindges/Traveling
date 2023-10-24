@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { IoSend } from "react-icons/io5";
 export const IconSend = styled(IoSend)`
 	stroke: white;
-	color: ${({ theme }) => theme.text};
+	color: white;
 	cursor: pointer;
 	&:hover {
 		opacity: 0.5;
@@ -13,6 +13,7 @@ export const Container = styled.div`
 	display: flex;
 	gap: 0.5rem;
 	margin-top: 1rem;
+	margin-bottom: 1rem;
 	align-items: center;
 	padding: 1rem 0 1rem 0;
 	/* padding: 1rem;
@@ -33,6 +34,7 @@ export const ContextText = styled.div`
 `;
 
 export const ProfilePhoto = styled.div`
+	position: relative;
 	display: flex;
 	align-items: center;
 	img {
@@ -42,6 +44,15 @@ export const ProfilePhoto = styled.div`
 		object-fit: cover;
 		cursor: pointer;
 	}
+`;
+
+export const Border = styled.div`
+	position: absolute;
+	padding: 1px;
+	left: -1.4rem;
+	top: 1.3rem;
+	width: 1.2rem;
+	border-top: 1px solid gray;
 `;
 
 export const Area = styled.div`

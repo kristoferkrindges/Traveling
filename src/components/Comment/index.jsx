@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Context as userContext } from "../../context/userContext";
-import { CommentContext } from "../../context/commentContext";
 import {
 	TopContainer,
 	Controller,
@@ -17,7 +16,8 @@ import {
 	BookMark,
 	Heart,
 	IconComment,
-	Share,
+	DontReply,
+	Reply,
 	Icon,
 	Caption,
 	Pharase,
@@ -36,6 +36,8 @@ import {
 } from "./style";
 import ButtonPrimary from "../ButtonPrimary";
 import ParentComment from "../ParentComment";
+import CreateComment from "../Create/CreateComment";
+import ModalLoader from "../Modal/ModalLoader";
 
 export default function Comment({
 	user,
@@ -47,11 +49,11 @@ export default function Comment({
 	editComment,
 	deleteComment,
 	alreadyEdit,
-	postId,
 	pressLike,
 	likeComment,
+	findChildsComments,
+	createComment,
 }) {
-	const { findChildsComments } = useContext(CommentContext);
 	const { userInfo, formatTimeDifference } = useContext(userContext);
 	const [dropdown, setDropdown] = useState(false);
 	const [edit, setEdit] = useState(false);
@@ -66,6 +68,7 @@ export default function Comment({
 	const [stateCountLike, setStateCountLike] = useState(likes);
 	const [stateParentComment, setStateParentComment] = useState(false);
 	const [parentsComments, setParentsComments] = useState([]);
+	const [progressChildren, setProgressChildren] = useState(false);
 	function HandlerOpen() {
 		if (dropdown === false) {
 			setDropdown(true);
@@ -113,6 +116,18 @@ export default function Comment({
 	}
 	async function searchParentsComments() {
 		const parents = await findChildsComments(id);
+		setParentsComments(parents);
+	}
+	async function replyComment(evt) {
+		evt.preventDefault();
+		if (stateParentComment) {
+			setStateParentComment(false);
+		} else {
+			setProgressChildren(true);
+			await searchParentsComments();
+			setStateParentComment(true);
+			setProgressChildren(false);
+		}
 	}
 	return (
 		<Controller>
@@ -186,13 +201,17 @@ export default function Comment({
 										<Numbers>{stateCountLike}</Numbers>
 									</Icon>
 									<Icon>
-										<IconComment />
+										<IconComment onClick={(evt) => replyComment(evt)} />
 										<Numbers>{comments}</Numbers>
 									</Icon>
 								</InteractionButtons>
 								<BookMark>
 									<Icon>
-										<Share />
+										{stateParentComment ? (
+											<DontReply onClick={(evt) => replyComment(evt)} />
+										) : (
+											<Reply onClick={(evt) => replyComment(evt)} />
+										)}
 									</Icon>
 								</BookMark>
 							</ActionButtons>
@@ -215,14 +234,25 @@ export default function Comment({
 										alreadyEdit={value.edit}
 										postId={value.postId}
 										editComment={editComment}
+										deleteComment={deleteComment}
 										pressLike={value.pressLike}
 										likeComment={likeComment}
 									/>
 							  ))
 							: null
 						: null}
+					{!edit ? (
+						stateParentComment ? (
+							<CreateComment
+								type={true}
+								idComment={id}
+								createComment={createComment}
+							/>
+						) : null
+					) : null}
 				</ContainerParentComment>
 			</Right>
+			{progressChildren && <ModalLoader />}
 		</Controller>
 	);
 }

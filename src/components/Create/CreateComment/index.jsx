@@ -7,26 +7,28 @@ import {
 	IconSend,
 	Area,
 	ContextText,
+	Border,
 } from "./style";
 import { Context as userContext } from "../../../context/userContext";
 import { toast } from "react-toastify";
-export default function CreateComment({ createComment }) {
+export default function CreateComment({ createComment, type, idComment }) {
 	const [text, setText] = useState();
 	const [isFocused, setIsFocused] = useState(false);
 	const { userInfo } = useContext(userContext);
 	async function create(evt) {
 		evt.preventDefault();
 		if (text) {
-			await createComment(text);
+			await createComment(text, type, idComment);
 			setText("");
 		} else {
-			toast.error("There is nothing to be published");
+			toast.error("There is nothing to be comment");
 		}
 	}
 	return (
 		<Container>
 			<ProfilePhoto>
 				<img src={userInfo.photo} alt="" />
+				{type ? <Border /> : null}
 			</ProfilePhoto>
 			<ContextText>
 				<Area>
