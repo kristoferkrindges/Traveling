@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
 	Container,
 	Heading,
@@ -6,9 +6,40 @@ import {
 	IoNotifications,
 	ContainerNotifications,
 } from "./style";
-import SelectOptions from "../../components/SelectOptions";
-import ControllerNotifications from "../../controllers/ControllerNotifications";
+import SelectOptionsNotification from "../../components/SelectOptions/SelectOptionsNotification";
+import Notifications from "../../components/Notifications";
+import Loader from "../../components/Loader";
+import { NotificationContext } from "../../context/notificationContext";
 export default function LayoutNotifications() {
+	const { allNotifications, unreadNotifications, markNotificationAsRead } =
+		useContext(NotificationContext);
+	const [notifications, setNotifications] = useState();
+	const [stateUnread, setStateUnread] = useState(false);
+
+	useEffect(() => {
+		if (!notifications) {
+			searchUnreadNotification();
+		}
+	}, []);
+
+	async function searchUnreadNotification() {
+		setNotifications([]);
+		const newNotifications = await unreadNotifications();
+		setNotifications(newNotifications);
+		if (!stateUnread) {
+			await readNotifications(newNotifications);
+		}
+	}
+	async function searchAllNotification() {
+		setNotifications([]);
+		const newNotifications = await allNotifications();
+		setNotifications(newNotifications);
+	}
+	async function readNotifications() {
+		await markNotificationAsRead(notifications);
+		setStateUnread(true);
+	}
+
 	return (
 		<>
 			<Container>
@@ -16,10 +47,31 @@ export default function LayoutNotifications() {
 					<Title>Notifications</Title>
 					<IoNotifications />
 				</Heading>
-				<SelectOptions type="Notifications" />
+				<SelectOptionsNotification
+					searchAllNotification={searchAllNotification}
+					searchUnreadNotification={searchUnreadNotification}
+				/>
 			</Container>
 			<ContainerNotifications>
-				<ControllerNotifications />
+				{notifications ? (
+					<>
+						{notifications.length > 0 ? (
+							notifications.map((value, key) => (
+								<Notifications
+									key={key}
+									user={value.user}
+									creator={value.creator}
+									type={value.type}
+									date={value.date}
+								/>
+							))
+						) : (
+							<Title>You have seen all your notifications</Title>
+						)}
+					</>
+				) : (
+					<Loader />
+				)}
 			</ContainerNotifications>
 		</>
 	);

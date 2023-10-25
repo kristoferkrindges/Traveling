@@ -15,38 +15,42 @@ import {
 	IoPersonAdd,
 } from "./style";
 
-export default function Notifications({ name, photo, type, date }) {
+export default function Notifications({ key, user, creator, type, date }) {
 	return (
 		<Container>
 			<Left>
 				<Photo>
-					<img src={photo} alt="" />
+					<img src={creator.photo} alt="" />
 				</Photo>
 				<MessageBody>
-					{type == "Comment" ? (
+					{type === "COMMENTPOST" ? (
 						<Name>
-							{name} <Question>comment your post</Question>
+							{creator.firstname + " " + creator.lastname}{" "}
+							<Question>comment your post</Question>
 						</Name>
 					) : (
 						<></>
 					)}
-					{type == "Like" ? (
+					{type === "LIKEPOST" ? (
 						<Name>
-							{name} <Question>like your post</Question>
+							{creator.firstname + " " + creator.lastname}{" "}
+							<Question>like your post</Question>
 						</Name>
 					) : (
 						<></>
 					)}
-					{type == "Mention" ? (
+					{type === "MENTIONED" ? (
 						<Name>
-							{name} <Question>mentioned you in a comment</Question>
+							{creator.firstname + " " + creator.lastname}{" "}
+							<Question>mentioned you in a comment</Question>
 						</Name>
 					) : (
 						<></>
 					)}
-					{type == "Follow" ? (
+					{type === "FOLLOW" ? (
 						<Name>
-							{name} <Question>followed you</Question>
+							{creator.firstname + " " + creator.lastname}{" "}
+							<Question>followed you</Question>
 						</Name>
 					) : (
 						<></>
@@ -55,28 +59,28 @@ export default function Notifications({ name, photo, type, date }) {
 				</MessageBody>
 			</Left>
 			<Right>
-				{type == "Comment" ? (
+				{type === "COMMENTPOST" ? (
 					<Name>
 						<Comment />
 					</Name>
 				) : (
 					<></>
 				)}
-				{type == "Like" ? (
+				{type === "LIKEPOST" ? (
 					<Name>
 						<Heart />
 					</Name>
 				) : (
 					<></>
 				)}
-				{type == "Mention" ? (
+				{type === "MENTIONED" ? (
 					<Name>
 						<At />
 					</Name>
 				) : (
 					<></>
 				)}
-				{type == "Follow" ? (
+				{type === "FOLLOW" ? (
 					<Name>
 						<IoPersonAdd />
 					</Name>

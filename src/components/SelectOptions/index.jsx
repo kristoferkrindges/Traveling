@@ -22,23 +22,15 @@ export default function SelectOptions({ type }) {
 	const [activeRequests, setActiveRequests] = useState("");
 
 	const [activeAll, setActiveAll] = useState("active");
-	const [activeFollow, setActiveFollow] = useState("");
-	const [activeMentions, setActiveMentions] = useState("");
+	const [activeUnread, setActiveUnread] = useState("");
 
 	function handlerActiveAll() {
 		setActiveAll("active");
-		setActiveFollow("");
-		setActiveMentions("");
+		setActiveUnread("");
 	}
-	function handlerActiveFollow() {
+	function handlerActiveUnread() {
 		setActiveAll("");
-		setActiveFollow("active");
-		setActiveMentions("");
-	}
-	function handlerActiveMentions() {
-		setActiveAll("");
-		setActiveFollow("");
-		setActiveMentions("active");
+		setActiveUnread("active");
 	}
 
 	function handlerActivePrimary() {
@@ -94,22 +86,19 @@ export default function SelectOptions({ type }) {
 	}
 	return (
 		<>
-			{type == "Notifications" ? (
+			{type === "Notifications" ? (
 				<Category>
+					<Posts className={activeUnread} onClick={handlerActiveUnread}>
+						Unread
+					</Posts>
 					<Posts className={activeAll} onClick={handlerActiveAll}>
 						All
-					</Posts>
-					<Posts className={activeFollow} onClick={handlerActiveFollow}>
-						Followers
-					</Posts>
-					<Posts className={activeMentions} onClick={handlerActiveMentions}>
-						Mentions
 					</Posts>
 				</Category>
 			) : (
 				<></>
 			)}
-			{type == "Profile" ? (
+			{type === "Profile" ? (
 				<Category style={{ marginBottom: "0" }}>
 					<Context>
 						<IconPost />
@@ -145,7 +134,7 @@ export default function SelectOptions({ type }) {
 			) : (
 				<></>
 			)}
-			{type == "Messages" ? (
+			{type === "Messages" ? (
 				<Category>
 					<Posts className={activePrimary} onClick={handlerActivePrimary}>
 						Primary
