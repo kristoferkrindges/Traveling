@@ -15,6 +15,20 @@ export const v = {
 	borderRadius: `6px`,
 };
 
+export const size = {
+	sm: `1rem`,
+	lg: `2rem`,
+	xl: `3rem`,
+};
+
+export const space = {
+	total: `100vw`,
+};
+
+export const assets = {
+	max: `320px`,
+};
+
 export const btnReset = css`
 	font-family: inherit;
 	outline: none;

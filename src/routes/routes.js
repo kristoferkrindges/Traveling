@@ -1,45 +1,33 @@
 import React, { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
-import { PrivateRouter, PrivateLogin } from "../context/privateContext";
-import HomePage from "../pages/Home";
-import ProfilePage from "../pages/Profile";
-import ChatPage from "../pages/Chat";
-import NotificationsPage from "../pages/Notifications";
-import OnlyPost from "../pages/OnlyPost";
-import AuthPage from "../pages/Auth";
-import LoaderPage from "../pages/Loader";
-import { Context } from "../context/userContext";
-export default function ControllerRoute() {
-	const { userInfo } = useContext(Context);
+import { Routes as Routed, Route } from "react-router-dom";
+
+import { PrivateRouter } from "../contexts/privateRouterContext";
+import { UserContext } from "../contexts/userContext";
+
+import HomePage from "../pages/home";
+import AwaitPage from "../pages/await";
+import AuthPage from "../pages/auth";
+
+export default function Routes() {
+	const { userInfo, authenticated } = useContext(UserContext);
+	console.log(authenticated);
 	return (
-		<Routes>
-			<Route path="/auth" element={<PrivateLogin />}>
-				<Route path="/auth" element={<AuthPage />}></Route>
-			</Route>
+		<Routed>
+			<Route path="/auth" element={<AuthPage />}></Route>
 			<Route path="/" element={<PrivateRouter />}>
 				<Route
 					path="/"
-					element={userInfo ? <HomePage /> : <LoaderPage />}
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<HomePage />
+						) : (
+							<AwaitPage />
+						)
+					}
 				></Route>
 			</Route>
-			<Route path="/profile/:id" element={<PrivateRouter />}>
-				<Route
-					path="/profile/:id"
-					element={userInfo ? <ProfilePage /> : <LoaderPage />}
-				></Route>
-			</Route>
-			<Route path="/messages" element={<PrivateRouter />}>
-				<Route path="/messages" element={<ChatPage />}></Route>
-			</Route>
-			<Route path="/notifications" element={<PrivateRouter />}>
-				<Route path="/notifications" element={<NotificationsPage />}></Route>
-			</Route>
-			<Route path="/post/:id" element={<PrivateRouter />}>
-				<Route path="/post/:id" element={<OnlyPost />}></Route>
-			</Route>
-			<Route path="/settings" element={<PrivateRouter />}>
-				<Route path="/settings" element={<ProfilePage />}></Route>
-			</Route>
-		</Routes>
+		</Routed>
 	);
 }

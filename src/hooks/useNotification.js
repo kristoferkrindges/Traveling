@@ -4,7 +4,10 @@ export default function useNotification() {
 	const [count, setCount] = useState(0);
 
 	useEffect(() => {
-		setCount(countUnreadNotifications);
+		const nowCount = countUnreadNotifications();
+		if (nowCount && nowCount > 0) {
+			setCount(nowCount);
+		}
 	}, []);
 
 	async function allNotifications() {
@@ -58,5 +61,6 @@ export default function useNotification() {
 		countUnreadNotifications,
 		markNotificationAsRead,
 		count,
+		setCount,
 	};
 }
