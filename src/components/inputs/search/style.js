@@ -1,6 +1,8 @@
 import styled from "styled-components";
 export const SearchBar = styled.div`
+	position: relative;
 	display: flex;
+	align-items: center;
 	background-color: ${({ theme }) => theme.background};
 	border-radius: 2rem;
 	padding: 0.6rem 1rem;
@@ -10,9 +12,9 @@ export const SearchBar = styled.div`
 	}
 	width: 280px;
 `;
-export const SearchMessages = styled.input`
+export const InputSearch = styled.input`
 	background: transparent;
-	width: 30vw;
+	width: 15vw;
 	margin-left: 1rem;
 	font-size: 0.9rem;
 	color: ${({ theme }) => theme.text};

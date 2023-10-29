@@ -1,12 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-	Profile,
-	ProfileLink,
-	Li,
-	NavLink,
-	AvatarPhoto,
-	DivLink,
-} from "./style";
+import { Profile, ProfileLink, Li, NavLink, DivLink } from "./style";
 import AvatarNone from "../../../assets/images/avatarnone.png";
 import { UserContext } from "../../../contexts/userContext";
 import {
@@ -14,6 +7,7 @@ import {
 	ProfileIcon,
 	SettingsIcon,
 } from "../../icons/iconsI05.styled";
+import AvatarPhoto from "../../images/avatar";
 export default function AvatarButton() {
 	const { userInfo } = useContext(UserContext);
 	const [hero, setHero] = useState(false);
@@ -28,8 +22,8 @@ export default function AvatarButton() {
 	return (
 		<Profile>
 			<AvatarPhoto
-				onClick={HandlerOpen}
-				src={
+				click={HandlerOpen}
+				photo={
 					userInfo.photo || !userInfo.photo === "" ? userInfo.photo : AvatarNone
 				}
 				alt="Avatar"

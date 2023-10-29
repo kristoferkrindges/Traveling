@@ -4,16 +4,7 @@ import { NavLink as Link } from "react-router-dom";
 export const Profile = styled.div`
 	position: relative;
 	/* overflow: hidden; */
-`;
-
-export const AvatarPhoto = styled.img`
-	width: 45px;
-	height: 45px;
-	border-radius: 50%;
-	object-fit: cover;
-	cursor: pointer;
-
-	&:hover {
+	& img:hover {
 		transform: rotate(-10deg);
 		cursor: pointer;
 		opacity: 0.7;

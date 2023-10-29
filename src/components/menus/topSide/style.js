@@ -22,7 +22,7 @@ export const ContainerSideTop = styled.div`
 export const LeftSideTop = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 0.8rem;
+	gap: 0.5rem;
 `;
 
 export const RightSideTop = styled.div`

@@ -83,6 +83,16 @@ export default function useAuth() {
 		}
 	}
 
+	async function findAll() {
+		try {
+			const response = await api.get(`/users`);
+			return response.data;
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	}
+
 	async function findUserByAt(at) {
 		try {
 			const response = await api.get(`/users/profile/${at}`);
@@ -385,5 +395,6 @@ export default function useAuth() {
 		getPostsUser,
 		alterCountPosts,
 		checkUser,
+		findAll,
 	};
 }
