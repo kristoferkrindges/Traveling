@@ -1,23 +1,21 @@
 import React from "react";
 import Logo from "../../assets/images/infinite-removebg-preview.png";
-import { FlexColumn } from "../../components/containers/flexColumn.styled";
+import { FlexColumnContainer } from "../../components/containers/flexColumnContainer.styled";
 import LogoPage from "../../components/images/logoPage";
 import Loader from "../../components/loader";
-import { ContainerPadding } from "../../components/containers/containerPadding.styled";
-import TitleH1 from "../../components/titles/titleH1/titleH1";
+import { PaddingContainer } from "../../components/containers/paddingContainer.styled";
+import { H1Title } from "../../components/titles/h1Title.styled";
 
 export default function AwaitTemplate() {
 	return (
-		<FlexColumn>
-			<ContainerPadding>
+		<FlexColumnContainer>
+			<PaddingContainer>
 				<LogoPage logo={Logo} alt="Traveling" font={`250px`} />
-				<TitleH1
-					font={`2.5rem`}
-					text={"TRAVELING"}
-					marginBottom={`5rem`}
-				></TitleH1>
+				<H1Title fontSize={`2.5rem`} marginBottom={`5rem`}>
+					"TRAVELING"
+				</H1Title>
 				<Loader />
-			</ContainerPadding>
-		</FlexColumn>
+			</PaddingContainer>
+		</FlexColumnContainer>
 	);
 }

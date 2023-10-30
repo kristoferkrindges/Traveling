@@ -9,6 +9,7 @@ export const Profile = styled.div`
 		cursor: pointer;
 		opacity: 0.7;
 	}
+	z-index: 999;
 `;
 
 export const ProfileLink = styled.ul`

@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { CountNotification } from "./style";
-import { NotificationIcon } from "../../icons/iconsI05.styled";
-import { ContainerCircle } from "../../containers/containerCircle.styled";
+import { NotificationIcon } from "../../icons/iO5Icons.styled";
+import { CircleContainer } from "../../containers/circleContainer.styled";
 import { BorderSelect, Legend } from "../../menus/featuresRouted/style";
 import { NotificationContext } from "../../../contexts/notificationContext";
 
@@ -27,7 +27,7 @@ export default function NotificationButton() {
 	};
 
 	return (
-		<ContainerCircle>
+		<CircleContainer>
 			{count > 0 ? <CountNotification>{count}</CountNotification> : null}
 			<NotificationIcon
 				style={
@@ -45,6 +45,6 @@ export default function NotificationButton() {
 				}
 			/>
 			{showLegendNotifications && <Legend>Notifications</Legend>}
-		</ContainerCircle>
+		</CircleContainer>
 	);
 }

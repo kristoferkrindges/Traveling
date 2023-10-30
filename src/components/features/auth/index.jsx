@@ -12,19 +12,15 @@ import {
 	OrderController,
 	Button,
 	Logo,
-	ContainerGoogle,
-	ContainerIcon,
-	Text,
 } from "./style";
-import TitleH1 from "../../titles/titleH1/titleH1";
+import { H1Title } from "../../titles/h1Title.styled";
 import {
 	At,
-	IconGoogle,
 	Lock,
 	Mail,
 	TwoPeople,
 	UserCircle,
-} from "../../icons/iconsI05.styled";
+} from "../../icons/iO5Icons.styled";
 
 export default function Auth() {
 	const { signUp, signIn } = useContext(UserContext);
@@ -78,11 +74,9 @@ export default function Auth() {
 		<ContainerAuth gridColumns={controllerAuth ? `1.5fr 1fr` : `1fr 1.5fr`}>
 			{controllerAuth && <Logo src={Infinite} />}
 			<Form action="" justinfySelf={controllerAuth ? null : `center`}>
-				<TitleH1
-					fontSize={`2rem`}
-					marginBottom={`2rem`}
-					text={controllerAuth ? "Sign In" : "Sign Up"}
-				/>
+				<H1Title fontSize={`2rem`} marginBottom={`2rem`}>
+					{controllerAuth ? "Sign In" : "Sign Up"}
+				</H1Title>
 				{!controllerAuth && (
 					<>
 						<Fields id="marg">
@@ -199,12 +193,6 @@ export default function Auth() {
 							  }
 					}
 				></Button>
-				{/* <ContainerGoogle>
-					<Text>{controllerAuth ? "Our login with" : "Our register with"}</Text>
-					<ContainerIcon>
-						<IconGoogle />
-					</ContainerIcon>
-				</ContainerGoogle> */}
 			</Form>
 			{!controllerAuth && <Logo src={Infinite} />}
 		</ContainerAuth>

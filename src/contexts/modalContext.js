@@ -4,12 +4,23 @@ import useModal from "../hooks/useModal";
 const ModalContext = React.createContext(null);
 
 function ModalProvider({ children }) {
-	const { menu, handlerMenu } = useModal();
+	const {
+		menu,
+		handlerMenu,
+		ellips,
+		HandlerEllips,
+		modalCreatePost,
+		handlerModalCreatePost,
+	} = useModal();
 	return (
 		<ModalContext.Provider
 			value={{
 				menu,
 				handlerMenu,
+				ellips,
+				HandlerEllips,
+				modalCreatePost,
+				handlerModalCreatePost,
 			}}
 		>
 			{children}

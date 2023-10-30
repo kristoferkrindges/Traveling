@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { SearchBar, InputSearch } from "./style";
-import { SearchIcon } from "../../icons/iconsI05.styled";
-import ResultSearchUsersModal from "../../modals/resultSearchUsers";
+import { SearchIcon } from "../../icons/iO5Icons.styled";
+import ResultSearchUsersModal from "../../features/user/resultSearchUsers";
 import { UserContext } from "../../../contexts/userContext";
 
 export default function SearchInput() {

@@ -22,3 +22,4 @@ export const darkTheme = {
 	bg3: "rgb(50,50,50)",
 	primary: "rgb(52, 131, 235)",
 };
+// secondColor: "hsl(252, 73%, 29%)";

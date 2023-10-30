@@ -6,7 +6,7 @@ import {
 	LogoutIcon,
 	ProfileIcon,
 	SettingsIcon,
-} from "../../icons/iconsI05.styled";
+} from "../../icons/iO5Icons.styled";
 import AvatarPhoto from "../../images/avatar";
 export default function AvatarButton() {
 	const { userInfo } = useContext(UserContext);

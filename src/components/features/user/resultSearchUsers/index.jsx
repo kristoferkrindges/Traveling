@@ -1,8 +1,7 @@
 import React from "react";
 
 import { ContainerResult } from "./style";
-import UserMessages from "../../userMessage";
-import { Link } from "react-router-dom";
+import UserMessages from "../userMessage";
 
 export default function ResultSearchUsersModal({ result }) {
 	return (
@@ -18,6 +17,7 @@ export default function ResultSearchUsersModal({ result }) {
 						// online={value.online}
 						online={false}
 						type={false}
+						at={value.at}
 					/>
 				))}
 		</ContainerResult>

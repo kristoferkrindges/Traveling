@@ -1,3 +1,4 @@
+import { format } from "date-fns-tz";
 export default function useAssistant() {
 	function formatTimeDifference(timestamp) {
 		const now = new Date().getTime();
@@ -18,7 +19,19 @@ export default function useAssistant() {
 		}
 	}
 
+	function formatTime() {
+		const brasiliaTimeZone = "America/Sao_Paulo";
+		const brasiliaCurrentDateTime = new Date();
+		const formattedDateTime = format(
+			brasiliaCurrentDateTime,
+			"yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
+			{ timeZone: brasiliaTimeZone }
+		);
+		return formattedDateTime;
+	}
+
 	return {
 		formatTimeDifference,
+		formatTime,
 	};
 }

@@ -4,11 +4,12 @@ import useAssistant from "../hooks/useAssistant";
 const AssistantContext = React.createContext(null);
 
 function AssistantProvider({ children }) {
-	const { formatTimeDifference } = useAssistant();
+	const { formatTimeDifference, formatTime } = useAssistant();
 	return (
 		<AssistantContext.Provider
 			value={{
 				formatTimeDifference,
+				formatTime,
 			}}
 		>
 			{children}

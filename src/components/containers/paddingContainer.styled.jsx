@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { size } from "../../styles/variables";
 
-export const ContainerPadding = styled.div`
+export const PaddingContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-direction: column;

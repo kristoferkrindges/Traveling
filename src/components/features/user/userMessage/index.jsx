@@ -7,16 +7,23 @@ import {
 	TextMuted,
 	Online,
 } from "./style";
-import AvatarPhoto from "../images/avatar";
+import AvatarPhoto from "../../../images/avatar";
 import { useNavigate } from "react-router-dom";
-export default function UserMessages({ photo, name, message, online, type }) {
+export default function UserMessages({
+	photo,
+	name,
+	message,
+	online,
+	type,
+	at,
+}) {
 	const navigate = useNavigate();
-	const handleRouted = (evt) => {
+	const handlerRouted = (evt) => {
 		evt.preventDefault();
-		navigate(`/profile/${message}`);
+		navigate(`/profile/${at}`);
 	};
 	return (
-		<Message onClick={type ? type : (evt) => handleRouted(evt)}>
+		<Message onClick={type ? type : (evt) => handlerRouted(evt)}>
 			<ProfilePhoto>
 				<AvatarPhoto photo={photo} />
 				{online ? <Online /> : <></>}

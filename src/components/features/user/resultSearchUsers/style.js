@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { size } from "../../../styles/variables";
+import { size } from "../../../../styles/variables";
 export const ContainerResult = styled.div`
 	position: absolute;
 	top: calc(100% + 20px);
@@ -16,4 +16,5 @@ export const ContainerResult = styled.div`
 	& a {
 		color: ${({ theme }) => theme.text};
 	}
+	z-index: 999;
 `;

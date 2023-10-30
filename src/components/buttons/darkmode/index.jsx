@@ -1,12 +1,8 @@
 import React, { useState, useContext } from "react";
 
-import {
-	MoonIcon,
-	NotificationIcon,
-	SunIcon,
-} from "../../icons/iconsI05.styled";
-import { ContainerCircle } from "../../containers/containerCircle.styled";
-import { BorderSelect, Legend } from "../../menus/featuresRouted/style";
+import { MoonIcon, SunIcon } from "../../icons/iO5Icons.styled";
+import { CircleContainer } from "../../containers/circleContainer.styled";
+import { Legend } from "../../menus/featuresRouted/style";
 import { ThemeContext } from "../../../provider/themeProvider";
 import { UserContext } from "../../../contexts/userContext";
 
@@ -28,7 +24,7 @@ export default function DarkModeButton() {
 	}
 
 	return (
-		<ContainerCircle>
+		<CircleContainer>
 			{theme === "dark" ? (
 				<SunIcon
 					onMouseEnter={handleMouseEnterNotifications}
@@ -49,6 +45,6 @@ export default function DarkModeButton() {
 			{showDarkModeLegend && (
 				<Legend>{theme === "dark" ? "light" : "dark"}</Legend>
 			)}
-		</ContainerCircle>
+		</CircleContainer>
 	);
 }

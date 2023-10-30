@@ -10,7 +10,7 @@ import {
 	HomeIcon,
 	NotificationIcon,
 	ProfileIcon,
-} from "../../icons/iconsI05.styled";
+} from "../../icons/iO5Icons.styled";
 
 export default function FeaturesRoutedMenu() {
 	const { userInfo } = useContext(UserContext);

@@ -283,7 +283,6 @@ export default function useAuth() {
 			const token = localStorage.getItem("token");
 			if (token) {
 				api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-				console.log("passou");
 				localStorage.setItem("authenticated", true);
 				// setAuthenticated(true);
 				await checkUser();

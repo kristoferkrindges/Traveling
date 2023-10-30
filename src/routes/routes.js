@@ -9,8 +9,7 @@ import AwaitPage from "../pages/await";
 import AuthPage from "../pages/auth";
 
 export default function Routes() {
-	const { userInfo, authenticated } = useContext(UserContext);
-	console.log(authenticated);
+	const { userInfo } = useContext(UserContext);
 	return (
 		<Routed>
 			<Route path="/auth" element={<AuthPage />}></Route>

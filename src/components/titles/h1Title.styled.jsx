@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const H1 = styled.h1`
+export const H1Title = styled.h1`
 	color: ${({ theme }) => theme.text};
 	text-transform: uppercase;
 	font-size: ${(prop) => prop.fontSize};

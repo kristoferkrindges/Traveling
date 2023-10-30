@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { space } from "../../styles/variables";
 
-export const FlexColumn = styled.div`
+export const FlexColumnContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-direction: column;

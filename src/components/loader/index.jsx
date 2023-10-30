@@ -1,14 +1,12 @@
 import React from "react";
 import Loading from "../../assets/images/loading.svg";
-import { FlexColumn } from "../containers/flexColumn.styled";
+import { FlexColumnContainer } from "../containers/flexColumnContainer.styled";
 import LogoPage from "../images/logoPage";
 
-function Loader() {
+export default function Loader() {
 	return (
-		<FlexColumn>
+		<FlexColumnContainer>
 			<LogoPage logo={Loading} alt="Loading" font={`150px`} />
-		</FlexColumn>
+		</FlexColumnContainer>
 	);
 }
-
-export default Loader;
