@@ -7,7 +7,7 @@ import {
 	ProfileIcon,
 	SettingsIcon,
 } from "../../icons/iO5Icons.styled";
-import AvatarPhoto from "../../images/avatar";
+import { AvatarPhoto } from "../../images/avatar.styled";
 export default function AvatarButton() {
 	const { userInfo } = useContext(UserContext);
 	const [hero, setHero] = useState(false);
@@ -22,8 +22,8 @@ export default function AvatarButton() {
 	return (
 		<Profile>
 			<AvatarPhoto
-				click={HandlerOpen}
-				photo={
+				onClick={HandlerOpen}
+				src={
 					userInfo.photo || !userInfo.photo === "" ? userInfo.photo : AvatarNone
 				}
 				alt="Avatar"

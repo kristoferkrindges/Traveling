@@ -1,11 +1,14 @@
 import React from "react";
 import { DropMenu, Item, NavLink } from "./style";
-export default function EllipsMenu({ type, close }) {
+export default function EllipsMenu({ type, optionsMenu }) {
 	return (
 		<DropMenu>
 			<Item>
-				{close && <NavLink onClick={close}>Close</NavLink>}
-				<NavLink>Other</NavLink>
+				{optionsMenu.map((value, key) => (
+					<NavLink key={key} onClick={value.handler}>
+						{value.label}
+					</NavLink>
+				))}
 			</Item>
 		</DropMenu>
 	);

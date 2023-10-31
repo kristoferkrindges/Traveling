@@ -9,6 +9,13 @@ export const Content = styled.div`
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 	width: 700px;
 	margin: 1rem 0 0 1rem;
+	max-height: 90vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	z-index: 999;
 `;
 
 export const Area = styled.div`
@@ -58,17 +65,17 @@ export const Separator = styled.div`
 	margin-top: 1rem;
 `;
 
-export const PreviewPhoto = styled.img``;
+export const PreviewPhoto = styled.img`
+	width: 100%;
+	/* max-height: 475px;
+	object-fit: cover; */
+`;
 
 export const Photo = styled.div`
 	position: relative;
 	border-radius: 1rem;
 	overflow: hidden;
 	margin: 0.7rem 0;
-	img {
-		width: 100%;
-		filter: brightness(0.25) opacity(0.75);
-	}
 `;
 
 export const EditPhoto = styled.div`

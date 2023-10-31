@@ -21,7 +21,7 @@ export default function useModal() {
 		}
 	};
 
-	const HandlerEllips = () => {
+	const handlerEllips = () => {
 		if (ellips === false) {
 			setEllips(true);
 		} else {
@@ -33,7 +33,7 @@ export default function useModal() {
 		menu,
 		handlerMenu,
 		ellips,
-		HandlerEllips,
+		handlerEllips,
 		modalCreatePost,
 		handlerModalCreatePost,
 	};

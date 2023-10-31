@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { size } from "../../../../styles/variables";
 
 export const CreateContainer = styled.div`
 	position: relative;
@@ -6,6 +7,7 @@ export const CreateContainer = styled.div`
 	align-items: center;
 	flex-direction: column;
 	margin-bottom: 1.5rem;
+	z-index: 10;
 `;
 
 export const Buttons = styled.div`
@@ -18,6 +20,7 @@ export const Buttons = styled.div`
 	box-shadow: 0 0 0 10px ${({ theme }) => theme.container};
 	border-radius: 2rem;
 	text-align: center;
+	z-index: 10;
 	&::before {
 		content: "";
 		position: absolute;
@@ -53,9 +56,9 @@ export const Form = styled.form`
 	justify-content: space-between;
 	margin-top: 1rem;
 	background-color: ${({ theme }) => theme.container};
-	padding: 0.4rem 1rem;
-	border-radius: 2rem;
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	padding: ${size.sm};
+	border-radius: ${size.lg};
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 	cursor: pointer;
 `;
 export const ProfilePhoto = styled.div``;

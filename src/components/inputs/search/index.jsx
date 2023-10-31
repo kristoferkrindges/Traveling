@@ -64,7 +64,7 @@ export default function SearchInput() {
 			<SearchIcon />
 			<InputSearch
 				type="search"
-				placeholder="Search messages"
+				placeholder="Search"
 				value={wordEntered}
 				onChange={handleFilter}
 				onClick={handlerSearch}

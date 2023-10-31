@@ -5,6 +5,8 @@ export const Navigation = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 80px;
+	z-index: 999;
+	/* margin-right: 5rem; */
 `;
 
 export const ContainerIcon = styled.span`
@@ -30,7 +32,7 @@ export const BorderSelect = styled.div`
 	padding: 1px;
 	background-color: transparent;
 	left: -1.3rem;
-	top: 3rem;
+	top: 2.9rem;
 `;
 
 export const Legend = styled.span`
@@ -41,5 +43,4 @@ export const Legend = styled.span`
 	background: ${({ theme }) => theme.container};
 	border-radius: ${size.lg};
 	transition: 0.5s;
-	z-index: 999;
 `;

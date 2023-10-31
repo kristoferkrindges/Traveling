@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { CountNotification } from "./style";
 import { NotificationIcon } from "../../icons/iO5Icons.styled";
-import { CircleContainer } from "../../containers/circleContainer.styled";
+import { CircleContainer } from "../../containers/circle.styled";
 import { BorderSelect, Legend } from "../../menus/featuresRouted/style";
 import { NotificationContext } from "../../../contexts/notificationContext";
 

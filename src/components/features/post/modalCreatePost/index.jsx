@@ -16,8 +16,8 @@ import {
 } from "./style";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
 import { PostContext } from "../../../../contexts/postContext";
-import { OverlayContainer } from "../../../containers/overlayContainer.styled";
-import HeadingContainer from "../../../containers/headingContainerComponent";
+import { OverlayContainer } from "../../../containers/overlay.styled";
+import HeadingContainer from "../../../containers/heading";
 import UserMessages from "../../user/userMessage";
 import {
 	CloudUploadIcon,
@@ -25,7 +25,7 @@ import {
 	ImageIcon,
 } from "../../../icons/iO5Icons.styled";
 import { AssistantContext } from "../../../../contexts/assistantContext";
-import { ModalContainer } from "../../../containers/modalContainer.styled";
+import { ModalContainer } from "../../../containers/modal.styled";
 import ModalLoader from "../../../modals/loader";
 import { EmojiIcon } from "../../../icons/bsIcons.styled";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
@@ -51,8 +51,7 @@ export default function ModalCreatePost({ click, userInfo }) {
 			click();
 		}
 	};
-
-	async function handlerCreate(evt) {
+	const handlerCreate = async (evt) => {
 		evt.preventDefault();
 		setProgress(false);
 		const post = {
@@ -61,28 +60,27 @@ export default function ModalCreatePost({ click, userInfo }) {
 			datePublic: formatTime(),
 			creatorId: "",
 		};
-		console.log(formatTime());
 		await insert(post, photo);
 		setProgress(true);
 		click();
-	}
+	};
 
-	const handlePhoto = (e) => {
-		const file = e.target.files[0];
+	const handlePhoto = (evt) => {
+		const file = evt.target.files[0];
 		if (!file) {
 			return;
 		} else {
 			setPhoto(file);
 			const reader = new FileReader();
-			reader.onload = (e) => {
-				setImagePreview(e.target.result);
+			reader.onload = (evt) => {
+				setImagePreview(evt.target.result);
 			};
 
 			reader.readAsDataURL(file);
 		}
 	};
 	const deletePhoto = (evt) => {
-		evt.preventDefault();
+		evt.stopPropagation();
 		setImagePreview("");
 		setPhoto("");
 	};
@@ -90,7 +88,7 @@ export default function ModalCreatePost({ click, userInfo }) {
 		<>
 			{progress ? (
 				<OverlayContainer>
-					<ModalContainer top={`10%`}>
+					<ModalContainer top={`7%`}>
 						<Content ref={modalRef}>
 							<HeadingContainer text={"Create Post"} type={"CreatePost"} />
 							<Separator />
@@ -119,7 +117,13 @@ export default function ModalCreatePost({ click, userInfo }) {
 								</Form>
 								{imagePreview ? (
 									<Photo>
-										<PreviewPhoto src={imagePreview} alt="" />
+										<PreviewPhoto
+											src={imagePreview}
+											alt=""
+											style={{
+												filter: "brightness(0.25) opacity(0.75)",
+											}}
+										/>
 										<EditPhoto>
 											<InputFile
 												id="uploadBtn"

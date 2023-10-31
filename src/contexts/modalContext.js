@@ -6,9 +6,9 @@ const ModalContext = React.createContext(null);
 function ModalProvider({ children }) {
 	const {
 		menu,
-		handlerMenu,
+		HandlerMenu,
 		ellips,
-		HandlerEllips,
+		handlerEllips,
 		modalCreatePost,
 		handlerModalCreatePost,
 	} = useModal();
@@ -16,9 +16,9 @@ function ModalProvider({ children }) {
 		<ModalContext.Provider
 			value={{
 				menu,
-				handlerMenu,
+				HandlerMenu,
 				ellips,
-				HandlerEllips,
+				handlerEllips,
 				modalCreatePost,
 				handlerModalCreatePost,
 			}}

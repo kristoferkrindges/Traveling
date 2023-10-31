@@ -1,6 +1,6 @@
 import React from "react";
 import Loading from "../../assets/images/loading.svg";
-import { FlexColumnContainer } from "../containers/flexColumnContainer.styled";
+import { FlexColumnContainer } from "../containers/flexColumn.styled";
 import LogoPage from "../images/logoPage";
 
 export default function Loader() {

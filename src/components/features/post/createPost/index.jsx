@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Form, ProfilePhoto, Input, CreateContainer, Buttons } from "./style";
+import { Form, ProfilePhoto, Input, CreateContainer } from "./style";
 import { UserContext } from "../../../../contexts/userContext";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
-import AvatarPhoto from "../../../images/avatar";
 import { ImageIcon } from "../../../icons/iO5Icons.styled";
-import { CircleContainer } from "../../../containers/circleContainer.styled";
+import { CircleContainer } from "../../../containers/circle.styled";
 import { ModalContext } from "../../../../contexts/modalContext";
 import ModalCreatePost from "../modalCreatePost";
+import { AvatarPhoto } from "../../../images/avatar.styled";
 export default function CreatePost() {
 	const { userInfo } = useContext(UserContext);
 	const { handlerModalCreatePost, modalCreatePost } = useContext(ModalContext);
@@ -16,11 +16,12 @@ export default function CreatePost() {
 				<Form>
 					<ProfilePhoto>
 						<AvatarPhoto
-							photo={
+							src={
 								userInfo.photo || !userInfo.photo === ""
 									? userInfo.photo
 									: AvatarNone
 							}
+							alt={userInfo && userInfo.firstname}
 						/>
 					</ProfilePhoto>
 					<Input

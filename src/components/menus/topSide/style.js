@@ -3,14 +3,20 @@ import { size } from "../../../styles/variables";
 
 export const ContainerSideTop = styled.div`
 	background: ${({ theme }) => theme.container};
-	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 	/* padding: ${size.sm}; */
-	padding: 0.7rem;
+	padding: 0.5rem;
 	border-radius: 0 0 ${size.lg} ${size.lg};
 	margin: 0 auto;
 	width: 80%;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+
+	/* display: grid;
+	grid-template-columns: 30vw auto 10vw;
+	column-gap: 2rem; */
+
 	/* position: sticky;
 	top: 0;
 	z-index: 999; */

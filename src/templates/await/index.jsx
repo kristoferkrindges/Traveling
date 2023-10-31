@@ -1,9 +1,9 @@
 import React from "react";
 import Logo from "../../assets/images/infinite-removebg-preview.png";
-import { FlexColumnContainer } from "../../components/containers/flexColumnContainer.styled";
+import { FlexColumnContainer } from "../../components/containers/flexColumn.styled";
 import LogoPage from "../../components/images/logoPage";
 import Loader from "../../components/loader";
-import { PaddingContainer } from "../../components/containers/paddingContainer.styled";
+import { PaddingContainer } from "../../components/containers/padding.styled";
 import { H1Title } from "../../components/titles/h1Title.styled";
 
 export default function AwaitTemplate() {

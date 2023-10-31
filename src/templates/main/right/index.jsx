@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ContainerSticky } from "../../../components/containers/containerSticky.styled";
+import { ContainerSticky } from "../../../components/containers/sticky.styled";
 
 export default function RightTemplate({ type }) {
 	return (

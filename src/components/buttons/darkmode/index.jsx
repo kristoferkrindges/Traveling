@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { MoonIcon, SunIcon } from "../../icons/iO5Icons.styled";
-import { CircleContainer } from "../../containers/circleContainer.styled";
+import { CircleContainer } from "../../containers/circle.styled";
 import { Legend } from "../../menus/featuresRouted/style";
 import { ThemeContext } from "../../../provider/themeProvider";
 import { UserContext } from "../../../contexts/userContext";

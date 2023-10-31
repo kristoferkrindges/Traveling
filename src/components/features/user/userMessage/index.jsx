@@ -7,8 +7,8 @@ import {
 	TextMuted,
 	Online,
 } from "./style";
-import AvatarPhoto from "../../../images/avatar";
 import { useNavigate } from "react-router-dom";
+import { AvatarPhoto } from "../../../images/avatar.styled";
 export default function UserMessages({
 	photo,
 	name,
@@ -25,7 +25,7 @@ export default function UserMessages({
 	return (
 		<Message onClick={type ? type : (evt) => handlerRouted(evt)}>
 			<ProfilePhoto>
-				<AvatarPhoto photo={photo} />
+				<AvatarPhoto src={photo} />
 				{online ? <Online /> : <></>}
 			</ProfilePhoto>
 			<MessageBody>

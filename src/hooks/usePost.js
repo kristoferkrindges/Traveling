@@ -10,7 +10,9 @@ export default function usePost() {
 	const [allPosts, setAllPosts] = useState();
 
 	useEffect(() => {
-		findAll();
+		if (!allPosts) {
+			findAll();
+		}
 	}, []);
 
 	async function findAll() {

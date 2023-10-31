@@ -1,5 +1,5 @@
 import React from "react";
-import { ContainerSticky } from "../../../components/containers/containerSticky.styled";
+import { ContainerSticky } from "../../../components/containers/sticky.styled";
 import CardInfoUser from "../../../components/features/user/cardUserInfo";
 
 export default function LeftTemplate() {

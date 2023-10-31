@@ -316,12 +316,12 @@ export default function useAuth() {
 		const darkmode = localStorage.getItem("darkmode");
 		if (!darkmode) {
 			try {
-				const darkmode = await api
+				const darkModeData = await api
 					.get("/users/configuration")
 					.then((response) => {
 						return response.data;
 					});
-				if (darkmode.darkMode) {
+				if (darkModeData.darkMode) {
 					localStorage.setItem("darkmode", "dark");
 					setTheme("dark");
 				} else {

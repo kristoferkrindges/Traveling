@@ -54,7 +54,7 @@ export const BoxTwo = styled.div`
 	height: 190px;
 	background-color: ${({ theme }) => theme.container};
 	border-radius: 15px;
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 
 	&::before {
 		content: "";
@@ -242,7 +242,7 @@ export const List = styled.li`
 `;
 export const Button = styled.button`
 	position: relative;
-	top: 25px;
+	top: 35px;
 	border: none;
 	outline: none;
 	background: ${({ theme }) => theme.secondColor};
@@ -256,6 +256,7 @@ export const Button = styled.button`
 	font-size: 1rem;
 	border: 4px solid transparent;
 	box-shadow: 0 0 0 10px ${({ theme }) => theme.container};
+	/* box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4); */
 	transition: 0.5s;
 	/* text-transform: uppercase;
 	letter-spacing: 0.2em; */
