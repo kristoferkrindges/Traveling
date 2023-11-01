@@ -15,6 +15,7 @@ export default function HeadingContainer({ type, text, click }) {
 		{
 			label: "Close",
 			handler: handlerEllips,
+			route: null,
 		},
 	];
 	return (

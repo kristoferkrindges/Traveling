@@ -4,13 +4,13 @@ import useStorie from "../hooks/useStorie";
 const StorieContext = createContext();
 
 function StorieProvider({ children }) {
-	const { findAll, findById, insert, update, deleteStorie, allStories } =
+	const { findAllStories, findById, insert, update, deleteStorie, allStories } =
 		useStorie();
 
 	return (
 		<StorieContext.Provider
 			value={{
-				findAll,
+				findAllStories,
 				findById,
 				insert,
 				update,

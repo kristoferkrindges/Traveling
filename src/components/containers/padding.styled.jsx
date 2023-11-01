@@ -6,8 +6,8 @@ export const PaddingContainer = styled.div`
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	padding: ${size.sm};
+	/* padding: ${size.sm};
 	border-radius: ${size.sm};
-	background-color: ${({ theme }) => theme.container};
+	background-color: ${({ theme }) => theme.container}; */
 	margin-top: ${size.sm};
 `;

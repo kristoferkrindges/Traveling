@@ -4,7 +4,6 @@ import { size } from "../../../styles/variables";
 export const ContainerSideTop = styled.div`
 	background: ${({ theme }) => theme.container};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
-	/* padding: ${size.sm}; */
 	padding: 0.5rem;
 	border-radius: 0 0 ${size.lg} ${size.lg};
 	margin: 0 auto;
@@ -17,9 +16,9 @@ export const ContainerSideTop = styled.div`
 	grid-template-columns: 30vw auto 10vw;
 	column-gap: 2rem; */
 
-	/* position: sticky;
+	position: sticky;
 	top: 0;
-	z-index: 999; */
+	z-index: 999;
 
 	@media only screen and (max-width: 1200px) {
 		width: 100%;

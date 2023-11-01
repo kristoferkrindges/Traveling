@@ -8,13 +8,13 @@ export default function useStorie() {
 
 	const [allStories, setAllStories] = useState();
 
-	useEffect(() => {
-		if (!allStories) {
-			findAll();
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (!allStories) {
+	// 		findAllStories();
+	// 	}
+	// }, []);
 
-	async function findAll() {
+	async function findAllStories() {
 		try {
 			const data = await api.get("/stories").then((response) => {
 				return response.data;
@@ -74,7 +74,7 @@ export default function useStorie() {
 	}
 
 	return {
-		findAll,
+		findAllStories,
 		findById,
 		insert,
 		update,

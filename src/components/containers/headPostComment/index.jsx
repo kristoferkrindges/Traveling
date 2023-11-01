@@ -1,9 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Edit, Head, Ingo, Name, Small, User } from "./style";
-import { EllipsIcon } from "../../icons/iO5Icons.styled";
+import {
+	CloseCircleIcon,
+	DeletIcon,
+	EditIcon,
+	EllipsIcon,
+	ReportIcon,
+} from "../../icons/iO5Icons.styled";
 import { AvatarPhoto } from "../../images/avatar.styled";
 import EllipsMenu from "../../menus/ellips";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../contexts/userContext";
 
 export default function HeadPostComment({
@@ -14,10 +19,9 @@ export default function HeadPostComment({
 	at,
 	handlerDelet,
 	handlerEdit,
+	handlerRouteProfile,
 }) {
 	const { userInfo } = useContext(UserContext);
-
-	const navigate = useNavigate();
 
 	const [ellips, setEllips] = useState(false);
 
@@ -26,30 +30,34 @@ export default function HeadPostComment({
 		ellips ? setEllips(false) : setEllips(true);
 	};
 
-	const handlerRouteProfile = (evt) => {
-		evt.stopPropagation();
-		navigate(`/profile/${at}`);
-		return;
-	};
-
 	const handlerButtonEdit = (evt) => {
 		handlerEdit();
 		handlerEllips(evt);
 		return;
 	};
 
+	const handlerRoute = (evt) => {
+		handlerRouteProfile(evt, at);
+	};
+
 	const optionsMenu = [
 		{
 			label: "Close",
 			handler: handlerEllips,
+			icon: <CloseCircleIcon />,
+			route: null,
 		},
 		{
 			label: "Edit",
 			handler: handlerButtonEdit,
+			icon: <EditIcon />,
+			route: null,
 		},
 		{
 			label: "Delet",
 			handler: handlerDelet,
+			icon: <DeletIcon />,
+			route: null,
 		},
 	];
 
@@ -57,19 +65,23 @@ export default function HeadPostComment({
 		{
 			label: "Close",
 			handler: handlerEllips,
+			icon: <CloseCircleIcon />,
+			route: null,
 		},
 		{
 			label: "Report",
 			handler: null,
+			icon: <ReportIcon />,
+			route: null,
 		},
 	];
 
 	return (
 		<Head>
 			<User>
-				<AvatarPhoto src={photo} alt={name} onClick={handlerRouteProfile} />
+				<AvatarPhoto src={photo} alt={name} onClick={handlerRoute} />
 				<Ingo>
-					<Name onClick={handlerRouteProfile}>{name}</Name>
+					<Name onClick={handlerRoute}>{name}</Name>
 					<Small>{time}</Small>
 				</Ingo>
 			</User>

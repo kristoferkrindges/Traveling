@@ -27,6 +27,7 @@ export default function Routes() {
 					}
 				></Route>
 			</Route>
+			<Route path="/"></Route>
 		</Routed>
 	);
 }

@@ -3,17 +3,27 @@ import { NavLink as Link } from "react-router-dom";
 
 export const DropMenu = styled.ul`
 	position: absolute;
-	top: 80%;
+	top: ${(props) => props.top};
 	right: 0;
 	background: ${({ theme }) => theme.container};
-	padding: 0.5rem 0;
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.9);
-	border-radius: 1rem;
+	padding: 10px 10px;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
+	border-radius: 2rem;
+	width: 160px;
 	transition: all 0.3s ease;
-	font-weight: 600;
-	z-index: 2;
+	z-index: 999;
 `;
-export const Item = styled.li``;
+export const Item = styled.li`
+	& svg {
+		width: 20px;
+		height: 20px;
+		stroke: ${({ theme }) => theme.text};
+		cursor: pointer;
+		&:hover {
+			opacity: 0.5;
+		}
+	}
+`;
 
 export const NavLink = styled(Link)`
 	cursor: pointer;
@@ -25,9 +35,10 @@ export const NavLink = styled(Link)`
 	color: ${({ theme }) => theme.text};
 	align-items: center;
 	transition: all 0.3s ease;
-	border-radius: 1rem;
 	&:hover {
-		color: ${({ theme }) => theme.secondColor};
-		background: ${({ theme }) => theme.background};
+		background: ${({ theme }) => theme.secondColor};
+		border-radius: 2rem;
+		color: ${({ theme }) => theme.textInverse};
+		opacity: 0.9;
 	}
 `;

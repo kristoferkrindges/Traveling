@@ -13,7 +13,6 @@ export default function useAuth() {
 	const [userInfo, setUserInfo] = useState({});
 	const { setTheme, theme } = useContext(ThemeContext);
 	const navigate = useNavigate();
-
 	useEffect(() => {
 		getToken();
 		const darkmode = localStorage.getItem("darkmode");
@@ -354,6 +353,7 @@ export default function useAuth() {
 
 	function logout() {
 		setAuthenticated(false);
+		localStorage.setItem("authenticated", false);
 		localStorage.removeItem("token");
 		localStorage.removeItem("darkmode");
 		api.defaults.headers.Authorization = undefined;

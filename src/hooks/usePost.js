@@ -9,13 +9,13 @@ export default function usePost() {
 	const { checkUser } = useAuth();
 	const [allPosts, setAllPosts] = useState();
 
-	useEffect(() => {
-		if (!allPosts) {
-			findAll();
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (!allPosts) {
+	// 		findAllPosts();
+	// 	}
+	// }, []);
 
-	async function findAll() {
+	async function findAllPosts() {
 		try {
 			const data = await api.get("/posts").then((response) => {
 				return response.data;
@@ -123,7 +123,7 @@ export default function usePost() {
 	}
 
 	return {
-		findAll,
+		findAllPosts,
 		findById,
 		findUsersFavorites,
 		findUsersLikes,

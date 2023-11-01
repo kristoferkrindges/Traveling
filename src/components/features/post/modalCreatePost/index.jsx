@@ -26,7 +26,7 @@ import {
 } from "../../../icons/iO5Icons.styled";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 import { ModalContainer } from "../../../containers/modal.styled";
-import ModalLoader from "../../../modals/loader";
+import LoaderModal from "../../../modals/loader";
 import { EmojiIcon } from "../../../icons/bsIcons.styled";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 
@@ -165,7 +165,7 @@ export default function ModalCreatePost({ click, userInfo }) {
 					</ModalContainer>
 				</OverlayContainer>
 			) : (
-				<ModalLoader />
+				<LoaderModal />
 			)}
 		</>
 	);

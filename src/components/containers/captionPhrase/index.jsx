@@ -5,9 +5,10 @@ export default function CaptionPhraseContainer({
 	stateEditPost,
 	setStatePhrase,
 	statePhrase,
+	stop,
 }) {
 	return (
-		<Caption>
+		<Caption onClick={stop}>
 			{stateEditPost ? (
 				<Form>
 					<TextArea

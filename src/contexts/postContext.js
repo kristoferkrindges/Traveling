@@ -5,7 +5,7 @@ const PostContext = createContext();
 
 function PostProvider({ children }) {
 	const {
-		findAll,
+		findAllPosts,
 		findById,
 		findUsersFavorites,
 		findUsersLikes,
@@ -17,7 +17,7 @@ function PostProvider({ children }) {
 	return (
 		<PostContext.Provider
 			value={{
-				findAll,
+				findAllPosts,
 				findById,
 				findUsersFavorites,
 				findUsersLikes,

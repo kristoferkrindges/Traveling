@@ -22,7 +22,17 @@ import {
 	IoCloudUpload,
 	IoCloseCircle,
 	IoExtensionPuzzle,
+	IoHeartOutline,
+	IoHeart,
+	IoChatbubbleOutline,
+	IoShareOutline,
+	IoBookmarkOutline,
+	IoBookmark,
+	IoColorWand,
+	IoTrash,
+	IoAlertCircle,
 } from "react-icons/io5";
+
 export const UserCircle = styled(IoPersonCircleOutline)``;
 export const Mail = styled(IoMailOutline)``;
 export const TwoPeople = styled(IoPeopleCircleOutline)``;
@@ -61,9 +71,59 @@ export const CloudUploadIcon = styled(IoCloudUpload)`
 	}
 `;
 
-export const DeletIcon = styled(IoCloseCircle)`
+export const HeartIcon = styled(IoHeartOutline)`
 	&:hover {
-		opacity: 0.7;
+		color: red;
 		cursor: pointer;
 	}
+`;
+export const HeartPressIcon = styled(IoHeart)`
+	color: red;
+	&:hover {
+		color: white;
+		cursor: pointer;
+	}
+`;
+
+export const CommentIcon = styled(IoChatbubbleOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+
+export const ShareIcon = styled(IoShareOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+
+export const BookIcon = styled(IoBookmarkOutline)`
+	&:hover {
+		color: gold;
+		cursor: pointer;
+	}
+`;
+export const BookPressIcon = styled(IoBookmark)`
+	color: gold;
+	&:hover {
+		color: white;
+		cursor: pointer;
+	}
+`;
+export const CloseCircleIcon = styled(IoCloseCircle)`
+	cursor: pointer;
+`;
+
+export const EditIcon = styled(IoColorWand)`
+	cursor: pointer;
+`;
+
+export const DeletIcon = styled(IoTrash)`
+	cursor: pointer;
+`;
+
+export const ReportIcon = styled(IoAlertCircle)`
+	cursor: pointer;
 `;

@@ -1,13 +1,23 @@
 import React, { useState, useContext } from "react";
 
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { PostContext } from "../../../../contexts/postContext";
 import { UserContext } from "../../../../contexts/userContext";
-import { ModalContext } from "../../../../contexts/modalContext";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 
-import ModalLoader from "../../../modals/loader";
-import { Container, EditPhotoNoPhoto, Head } from "./style";
-import { useLocation, useNavigate } from "react-router-dom";
+import LoaderModal from "../../../modals/loader";
+import {
+	Container,
+	EditPhotoNoPhoto,
+	LikedBy,
+	Span,
+	P,
+	MiniAvatar,
+	PeopleLike,
+	SaveContainer,
+	TextMuted,
+} from "./style";
 import HeadPostComment from "../../../containers/headPostComment";
 import CaptionPhraseContainer from "../../../containers/captionPhrase";
 import {
@@ -18,6 +28,9 @@ import {
 	PreviewPhoto,
 } from "../modalCreatePost/style";
 import { CloudUploadIcon, DeletIcon } from "../../../icons/iO5Icons.styled";
+import ActionButtonsContainer from "../../../containers/actionButtons";
+import { PrimaryButton } from "../../../buttons/primaryButton.styled";
+import ViewImageModal from "../../../modals/viewImage";
 
 export default function Post({
 	type,
@@ -36,9 +49,7 @@ export default function Post({
 }) {
 	const { update, deletePost } = useContext(PostContext);
 	const { userInfo, likePost, favoritePost } = useContext(UserContext);
-	const { handlerEllips } = useContext(ModalContext);
-	const { formattedDateTime, formatTimeDifference } =
-		useContext(AssistantContext);
+	const { formatTime, formatTimeDifference } = useContext(AssistantContext);
 
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
@@ -53,8 +64,10 @@ export default function Post({
 	const [stateEdit, setStateEdit] = useState(alreadyEdit);
 	const [statePhrase, setStatePhrase] = useState(phrase);
 	const [stateEditPost, setStateEditPost] = useState(false);
+	const [stateModalImage, setStateModalImage] = useState(false);
 
-	const onPressLike = async () => {
+	const onPressLike = async (evt) => {
+		evt.stopPropagation();
 		if (stateLike) {
 			await likePost(id);
 			setStateLike(false);
@@ -66,10 +79,12 @@ export default function Post({
 			setStateLike(true);
 			setLike(like + 1);
 		}
+		console.log("clicou");
 		return;
 	};
 
-	const onPressFavorite = async () => {
+	const onPressFavorite = async (evt) => {
+		evt.stopPropagation();
 		if (stateFavorite) {
 			await favoritePost(id);
 			setStateFavorite(false);
@@ -85,17 +100,18 @@ export default function Post({
 	};
 
 	const updatePost = async (evt) => {
-		evt.preventDefault();
+		evt.stopPropagation();
 		setProgress(false);
 		const post = {
 			phrase: statePhrase,
 			img: "",
-			datePublic: formattedDateTime(),
+			datePublic: formatTime(),
 			creatorId: "",
 		};
 		await update(id, post, file);
 		setProgress(true);
 		handlerEdit();
+		setStateEdit(true);
 		return;
 	};
 
@@ -126,8 +142,7 @@ export default function Post({
 		return;
 	};
 
-	const handlerEdit = (evt) => {
-		// evt.stopPropagation();
+	const handlerEdit = () => {
 		stateEditPost ? setStateEditPost(false) : setStateEditPost(true);
 		return;
 	};
@@ -137,6 +152,21 @@ export default function Post({
 			navigate(`/post/${id}`);
 		}
 		return;
+	};
+
+	const handlerStopPropaganation = (evt) => {
+		evt.stopPropagation();
+	};
+
+	const handlerRouteProfile = (evt, at) => {
+		evt.stopPropagation();
+		navigate(`/profile/${at}`);
+		return;
+	};
+	const handlerCloseModalPhoto = (evt) => {
+		evt.stopPropagation();
+		console.log("clicou");
+		stateModalImage ? setStateModalImage(false) : setStateModalImage(true);
 	};
 	return (
 		<>
@@ -153,21 +183,29 @@ export default function Post({
 						at={user.at}
 						handlerEdit={handlerEdit}
 						handlerDelet={handlerDeletePost}
+						handlerRouteProfile={handlerRouteProfile}
 					/>
 					<CaptionPhraseContainer
 						stateEditPost={stateEditPost}
 						setStatePhrase={setStatePhrase}
 						statePhrase={statePhrase}
+						stop={handlerStopPropaganation}
 					/>
-					<Photo>
+					<Photo onClick={handlerStopPropaganation}>
+						{stateModalImage && (
+							<ViewImageModal
+								image={statePhoto}
+								handlerCloseModalPhoto={handlerCloseModalPhoto}
+							/>
+						)}
 						<PreviewPhoto
+							onClick={handlerCloseModalPhoto}
 							src={statePhoto}
 							style={
 								stateEditPost
 									? { filter: `brightness(0.25) opacity(0.75)` }
 									: null
 							}
-							alt=""
 						/>
 						{stateEditPost ? (
 							photo ? (
@@ -196,9 +234,68 @@ export default function Post({
 							)
 						) : null}
 					</Photo>
+					<ActionButtonsContainer
+						onPressLike={onPressLike}
+						like={like}
+						stateEditPost={stateEditPost}
+						stateLike={stateLike}
+						comments={comments}
+						stateFavorite={stateFavorite}
+						onPressFavorite={onPressFavorite}
+						favorite={favorite}
+					/>
+					{!stateEditPost && usersLikes && usersLikes.length > 0 && (
+						<LikedBy>
+							{usersLikes.map((value, key) => (
+								<Span>
+									<MiniAvatar
+										onClick={(evt) => handlerRouteProfile(evt, value.at)}
+										src={value.photo}
+										alt=""
+									/>
+								</Span>
+							))}
+
+							<P>
+								Liked by{" "}
+								<PeopleLike
+									onClick={(evt) =>
+										handlerRouteProfile(
+											evt,
+											usersLikes[usersLikes.length - 1].at
+										)
+									}
+								>
+									<b>
+										{usersLikes[usersLikes.length - 1]
+											? usersLikes[usersLikes.length - 1].at === userInfo.at
+												? "You"
+												: usersLikes[usersLikes.length - 1].firstname
+											: null}{" "}
+									</b>{" "}
+								</PeopleLike>
+								{usersLikes.length - 1 > 0 ? "and " : null}
+								{usersLikes.length - 1 > 0 ? (
+									<b>
+										{usersLikes.length - 1} other
+										{usersLikes.length - 1 > 1 ? "s" : null}
+									</b>
+								) : null}
+							</P>
+						</LikedBy>
+					)}
+					{!stateEditPost && !type && (
+						<TextMuted>View all {comments} comments</TextMuted>
+					)}
+
+					{stateEditPost && (
+						<SaveContainer>
+							<PrimaryButton onClick={updatePost}>Save</PrimaryButton>
+						</SaveContainer>
+					)}
 				</Container>
 			) : (
-				<ModalLoader />
+				<LoaderModal />
 			)}
 		</>
 	);

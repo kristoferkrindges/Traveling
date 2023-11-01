@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CreatePost from "../../../../components/features/post/createPost";
 import { PostContext } from "../../../../contexts/postContext";
 import { LoaderContainer } from "../../../../components/containers/loader.styled";
@@ -6,8 +6,17 @@ import Loader from "../../../../components/loader";
 import { StorieContext } from "../../../../contexts/storieContext";
 import Post from "../../../../components/features/post/post";
 export default function HomeMidTemplate() {
-	const { allPosts } = useContext(PostContext);
-	const { allStories } = useContext(StorieContext);
+	const { allPosts, findAllPosts } = useContext(PostContext);
+	const { allStories, findAllStories } = useContext(StorieContext);
+
+	useEffect(() => {
+		searchPostsAndStories();
+	}, []);
+
+	const searchPostsAndStories = async () => {
+		await findAllPosts();
+		await findAllStories();
+	};
 	return (
 		<>
 			{allPosts && allStories ? (
