@@ -7,6 +7,7 @@ import { UserContext } from "../contexts/userContext";
 import HomePage from "../pages/home";
 import AwaitPage from "../pages/await";
 import AuthPage from "../pages/auth";
+import OnlyPostTemplate from "../templates/onlyPost";
 
 export default function Routes() {
 	const { userInfo } = useContext(UserContext);
@@ -27,7 +28,20 @@ export default function Routes() {
 					}
 				></Route>
 			</Route>
-			<Route path="/"></Route>
+			<Route path="/post/:id" element={<PrivateRouter />}>
+				<Route
+					path="/post/:id"
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<OnlyPostTemplate />
+						) : (
+							<AwaitPage />
+						)
+					}
+				></Route>
+			</Route>
 		</Routed>
 	);
 }

@@ -5,6 +5,7 @@ import { LoaderContainer } from "../../../../components/containers/loader.styled
 import Loader from "../../../../components/loader";
 import { StorieContext } from "../../../../contexts/storieContext";
 import Post from "../../../../components/features/post/post";
+import { PostAllContainer } from "./style";
 export default function HomeMidTemplate() {
 	const { allPosts, findAllPosts } = useContext(PostContext);
 	const { allStories, findAllStories } = useContext(StorieContext);
@@ -24,22 +25,24 @@ export default function HomeMidTemplate() {
 					<CreatePost />
 					{allPosts &&
 						allPosts.map((value, key) => (
-							<Post
-								key={key}
-								type={false}
-								id={value.id}
-								phrase={value.phrase}
-								photo={value.img}
-								user={value.userAllResponse}
-								time={value.datepublic}
-								likes={value.likes}
-								comments={value.comments}
-								favorites={value.favorites}
-								pressLike={value.pressLike}
-								pressFavorite={value.pressFavorite}
-								alreadyEdit={value.edit}
-								usersLikes={value.usersLikes}
-							/>
+							<PostAllContainer>
+								<Post
+									key={key}
+									type={false}
+									id={value.id}
+									phrase={value.phrase}
+									photo={value.img}
+									user={value.userAllResponse}
+									time={value.datepublic}
+									likes={value.likes}
+									comments={value.comments}
+									favorites={value.favorites}
+									pressLike={value.pressLike}
+									pressFavorite={value.pressFavorite}
+									alreadyEdit={value.edit}
+									usersLikes={value.usersLikes}
+								/>
+							</PostAllContainer>
 						))}
 				</>
 			) : (

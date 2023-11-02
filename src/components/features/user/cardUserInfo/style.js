@@ -19,7 +19,7 @@ export const BoxOne = styled.div`
 	width: 100%;
 	height: 150px;
 	background-color: ${({ theme }) => theme.secondColor};
-	border-radius: 15px;
+	border-radius: 2rem;
 
 	&::before {
 		content: "";
@@ -114,7 +114,7 @@ export const Modal = styled.div`
 	position: absolute;
 	inset: 0;
 	overflow: hidden;
-	border-radius: 15px;
+	border-radius: 2rem;
 	img {
 		position: absolute;
 		width: 100%;
