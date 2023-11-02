@@ -1,7 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Heading } from "./style";
 import { H4Title } from "../../titles/h4Title.styled";
-import { EllipsIcon, PostIcon } from "../../icons/iO5Icons.styled";
+import {
+	CloseCircleIcon,
+	EllipsIcon,
+	PostIcon,
+} from "../../icons/iO5Icons.styled";
 import { ModalContext } from "../../../contexts/modalContext";
 import EllipsMenu from "../../menus/ellips";
 
@@ -16,6 +20,7 @@ export default function HeadingContainer({ type, text, click }) {
 			label: "Close",
 			handler: handlerEllips,
 			route: null,
+			icon: <CloseCircleIcon />,
 		},
 	];
 	return (

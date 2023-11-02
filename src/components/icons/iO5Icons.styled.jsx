@@ -122,6 +122,10 @@ export const EditIcon = styled(IoColorWand)`
 
 export const DeletIcon = styled(IoTrash)`
 	cursor: pointer;
+	&:hover {
+		opacity: 0.7;
+		cursor: pointer;
+	}
 `;
 
 export const ReportIcon = styled(IoAlertCircle)`

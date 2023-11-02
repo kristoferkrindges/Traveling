@@ -27,7 +27,11 @@ import {
 	Photo,
 	PreviewPhoto,
 } from "../modalCreatePost/style";
-import { CloudUploadIcon, DeletIcon } from "../../../icons/iO5Icons.styled";
+import {
+	CloudUploadIcon,
+	DeletIcon,
+	ImageIcon,
+} from "../../../icons/iO5Icons.styled";
 import ActionButtonsContainer from "../../../containers/actionButtons";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 import ViewImageModal from "../../../modals/viewImage";
@@ -65,6 +69,7 @@ export default function Post({
 	const [statePhrase, setStatePhrase] = useState(phrase);
 	const [stateEditPost, setStateEditPost] = useState(false);
 	const [stateModalImage, setStateModalImage] = useState(false);
+	const [stateTime] = useState(time);
 
 	const onPressLike = async (evt) => {
 		evt.stopPropagation();
@@ -104,7 +109,7 @@ export default function Post({
 		setProgress(false);
 		const post = {
 			phrase: statePhrase,
-			img: "",
+			img: statePhoto,
 			datePublic: formatTime(),
 			creatorId: "",
 		};
@@ -114,7 +119,6 @@ export default function Post({
 		setStateEdit(true);
 		return;
 	};
-
 	const handlerDeletePost = () => {
 		deletePost(id);
 		return;
@@ -173,14 +177,12 @@ export default function Post({
 			{progress ? (
 				<Container onClick={(evt) => handlerRoutePost(evt)}>
 					<HeadPostComment
-						photo={user.photo}
-						name={user.firstname + " " + user.lastname}
+						user={user}
 						time={
 							stateEdit
-								? formatTimeDifference(time) + " Edited"
-								: formatTimeDifference(time)
+								? formatTimeDifference(stateTime) + " Edited"
+								: formatTimeDifference(stateTime)
 						}
-						at={user.at}
 						handlerEdit={handlerEdit}
 						handlerDelet={handlerDeletePost}
 						handlerRouteProfile={handlerRouteProfile}
@@ -208,7 +210,7 @@ export default function Post({
 							}
 						/>
 						{stateEditPost ? (
-							photo ? (
+							statePhoto ? (
 								<EditPhoto>
 									<InputFile
 										id="uploadBtn"
@@ -228,7 +230,7 @@ export default function Post({
 										onChange={handlerPhoto}
 									/>
 									<LabelFile for="uploadBtn">
-										<CloudUploadIcon />
+										<ImageIcon />
 									</LabelFile>
 								</EditPhotoNoPhoto>
 							)

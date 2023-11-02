@@ -3,6 +3,12 @@ import styled from "styled-components";
 export const Head = styled.div`
 	display: flex;
 	justify-content: space-between;
+	& img:hover {
+		opacity: 0.7;
+	}
+`;
+export const ControllerCardProfile = styled.div`
+	position: absolute;
 `;
 
 export const User = styled.div`
@@ -13,6 +19,9 @@ export const User = styled.div`
 export const Ingo = styled.div``;
 export const Name = styled.h3`
 	cursor: pointer;
+	&:hover {
+		opacity: 0.7;
+	}
 `;
 export const Small = styled.small``;
 export const Edit = styled.span`

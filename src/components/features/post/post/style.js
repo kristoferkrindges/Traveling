@@ -25,6 +25,11 @@ export const EditPhotoNoPhoto = styled.div`
 	font-size: 3rem;
 	color: white;
 	margin-bottom: 1rem;
+
+	& svg {
+		color: ${({ theme }) => theme.text};
+		cursor: pointer;
+	}
 `;
 
 export const LikedBy = styled.div`

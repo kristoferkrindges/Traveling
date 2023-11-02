@@ -1,5 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Edit, Head, Ingo, Name, Small, User } from "./style";
+import {
+	Edit,
+	Head,
+	Ingo,
+	Name,
+	Small,
+	User,
+	ControllerCardProfile,
+} from "./style";
 import {
 	CloseCircleIcon,
 	DeletIcon,
@@ -10,13 +18,12 @@ import {
 import { AvatarPhoto } from "../../images/avatar.styled";
 import EllipsMenu from "../../menus/ellips";
 import { UserContext } from "../../../contexts/userContext";
+import CardProfile from "../../features/user/cardProfile";
 
 export default function HeadPostComment({
 	type,
-	photo,
-	name,
+	user,
 	time,
-	at,
 	handlerDelet,
 	handlerEdit,
 	handlerRouteProfile,
@@ -24,6 +31,7 @@ export default function HeadPostComment({
 	const { userInfo } = useContext(UserContext);
 
 	const [ellips, setEllips] = useState(false);
+	const [showCardProfile, setShowCardProfile] = useState(false);
 
 	const handlerEllips = (evt) => {
 		evt.stopPropagation();
@@ -37,7 +45,7 @@ export default function HeadPostComment({
 	};
 
 	const handlerRoute = (evt) => {
-		handlerRouteProfile(evt, at);
+		handlerRouteProfile(evt, user.at);
 	};
 
 	const optionsMenu = [
@@ -78,10 +86,27 @@ export default function HeadPostComment({
 
 	return (
 		<Head>
+			<ControllerCardProfile
+				onMouseEnter={() => setShowCardProfile(true)}
+				onMouseLeave={() => setShowCardProfile(false)}
+			>
+				{showCardProfile && (
+					<CardProfile user={user} handlerRoute={handlerRoute} />
+				)}
+			</ControllerCardProfile>
 			<User>
-				<AvatarPhoto src={photo} alt={name} onClick={handlerRoute} />
+				<AvatarPhoto
+					src={user.photo}
+					onClick={handlerRoute}
+					onMouseEnter={() => setShowCardProfile(true)}
+				/>
 				<Ingo>
-					<Name onClick={handlerRoute}>{name}</Name>
+					<Name
+						onClick={handlerRoute}
+						onMouseEnter={() => setShowCardProfile(true)}
+					>
+						{user.firstname + " " + user.lastname}
+					</Name>
 					<Small>{time}</Small>
 				</Ingo>
 			</User>
@@ -89,7 +114,9 @@ export default function HeadPostComment({
 				<EllipsIcon onClick={(evt) => handlerEllips(evt)} />
 				{ellips && (
 					<EllipsMenu
-						optionsMenu={userInfo.at === at ? optionsMenu : optionsMenuNotUser}
+						optionsMenu={
+							userInfo.at === user.at ? optionsMenu : optionsMenuNotUser
+						}
 					/>
 				)}
 			</Edit>
