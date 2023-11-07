@@ -8,7 +8,7 @@ import { AssistantContext } from "../../../../contexts/assistantContext";
 
 import LoaderModal from "../../../modals/loader";
 import {
-	Container,
+	PostContainer,
 	EditPhotoNoPhoto,
 	LikedBy,
 	Span,
@@ -50,6 +50,7 @@ export default function Post({
 	pressFavorite,
 	alreadyEdit,
 	usersLikes,
+	deletPostOne,
 }) {
 	const { update, deletePost } = useContext(PostContext);
 	const { userInfo, likePost, favoritePost } = useContext(UserContext);
@@ -62,6 +63,7 @@ export default function Post({
 	const [progress, setProgress] = useState(true);
 	const [file, setFile] = useState();
 	const [favorite, setFavorite] = useState(favorites);
+	const [showCardProfile, setShowCardProfile] = useState(false);
 	const [stateLike, setStateLike] = useState(pressLike);
 	const [stateFavorite, setStateFavorite] = useState(pressFavorite);
 	const [statePhoto, setStatePhoto] = useState(photo);
@@ -119,8 +121,10 @@ export default function Post({
 		setStateEdit(true);
 		return;
 	};
-	const handlerDeletePost = () => {
+	const handlerDeletePost = (evt) => {
+		evt.stopPropagation();
 		deletePost(id);
+		deletPostOne();
 		return;
 	};
 
@@ -175,7 +179,7 @@ export default function Post({
 	return (
 		<>
 			{progress ? (
-				<Container onClick={(evt) => handlerRoutePost(evt)}>
+				<PostContainer onClick={(evt) => handlerRoutePost(evt)}>
 					<HeadPostComment
 						user={user}
 						time={
@@ -186,6 +190,9 @@ export default function Post({
 						handlerEdit={handlerEdit}
 						handlerDelet={handlerDeletePost}
 						handlerRouteProfile={handlerRouteProfile}
+						showCardProfile={showCardProfile}
+						setShowCardProfile={setShowCardProfile}
+						type={false}
 					/>
 					<CaptionPhraseContainer
 						stateEditPost={stateEditPost}
@@ -237,6 +244,7 @@ export default function Post({
 						) : null}
 					</Photo>
 					<ActionButtonsContainer
+						type={false}
 						onPressLike={onPressLike}
 						like={like}
 						stateEditPost={stateEditPost}
@@ -295,7 +303,7 @@ export default function Post({
 							<PrimaryButton onClick={updatePost}>Save</PrimaryButton>
 						</SaveContainer>
 					)}
-				</Container>
+				</PostContainer>
 			) : (
 				<LoaderModal />
 			)}

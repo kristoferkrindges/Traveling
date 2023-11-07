@@ -15,7 +15,7 @@ import { AvatarPhoto } from "../../../images/avatar.styled";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 import { CommentContext } from "../../../../contexts/commentContext";
 import LoaderModal from "../../../modals/loader";
-export default function CreateComment({ type, idComment, postId }) {
+export default function CreateComment({ type, commentId, postId }) {
 	const { userInfo } = useContext(UserContext);
 	const { insertComment } = useContext(CommentContext);
 	const { formatTime } = useContext(AssistantContext);
@@ -27,7 +27,7 @@ export default function CreateComment({ type, idComment, postId }) {
 	const create = async (evt) => {
 		evt.preventDefault();
 		if (text) {
-			await createComment(text, type, idComment);
+			await createComment(text, type, commentId);
 			setText("");
 		} else {
 			toast.error("There is nothing to be comment");
@@ -42,7 +42,7 @@ export default function CreateComment({ type, idComment, postId }) {
 				phrase: text,
 				img: "",
 				datePublic: formatTime(),
-				parentComment: idComment,
+				parentComment: commentId,
 			};
 		} else {
 			comment = {

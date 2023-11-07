@@ -32,7 +32,23 @@ import {
 	IoTrash,
 	IoAlertCircle,
 	IoSend,
+	IoArrowRedo,
+	IoArrowUndo,
 } from "react-icons/io5";
+
+export const ReplyIcon = styled(IoArrowRedo)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+
+export const DontReplyIcon = styled(IoArrowUndo)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
 
 export const SendIcon = styled(IoSend)`
 	stroke: white;

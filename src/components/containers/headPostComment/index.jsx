@@ -27,11 +27,12 @@ export default function HeadPostComment({
 	handlerDelet,
 	handlerEdit,
 	handlerRouteProfile,
+	showCardProfile,
+	setShowCardProfile,
 }) {
 	const { userInfo } = useContext(UserContext);
 
 	const [ellips, setEllips] = useState(false);
-	const [showCardProfile, setShowCardProfile] = useState(false);
 
 	const handlerEllips = (evt) => {
 		evt.stopPropagation();
@@ -95,11 +96,13 @@ export default function HeadPostComment({
 				)}
 			</ControllerCardProfile>
 			<User>
-				<AvatarPhoto
-					src={user.photo}
-					onClick={handlerRoute}
-					onMouseEnter={() => setShowCardProfile(true)}
-				/>
+				{!type && (
+					<AvatarPhoto
+						src={user.photo}
+						onClick={handlerRoute}
+						onMouseEnter={() => setShowCardProfile(true)}
+					/>
+				)}
 				<Ingo>
 					<Name
 						onClick={handlerRoute}

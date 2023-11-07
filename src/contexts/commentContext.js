@@ -9,7 +9,7 @@ function CommentProvider({ children }) {
 		findChildsComments,
 		insertComment,
 		updateComment,
-		deleteComment,
+		deletComment,
 		likeComment,
 	} = useComment();
 	return (
@@ -19,7 +19,7 @@ function CommentProvider({ children }) {
 				findChildsComments,
 				insertComment,
 				updateComment,
-				deleteComment,
+				deletComment,
 				likeComment,
 			}}
 		>

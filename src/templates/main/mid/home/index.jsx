@@ -7,16 +7,21 @@ import { StorieContext } from "../../../../contexts/storieContext";
 import Post from "../../../../components/features/post/post";
 import { PostAllContainer } from "./style";
 export default function HomeMidTemplate() {
-	const { allPosts, findAllPosts } = useContext(PostContext);
+	const { findAllPosts } = useContext(PostContext);
 	const { allStories, findAllStories } = useContext(StorieContext);
+	const [allPosts, setAllPosts] = useState();
 
 	useEffect(() => {
 		searchPostsAndStories();
 	}, []);
 
 	const searchPostsAndStories = async () => {
-		await findAllPosts();
+		setAllPosts(await findAllPosts());
 		await findAllStories();
+	};
+
+	const deletPostOne = (postId) => {
+		setAllPosts((allPosts) => allPosts.filter((post) => post.id !== postId));
 	};
 	return (
 		<>
@@ -41,6 +46,7 @@ export default function HomeMidTemplate() {
 									pressFavorite={value.pressFavorite}
 									alreadyEdit={value.edit}
 									usersLikes={value.usersLikes}
+									deletPostOne={() => deletPostOne(value.id)}
 								/>
 							</PostAllContainer>
 						))}

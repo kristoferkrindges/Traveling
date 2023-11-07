@@ -55,7 +55,7 @@ export default function useComment() {
 		}
 	}
 
-	async function deleteComment(id) {
+	async function deletComment(id) {
 		try {
 			const data = await api.delete(`/comments/${id}`).then((response) => {
 				return response.data;
@@ -82,7 +82,7 @@ export default function useComment() {
 		findChildsComments,
 		insertComment,
 		updateComment,
-		deleteComment,
+		deletComment,
 		likeComment,
 	};
 }

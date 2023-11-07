@@ -10,7 +10,8 @@ export const CardProfileContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/* margin-bottom: 3.7rem; */
+	left: -1rem;
+	top: -1rem;
 	z-index: 999;
 `;
 

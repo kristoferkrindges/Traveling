@@ -3,6 +3,7 @@ export const Caption = styled.div`
 	margin-top: 0.8rem;
 	margin-bottom: 0.7rem;
 	margin-left: 0.2rem;
+	word-break: break-all;
 `;
 
 export const Form = styled.form`

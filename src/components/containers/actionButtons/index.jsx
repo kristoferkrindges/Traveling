@@ -10,8 +10,10 @@ import {
 	BookIcon,
 	BookPressIcon,
 	CommentIcon,
+	DontReplyIcon,
 	HeartIcon,
 	HeartPressIcon,
+	ReplyIcon,
 	ShareIcon,
 } from "../../icons/iO5Icons.styled";
 
@@ -25,6 +27,7 @@ export default function ActionButtonsContainer({
 	comments,
 	onPressLike,
 	onPressFavorite,
+	children,
 }) {
 	return (
 		<>
@@ -39,10 +42,12 @@ export default function ActionButtonsContainer({
 							)}
 							<Numbers>{like}</Numbers>
 						</Icon>
-						<Icon>
-							<CommentIcon />
-							<Numbers>{comments}</Numbers>
-						</Icon>
+						{!children && (
+							<Icon>
+								<CommentIcon />
+								<Numbers>{comments}</Numbers>
+							</Icon>
+						)}
 					</InteractionButtons>
 					<BookMark>
 						<BookMark>
@@ -51,14 +56,26 @@ export default function ActionButtonsContainer({
 									<ShareIcon />
 								</Icon>
 							)}
-							<Icon>
-								{stateFavorite ? (
-									<BookPressIcon onClick={onPressFavorite} />
+							{!children ? (
+								type ? (
+									<Icon>
+										{stateFavorite ? (
+											<DontReplyIcon onClick={(evt) => onPressFavorite(evt)} />
+										) : (
+											<ReplyIcon onClick={(evt) => onPressFavorite(evt)} />
+										)}
+									</Icon>
 								) : (
-									<BookIcon onClick={onPressFavorite} />
-								)}
-								<Numbers>{favorite}</Numbers>
-							</Icon>
+									<Icon>
+										{stateFavorite ? (
+											<BookPressIcon onClick={onPressFavorite} />
+										) : (
+											<BookIcon onClick={onPressFavorite} />
+										)}
+										<Numbers>{favorite}</Numbers>
+									</Icon>
+								)
+							) : null}
 						</BookMark>
 					</BookMark>
 				</ActionButtons>
