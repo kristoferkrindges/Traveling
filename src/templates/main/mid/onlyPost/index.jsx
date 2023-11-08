@@ -18,6 +18,7 @@ export default function OnlyPostMidTemplate() {
 	const navigate = useNavigate();
 
 	const [postId, setPostId] = useState();
+	const [comments, setComments] = useState();
 	const [commentsWithPost, setCommentsWithPost] = useState();
 
 	useEffect(() => {
@@ -27,7 +28,10 @@ export default function OnlyPostMidTemplate() {
 
 	const searchPostId = async () => {
 		const post = await findById(id);
-		setPostId(post);
+		if (post) {
+			setPostId(post);
+			setComments(post.comments);
+		}
 	};
 
 	const searchCommentsWithPost = async () => {
@@ -38,12 +42,17 @@ export default function OnlyPostMidTemplate() {
 		setCommentsWithPost((commentsWithPost) =>
 			commentsWithPost.filter((comment) => comment.id !== commentId)
 		);
+		console.log(commentsWithPost);
+		return;
 	};
-	const deletPostOne = () => {
+	const deletPostOne = (evt) => {
+		evt.stopPreventDefault();
 		setPostId(undefined);
 		navigate("/");
 	};
-	// new comment
+	const addCountComment = () => {
+		setComments(comments + 1);
+	};
 	return (
 		<>
 			{postId && commentsWithPost ? (
@@ -58,15 +67,20 @@ export default function OnlyPostMidTemplate() {
 							user={postId.userAllResponse}
 							time={postId.datepublic}
 							likes={postId.likes}
-							comments={postId.comments}
+							comments={comments}
 							favorites={postId.favorites}
 							pressLike={postId.pressLike}
 							pressFavorite={postId.pressFavorite}
 							alreadyEdit={postId.edit}
 							usersLikes={postId.usersLikes}
-							deletPostOne={deletPostOne}
+							deletPostOne={(evt) => deletPostOne(evt)}
 						/>
-						<CreateComment postId={postId.id} type={false} />
+						<CreateComment
+							postId={postId.id}
+							type={false}
+							setList={setCommentsWithPost}
+							addCount={addCountComment}
+						/>
 						{commentsWithPost.map((value, key) => (
 							<Comment
 								key={key}

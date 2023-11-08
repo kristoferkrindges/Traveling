@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -60,10 +60,13 @@ export default function Post({
 	const { pathname } = useLocation();
 
 	const [like, setLike] = useState(likes);
+	const [comment, setComment] = useState(comments);
+	const [usersLike, setUsersLike] = useState(usersLikes);
 	const [progress, setProgress] = useState(true);
 	const [file, setFile] = useState();
 	const [favorite, setFavorite] = useState(favorites);
 	const [showCardProfile, setShowCardProfile] = useState(false);
+	const [stateUser, setStateUser] = useState(user);
 	const [stateLike, setStateLike] = useState(pressLike);
 	const [stateFavorite, setStateFavorite] = useState(pressFavorite);
 	const [statePhoto, setStatePhoto] = useState(photo);
@@ -71,7 +74,33 @@ export default function Post({
 	const [statePhrase, setStatePhrase] = useState(phrase);
 	const [stateEditPost, setStateEditPost] = useState(false);
 	const [stateModalImage, setStateModalImage] = useState(false);
-	const [stateTime] = useState(time);
+	const [stateTime, setStateTime] = useState(time);
+
+	useEffect(() => {
+		setStatePhrase(phrase);
+		setStateUser(user);
+		setStatePhoto(photo);
+		setLike(likes);
+		setComment(comments);
+		setFavorite(favorites);
+		setStateTime(time);
+		setStateEdit(alreadyEdit);
+		setStateLike(pressLike);
+		setStateFavorite(pressFavorite);
+		setUsersLike(usersLikes);
+	}, [
+		phrase,
+		user,
+		photo,
+		time,
+		alreadyEdit,
+		pressLike,
+		likes,
+		comments,
+		favorites,
+		pressFavorite,
+		usersLikes,
+	]);
 
 	const onPressLike = async (evt) => {
 		evt.stopPropagation();
@@ -86,7 +115,6 @@ export default function Post({
 			setStateLike(true);
 			setLike(like + 1);
 		}
-		console.log("clicou");
 		return;
 	};
 
@@ -181,7 +209,7 @@ export default function Post({
 			{progress ? (
 				<PostContainer onClick={(evt) => handlerRoutePost(evt)}>
 					<HeadPostComment
-						user={user}
+						user={stateUser}
 						time={
 							stateEdit
 								? formatTimeDifference(stateTime) + " Edited"
@@ -249,14 +277,14 @@ export default function Post({
 						like={like}
 						stateEditPost={stateEditPost}
 						stateLike={stateLike}
-						comments={comments}
+						comments={comment}
 						stateFavorite={stateFavorite}
 						onPressFavorite={onPressFavorite}
 						favorite={favorite}
 					/>
-					{!stateEditPost && usersLikes && usersLikes.length > 0 && (
+					{!stateEditPost && usersLike && usersLike.length > 0 && (
 						<LikedBy>
-							{usersLikes.map((value, key) => (
+							{usersLike.map((value, key) => (
 								<Span>
 									<MiniAvatar
 										onClick={(evt) => handlerRouteProfile(evt, value.at)}
@@ -270,32 +298,29 @@ export default function Post({
 								Liked by{" "}
 								<PeopleLike
 									onClick={(evt) =>
-										handlerRouteProfile(
-											evt,
-											usersLikes[usersLikes.length - 1].at
-										)
+										handlerRouteProfile(evt, usersLike[usersLike.length - 1].at)
 									}
 								>
 									<b>
-										{usersLikes[usersLikes.length - 1]
-											? usersLikes[usersLikes.length - 1].at === userInfo.at
+										{usersLike[usersLike.length - 1]
+											? usersLike[usersLike.length - 1].at === userInfo.at
 												? "You"
-												: usersLikes[usersLikes.length - 1].firstname
+												: usersLike[usersLike.length - 1].firstname
 											: null}{" "}
 									</b>{" "}
 								</PeopleLike>
-								{usersLikes.length - 1 > 0 ? "and " : null}
-								{usersLikes.length - 1 > 0 ? (
+								{usersLike.length - 1 > 0 ? "and " : null}
+								{usersLike.length - 1 > 0 ? (
 									<b>
-										{usersLikes.length - 1} other
-										{usersLikes.length - 1 > 1 ? "s" : null}
+										{usersLike.length - 1} other
+										{usersLike.length - 1 > 1 ? "s" : null}
 									</b>
 								) : null}
 							</P>
 						</LikedBy>
 					)}
 					{!stateEditPost && !type && (
-						<TextMuted>View all {comments} comments</TextMuted>
+						<TextMuted>View all {comment} comments</TextMuted>
 					)}
 
 					{stateEditPost && (

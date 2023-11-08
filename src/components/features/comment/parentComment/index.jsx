@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Controller, Extends, Border } from "./style";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 import { AvatarPhoto } from "../../../images/avatar.styled";
@@ -18,7 +18,6 @@ export default function ParentComment({
 	likes,
 	phrase,
 	comments,
-	editComment,
 	handlerDelet,
 	alreadyEdit,
 	postId,
@@ -32,6 +31,7 @@ export default function ParentComment({
 
 	const [progress, setProgress] = useState(false);
 	const [showCardProfile, setShowCardProfile] = useState(false);
+	const [stateUser, setStateUser] = useState(user);
 	const [stateEdit, setStateEdit] = useState(false);
 	const [timeDate, setTimeDate] = useState(time);
 	const [alreadyEditComment, setAlreadyEditComment] = useState(alreadyEdit);
@@ -39,6 +39,15 @@ export default function ParentComment({
 	const [stateLike, setStateLike] = useState(pressLike);
 	const [stateCountLike, setStateCountLike] = useState(likes);
 	const [stateParentComment, setStateParentComment] = useState(false);
+
+	useEffect(() => {
+		setStatePhrase(phrase);
+		setStateUser(user);
+		setTimeDate(time);
+		setAlreadyEditComment(alreadyEdit);
+		setStateLike(pressLike);
+		setStateCountLike(likes);
+	}, [phrase, user, time, alreadyEdit, pressLike, likes]);
 
 	async function onPressLike() {
 		if (stateLike) {
@@ -84,13 +93,13 @@ export default function ParentComment({
 		<Controller>
 			<Border />
 			<Extends>
-				<AvatarPhoto src={user.photo} />
+				<AvatarPhoto src={stateUser.photo} />
 			</Extends>
 			<Right>
 				<TopContainer>
 					<HeadPostComment
 						type={true}
-						user={user}
+						user={stateUser}
 						time={
 							alreadyEditComment
 								? formatTimeDifference(timeDate) + " Edited"

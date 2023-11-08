@@ -15,7 +15,13 @@ import { AvatarPhoto } from "../../../images/avatar.styled";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 import { CommentContext } from "../../../../contexts/commentContext";
 import LoaderModal from "../../../modals/loader";
-export default function CreateComment({ type, commentId, postId }) {
+export default function CreateComment({
+	type,
+	commentId,
+	postId,
+	setList,
+	addCount,
+}) {
 	const { userInfo } = useContext(UserContext);
 	const { insertComment } = useContext(CommentContext);
 	const { formatTime } = useContext(AssistantContext);
@@ -52,9 +58,9 @@ export default function CreateComment({ type, commentId, postId }) {
 				postId: postId,
 			};
 		}
-		// const newComment = await insertComment(comment);
-		// setComments((prevComments) => [newComment, ...prevComments]);
-		await insertComment(comment);
+		const newComment = await insertComment(comment);
+		setList((prevComments) => [newComment, ...prevComments]);
+		addCount();
 		// await searchComments();
 		setProgress(false);
 	}

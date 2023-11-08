@@ -7,32 +7,33 @@ import { StorieContext } from "../../../../contexts/storieContext";
 import Post from "../../../../components/features/post/post";
 import { PostAllContainer } from "./style";
 export default function HomeMidTemplate() {
-	const { findAllPosts } = useContext(PostContext);
+	const { findAllPosts, allPosts } = useContext(PostContext);
 	const { allStories, findAllStories } = useContext(StorieContext);
-	const [allPosts, setAllPosts] = useState();
+	const [postsLoaded, setPostsLoaded] = useState(false);
 
 	useEffect(() => {
 		searchPostsAndStories();
 	}, []);
 
 	const searchPostsAndStories = async () => {
-		setAllPosts(await findAllPosts());
+		await findAllPosts();
 		await findAllStories();
+		setPostsLoaded(true);
 	};
 
-	const deletPostOne = (postId) => {
-		setAllPosts((allPosts) => allPosts.filter((post) => post.id !== postId));
+	const deletPostOne = () => {
+		return;
 	};
+
 	return (
 		<>
-			{allPosts && allStories ? (
+			{postsLoaded ? (
 				<>
 					<CreatePost />
-					{allPosts &&
+					{Array.isArray(allPosts) && allPosts.length > 0 ? (
 						allPosts.map((value, key) => (
-							<PostAllContainer>
+							<PostAllContainer key={key}>
 								<Post
-									key={key}
 									type={false}
 									id={value.id}
 									phrase={value.phrase}
@@ -46,10 +47,13 @@ export default function HomeMidTemplate() {
 									pressFavorite={value.pressFavorite}
 									alreadyEdit={value.edit}
 									usersLikes={value.usersLikes}
-									deletPostOne={() => deletPostOne(value.id)}
+									deletPostOne={deletPostOne}
 								/>
 							</PostAllContainer>
-						))}
+						))
+					) : (
+						<p>No posts to display</p>
+					)}
 				</>
 			) : (
 				<LoaderContainer>

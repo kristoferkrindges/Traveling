@@ -49,6 +49,12 @@ export default function HeadPostComment({
 		handlerRouteProfile(evt, user.at);
 	};
 
+	const handlerDeleted = (evt) => {
+		evt.stopPropagation();
+		handlerDelet(evt);
+		handlerEllips(evt);
+	};
+
 	const optionsMenu = [
 		{
 			label: "Close",
@@ -64,7 +70,7 @@ export default function HeadPostComment({
 		},
 		{
 			label: "Delet",
-			handler: handlerDelet,
+			handler: handlerDeleted,
 			icon: <DeletIcon />,
 			route: null,
 		},

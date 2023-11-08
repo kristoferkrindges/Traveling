@@ -3,17 +3,14 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import useFirebase from "./useFirebase";
 import useAuth from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function usePost() {
 	const { uploadImage } = useFirebase();
 	const { checkUser } = useAuth();
-	const [allPosts, setAllPosts] = useState();
+	const [allPosts, setAllPosts] = useState(undefined);
 
-	// useEffect(() => {
-	// 	if (!allPosts) {
-	// 		findAllPosts();
-	// 	}
-	// }, []);
+	const navigate = useNavigate();
 
 	async function findAllPosts() {
 		try {
@@ -29,17 +26,21 @@ export default function usePost() {
 
 	async function findById(id) {
 		try {
-			const response = await api.get(`/posts/${id}`);
-			return response.data;
+			const data = await api.get(`/posts/${id}`).then((response) => {
+				return response.data;
+			});
+			setAllPosts(data);
+			return data;
 		} catch (error) {
 			console.log(error);
-			throw error;
+			navigate("/");
 		}
 	}
 
 	async function findUsersFavorites(id) {
 		try {
 			const response = await api.get(`/posts/favorites/${id}`);
+			setAllPosts(response.data);
 			return response.data;
 		} catch (error) {
 			console.log(error);
@@ -50,6 +51,7 @@ export default function usePost() {
 	async function findUsersLikes(id) {
 		try {
 			const response = await api.get(`/posts/likes/${id}`);
+			setAllPosts(response.data);
 			return response.data;
 		} catch (error) {
 			console.log(error);

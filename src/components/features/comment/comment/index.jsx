@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { PostContainer, SaveContainer } from "../../post/post/style";
+import React, { useState, useContext, useEffect } from "react";
+import { SaveContainer } from "../../post/post/style";
 import HeadPostComment from "../../../containers/headPostComment";
 import {
 	Border,
@@ -40,8 +40,8 @@ export default function Comment({
 
 	const [progress, setProgress] = useState(false);
 	const [showCardProfile, setShowCardProfile] = useState(false);
+	const [stateUser, setStateUser] = useState(user);
 	const [stateEdit, setStateEdit] = useState(false);
-	const [statePhoto, setStatePhoto] = useState(user ? user.photo : "");
 	const [timeDate, setTimeDate] = useState(time);
 	const [alreadyEditComment, setAlreadyEditComment] = useState(alreadyEdit);
 	const [statePhrase, setStatePhrase] = useState(phrase);
@@ -50,6 +50,15 @@ export default function Comment({
 	const [stateParentComment, setStateParentComment] = useState(false);
 	const [parentsComments, setParentsComments] = useState();
 	const [progressChildren, setProgressChildren] = useState(false);
+
+	useEffect(() => {
+		setStatePhrase(phrase);
+		setStateUser(user);
+		setTimeDate(time);
+		setAlreadyEditComment(alreadyEdit);
+		setStateLike(pressLike);
+		setStateCountLike(likes);
+	}, [phrase, user, time, alreadyEdit, pressLike, likes]);
 
 	const handlerRouteProfile = (evt, at) => {
 		evt.stopPropagation();
@@ -100,7 +109,8 @@ export default function Comment({
 	const delet = async (commentId) => {
 		setProgress(true);
 		await deletComment(commentId);
-		onDeletComment();
+		await onDeletComment();
+		setProgress(false);
 	};
 
 	const replyComment = async (evt) => {
@@ -133,7 +143,6 @@ export default function Comment({
 			setStateCountLike(stateCountLike + 1);
 		}
 	};
-
 	return (
 		<>
 			{progress || progressChildren ? (
@@ -142,14 +151,14 @@ export default function Comment({
 				<CommentContainer>
 					<Controller>
 						<Extends>
-							<AvatarPhoto src={statePhoto} />
+							<AvatarPhoto src={stateUser.photo} />
 							<Border />
 						</Extends>
 						<Right>
 							<TopContainer>
 								<HeadPostComment
 									type={true}
-									user={user}
+									user={stateUser}
 									time={
 										alreadyEditComment
 											? formatTimeDifference(timeDate) + " Edited"
