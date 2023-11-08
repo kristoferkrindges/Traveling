@@ -42,7 +42,6 @@ export default function OnlyPostMidTemplate() {
 		setCommentsWithPost((commentsWithPost) =>
 			commentsWithPost.filter((comment) => comment.id !== commentId)
 		);
-		console.log(commentsWithPost);
 		return;
 	};
 	const deletPostOne = (evt) => {

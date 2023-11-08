@@ -18,7 +18,7 @@ export default function ParentComment({
 	likes,
 	phrase,
 	comments,
-	handlerDelet,
+	deleteComment,
 	alreadyEdit,
 	postId,
 	pressLike,
@@ -105,7 +105,7 @@ export default function ParentComment({
 								? formatTimeDifference(timeDate) + " Edited"
 								: formatTimeDifference(timeDate)
 						}
-						handlerDelet={() => handlerDelet(id)}
+						handlerDelet={(evt) => deleteComment(evt, id)}
 						handlerEdit={handlerEdit}
 						handlerRouteProfile={handlerRouteProfile}
 						setShowCardProfile={setShowCardProfile}

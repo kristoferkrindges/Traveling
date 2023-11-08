@@ -40,6 +40,7 @@ export default function Comment({
 
 	const [progress, setProgress] = useState(false);
 	const [showCardProfile, setShowCardProfile] = useState(false);
+	const [comment, setComment] = useState(comments);
 	const [stateUser, setStateUser] = useState(user);
 	const [stateEdit, setStateEdit] = useState(false);
 	const [timeDate, setTimeDate] = useState(time);
@@ -58,7 +59,8 @@ export default function Comment({
 		setAlreadyEditComment(alreadyEdit);
 		setStateLike(pressLike);
 		setStateCountLike(likes);
-	}, [phrase, user, time, alreadyEdit, pressLike, likes]);
+		setComment(comments);
+	}, [phrase, user, time, alreadyEdit, pressLike, likes, comments]);
 
 	const handlerRouteProfile = (evt, at) => {
 		evt.stopPropagation();
@@ -77,7 +79,7 @@ export default function Comment({
 				parentsComments.filter((comment) => comment.id !== commentId)
 			);
 		}
-		await delet(commentId);
+		await delet(commentId, option);
 	};
 
 	const handlerEdit = () => {
@@ -106,10 +108,12 @@ export default function Comment({
 		return;
 	};
 
-	const delet = async (commentId) => {
+	const delet = async (commentId, type) => {
 		setProgress(true);
 		await deletComment(commentId);
-		await onDeletComment();
+		if (!type) {
+			await onDeletComment();
+		}
 		setProgress(false);
 	};
 
@@ -142,6 +146,10 @@ export default function Comment({
 			setStateLike(true);
 			setStateCountLike(stateCountLike + 1);
 		}
+	};
+
+	const addCountComment = () => {
+		setComment(comment + 1);
 	};
 	return (
 		<>
@@ -190,7 +198,7 @@ export default function Comment({
 									like={stateCountLike}
 									stateEditPost={stateEdit}
 									stateLike={stateLike}
-									comments={comments}
+									comments={comment}
 									stateFavorite={stateParentComment}
 									onPressFavorite={replyComment}
 								/>
@@ -216,7 +224,12 @@ export default function Comment({
 									/>
 								))}
 							{!stateEdit && stateParentComment && (
-								<CreateComment commentId={id} type={true} />
+								<CreateComment
+									commentId={id}
+									type={true}
+									setList={setParentsComments}
+									addCount={addCountComment}
+								/>
 							)}
 						</Right>
 					</Controller>
