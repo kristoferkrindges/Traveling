@@ -58,15 +58,13 @@ export default function FeaturesRoutedMenu() {
 			<ContainerIcon>
 				<Link to={`/`}>
 					<HomeIcon
-						style={pathname === "/" ? { color: "hsl(252, 73%, 29%)" } : {}}
+						style={pathname === "/" ? { color: "#2c2c6c" } : {}}
 						onMouseEnter={handleMouseEnterHome}
 						onMouseLeave={handleMouseLeaveHome}
 					/>
 				</Link>
 				<BorderSelect
-					style={
-						pathname === "/" ? { backgroundColor: "hsl(252, 73%, 29%)" } : {}
-					}
+					style={pathname === "/" ? { backgroundColor: "#2c2c6c" } : {}}
 				/>
 				{showLegendHome && <Legend>Home</Legend>}
 			</ContainerIcon>
@@ -75,9 +73,7 @@ export default function FeaturesRoutedMenu() {
 				<Link to={`/profile/${userInfo.at}`}>
 					<ProfileIcon
 						style={
-							pathname === `/profile/${userInfo.at}`
-								? { color: "hsl(252, 73%, 29%)" }
-								: {}
+							pathname === `/profile/${userInfo.at}` ? { color: "#2c2c6c" } : {}
 						}
 						onMouseEnter={handleMouseEnterProfile}
 						onMouseLeave={handleMouseLeaveProfile}
@@ -86,7 +82,7 @@ export default function FeaturesRoutedMenu() {
 				<BorderSelect
 					style={
 						pathname === `/profile/${userInfo.at}`
-							? { backgroundColor: "hsl(252, 73%, 29%)" }
+							? { backgroundColor: "#2c2c6c" }
 							: {}
 					}
 				/>
@@ -96,19 +92,13 @@ export default function FeaturesRoutedMenu() {
 			<ContainerIcon>
 				<Link to={`/events`}>
 					<EventIcon
-						style={
-							pathname === `/events` ? { color: "hsl(252, 73%, 29%)" } : {}
-						}
+						style={pathname === `/events` ? { color: "#2c2c6c" } : {}}
 						onMouseEnter={handleMouseEnterEvents}
 						onMouseLeave={handleMouseLeaveEvents}
 					/>
 				</Link>
 				<BorderSelect
-					style={
-						pathname === `/events`
-							? { backgroundColor: "hsl(252, 73%, 29%)" }
-							: {}
-					}
+					style={pathname === `/events` ? { backgroundColor: "#2c2c6c" } : {}}
 				/>
 				{showLegendEvents && <Legend>Events</Legend>}
 			</ContainerIcon>
@@ -116,19 +106,13 @@ export default function FeaturesRoutedMenu() {
 			<ContainerIcon>
 				<Link to={`/messages`}>
 					<ChatIcon
-						style={
-							pathname === `/messages` ? { color: "hsl(252, 73%, 29%)" } : {}
-						}
+						style={pathname === `/messages` ? { color: "#2c2c6c" } : {}}
 						onMouseEnter={handleMouseEnterMessages}
 						onMouseLeave={handleMouseLeaveMessages}
 					/>
 				</Link>
 				<BorderSelect
-					style={
-						pathname === `/messages`
-							? { backgroundColor: "hsl(252, 73%, 29%)" }
-							: {}
-					}
+					style={pathname === `/messages` ? { backgroundColor: "#2c2c6c" } : {}}
 				/>
 				{showLegendMessages && <Legend>Message</Legend>}
 			</ContainerIcon>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import {
-	IoPersonCircleOutline,
+	IoPerson,
 	IoLockClosedOutline,
 	IoLogoGoogle,
 	IoMailOutline,
@@ -34,7 +34,10 @@ import {
 	IoSend,
 	IoArrowRedo,
 	IoArrowUndo,
+	IoCalendarClear,
 } from "react-icons/io5";
+
+export const CalendarIcon = styled(IoCalendarClear)``;
 
 export const ReplyIcon = styled(IoArrowRedo)`
 	&:hover {
@@ -59,7 +62,7 @@ export const SendIcon = styled(IoSend)`
 	}
 `;
 
-export const UserCircle = styled(IoPersonCircleOutline)``;
+export const UserCircle = styled(IoPerson)``;
 
 export const Mail = styled(IoMailOutline)``;
 
@@ -158,6 +161,9 @@ export const BookPressIcon = styled(IoBookmark)`
 `;
 export const CloseCircleIcon = styled(IoCloseCircle)`
 	cursor: pointer;
+	z-index: 999;
+	color: white;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 `;
 
 export const EditIcon = styled(IoColorWand)`

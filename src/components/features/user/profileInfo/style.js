@@ -1,103 +1,83 @@
 import styled from "styled-components";
 import { size } from "../../../../styles/variables";
 
-export const CardProfileContainer = styled.div`
-	position: absolute;
-	background-color: ${({ theme }) => theme.container};
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
-	padding: ${size.sm};
-	border-radius: ${size.lg};
+export const ProfileInfoContainer = styled.div`
+	font-size: 0.85rem;
+	line-height: 1.5;
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	flex-direction: column;
-	justify-content: space-between;
-	left: -1rem;
-	top: -1rem;
-	z-index: 999;
+	gap: 1rem;
 `;
 
 export const Head = styled.div`
 	position: relative;
 	display: flex;
-	overflow: hidden;
 	border-radius: ${size.lg};
+	overflow: hidden;
 	width: 100%;
-	height: 15vh;
+	height: 20vh;
 	background-color: ${({ theme }) => theme.secondColor};
 `;
 export const Bottom = styled.div`
 	position: relative;
+	background-color: ${({ theme }) => theme.container};
+	border-radius: ${size.lg};
+	padding: 4px;
 	font-size: 0.85rem;
 	line-height: 1.5;
-	width: 100%;
-	height: 20vh;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	height: 25vh;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 	gap: 1rem;
+	margin-bottom: 5rem;
 `;
 
-export const Banner = styled.img`
-	width: 100%;
-	object-fit: cover;
-`;
-
-export const EditPhotoCover = styled.label`
+export const Image = styled.div`
 	position: absolute;
-	top: 0.5rem;
-	right: -0.5rem;
-	padding: 0.6rem 1rem;
-	font-weight: 500;
-	border-radius: 2rem;
-	cursor: pointer;
-	transition: all 300ms ease;
-	/* background-color: ${({ theme }) => theme.secondColor};
-	border: 1px solid ${({ theme }) => theme.text}; */
-	color: white;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	&:hover {
-		opacity: 0.8;
-	}
-
-	@media only screen and (max-width: 1100px) {
-		font-size: 0.6rem;
-	}
-`;
-
-export const Photo = styled.div`
-	position: absolute;
-	top: -6rem;
-	height: 140px;
-	width: 140px;
+	top: -7rem;
+	height: 180px;
+	width: 180px;
 	border-radius: 50%;
 	padding: 3px;
 	background: ${({ theme }) => theme.background};
 `;
 
-export const UserPhoto = styled.img`
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
+export const EditPhotoProfile = styled.label`
+	position: absolute;
+	bottom: 5px;
+	right: 1rem;
+	width: 2rem;
+	height: 2rem;
 	border-radius: 50%;
+	cursor: pointer;
+	transition: all 300ms ease;
 	background-color: ${({ theme }) => theme.background};
 	border: 3px solid ${({ theme }) => theme.background};
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.1rem;
+	gap: 10px;
+	z-index: 10;
 	&:hover {
-		opacity: 0.5;
+		opacity: 0.8;
 	}
 `;
 
 export const Info = styled.div`
 	position: relative;
-	top: 1.5rem;
+	/* top: 4rem; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	color: ${({ theme }) => theme.text};
-	/* margin-top: 2.5rem; */
+	margin-top: 3.5rem;
 `;
 
 export const Name = styled.span`
@@ -125,7 +105,7 @@ export const Sign = styled.span`
 
 export const Lists = styled.ul`
 	position: relative;
-	top: 25px;
+	top: 15px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	justify-content: space-evenly;
@@ -162,4 +142,55 @@ export const Numbers = styled.span`
 	@media only screen and (max-width: 992px) {
 		font-size: 1.3em;
 	}
+`;
+
+export const Space = styled.div`
+	margin: 1rem;
+`;
+
+export const EditPhotoCover = styled.label`
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	padding: 0.6rem 1rem;
+	font-weight: 500;
+	border-radius: 2rem;
+	cursor: pointer;
+	transition: all 300ms ease;
+	background-color: ${({ theme }) => theme.text};
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
+	color: ${({ theme }) => theme.textInverse};
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	&:hover {
+		opacity: 0.8;
+	}
+
+	@media only screen and (max-width: 1100px) {
+		font-size: 0.6rem;
+	}
+`;
+
+export const InputFile = styled.input`
+	display: none;
+`;
+
+export const UserPhoto = styled.img`
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	background-color: ${({ theme }) => theme.background};
+	border: 3px solid ${({ theme }) => theme.background};
+	&:hover {
+		opacity: 0.5;
+	}
+`;
+
+export const Banner = styled.img`
+	width: 100%;
+	object-fit: cover;
 `;

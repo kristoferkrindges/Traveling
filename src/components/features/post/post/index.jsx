@@ -201,7 +201,6 @@ export default function Post({
 	};
 	const handlerCloseModalPhoto = (evt) => {
 		evt.stopPropagation();
-		console.log("clicou");
 		stateModalImage ? setStateModalImage(false) : setStateModalImage(true);
 	};
 	return (

@@ -14,6 +14,7 @@ export default function usePost() {
 
 	async function findAllPosts() {
 		try {
+			setAllPosts(undefined);
 			const data = await api.get("/posts").then((response) => {
 				return response.data;
 			});
@@ -26,6 +27,7 @@ export default function usePost() {
 
 	async function findById(id) {
 		try {
+			setAllPosts(undefined);
 			const data = await api.get(`/posts/${id}`).then((response) => {
 				return response.data;
 			});
@@ -39,6 +41,7 @@ export default function usePost() {
 
 	async function findUsersFavorites(id) {
 		try {
+			setAllPosts(undefined);
 			const response = await api.get(`/posts/favorites/${id}`);
 			setAllPosts(response.data);
 			return response.data;
@@ -50,6 +53,7 @@ export default function usePost() {
 
 	async function findUsersLikes(id) {
 		try {
+			setAllPosts(undefined);
 			const response = await api.get(`/posts/likes/${id}`);
 			setAllPosts(response.data);
 			return response.data;

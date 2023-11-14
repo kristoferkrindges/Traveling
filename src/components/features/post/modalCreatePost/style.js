@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { size } from "../../../../styles/variables";
 
 export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	background: ${({ theme }) => theme.container};
-	border-radius: 1rem;
-	padding: 1rem;
+	border-radius: ${size.lg};
+	padding: ${size.sm};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 	width: 700px;
 	margin: 1rem 0 0 1rem;

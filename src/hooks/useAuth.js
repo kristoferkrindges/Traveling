@@ -63,7 +63,7 @@ export default function useAuth() {
 			const data = await api.put("/users", user).then((response) => {
 				return response.data;
 			});
-			await checkUser();
+			setUserInfo(data);
 			toast.success("Updated with success!");
 			return data;
 		} catch (error) {
@@ -160,9 +160,7 @@ export default function useAuth() {
 				.then((response) => {
 					return response.data;
 				});
-			userInfo.photo = img;
-			await checkUser();
-			console.log(data.response.message);
+			setUserInfo(data);
 			toast.success("Photo updated with success!");
 		} catch (error) {
 			console.log(error);
@@ -175,11 +173,12 @@ export default function useAuth() {
 			const photo = {
 				imageUrl: img,
 			};
-			await api.patch("/users/updatebanner", photo).then((response) => {
-				return response.data;
-			});
-			userInfo.banner = img;
-			await checkUser();
+			const data = await api
+				.patch("/users/updatebanner", photo)
+				.then((response) => {
+					return response.data;
+				});
+			setUserInfo(data);
 			toast.success("Banner updated with success!");
 		} catch (error) {
 			console.log(error.response);
@@ -245,9 +244,9 @@ export default function useAuth() {
 		}
 	}
 
-	async function getPostsWithLiked() {
+	async function getPostsWithLiked(id) {
 		try {
-			const data = await api.get("/users/like").then((response) => {
+			const data = await api.get(`/users/likes/${id}`).then((response) => {
 				return response.data;
 			});
 			return data;
@@ -256,9 +255,9 @@ export default function useAuth() {
 		}
 	}
 
-	async function getPostsWithFavorites() {
+	async function getPostsWithFavorites(id) {
 		try {
-			const data = await api.get("/users/favorites").then((response) => {
+			const data = await api.get(`/users/favorites/${id}`).then((response) => {
 				return response.data;
 			});
 			return data;

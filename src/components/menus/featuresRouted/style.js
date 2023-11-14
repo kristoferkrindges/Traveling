@@ -5,7 +5,9 @@ export const Navigation = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 80px;
+	/* justify-content: space-around; */
 	z-index: 999;
+	/* width: 100%; */
 	/* margin-right: 5rem; */
 `;
 
@@ -29,7 +31,9 @@ export const ContainerIcon = styled.span`
 export const BorderSelect = styled.div`
 	position: absolute;
 	width: 4rem;
-	padding: 1px;
+	height: 3px;
+	border-radius: 2rem;
+	/* padding: 1px; */
 	background-color: transparent;
 	left: -1.3rem;
 	top: 2.9rem;

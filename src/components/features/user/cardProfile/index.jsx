@@ -13,10 +13,10 @@ import {
 	Lists,
 	List,
 	Numbers,
-	Button,
 } from "./style";
 import { UserCircle } from "../../../icons/iO5Icons.styled";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
+import { BorderButton } from "../../../buttons/border/borderButton.styled";
 export default function CardProfile({ type, user, handlerRoute }) {
 	return (
 		<CardProfileContainer onClick={(evt) => handlerRoute(evt)}>
@@ -49,7 +49,7 @@ export default function CardProfile({ type, user, handlerRoute }) {
 						Following<Numbers>{user.followings}</Numbers>
 					</List>
 				</Lists>
-				<Button>Profile</Button>
+				<BorderButton>Profile</BorderButton>
 			</Bottom>
 		</CardProfileContainer>
 	);
