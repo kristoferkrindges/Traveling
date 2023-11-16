@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { format } from "date-fns-tz";
 export default function useAssistant() {
-	function formatTimeDifference(timestamp) {
+	const [filteredData, setFilteredData] = useState([]);
+	const [wordEntered, setWordEntered] = useState("");
+
+	const formatTimeDifference = (timestamp) => {
 		const now = new Date().getTime();
 		const difference = now - timestamp;
 
@@ -20,9 +24,9 @@ export default function useAssistant() {
 			const daysAgo = Math.floor(difference / 86400000);
 			return `${daysAgo} ${daysAgo === 1 ? "day" : "days"} ago`;
 		}
-	}
+	};
 
-	function formatTime() {
+	const formatTime = () => {
 		const brasiliaTimeZone = "America/Sao_Paulo";
 		const brasiliaCurrentDateTime = new Date();
 		const formattedDateTime = format(
@@ -31,9 +35,9 @@ export default function useAssistant() {
 			{ timeZone: brasiliaTimeZone }
 		);
 		return formattedDateTime;
-	}
+	};
 
-	function dateToSeconds(dateString) {
+	const dateToSeconds = (dateString) => {
 		const date = new Date(dateString);
 		if (isNaN(date)) {
 			return "Invalid date";
@@ -41,11 +45,30 @@ export default function useAssistant() {
 
 		const timestamp = Math.floor(date.getTime() / 1000);
 		return timestamp;
-	}
+	};
+
+	const handleFilter = (evt, data) => {
+		const searchWord = evt.target.value;
+		setWordEntered(searchWord);
+		const newFilter = data.filter((value) => {
+			return (value.firstname + " " + value.lastname)
+				.toLowerCase()
+				.includes(searchWord.toLowerCase());
+		});
+
+		if (searchWord === "") {
+			setFilteredData([]);
+		} else {
+			setFilteredData(newFilter);
+		}
+		return filteredData;
+	};
 
 	return {
 		formatTimeDifference,
 		formatTime,
 		dateToSeconds,
+		handleFilter,
+		wordEntered,
 	};
 }

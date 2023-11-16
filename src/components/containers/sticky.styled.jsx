@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const ContainerSticky = styled.div`
 	height: max-content;
 	position: sticky;
@@ -6,7 +7,7 @@ export const ContainerSticky = styled.div`
 	bottom: ${(props) => props.bottom};
 
 	@media only screen and (max-width: 1200px) {
-		width: 5rem;
+		/* width: 5rem; */
 		z-index: 5;
 	}
 `;

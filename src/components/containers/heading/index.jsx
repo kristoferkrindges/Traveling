@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Heading } from "./style";
 import { H4Title } from "../../titles/h4Title.styled";
 import {
 	BookPressIcon,
+	ChatIcon,
 	CloseCircleIcon,
 	EllipsIcon,
 	HeartPressIcon,
+	NotificationIcon,
 	PostIcon,
 	ProfileIcon,
 } from "../../icons/iO5Icons.styled";
-import { ModalContext } from "../../../contexts/modalContext";
 import EllipsMenu from "../../menus/ellips";
 
 export default function HeadingContainer({ type, text, click }) {
@@ -42,8 +43,16 @@ export default function HeadingContainer({ type, text, click }) {
 			{type === "Likes" && <HeartPressIcon />}
 			{type === "Favorites" && <BookPressIcon />}
 			<H4Title>{text}</H4Title>
-			<EllipsIcon onClick={handlerEllips} />
-			{ellips && <EllipsMenu optionsMenu={optionsMenu} />}
+			{type !== "Messages" && type !== "Notifications" ? (
+				<>
+					<EllipsIcon onClick={handlerEllips} />
+					{ellips && <EllipsMenu optionsMenu={optionsMenu} />}
+				</>
+			) : type === "Messages" ? (
+				<ChatIcon />
+			) : (
+				<NotificationIcon />
+			)}
 		</Heading>
 	);
 }

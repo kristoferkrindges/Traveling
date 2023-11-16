@@ -3,7 +3,7 @@ import { size } from "../../../../styles/variables";
 export const ContainerResult = styled.div`
 	position: absolute;
 	top: calc(100% + 20px);
-	right: 0;
+	left: 0;
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;

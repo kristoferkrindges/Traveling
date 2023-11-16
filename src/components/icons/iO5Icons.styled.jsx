@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import {
+	IoPeople,
 	IoPerson,
 	IoLockClosedOutline,
 	IoLogoGoogle,
@@ -65,6 +66,8 @@ export const SendIcon = styled(IoSend)`
 export const UserCircle = styled(IoPerson)``;
 
 export const Mail = styled(IoMailOutline)``;
+
+export const FollowingsIcon = styled(IoPeople)``;
 
 export const TwoPeople = styled(IoPeopleCircleOutline)``;
 
@@ -162,7 +165,7 @@ export const BookPressIcon = styled(IoBookmark)`
 export const CloseCircleIcon = styled(IoCloseCircle)`
 	cursor: pointer;
 	z-index: 999;
-	color: white;
+	color: ${({ theme }) => theme.text};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 `;
 

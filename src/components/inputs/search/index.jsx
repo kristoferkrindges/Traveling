@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { SearchBar, InputSearch } from "./style";
+import { SearchBar } from "./style";
 import { SearchIcon } from "../../icons/iO5Icons.styled";
+import { SearchInput } from "../searchBar/style";
 import ResultSearchUsersModal from "../../features/user/resultSearchUsers";
 import { UserContext } from "../../../contexts/userContext";
 
-export default function SearchInput() {
+export default function SearchTopMenu() {
 	const { findAll } = useContext(UserContext);
 	const [open, setOpen] = useState(false);
 	const [data, setData] = useState([]);
@@ -62,7 +63,7 @@ export default function SearchInput() {
 	return (
 		<SearchBar ref={searchInputRef}>
 			<SearchIcon />
-			<InputSearch
+			<SearchInput
 				type="search"
 				placeholder="Search"
 				value={wordEntered}

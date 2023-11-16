@@ -28,12 +28,18 @@ export const LeftSideTop = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+	/* width: 90%; */
+`;
+
+export const MidSideTop = styled.div`
+	/* width: 100%; */
 `;
 
 export const RightSideTop = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
+	/* width: 100%; */
 `;
 
 // export const ContainerSideTop = styled.div`

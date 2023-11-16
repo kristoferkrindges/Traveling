@@ -6,6 +6,7 @@ import UserMessages from "../userMessage";
 import { NotContentYet } from "../../../../templates/main/mid/profile/style";
 import Loader from "../../../loader";
 import { PostContext } from "../../../../contexts/postContext";
+import SearchBar from "../../../inputs/searchBar";
 
 export default function CardFollowingsAndFollowers({
 	id,
@@ -19,6 +20,7 @@ export default function CardFollowingsAndFollowers({
 	const modalRef = useRef(null);
 
 	const [users, setUsers] = useState([]);
+	const [filteredData, setFilteredData] = useState([]);
 
 	useEffect(() => {
 		if (type === "Followers") {
@@ -34,6 +36,10 @@ export default function CardFollowingsAndFollowers({
 			findFavoritesUsers();
 		}
 	}, [id, type]);
+
+	useEffect(() => {
+		setFilteredData(users);
+	}, [users]);
 
 	useEffect(() => {
 		document.addEventListener("click", handleClickOutside);
@@ -79,9 +85,10 @@ export default function CardFollowingsAndFollowers({
 	return (
 		<FollowersAndFollowingsContainer ref={modalRef}>
 			<HeadingContainer type={type} text={type} click={handlerClose} />
+			<SearchBar data={users} setFilteredData={setFilteredData} />
 			{users ? (
-				users.length > 0 ? (
-					users.map((value, key) => (
+				filteredData.length > 0 ? (
+					filteredData.map((value, key) => (
 						<UserMessages
 							key={key}
 							photo={value.photo}

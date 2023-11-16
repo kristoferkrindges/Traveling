@@ -37,17 +37,17 @@ export default function ActionButtonsContainer({
 	] = useState(undefined);
 	return (
 		<>
+			{stateModalFollowingsAndFollowers !== undefined && (
+				<CardFollowingsAndFollowers
+					id={id}
+					type={stateModalFollowingsAndFollowers}
+					setStateModalFollowingsAndFollowers={
+						setStateModalFollowingsAndFollowers
+					}
+				/>
+			)}
 			{!stateEditPost && (
 				<ActionButtons>
-					{stateModalFollowingsAndFollowers !== undefined && (
-						<CardFollowingsAndFollowers
-							id={id}
-							type={stateModalFollowingsAndFollowers}
-							setStateModalFollowingsAndFollowers={
-								setStateModalFollowingsAndFollowers
-							}
-						/>
-					)}
 					<InteractionButtons>
 						<Icon>
 							{stateLike ? (

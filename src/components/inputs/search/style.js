@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const SearchBar = styled.div`
 	position: relative;
 	display: flex;
@@ -10,12 +11,6 @@ export const SearchBar = styled.div`
 	svg {
 		font-size: 1.8rem;
 	}
-	width: 290px;
-`;
-export const InputSearch = styled.input`
-	background: transparent;
-	width: 15vw;
-	margin-left: 1rem;
-	font-size: 0.9rem;
-	color: ${({ theme }) => theme.text};
+	max-width: 290px;
+	/* width: 290px; */
 `;
