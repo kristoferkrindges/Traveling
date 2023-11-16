@@ -12,10 +12,18 @@ import EllipsMenu from "../../menus/ellips";
 
 export default function HeadingContainer({ type, text, click }) {
 	const [ellips, setEllips] = useState(false);
-	const handlerEllips = (evt) => {
-		// evt.stopPropagation();
-		ellips ? setEllips(false) : setEllips(true);
+
+	const handlerEllips = () => {
+		if (ellips) {
+			if (click) {
+				click();
+			}
+			setEllips(false);
+		} else {
+			setEllips(true);
+		}
 	};
+
 	const optionsMenu = [
 		{
 			label: "Close",
@@ -24,6 +32,7 @@ export default function HeadingContainer({ type, text, click }) {
 			icon: <CloseCircleIcon />,
 		},
 	];
+
 	return (
 		<Heading>
 			{type === "CreatePost" && <PostIcon />}

@@ -16,8 +16,6 @@ export default function ProfileMidTemplate() {
 		findUserByAt,
 		updatePhoto,
 		updateBanner,
-		getFollowers,
-		getFollowings,
 		getPostsWithLiked,
 		getPostsUser,
 		getPostsWithFavorites,
@@ -25,8 +23,6 @@ export default function ProfileMidTemplate() {
 
 	const [user, setUser] = useState({});
 	const [equal, setEqual] = useState();
-	const [followers, setFollowers] = useState([]);
-	const [followings, setFollowings] = useState([]);
 	const [posts, setPosts] = useState([]);
 	const [postsLike, setPostsLike] = useState([]);
 	const [postsFavorite, setPostsFavorite] = useState([]);
@@ -77,30 +73,6 @@ export default function ProfileMidTemplate() {
 		}
 		setSearch("Favorites");
 		return;
-	}
-
-	async function findFollowers(userId) {
-		let response;
-		if (equal === "Owner") {
-			response = await getFollowers(userId ? userId : user.id);
-			setFollowers(response || []);
-		} else {
-			response = await getFollowers(userId ? userId : user.id);
-			setFollowers(response || []);
-		}
-		setSearch("Followers");
-	}
-
-	async function findFollowings(userId) {
-		let response;
-		if (equal === "Owner") {
-			response = await getFollowings(userId ? userId : user.id);
-			setFollowings(response || []);
-		} else {
-			response = await getFollowings(userId ? userId : user.id);
-			setFollowings(response || []);
-		}
-		setSearch("Followings");
 	}
 
 	return (

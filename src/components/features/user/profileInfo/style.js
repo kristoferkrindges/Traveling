@@ -119,11 +119,14 @@ export const List = styled.li`
 	text-align: center;
 	padding: 0 10px;
 	font-size: 1rem;
-	font-weight: 200;
-	/* color: #999; */
+	font-weight: 500;
+	cursor: pointer;
 	color: ${({ theme }) => theme.text};
 	&:not(:last-child) {
 		border-right: 1px solid #ccc;
+	}
+	&:hover {
+		opacity: 0.5;
 	}
 
 	@media only screen and (max-width: 992px) {
@@ -187,6 +190,7 @@ export const UserPhoto = styled.img`
 	border: 3px solid ${({ theme }) => theme.background};
 	&:hover {
 		opacity: 0.5;
+		cursor: pointer;
 	}
 `;
 

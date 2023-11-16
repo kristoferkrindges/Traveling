@@ -23,6 +23,7 @@ import LoaderModal from "../../../modals/loader";
 import { UserContext } from "../../../../contexts/userContext";
 import EditProfileModal from "../editProfileModal";
 import ViewImageModal from "../../../modals/viewImage";
+import CardFollowingsAndFollowers from "../cardFollowingsAndFollowers";
 export default function ProfileInfo({
 	user,
 	equal,
@@ -40,9 +41,15 @@ export default function ProfileInfo({
 	const [at, setAt] = useState(user.at);
 	const [banner, setBanner] = useState(user.banner);
 	const [press, setPress] = useState(user.follow);
+	const [id, setId] = useState(user.id);
 	const [stateModalImage, setStateModalImage] = useState(false);
+	const [
+		stateModalFollowingsAndFollowers,
+		setStateModalFollowingsAndFollowers,
+	] = useState(undefined);
 
 	useEffect(() => {
+		setStateModalFollowingsAndFollowers(undefined);
 		setPhoto(user.photo);
 		setFollowers(user.followers || 0);
 		setStateFollow(user.follow);
@@ -50,6 +57,7 @@ export default function ProfileInfo({
 		setAt(user.at);
 		setBanner(user.banner);
 		setPress(user.follow);
+		setId(user.id);
 	}, [
 		user.photo,
 		user.followers,
@@ -58,6 +66,7 @@ export default function ProfileInfo({
 		user.lastname,
 		user.at,
 		user.banner,
+		user.id,
 	]);
 
 	const handleUploadPhoto = async (e) => {
@@ -97,6 +106,7 @@ export default function ProfileInfo({
 		evt.stopPropagation();
 		stateModalImage ? setStateModalImage(false) : setStateModalImage(true);
 	};
+
 	return (
 		<>
 			{progress && <LoaderModal />}
@@ -159,13 +169,26 @@ export default function ProfileInfo({
 						<List>
 							Posts<Numbers>{user.posts}</Numbers>
 						</List>
-						<List>
+						<List
+							onClick={() => setStateModalFollowingsAndFollowers("Followers")}
+						>
 							Followers<Numbers>{followers}</Numbers>
 						</List>
-						<List>
+						<List
+							onClick={() => setStateModalFollowingsAndFollowers("Followings")}
+						>
 							Following<Numbers>{user.followings}</Numbers>
 						</List>
 					</Lists>
+					{stateModalFollowingsAndFollowers !== undefined && (
+						<CardFollowingsAndFollowers
+							id={id}
+							type={stateModalFollowingsAndFollowers}
+							setStateModalFollowingsAndFollowers={
+								setStateModalFollowingsAndFollowers
+							}
+						/>
+					)}
 					{equal === "Owner" ? (
 						<BorderButton onClick={handlerModalEdit}>
 							<EditIcon />

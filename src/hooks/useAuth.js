@@ -95,7 +95,6 @@ export default function useAuth() {
 	async function findUserByAt(at) {
 		try {
 			const response = await api.get(`/users/profile/${at}`);
-			console.log(response);
 			return response.data;
 		} catch (error) {
 			console.log(error);

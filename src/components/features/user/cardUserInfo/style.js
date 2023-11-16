@@ -210,7 +210,7 @@ export const List = styled.li`
 	padding: 0 10px;
 	font-size: 0.85rem;
 	font-weight: 500;
-	color: #999;
+	color: ${({ theme }) => theme.text};
 	&:not(:last-child) {
 		border-right: 1px solid #ccc;
 	}
