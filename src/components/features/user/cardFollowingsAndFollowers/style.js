@@ -10,7 +10,7 @@ export const FollowersAndFollowingsContainer = styled.div`
 	border-radius: ${size.lg};
 	padding: ${size.sm};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
-	width: 500px;
+	min-width: 20vw;
 	margin: 1rem 0 0 1rem;
 	z-index: 500;
 `;

@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { Heading } from "./style";
 import { H4Title } from "../../titles/h4Title.styled";
 import {
+	BookPressIcon,
 	CloseCircleIcon,
 	EllipsIcon,
+	HeartPressIcon,
 	PostIcon,
 	ProfileIcon,
 } from "../../icons/iO5Icons.styled";
@@ -37,6 +39,8 @@ export default function HeadingContainer({ type, text, click }) {
 		<Heading>
 			{type === "CreatePost" && <PostIcon />}
 			{type === "EditInfoUser" && <ProfileIcon />}
+			{type === "Likes" && <HeartPressIcon />}
+			{type === "Favorites" && <BookPressIcon />}
 			<H4Title>{text}</H4Title>
 			<EllipsIcon onClick={handlerEllips} />
 			{ellips && <EllipsMenu optionsMenu={optionsMenu} />}

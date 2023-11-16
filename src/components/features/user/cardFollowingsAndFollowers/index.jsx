@@ -5,6 +5,7 @@ import HeadingContainer from "../../../containers/heading";
 import UserMessages from "../userMessage";
 import { NotContentYet } from "../../../../templates/main/mid/profile/style";
 import Loader from "../../../loader";
+import { PostContext } from "../../../../contexts/postContext";
 
 export default function CardFollowingsAndFollowers({
 	id,
@@ -12,6 +13,8 @@ export default function CardFollowingsAndFollowers({
 	setStateModalFollowingsAndFollowers,
 }) {
 	const { getFollowers, getFollowings } = useContext(UserContext);
+
+	const { findUsersLikes, findUsersFavorites } = useContext(PostContext);
 
 	const modalRef = useRef(null);
 
@@ -23,6 +26,12 @@ export default function CardFollowingsAndFollowers({
 		}
 		if (type === "Followings") {
 			findFollowings();
+		}
+		if (type === "Likes") {
+			findLikesUsers();
+		}
+		if (type === "Favorites") {
+			findFavoritesUsers();
 		}
 	}, [id, type]);
 
@@ -39,6 +48,18 @@ export default function CardFollowingsAndFollowers({
 		}
 	};
 
+	const findLikesUsers = async () => {
+		setUsers([]);
+		const response = await findUsersLikes(id);
+		setUsers(response || []);
+	};
+
+	const findFavoritesUsers = async () => {
+		setUsers([]);
+		const response = await findUsersFavorites(id);
+		setUsers(response || []);
+	};
+
 	const findFollowers = async () => {
 		setUsers([]);
 		const response = await getFollowers(id);
@@ -50,13 +71,14 @@ export default function CardFollowingsAndFollowers({
 		const response = await getFollowings(id);
 		setUsers(response || []);
 	};
+
 	const handlerClose = () => {
 		setStateModalFollowingsAndFollowers(undefined);
 	};
 
 	return (
 		<FollowersAndFollowingsContainer ref={modalRef}>
-			<HeadingContainer text={type} click={handlerClose} />
+			<HeadingContainer type={type} text={type} click={handlerClose} />
 			{users ? (
 				users.length > 0 ? (
 					users.map((value, key) => (
@@ -64,9 +86,7 @@ export default function CardFollowingsAndFollowers({
 							key={key}
 							photo={value.photo}
 							name={value.firstname + " " + value.lastname}
-							// message={value.message[value.message.length - 1]}
 							message={"@" + value.at}
-							// online={value.online}
 							online={false}
 							type={false}
 							at={value.at}

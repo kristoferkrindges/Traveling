@@ -280,6 +280,7 @@ export default function Post({
 						stateFavorite={stateFavorite}
 						onPressFavorite={onPressFavorite}
 						favorite={favorite}
+						id={id}
 					/>
 					{!stateEditPost && usersLike && usersLike.length > 0 && (
 						<LikedBy>

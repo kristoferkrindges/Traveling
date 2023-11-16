@@ -12,7 +12,7 @@ import {
 	IoChatbubble,
 	IoNotifications,
 	IoAirplane,
-	IoSearchOutline,
+	IoSearch,
 	IoSettings,
 	IoLogOut,
 	IoMoon,
@@ -86,7 +86,7 @@ export const NotificationIcon = styled(IoNotifications)``;
 
 export const EventIcon = styled(IoAirplane)``;
 
-export const SearchIcon = styled(IoSearchOutline)``;
+export const SearchIcon = styled(IoSearch)``;
 
 export const SettingsIcon = styled(IoSettings)``;
 

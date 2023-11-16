@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	ActionButtons,
 	InteractionButtons,
@@ -16,8 +16,10 @@ import {
 	ReplyIcon,
 	ShareIcon,
 } from "../../icons/iO5Icons.styled";
+import CardFollowingsAndFollowers from "../../features/user/cardFollowingsAndFollowers";
 
 export default function ActionButtonsContainer({
+	id,
 	type,
 	stateEditPost,
 	stateLike,
@@ -29,10 +31,23 @@ export default function ActionButtonsContainer({
 	onPressFavorite,
 	children,
 }) {
+	const [
+		stateModalFollowingsAndFollowers,
+		setStateModalFollowingsAndFollowers,
+	] = useState(undefined);
 	return (
 		<>
 			{!stateEditPost && (
 				<ActionButtons>
+					{stateModalFollowingsAndFollowers !== undefined && (
+						<CardFollowingsAndFollowers
+							id={id}
+							type={stateModalFollowingsAndFollowers}
+							setStateModalFollowingsAndFollowers={
+								setStateModalFollowingsAndFollowers
+							}
+						/>
+					)}
 					<InteractionButtons>
 						<Icon>
 							{stateLike ? (
@@ -40,7 +55,11 @@ export default function ActionButtonsContainer({
 							) : (
 								<HeartIcon onClick={onPressLike} />
 							)}
-							<Numbers>{like}</Numbers>
+							<Numbers
+								onClick={() => setStateModalFollowingsAndFollowers("Likes")}
+							>
+								{like}
+							</Numbers>
 						</Icon>
 						{!children && (
 							<Icon>
@@ -72,7 +91,13 @@ export default function ActionButtonsContainer({
 										) : (
 											<BookIcon onClick={onPressFavorite} />
 										)}
-										<Numbers>{favorite}</Numbers>
+										<Numbers
+											onClick={() =>
+												setStateModalFollowingsAndFollowers("Favorites")
+											}
+										>
+											{favorite}
+										</Numbers>
 									</Icon>
 								)
 							) : null}

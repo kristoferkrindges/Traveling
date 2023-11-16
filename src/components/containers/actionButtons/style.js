@@ -31,4 +31,7 @@ export const Icon = styled.div`
 export const Numbers = styled.span`
 	font-size: 0.8rem;
 	/* color: ${({ theme }) => theme.textMuted}; */
+	&:hover {
+		opacity: 0.5;
+	}
 `;

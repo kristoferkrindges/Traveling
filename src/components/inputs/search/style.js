@@ -10,7 +10,7 @@ export const SearchBar = styled.div`
 	svg {
 		font-size: 1.8rem;
 	}
-	width: 280px;
+	width: 290px;
 `;
 export const InputSearch = styled.input`
 	background: transparent;
