@@ -2,20 +2,19 @@ import api from "../services/api";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ThemeContext } from "../App";
+import { ThemeContext } from "../provider/themeProvider";
 import useFirebase from "./useFirebase";
+
 export default function useAuth() {
 	const { uploadImage } = useFirebase();
-	const [authenticated, setAuthenticated] = useState(false);
+	const [authenticated, setAuthenticated] = useState(
+		localStorage.getItem("authenticated")
+	);
 	const [userInfo, setUserInfo] = useState({});
 	const { setTheme, theme } = useContext(ThemeContext);
 	const navigate = useNavigate();
-
 	useEffect(() => {
 		getToken();
-	}, []);
-
-	useEffect(() => {
 		const darkmode = localStorage.getItem("darkmode");
 		if (darkmode) {
 			setTheme(darkmode);
@@ -24,7 +23,7 @@ export default function useAuth() {
 		}
 	}, []);
 
-	async function register(user) {
+	async function signUp(user) {
 		try {
 			logout();
 			const data = await api.post("/auth/register", user).then((response) => {
@@ -42,7 +41,7 @@ export default function useAuth() {
 		}
 	}
 
-	async function login(user) {
+	async function signIn(user) {
 		try {
 			logout();
 			const data = await api
@@ -54,7 +53,6 @@ export default function useAuth() {
 			navigate("/");
 			return;
 		} catch (error) {
-			// console.log("Erro", error);
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
 		}
@@ -65,8 +63,9 @@ export default function useAuth() {
 			const data = await api.put("/users", user).then((response) => {
 				return response.data;
 			});
-			await checkUser();
+			setUserInfo(data);
 			toast.success("Updated with success!");
+			return data;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
@@ -75,23 +74,30 @@ export default function useAuth() {
 
 	async function deleteAccount() {
 		try {
-			const data = await api.delete("/users").then((response) => {
+			await api.delete("/users").then((response) => {
 				return response.data;
 			});
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
+		}
+	}
+
+	async function findAll() {
+		try {
+			const response = await api.get(`/users`);
+			return response.data;
+		} catch (error) {
+			console.log(error);
+			throw error;
 		}
 	}
 
 	async function findUserByAt(at) {
 		try {
 			const response = await api.get(`/users/profile/${at}`);
-			console.log(response);
 			return response.data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 			throw error;
 		}
 	}
@@ -101,9 +107,9 @@ export default function useAuth() {
 			const data = await api.get(`/users/${id}`).then((response) => {
 				return response.data;
 			});
+			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -112,9 +118,9 @@ export default function useAuth() {
 			const data = await api.get(`/users/${id}/posts`).then((response) => {
 				return response.data;
 			});
+			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -123,9 +129,9 @@ export default function useAuth() {
 			const data = await api.get(`/users/${id}/stories`).then((response) => {
 				return response.data;
 			});
+			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -136,9 +142,9 @@ export default function useAuth() {
 				.then((response) => {
 					return response.data;
 				});
+			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -153,13 +159,10 @@ export default function useAuth() {
 				.then((response) => {
 					return response.data;
 				});
-			userInfo.photo = img;
-			await checkUser();
-			console.log(data.response.message);
+			setUserInfo(data);
 			toast.success("Photo updated with success!");
 		} catch (error) {
-			// console.log(error.response.data.message);
-			// toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -174,13 +177,10 @@ export default function useAuth() {
 				.then((response) => {
 					return response.data;
 				});
-			userInfo.banner = img;
-			await checkUser();
+			setUserInfo(data);
 			toast.success("Banner updated with success!");
 		} catch (error) {
-			// console.log(error.response.data.message);
 			console.log(error.response);
-			// toast.error(error.response.data.message);
 		}
 	}
 
@@ -190,8 +190,9 @@ export default function useAuth() {
 				return response.data;
 			});
 			await checkUser();
+			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -209,7 +210,7 @@ export default function useAuth() {
 			const response = await api.get(`/users/${id}/followers`);
 			return response.data;
 		} catch (error) {
-			console.log(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -218,54 +219,49 @@ export default function useAuth() {
 			const response = await api.get(`/users/${id}/followings`);
 			return response.data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
 	async function likePost(id) {
 		try {
-			const data = await api.post(`/users/like/${id}`).then((response) => {
+			await api.post(`/users/like/${id}`).then((response) => {
 				return response.data;
 			});
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
 	async function favoritePost(id) {
 		try {
-			const data = await api.post(`/users/favorites/${id}`).then((response) => {
+			await api.post(`/users/favorites/${id}`).then((response) => {
 				return response.data;
 			});
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
-	async function getPostsWithLiked() {
+	async function getPostsWithLiked(id) {
 		try {
-			const data = await api.get("/users/like").then((response) => {
+			const data = await api.get(`/users/likes/${id}`).then((response) => {
 				return response.data;
 			});
 			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
-	async function getPostsWithFavorites() {
+	async function getPostsWithFavorites(id) {
 		try {
-			const data = await api.get("/users/favorites").then((response) => {
+			const data = await api.get(`/users/favorites/${id}`).then((response) => {
 				return response.data;
 			});
 			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			toast.error(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -284,19 +280,19 @@ export default function useAuth() {
 			const token = localStorage.getItem("token");
 			if (token) {
 				api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-				setAuthenticated(true);
+				localStorage.setItem("authenticated", true);
+				// setAuthenticated(true);
 				await checkUser();
 				await checkConfigUser();
 				return;
 			} else {
-				setAuthenticated(false);
+				localStorage.setItem("authenticated", false);
+				// setAuthenticated(false);
 				api.defaults.headers.Authorization = undefined;
-				// navigate("/auth");
 				return;
 			}
 		} catch (error) {
 			console.log("Erro", error);
-			console.log(error.response.data.message);
 		}
 	}
 
@@ -308,20 +304,21 @@ export default function useAuth() {
 			setUserInfo(user);
 			return;
 		} catch (error) {
-			console.log(error.response);
+			console.log(error);
 			logout();
 		}
 	}
+
 	async function checkConfigUser() {
 		const darkmode = localStorage.getItem("darkmode");
 		if (!darkmode) {
 			try {
-				const darkmode = await api
+				const darkModeData = await api
 					.get("/users/configuration")
 					.then((response) => {
 						return response.data;
 					});
-				if (darkmode.darkMode) {
+				if (darkModeData.darkMode) {
 					localStorage.setItem("darkmode", "dark");
 					setTheme("dark");
 				} else {
@@ -339,7 +336,7 @@ export default function useAuth() {
 			await api.post("/users/darkmode").then((response) => {
 				return response;
 			});
-			if (theme == "light") {
+			if (theme === "light") {
 				setTheme("dark");
 				localStorage.setItem("darkmode", "dark");
 			} else {
@@ -351,33 +348,15 @@ export default function useAuth() {
 			console.log("Error", error);
 		}
 	}
+
 	function logout() {
-		console.log("disconnect");
 		setAuthenticated(false);
+		localStorage.setItem("authenticated", false);
 		localStorage.removeItem("token");
 		localStorage.removeItem("darkmode");
 		api.defaults.headers.Authorization = undefined;
 		setUserInfo(undefined);
 		navigate("/auth");
-	}
-
-	function formatTimeDifference(timestamp) {
-		const now = new Date().getTime();
-		const difference = now - timestamp;
-
-		if (difference < 60000) {
-			const secondsAgo = Math.floor(difference / 1000);
-			return `${secondsAgo} ${secondsAgo === 1 ? "second" : "seconds"} ago`;
-		} else if (difference < 3600000) {
-			const minutesAgo = Math.floor(difference / 60000);
-			return `${minutesAgo} ${minutesAgo === 1 ? "minute" : "minutes"} ago`;
-		} else if (difference < 86400000) {
-			const hoursAgo = Math.floor(difference / 3600000);
-			return `${hoursAgo} ${hoursAgo === 1 ? "hour" : "hours"} ago`;
-		} else {
-			const daysAgo = Math.floor(difference / 86400000);
-			return `${daysAgo} ${daysAgo === 1 ? "day" : "days"} ago`;
-		}
 	}
 
 	function alterCountPosts() {
@@ -388,8 +367,8 @@ export default function useAuth() {
 
 	return {
 		authenticated,
-		register,
-		login,
+		signUp,
+		signIn,
 		userInfo,
 		logout,
 		getToken,
@@ -410,9 +389,9 @@ export default function useAuth() {
 		updatePhoto,
 		updateBanner,
 		findUserByAt,
-		formatTimeDifference,
 		getPostsUser,
 		alterCountPosts,
 		checkUser,
+		findAll,
 	};
 }

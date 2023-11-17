@@ -1,45 +1,92 @@
 import React, { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
-import { PrivateRouter, PrivateLogin } from "../context/privateContext";
-import HomePage from "../pages/Home";
-import ProfilePage from "../pages/Profile";
-import ChatPage from "../pages/Chat";
-import NotificationsPage from "../pages/Notifications";
-import OnlyPost from "../pages/OnlyPost";
-import AuthPage from "../pages/Auth";
-import LoaderPage from "../pages/Loader";
-import { Context } from "../context/userContext";
-export default function ControllerRoute() {
-	const { userInfo } = useContext(Context);
+import { Routes as Routed, Route } from "react-router-dom";
+
+import { PrivateRouter } from "../contexts/privateRouterContext";
+import { UserContext } from "../contexts/userContext";
+
+import HomePage from "../pages/home";
+import AwaitPage from "../pages/await";
+import AuthPage from "../pages/auth";
+import OnlyPostTemplate from "../templates/onlyPost";
+import ProfileTemplate from "../templates/profile";
+import NotificationPage from "../pages/notification";
+import MessagesPage from "../pages/messages";
+
+export default function Routes() {
+	const { userInfo } = useContext(UserContext);
 	return (
-		<Routes>
-			<Route path="/auth" element={<PrivateLogin />}>
-				<Route path="/auth" element={<AuthPage />}></Route>
-			</Route>
+		<Routed>
+			<Route path="/auth" element={<AuthPage />}></Route>
 			<Route path="/" element={<PrivateRouter />}>
 				<Route
 					path="/"
-					element={userInfo ? <HomePage /> : <LoaderPage />}
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<HomePage />
+						) : (
+							<AwaitPage />
+						)
+					}
+				></Route>
+			</Route>
+			<Route path="/post/:id" element={<PrivateRouter />}>
+				<Route
+					path="/post/:id"
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<OnlyPostTemplate />
+						) : (
+							<AwaitPage />
+						)
+					}
 				></Route>
 			</Route>
 			<Route path="/profile/:id" element={<PrivateRouter />}>
 				<Route
 					path="/profile/:id"
-					element={userInfo ? <ProfilePage /> : <LoaderPage />}
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<ProfileTemplate />
+						) : (
+							<AwaitPage />
+						)
+					}
+				></Route>
+			</Route>
+			<Route path="/notifications" element={<PrivateRouter />}>
+				<Route
+					path="/notifications"
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<NotificationPage />
+						) : (
+							<AwaitPage />
+						)
+					}
 				></Route>
 			</Route>
 			<Route path="/messages" element={<PrivateRouter />}>
-				<Route path="/messages" element={<ChatPage />}></Route>
+				<Route
+					path="/messages"
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<MessagesPage />
+						) : (
+							<AwaitPage />
+						)
+					}
+				></Route>
 			</Route>
-			<Route path="/notifications" element={<PrivateRouter />}>
-				<Route path="/notifications" element={<NotificationsPage />}></Route>
-			</Route>
-			<Route path="/post/:id" element={<PrivateRouter />}>
-				<Route path="/post/:id" element={<OnlyPost />}></Route>
-			</Route>
-			<Route path="/settings" element={<PrivateRouter />}>
-				<Route path="/settings" element={<ProfilePage />}></Route>
-			</Route>
-		</Routes>
+		</Routed>
 	);
 }

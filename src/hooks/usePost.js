@@ -1,20 +1,20 @@
 import api from "../services/api";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import useFirebase from "./useFirebase";
 import useAuth from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function usePost() {
 	const { uploadImage } = useFirebase();
 	const { checkUser } = useAuth();
-	const [allPosts, setAllPosts] = useState();
+	const [allPosts, setAllPosts] = useState(undefined);
 
-	useEffect(() => {
-		findAll();
-	}, []);
+	const navigate = useNavigate();
 
-	async function findAll() {
+	async function findAllPosts() {
 		try {
+			setAllPosts(undefined);
 			const data = await api.get("/posts").then((response) => {
 				return response.data;
 			});
@@ -27,18 +27,23 @@ export default function usePost() {
 
 	async function findById(id) {
 		try {
-			const response = await api.get(`/posts/${id}`);
-			return response.data;
+			setAllPosts(undefined);
+			const data = await api.get(`/posts/${id}`).then((response) => {
+				return response.data;
+			});
+			setAllPosts(data);
+			return data;
 		} catch (error) {
-			// console.log(error.response.data.message);
 			console.log(error);
-			throw error;
+			navigate("/");
 		}
 	}
 
 	async function findUsersFavorites(id) {
 		try {
+			setAllPosts(undefined);
 			const response = await api.get(`/posts/favorites/${id}`);
+			setAllPosts(response.data);
 			return response.data;
 		} catch (error) {
 			console.log(error);
@@ -48,11 +53,12 @@ export default function usePost() {
 
 	async function findUsersLikes(id) {
 		try {
+			setAllPosts(undefined);
 			const response = await api.get(`/posts/likes/${id}`);
+			setAllPosts(response.data);
 			return response.data;
 		} catch (error) {
 			console.log(error);
-			// toast.error(error.response.data.message);
 			throw error;
 		}
 	}
@@ -89,7 +95,7 @@ export default function usePost() {
 				return response.data;
 			});
 			toast.success("Post updated with success!");
-			return;
+			return data;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
@@ -98,11 +104,12 @@ export default function usePost() {
 
 	async function deletePost(id) {
 		try {
-			const data = await api.delete(`/posts/${id}`).then((response) => {
+			await api.delete(`/posts/${id}`).then((response) => {
 				return response.data;
 			});
 			removePostArray(id);
 			toast.success("Post deleted with success!");
+			return;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
@@ -112,15 +119,17 @@ export default function usePost() {
 	function addPostCreated(post) {
 		const updateArray = [post].concat(allPosts);
 		setAllPosts(updateArray);
+		return;
 	}
 
 	function removePostArray(postId) {
 		const updatedPosts = allPosts.filter((post) => post.id !== postId);
 		setAllPosts(updatedPosts);
+		return;
 	}
 
 	return {
-		findAll,
+		findAllPosts,
 		findById,
 		findUsersFavorites,
 		findUsersLikes,

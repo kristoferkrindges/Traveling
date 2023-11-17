@@ -36,7 +36,7 @@ export default function useComment() {
 			toast.success("Comment created with success!");
 			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
+			console.log(error);
 		}
 	}
 
@@ -48,14 +48,14 @@ export default function useComment() {
 					return response.data;
 				});
 			toast.success("Comment updated with success!");
-			return;
+			return data;
 		} catch (error) {
 			console.log(error.response);
 			toast.error(error.response.data.message);
 		}
 	}
 
-	async function deleteComment(id) {
+	async function deletComment(id) {
 		try {
 			const data = await api.delete(`/comments/${id}`).then((response) => {
 				return response.data;
@@ -63,14 +63,13 @@ export default function useComment() {
 			toast.success("Comment deleted with success!");
 			return data;
 		} catch (error) {
-			console.log(error.response.data.message);
-			// console.log(error);
+			console.log(error);
 		}
 	}
 
 	async function likeComment(id) {
 		try {
-			const data = await api.post(`/comments/like/${id}`).then((response) => {
+			await api.post(`/comments/like/${id}`).then((response) => {
 				return response.data;
 			});
 		} catch (error) {
@@ -83,7 +82,7 @@ export default function useComment() {
 		findChildsComments,
 		insertComment,
 		updateComment,
-		deleteComment,
+		deletComment,
 		likeComment,
 	};
 }
