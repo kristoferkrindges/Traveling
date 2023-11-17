@@ -9,6 +9,7 @@ import AwaitPage from "../pages/await";
 import AuthPage from "../pages/auth";
 import OnlyPostTemplate from "../templates/onlyPost";
 import ProfileTemplate from "../templates/profile";
+import NotificationPage from "../pages/notification";
 
 export default function Routes() {
 	const { userInfo } = useContext(UserContext);
@@ -51,6 +52,20 @@ export default function Routes() {
 						typeof userInfo === "object" &&
 						Object.keys(userInfo).length > 0 ? (
 							<ProfileTemplate />
+						) : (
+							<AwaitPage />
+						)
+					}
+				></Route>
+			</Route>
+			<Route path="/notifications" element={<PrivateRouter />}>
+				<Route
+					path="/notifications"
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<NotificationPage />
 						) : (
 							<AwaitPage />
 						)

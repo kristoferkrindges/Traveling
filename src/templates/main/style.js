@@ -2,7 +2,7 @@ import styled from "styled-components";
 export const MainContainer = styled.main`
 	position: relative;
 	/* top: 5.4rem; */
-	top: 0.5rem;
+	top: 1.5rem;
 `;
 export const GridContainer = styled.div`
 	width: 80%;

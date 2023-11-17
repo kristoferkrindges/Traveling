@@ -36,6 +36,7 @@ import {
 	IoArrowRedo,
 	IoArrowUndo,
 	IoCalendarClear,
+	IoMail,
 } from "react-icons/io5";
 
 export const CalendarIcon = styled(IoCalendarClear)``;
@@ -83,7 +84,7 @@ export const HomeIcon = styled(IoHome)``;
 
 export const ProfileIcon = styled(IoPersonCircle)``;
 
-export const ChatIcon = styled(IoChatbubble)``;
+export const ChatIcon = styled(IoMail)``;
 
 export const NotificationIcon = styled(IoNotifications)``;
 
@@ -128,7 +129,6 @@ export const HeartIcon = styled(IoHeartOutline)`
 	}
 `;
 export const HeartPressIcon = styled(IoHeart)`
-	color: red;
 	&:hover {
 		color: white;
 		cursor: pointer;
@@ -136,6 +136,13 @@ export const HeartPressIcon = styled(IoHeart)`
 `;
 
 export const CommentIcon = styled(IoChatbubbleOutline)`
+	&:hover {
+		color: ${({ theme }) => theme.primary};
+		cursor: pointer;
+	}
+`;
+
+export const CommentPressIcon = styled(IoChatbubble)`
 	&:hover {
 		color: ${({ theme }) => theme.primary};
 		cursor: pointer;

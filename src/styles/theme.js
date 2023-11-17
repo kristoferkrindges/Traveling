@@ -4,7 +4,7 @@ export const lightTheme = {
 	invertedBackground: "hsl(252, 30%, 17%)",
 	text: "hsl(252, 30%, 10%)",
 	textInverse: "hsl(252, 30%, 100%)",
-	secondColor: "#2c2c6c",
+	secondColor: "rgb(52, 131, 235)",
 	textMuted: "#999",
 	success: "hsl(120, 95%, 65%)",
 	bg3: "rgb(230,230,230)",
@@ -16,10 +16,11 @@ export const darkTheme = {
 	invertedBackground: "hsl(252, 30%, 95%)",
 	text: "hsl(252, 30%, 100%)",
 	textInverse: "hsl(252, 30%, 10%)",
-	secondColor: "#2c2c6c",
+	secondColor: "rgb(52, 131, 235)",
 	textMuted: "#999",
 	success: "hsl(120, 95%, 65%)",
 	bg3: "rgb(50,50,50)",
 	primary: "rgb(52, 131, 235)",
 };
 // secondColor: "hsl(252, 73%, 29%)";
+// secondColor: "#2c2c6c",

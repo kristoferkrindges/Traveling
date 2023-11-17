@@ -1,13 +1,15 @@
 import api from "../services/api";
 import { useState, useEffect } from "react";
 export default function useNotification() {
-	const [count, setCount] = useState(0);
-
+	const [count, setCount] = useState();
 	useEffect(() => {
-		const nowCount = countUnreadNotifications();
-		if (nowCount && nowCount > 0) {
-			setCount(nowCount);
+		if (!count) {
+			countUnreadNotifications();
 		}
+		// const nowCount = countUnreadNotifications();
+		// if (nowCount && nowCount > 0) {
+		// 	setCount(nowCount);
+		// }
 	}, []);
 
 	async function allNotifications() {
@@ -37,6 +39,7 @@ export default function useNotification() {
 			const data = await api.get("/notifications/count").then((response) => {
 				return response.data;
 			});
+			setCount(data);
 			return data;
 		} catch (error) {
 			console.log(error);

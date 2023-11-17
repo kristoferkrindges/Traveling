@@ -51,7 +51,10 @@ export default function ActionButtonsContainer({
 					<InteractionButtons>
 						<Icon>
 							{stateLike ? (
-								<HeartPressIcon onClick={onPressLike} />
+								<HeartPressIcon
+									style={{ color: "red" }}
+									onClick={onPressLike}
+								/>
 							) : (
 								<HeartIcon onClick={onPressLike} />
 							)}

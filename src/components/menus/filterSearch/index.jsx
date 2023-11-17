@@ -17,35 +17,57 @@ export default function FilterSearchMenu({
 		<OptionsContainer>
 			<Options>
 				<Option onClick={findPosts}>
-					<PostIcon style={search === "Posts" ? { color: "#2c2c6c" } : null} />
-					<Border
-						style={search === "Posts" ? { backgroundColor: "#2c2c6c" } : null}
+					<PostIcon
+						style={search === "Posts" ? { color: "rgb(52, 131, 235)" } : null}
 					/>
-					<Legend style={search === "Posts" ? { color: "#2c2c6c" } : null}>
+					<Border
+						style={
+							search === "Posts"
+								? { backgroundColor: "rgb(52, 131, 235)" }
+								: null
+						}
+					/>
+					<Legend
+						style={search === "Posts" ? { color: "rgb(52, 131, 235)" } : null}
+					>
 						Posts
 					</Legend>
 				</Option>
 				<Option onClick={findPostsLikes}>
 					<HeartPressIcon
-						style={search === "Likes" ? { color: "#2c2c6c" } : null}
+						style={search === "Likes" ? { color: "rgb(52, 131, 235)" } : null}
 					/>
 					<Border
-						style={search === "Likes" ? { backgroundColor: "#2c2c6c" } : null}
+						style={
+							search === "Likes"
+								? { backgroundColor: "rgb(52, 131, 235)" }
+								: null
+						}
 					/>
-					<Legend style={search === "Likes" ? { color: "#2c2c6c" } : null}>
+					<Legend
+						style={search === "Likes" ? { color: "rgb(52, 131, 235)" } : null}
+					>
 						Likes
 					</Legend>
 				</Option>
 				<Option onClick={findPostsFavorites}>
 					<BookPressIcon
-						style={search === "favorites" ? { color: "#2c2c6c" } : null}
+						style={
+							search === "favorites" ? { color: "rgb(52, 131, 235)" } : null
+						}
 					/>
 					<Border
 						style={
-							search === "Favorites" ? { backgroundColor: "#2c2c6c" } : null
+							search === "Favorites"
+								? { backgroundColor: "rgb(52, 131, 235)" }
+								: null
 						}
 					/>
-					<Legend style={search === "favorites" ? { color: "#2c2c6c" } : null}>
+					<Legend
+						style={
+							search === "favorites" ? { color: "rgb(52, 131, 235)" } : null
+						}
+					>
 						Favorites
 					</Legend>
 				</Option>
