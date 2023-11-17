@@ -8,8 +8,7 @@ import { Legend } from "../../menus/featuresRouted/style";
 import { NotificationContext } from "../../../contexts/notificationContext";
 
 export default function NotificationButton() {
-	const { count, setCount, countUnreadNotifications } =
-		useContext(NotificationContext);
+	const { count, setCount } = useContext(NotificationContext);
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
