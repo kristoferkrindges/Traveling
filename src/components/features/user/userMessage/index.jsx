@@ -26,7 +26,7 @@ export default function UserMessages({
 		<Message onClick={type ? type : (evt) => handlerRouted(evt)}>
 			<ProfilePhoto>
 				<AvatarPhoto src={photo} />
-				{online ? <Online /> : <></>}
+				{online && <Online />}
 			</ProfilePhoto>
 			<MessageBody>
 				<UserName>{name}</UserName>

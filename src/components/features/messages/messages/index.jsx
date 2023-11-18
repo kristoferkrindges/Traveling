@@ -41,7 +41,7 @@ export default function Messages() {
 							photo={value.photo}
 							name={value.firstname + " " + value.lastname}
 							message={"@" + value.at}
-							online={false}
+							online={true}
 							type={false}
 							at={value.at}
 						/>

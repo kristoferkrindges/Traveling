@@ -8,6 +8,7 @@ import FilterSearchMenu from "../../../../components/menus/filterSearch";
 import { PostAllContainer } from "../home/style";
 import Post from "../../../../components/features/post/post";
 import { NotContentYet } from "./style";
+import Carrousel from "../../../../components/features/stories/carrousel";
 
 export default function ProfileMidTemplate() {
 	let { id } = useParams();
@@ -85,6 +86,7 @@ export default function ProfileMidTemplate() {
 						updatePhoto={updatePhoto}
 						updateBanner={updateBanner}
 					/>
+					<Carrousel data={"allStories"} />
 					<FilterSearchMenu
 						search={search}
 						findPosts={findPosts}
