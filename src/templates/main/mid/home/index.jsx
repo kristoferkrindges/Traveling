@@ -33,7 +33,7 @@ export default function HomeMidTemplate() {
 					{/* {Array.isArray(allStories) && allStories.length > 0 ? (
 						<Carrousel data={allStories} />
 					) : null} */}
-					<Carrousel data={allStories} />
+					<Carrousel data={allStories} type={true} />
 					<CreatePost />
 					{Array.isArray(allPosts) && allPosts.length > 0 ? (
 						allPosts.map((value, key) => (

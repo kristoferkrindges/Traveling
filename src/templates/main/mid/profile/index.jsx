@@ -7,8 +7,9 @@ import ProfileInfo from "../../../../components/features/user/profileInfo";
 import FilterSearchMenu from "../../../../components/menus/filterSearch";
 import { PostAllContainer } from "../home/style";
 import Post from "../../../../components/features/post/post";
-import { NotContentYet } from "./style";
+import { ProfileContainer, NotContentYet } from "./style";
 import Carrousel from "../../../../components/features/stories/carrousel";
+import { StorieContext } from "../../../../contexts/storieContext";
 
 export default function ProfileMidTemplate() {
 	let { id } = useParams();
@@ -21,6 +22,8 @@ export default function ProfileMidTemplate() {
 		getPostsUser,
 		getPostsWithFavorites,
 	} = useContext(UserContext);
+
+	const { findAllStories, allStories } = useContext(StorieContext);
 
 	const [user, setUser] = useState({});
 	const [equal, setEqual] = useState();
@@ -41,6 +44,16 @@ export default function ProfileMidTemplate() {
 			findUserAt();
 		}
 	}, [id, userInfo]);
+
+	useEffect(() => {
+		if (allStories) {
+			searchStories();
+		}
+	}, []);
+
+	const searchStories = async () => {
+		await findAllStories();
+	};
 
 	async function findUserAt() {
 		const response = await findUserByAt(id);
@@ -77,7 +90,7 @@ export default function ProfileMidTemplate() {
 	}
 
 	return (
-		<>
+		<ProfileContainer>
 			{user ? (
 				<>
 					<ProfileInfo
@@ -86,7 +99,7 @@ export default function ProfileMidTemplate() {
 						updatePhoto={updatePhoto}
 						updateBanner={updateBanner}
 					/>
-					<Carrousel data={"allStories"} />
+					<Carrousel data={allStories} />
 					<FilterSearchMenu
 						search={search}
 						findPosts={findPosts}
@@ -176,6 +189,6 @@ export default function ProfileMidTemplate() {
 					<Loader />
 				</LoaderContainer>
 			)}
-		</>
+		</ProfileContainer>
 	);
 }

@@ -1,52 +1,3 @@
-// import React, { useContext } from "react";
-// import {
-// 	Check,
-// 	ArrowLeftContainer,
-// 	ArrowRightContainer,
-// 	CarrouselBody,
-// } from "./style";
-// import StorieAvatar from "../stories";
-// import { ArrowLeftIcon, ArrowRightIcon } from "../../../icons/iOIcons.styled";
-// import { UserContext } from "../../../../contexts/userContext";
-
-// export default function Carrousel({ data }) {
-// 	const { userInfo } = useContext(UserContext);
-
-// 	const handleSlide = (direction) => {
-// 		const slider = document.getElementsByClassName("carousel-body")[0];
-// 		if (direction === "left") slider.scrollBy(-400, 0);
-// 		else slider.scrollBy(400, 0);
-// 	};
-
-// 	return (
-// 		<Check>
-// 			<ArrowLeftContainer onClick={() => handleSlide("left")}>
-// 				<ArrowLeftIcon />
-// 			</ArrowLeftContainer>
-
-// 			<ArrowRightContainer onClick={() => handleSlide("right")}>
-// 				<ArrowRightIcon />
-// 			</ArrowRightContainer>
-// 			<CarrouselBody className="carousel-body">
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-// 				<StorieAvatar user={userInfo} />
-
-// 				{data.map((item) => {
-// 					return <StorieAvatar key={item} data={item} />;
-// 				})}
-// 			</CarrouselBody>
-// 		</Check>
-// 	);
-// }
-
 import React, { useContext, useRef, useState, useEffect } from "react";
 import {
 	Check,
@@ -58,7 +9,7 @@ import StorieAvatar from "../stories";
 import { ArrowLeftIcon, ArrowRightIcon } from "../../../icons/iOIcons.styled";
 import { UserContext } from "../../../../contexts/userContext";
 
-export default function Carrousel({ data }) {
+export default function Carrousel({ data, type }) {
 	const { userInfo } = useContext(UserContext);
 	const carrouselBodyRef = useRef(null);
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -68,9 +19,9 @@ export default function Carrousel({ data }) {
 		const slider = carrouselBodyRef.current;
 
 		if (direction === "left") {
-			slider.scrollLeft -= slider.clientWidth; // Move para a esquerda pela largura do contêiner
+			slider.scrollLeft -= slider.clientWidth;
 		} else {
-			slider.scrollLeft += slider.clientWidth; // Move para a direita pela largura do contêiner
+			slider.scrollLeft += slider.clientWidth;
 		}
 	};
 
@@ -122,7 +73,7 @@ export default function Carrousel({ data }) {
 			</ArrowRightContainer>
 
 			<CarrouselBody className="carousel-body" ref={carrouselBodyRef}>
-				<StorieAvatar user={userInfo} type={true} />
+				{type && <StorieAvatar user={userInfo} type={type} />}
 				<StorieAvatar user={userInfo} />
 				<StorieAvatar user={userInfo} />
 				<StorieAvatar user={userInfo} />

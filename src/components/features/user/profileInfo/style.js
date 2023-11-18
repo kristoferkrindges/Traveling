@@ -160,7 +160,7 @@ export const EditPhotoCover = styled.label`
 	border-radius: 2rem;
 	cursor: pointer;
 	transition: all 300ms ease;
-	background-color: ${({ theme }) => theme.text};
+	background-color: ${({ theme }) => theme.secondColor};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 	color: ${({ theme }) => theme.textInverse};
 	text-align: center;
@@ -168,6 +168,7 @@ export const EditPhotoCover = styled.label`
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
+
 	&:hover {
 		opacity: 0.8;
 	}

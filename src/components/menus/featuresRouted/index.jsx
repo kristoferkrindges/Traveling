@@ -58,14 +58,14 @@ export default function FeaturesRoutedMenu() {
 			<ContainerIcon>
 				<Link to={`/`}>
 					<HomeIcon
-						style={pathname === "/" ? { color: "rgb(52, 131, 235)" } : {}}
+						style={pathname === "/" ? { color: "hsl(252, 73%, 29%)" } : {}}
 						onMouseEnter={handleMouseEnterHome}
 						onMouseLeave={handleMouseLeaveHome}
 					/>
 				</Link>
 				<BorderSelect
 					style={
-						pathname === "/" ? { backgroundColor: "rgb(52, 131, 235)" } : {}
+						pathname === "/" ? { backgroundColor: "hsl(252, 73%, 29%)" } : {}
 					}
 				/>
 				{showLegendHome && <Legend>Home</Legend>}
@@ -76,7 +76,7 @@ export default function FeaturesRoutedMenu() {
 					<ProfileIcon
 						style={
 							pathname === `/profile/${userInfo.at}`
-								? { color: "rgb(52, 131, 235)" }
+								? { color: "hsl(252, 73%, 29%)" }
 								: {}
 						}
 						onMouseEnter={handleMouseEnterProfile}
@@ -86,7 +86,7 @@ export default function FeaturesRoutedMenu() {
 				<BorderSelect
 					style={
 						pathname === `/profile/${userInfo.at}`
-							? { backgroundColor: "rgb(52, 131, 235)" }
+							? { backgroundColor: "hsl(252, 73%, 29%)" }
 							: {}
 					}
 				/>
@@ -96,7 +96,9 @@ export default function FeaturesRoutedMenu() {
 			<ContainerIcon>
 				<Link to={`/events`}>
 					<EventIcon
-						style={pathname === `/events` ? { color: "rgb(52, 131, 235)" } : {}}
+						style={
+							pathname === `/events` ? { color: "hsl(252, 73%, 29%)" } : {}
+						}
 						onMouseEnter={handleMouseEnterEvents}
 						onMouseLeave={handleMouseLeaveEvents}
 					/>
@@ -104,7 +106,7 @@ export default function FeaturesRoutedMenu() {
 				<BorderSelect
 					style={
 						pathname === `/events`
-							? { backgroundColor: "rgb(52, 131, 235)" }
+							? { backgroundColor: "hsl(252, 73%, 29%)" }
 							: {}
 					}
 				/>
@@ -115,7 +117,7 @@ export default function FeaturesRoutedMenu() {
 				<Link to={`/messages`}>
 					<ChatIcon
 						style={
-							pathname === `/messages` ? { color: "rgb(52, 131, 235)" } : {}
+							pathname === `/messages` ? { color: "hsl(252, 73%, 29%)" } : {}
 						}
 						onMouseEnter={handleMouseEnterMessages}
 						onMouseLeave={handleMouseLeaveMessages}

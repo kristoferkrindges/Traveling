@@ -22,7 +22,7 @@ export const AvatarBox = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 2px;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 
 	img {
 		width: 65px;
@@ -40,7 +40,7 @@ export const AvatarBox = styled.div`
 
 export const AvatarName = styled.p`
 	font-size: 0.8rem;
-	color: #262626;
+	color: ${({ theme }) => theme.text};
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

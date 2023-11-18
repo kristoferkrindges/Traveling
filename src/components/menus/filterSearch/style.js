@@ -6,8 +6,9 @@ export const OptionsContainer = styled.div`
 	padding: ${size.sm} 0;
 	border-radius: ${size.lg};
 	background-color: ${({ theme }) => theme.container};
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 	margin-bottom: 2rem;
+	margin-top: 2rem;
 `;
 
 export const Options = styled.div`

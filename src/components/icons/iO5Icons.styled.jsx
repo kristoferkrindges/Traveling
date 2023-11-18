@@ -48,7 +48,7 @@ export const AddStoriesIcon = styled(IoAddCircle)`
 	height: 0.8rem; */
 	border-radius: 50%;
 	border: 1px solid ${({ theme }) => theme.container};
-	color: ${({ theme }) => theme.text};
+	color: ${({ theme }) => theme.secondColor};
 	background-color: ${({ theme }) => theme.container};
 `;
 

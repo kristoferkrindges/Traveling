@@ -50,7 +50,6 @@ export const ArrowLeftContainer = styled.div`
 	width: 25px;
 	height: 25px;
 	position: absolute;
-	/* background-color: #ffffff; */
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
@@ -75,12 +74,10 @@ export const ArrowRightContainer = styled.div`
 	width: 25px;
 	height: 25px;
 	position: absolute;
-	/* background-color: #ffffff; */
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	opacity: 0.8;
 	z-index: 999;
 	cursor: pointer;
 	right: 10px;
