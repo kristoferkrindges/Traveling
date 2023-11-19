@@ -8,12 +8,14 @@ import {
 import StorieAvatar from "../stories";
 import { ArrowLeftIcon, ArrowRightIcon } from "../../../icons/iOIcons.styled";
 import { UserContext } from "../../../../contexts/userContext";
+import CreateStorie from "../createStorie";
 
 export default function Carrousel({ data, type }) {
 	const { userInfo } = useContext(UserContext);
 	const carrouselBodyRef = useRef(null);
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const [canScrollRight, setCanScrollRight] = useState(true);
+	const [modalCreateStorie, setModalCreateStorie] = useState(false);
 
 	const handleSlide = (direction) => {
 		const slider = carrouselBodyRef.current;
@@ -55,9 +57,16 @@ export default function Carrousel({ data, type }) {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, [carrouselBodyRef, data]);
-
+	const handlerCreateStorie = () => {
+		modalCreateStorie
+			? setModalCreateStorie(false)
+			: setModalCreateStorie(true);
+	};
 	return (
 		<Check>
+			{modalCreateStorie && (
+				<CreateStorie handlerCreateStorie={handlerCreateStorie} />
+			)}
 			<ArrowLeftContainer
 				onClick={() => canScrollLeft && handleSlide("left")}
 				style={{ display: canScrollLeft ? "block" : "none" }}
@@ -73,7 +82,13 @@ export default function Carrousel({ data, type }) {
 			</ArrowRightContainer>
 
 			<CarrouselBody className="carousel-body" ref={carrouselBodyRef}>
-				{type && <StorieAvatar user={userInfo} type={type} />}
+				{type && (
+					<StorieAvatar
+						user={userInfo}
+						type={type}
+						handlerCreateStorie={handlerCreateStorie}
+					/>
+				)}
 				<StorieAvatar user={userInfo} />
 				<StorieAvatar user={userInfo} />
 				<StorieAvatar user={userInfo} />
@@ -83,7 +98,7 @@ export default function Carrousel({ data, type }) {
 				<StorieAvatar user={userInfo} />
 				<StorieAvatar user={userInfo} />
 				{data.map((item) => (
-					<StorieAvatar key={item} data={item} />
+					<StorieAvatar key={item} user={item.userAllResponse} />
 				))}
 			</CarrouselBody>
 		</Check>

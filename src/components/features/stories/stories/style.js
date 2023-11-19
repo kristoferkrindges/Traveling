@@ -22,7 +22,7 @@ export const AvatarBox = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 2px;
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 
 	img {
 		width: 65px;
@@ -49,11 +49,12 @@ export const AvatarName = styled.p`
 
 export const Add = styled.div`
 	position: absolute;
-	bottom: 0;
+	bottom: -6px;
 	right: 0;
-	width: 0.8rem;
-	height: 0.8rem;
+	/* width: 0.8rem;
+	height: 0.8rem; */
 	border-radius: 50%;
-	border: 3px solid ${({ theme }) => theme.container};
-	background-color: ${({ theme }) => theme.success};
+	border: 1px solid ${({ theme }) => theme.container};
+	color: ${({ theme }) => theme.secondColor};
+	background-color: ${({ theme }) => theme.container};
 `;

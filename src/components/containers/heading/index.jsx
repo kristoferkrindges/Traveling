@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Heading } from "./style";
 import { H4Title } from "../../titles/h4Title.styled";
 import {
+	AddStoriesIcon,
 	BookPressIcon,
 	ChatIcon,
 	CloseCircleIcon,
@@ -38,6 +39,7 @@ export default function HeadingContainer({ type, text, click }) {
 
 	return (
 		<Heading>
+			{type === "CreateStorie" && <AddStoriesIcon />}
 			{type === "CreatePost" && <PostIcon />}
 			{type === "EditInfoUser" && <ProfileIcon />}
 			{type === "Likes" && <HeartPressIcon />}

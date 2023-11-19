@@ -36,11 +36,18 @@ export default function useStorie() {
 		}
 	}
 
-	async function insert(post) {
+	async function insert(storie, file) {
 		try {
-			const data = await api.post("/stories", post).then((response) => {
+			if (file) {
+				const video = await uploadImage(file);
+				storie.video = video;
+			}
+			const data = await api.post("/stories", storie).then((response) => {
 				return response.data;
 			});
+			// addPostCreated(data);
+			toast.success("Storie created with success!");
+			// await checkUser();
 			return;
 		} catch (error) {
 			try {

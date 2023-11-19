@@ -40,17 +40,7 @@ import {
 	IoAddCircle,
 } from "react-icons/io5";
 
-export const AddStoriesIcon = styled(IoAddCircle)`
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	/* width: 0.8rem;
-	height: 0.8rem; */
-	border-radius: 50%;
-	border: 1px solid ${({ theme }) => theme.container};
-	color: ${({ theme }) => theme.secondColor};
-	background-color: ${({ theme }) => theme.container};
-`;
+export const AddStoriesIcon = styled(IoAddCircle)``;
 
 export const CalendarIcon = styled(IoCalendarClear)``;
 

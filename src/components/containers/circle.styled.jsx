@@ -5,7 +5,10 @@ export const CircleContainer = styled.div`
 	height: 45px;
 	border-radius: 50%;
 	cursor: pointer;
-	background: ${({ theme }) => theme.background};
+	background: ${(prop) =>
+		prop.backgroundColor
+			? prop.backgroundColor
+			: ({ theme }) => theme.background};
 	display: flex;
 	align-items: center;
 	justify-content: center;
