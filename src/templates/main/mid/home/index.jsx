@@ -9,7 +9,7 @@ import { PostAllContainer } from "./style";
 import Carrousel from "../../../../components/features/stories/carrousel";
 export default function HomeMidTemplate() {
 	const { findAllPosts, allPosts } = useContext(PostContext);
-	const { allStories, findAllStories } = useContext(StorieContext);
+	const { allStories, findAllUsersWithStories } = useContext(StorieContext);
 	const [postsLoaded, setPostsLoaded] = useState(false);
 
 	useEffect(() => {
@@ -18,7 +18,7 @@ export default function HomeMidTemplate() {
 
 	const searchPostsAndStories = async () => {
 		await findAllPosts();
-		await findAllStories();
+		await findAllUsersWithStories();
 		setPostsLoaded(true);
 	};
 

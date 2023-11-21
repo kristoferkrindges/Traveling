@@ -23,6 +23,12 @@ export const LikeContainer = styled.div`
 export const PhotoStorie = styled.img`
 	height: 100%;
 	width: 100%;
-	object-fit: cover;
+	/* object-fit: cover; */
+`;
+
+export const Photo = styled.div`
+	position: relative;
 	border-radius: ${size.lg};
+	overflow: hidden;
+	height: 100%;
 `;

@@ -4,6 +4,7 @@ import {
 	MenuContainer,
 	LikeContainer,
 	PhotoStorie,
+	Photo,
 } from "./style";
 import {
 	CloseCircleIcon,
@@ -15,21 +16,32 @@ import EllipsMenu from "../../../menus/ellips";
 import { UserContext } from "../../../../contexts/userContext";
 import { CircleContainer } from "../../../containers/circle.styled";
 
-export default function ItemStorie({ type, photo, user, click }) {
+export default function ItemStorie({
+	type,
+	photo,
+	user,
+	click,
+	time,
+	pressLike,
+	likes,
+	setDefault,
+}) {
 	const { userInfo } = useContext(UserContext);
 	const [ellips, setEllips] = useState(false);
 
-	const handlerEllips = () => {
+	const handlerEllips = (evt) => {
+		evt.stopPropagation();
 		if (ellips) {
 			if (click) {
 				click();
 			}
 			setEllips(false);
+			// setDefault(false);
 		} else {
+			// setDefault(true);
 			setEllips(true);
 		}
 	};
-
 	const optionsMenu = [
 		{
 			label: "Close",
@@ -57,7 +69,10 @@ export default function ItemStorie({ type, photo, user, click }) {
 
 	return (
 		<ContainerItemStorie>
-			<PhotoStorie src={photo} />
+			<Photo>
+				<PhotoStorie src={photo} />
+			</Photo>
+
 			<MenuContainer>
 				<CircleContainer backgroundColor={`white`}>
 					<EllipsIcon onClick={handlerEllips} />

@@ -9,13 +9,20 @@ import StorieAvatar from "../stories";
 import { ArrowLeftIcon, ArrowRightIcon } from "../../../icons/iOIcons.styled";
 import { UserContext } from "../../../../contexts/userContext";
 import CreateStorie from "../createStorie";
+import InstaStorie from "../instaStories";
+import { StorieContext } from "../../../../contexts/storieContext";
 
 export default function Carrousel({ data, type }) {
 	const { userInfo } = useContext(UserContext);
+	const { findStoriesByAt } = useContext(StorieContext);
+
 	const carrouselBodyRef = useRef(null);
+
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const [canScrollRight, setCanScrollRight] = useState(true);
 	const [modalCreateStorie, setModalCreateStorie] = useState(false);
+	const [storieUser, setStoriesUser] = useState([]);
+	const [instaStorie, setInstaStorie] = useState(false);
 
 	const handleSlide = (direction) => {
 		const slider = carrouselBodyRef.current;
@@ -57,11 +64,23 @@ export default function Carrousel({ data, type }) {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, [carrouselBodyRef, data]);
+
 	const handlerCreateStorie = () => {
 		modalCreateStorie
 			? setModalCreateStorie(false)
 			: setModalCreateStorie(true);
 	};
+
+	const searchStoriesUser = async (at) => {
+		const stories = await findStoriesByAt(at);
+		setStoriesUser(stories);
+		handlerOpenInstaStories();
+	};
+
+	const handlerOpenInstaStories = () => {
+		instaStorie ? setInstaStorie(false) : setInstaStorie(true);
+	};
+
 	return (
 		<Check>
 			{modalCreateStorie && (
@@ -89,18 +108,19 @@ export default function Carrousel({ data, type }) {
 						handlerCreateStorie={handlerCreateStorie}
 					/>
 				)}
-				<StorieAvatar user={userInfo} />
-				<StorieAvatar user={userInfo} />
-				<StorieAvatar user={userInfo} />
-				<StorieAvatar user={userInfo} />
-				<StorieAvatar user={userInfo} />
-				<StorieAvatar user={userInfo} />
-				<StorieAvatar user={userInfo} />
-				<StorieAvatar user={userInfo} />
-				{data.map((item) => (
-					<StorieAvatar key={item} user={item.userAllResponse} />
-				))}
+				{data &&
+					data.map((item) => (
+						<StorieAvatar
+							key={item}
+							user={item}
+							type={false}
+							searchStoriesUser={searchStoriesUser}
+						/>
+					))}
 			</CarrouselBody>
+			{instaStorie && (
+				<InstaStorie stories={storieUser} click={handlerOpenInstaStories} />
+			)}
 		</Check>
 	);
 }

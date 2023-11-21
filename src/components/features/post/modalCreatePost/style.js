@@ -74,7 +74,7 @@ export const PreviewPhoto = styled.img`
 
 export const Photo = styled.div`
 	position: relative;
-	border-radius: 1rem;
+	border-radius: 2rem;
 	overflow: hidden;
 	margin: 0.7rem 0;
 `;

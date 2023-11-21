@@ -26,6 +26,28 @@ export default function useStorie() {
 		}
 	}
 
+	async function findAllUsersWithStories() {
+		try {
+			const data = await api.get("/stories/users").then((response) => {
+				return response.data;
+			});
+			setAllStories(data);
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	async function findStoriesByAt(id) {
+		try {
+			const response = await api.get(`/stories/users/${id}`);
+			return response.data;
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	}
+
 	async function findById(id) {
 		try {
 			const response = await api.get(`/stories/${id}`);
@@ -80,6 +102,17 @@ export default function useStorie() {
 		}
 	}
 
+	async function likeStorie(id) {
+		try {
+			await api.post(`/stories/like/${id}`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
 	return {
 		findAllStories,
 		findById,
@@ -87,5 +120,8 @@ export default function useStorie() {
 		update,
 		deleteStorie,
 		allStories,
+		findAllUsersWithStories,
+		findStoriesByAt,
+		likeStorie,
 	};
 }
