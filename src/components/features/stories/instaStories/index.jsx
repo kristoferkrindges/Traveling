@@ -35,7 +35,7 @@ export default function InstaStorie({ stories, click }) {
 				<Stories
 					stories={story}
 					loop={true}
-					defaultInterval={2500}
+					defaultInterval={3500}
 					width={520}
 					height={820}
 					preventDefault={true}

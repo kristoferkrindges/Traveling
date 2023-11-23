@@ -5,16 +5,22 @@ import {
 	LikeContainer,
 	PhotoStorie,
 	Photo,
+	IconsContainer,
 } from "./style";
 import {
 	CloseCircleIcon,
 	DeletIcon,
 	EllipsIcon,
 	HeartIcon,
+	HeartPressIcon,
+	PauseIcon,
+	PlayIcon,
 } from "../../../icons/iO5Icons.styled";
 import EllipsMenu from "../../../menus/ellips";
 import { UserContext } from "../../../../contexts/userContext";
 import { CircleContainer } from "../../../containers/circle.styled";
+import UserMessages from "../../user/userMessage";
+import { AssistantContext } from "../../../../contexts/assistantContext";
 
 export default function ItemStorie({
 	type,
@@ -28,6 +34,7 @@ export default function ItemStorie({
 }) {
 	const { userInfo } = useContext(UserContext);
 	const [ellips, setEllips] = useState(false);
+	const { formatTimeDifference } = useContext(AssistantContext);
 
 	const handlerEllips = (evt) => {
 		evt.stopPropagation();
@@ -74,21 +81,27 @@ export default function ItemStorie({
 			</Photo>
 
 			<MenuContainer>
-				<CircleContainer backgroundColor={`white`}>
+				<UserMessages
+					photo={user.photo}
+					name={`${user.firstname} ${user.lastname}`}
+					message={formatTimeDifference(time)}
+					online={false}
+					at={user.at}
+				/>
+				<IconsContainer>
+					<PauseIcon />
 					<EllipsIcon onClick={handlerEllips} />
-					{type && ellips && (
-						<EllipsMenu
-							optionsMenu={
-								userInfo.at === user.at ? optionsMenuOwner : optionsMenu
-							}
-						/>
-					)}
-				</CircleContainer>
+				</IconsContainer>
+				{type && ellips && (
+					<EllipsMenu
+						optionsMenu={
+							userInfo.at === user.at ? optionsMenuOwner : optionsMenu
+						}
+					/>
+				)}
 			</MenuContainer>
 			<LikeContainer>
-				<CircleContainer backgroundColor={`white`}>
-					<HeartIcon />
-				</CircleContainer>
+				<HeartIcon />
 			</LikeContainer>
 		</ContainerItemStorie>
 	);

@@ -11,6 +11,7 @@ import { UserContext } from "../../../../contexts/userContext";
 import CreateStorie from "../createStorie";
 import InstaStorie from "../instaStories";
 import { StorieContext } from "../../../../contexts/storieContext";
+import InstaStorieNew from "../instaStories/new";
 
 export default function Carrousel({ data, type }) {
 	const { userInfo } = useContext(UserContext);
@@ -120,6 +121,11 @@ export default function Carrousel({ data, type }) {
 			</CarrouselBody>
 			{instaStorie && (
 				<InstaStorie stories={storieUser} click={handlerOpenInstaStories} />
+				// <InstaStorieNew
+				// 	stories={storieUser}
+				// 	click={handlerOpenInstaStories}
+				// 	id={"slide"}
+				// />
 			)}
 		</Check>
 	);

@@ -38,7 +38,13 @@ import {
 	IoCalendarClear,
 	IoMail,
 	IoAddCircle,
+	IoPlay,
+	IoPause,
 } from "react-icons/io5";
+
+export const PauseIcon = styled(IoPause)``;
+
+export const PlayIcon = styled(IoPlay)``;
 
 export const AddStoriesIcon = styled(IoAddCircle)``;
 
