@@ -7,12 +7,7 @@ export default function useStorie() {
 	const { uploadImage } = useFirebase();
 
 	const [allStories, setAllStories] = useState();
-
-	// useEffect(() => {
-	// 	if (!allStories) {
-	// 		findAllStories();
-	// 	}
-	// }, []);
+	const [likeState, setLikeState] = useState({});
 
 	async function findAllStories() {
 		try {
@@ -67,9 +62,13 @@ export default function useStorie() {
 			const data = await api.post("/stories", storie).then((response) => {
 				return response.data;
 			});
-			// addPostCreated(data);
+
+			const isDataExist = allStories.some((story) => story.id === data.id);
+			if (!isDataExist) {
+				setAllStories([data, ...allStories]);
+			}
+
 			toast.success("Storie created with success!");
-			// await checkUser();
 			return;
 		} catch (error) {
 			try {
@@ -120,8 +119,11 @@ export default function useStorie() {
 		update,
 		deleteStorie,
 		allStories,
+		setAllStories,
 		findAllUsersWithStories,
 		findStoriesByAt,
 		likeStorie,
+		setLikeState,
+		likeState,
 	};
 }

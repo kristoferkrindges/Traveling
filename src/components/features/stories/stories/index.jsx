@@ -9,17 +9,36 @@ export default function StorieAvatar({
 	type,
 	handlerCreateStorie,
 	searchStoriesUser,
+	profile,
+	index,
 }) {
-	// Verifica se data e data.userAllResponse existem antes de acessar propriedades
-	const photoSrc = user && user && user.photo ? user.photo : AvatarNone;
+	const photoSrc =
+		user && user && user.photo
+			? user.photo
+			: user.video
+			? user.video
+			: AvatarNone;
 
 	const firstName = user && user ? user.firstname : "";
 
-	const at = user && user ? user.at : "";
+	const at =
+		user && user
+			? user.at
+				? user.at
+				: user.userAllResponse
+				? user.userAllResponse.at
+				: ""
+			: "";
 
 	return (
 		<AvatarDetail
-			onClick={type ? handlerCreateStorie : () => searchStoriesUser(at)}
+			onClick={
+				type
+					? handlerCreateStorie
+					: profile
+					? () => searchStoriesUser(at, index)
+					: () => searchStoriesUser(at)
+			}
 		>
 			<AvatarBox>
 				<AvatarPhoto src={photoSrc} />

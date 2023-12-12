@@ -40,7 +40,7 @@ export const Border = styled.div`
 	width: 40%;
 	height: 3px;
 	border-radius: 2rem;
-	background-color: transparent;
+	background-color: ${({ theme }) => theme.secondColor};
 	top: 70px;
 `;
 

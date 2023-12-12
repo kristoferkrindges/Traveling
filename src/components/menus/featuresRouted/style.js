@@ -34,7 +34,7 @@ export const BorderSelect = styled.div`
 	height: 3px;
 	border-radius: 2rem;
 	/* padding: 1px; */
-	background-color: transparent;
+	background-color: ${({ theme }) => theme.secondColor};
 	left: -1.3rem;
 	top: 2.9rem;
 `;

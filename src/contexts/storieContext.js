@@ -14,6 +14,9 @@ function StorieProvider({ children }) {
 		findAllUsersWithStories,
 		findStoriesByAt,
 		likeStorie,
+		setLikeState,
+		likeState,
+		setAllStories,
 	} = useStorie();
 
 	return (
@@ -28,6 +31,9 @@ function StorieProvider({ children }) {
 				findAllUsersWithStories,
 				findStoriesByAt,
 				likeStorie,
+				setLikeState,
+				likeState,
+				setAllStories,
 			}}
 		>
 			{children}

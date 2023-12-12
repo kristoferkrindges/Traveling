@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	ContainerItemStorie,
 	MenuContainer,
@@ -18,23 +18,50 @@ import {
 } from "../../../icons/iO5Icons.styled";
 import EllipsMenu from "../../../menus/ellips";
 import { UserContext } from "../../../../contexts/userContext";
-import { CircleContainer } from "../../../containers/circle.styled";
 import UserMessages from "../../user/userMessage";
 import { AssistantContext } from "../../../../contexts/assistantContext";
+import { StorieContext } from "../../../../contexts/storieContext";
+import { Numbers } from "../../../containers/actionButtons/style";
 
 export default function ItemStorie({
 	type,
+	key,
+	id,
 	photo,
 	user,
 	click,
 	time,
 	pressLike,
 	likes,
-	setDefault,
+	delet,
+	clickLike,
+	action,
+	isPaused,
+	onNext,
+	onPrevious,
 }) {
 	const { userInfo } = useContext(UserContext);
-	const [ellips, setEllips] = useState(false);
+	const { deleteStorie, likeStorie, likeState, setLikeState } =
+		useContext(StorieContext);
 	const { formatTimeDifference } = useContext(AssistantContext);
+
+	const [likesCount, setLikesCount] = useState(likes);
+	const [stateLike, setStateLike] = useState(
+		id in likeState ? likeState[id] : pressLike
+	);
+	const [ellips, setEllips] = useState(false);
+
+	const onPressLike = async () => {
+		await likeStorie(id);
+		setStateLike((prevLike) => !prevLike);
+		setLikeState((prevState) => ({ ...prevState, [id]: !stateLike }));
+		setLikesCount((prevLikes) => (stateLike ? prevLikes - 1 : prevLikes + 1));
+	};
+
+	const handlerDeletStorie = async () => {
+		delet(id);
+		await deleteStorie(id);
+	};
 
 	const handlerEllips = (evt) => {
 		evt.stopPropagation();
@@ -43,9 +70,7 @@ export default function ItemStorie({
 				click();
 			}
 			setEllips(false);
-			// setDefault(false);
 		} else {
-			// setDefault(true);
 			setEllips(true);
 		}
 	};
@@ -68,7 +93,7 @@ export default function ItemStorie({
 
 		{
 			label: "Delet",
-			handler: handlerEllips,
+			handler: handlerDeletStorie,
 			route: null,
 			icon: <DeletIcon />,
 		},
@@ -79,17 +104,34 @@ export default function ItemStorie({
 			<Photo>
 				<PhotoStorie src={photo} />
 			</Photo>
-
 			<MenuContainer>
 				<UserMessages
 					photo={user.photo}
 					name={`${user.firstname} ${user.lastname}`}
-					message={formatTimeDifference(time)}
+					message={time ? formatTimeDifference(time) : "0 seconds ago"}
 					online={false}
 					at={user.at}
 				/>
 				<IconsContainer>
-					<PauseIcon />
+					{type ? (
+						<>
+							{!isPaused ? (
+								<PauseIcon
+									onClick={() => {
+										action("pause");
+									}}
+								/>
+							) : (
+								<PlayIcon
+									onClick={() => {
+										action("play");
+									}}
+								/>
+							)}
+						</>
+					) : (
+						<PauseIcon />
+					)}
 					<EllipsIcon onClick={handlerEllips} />
 				</IconsContainer>
 				{type && ellips && (
@@ -101,7 +143,18 @@ export default function ItemStorie({
 				)}
 			</MenuContainer>
 			<LikeContainer>
-				<HeartIcon />
+				{type ? (
+					<>
+						{stateLike ? (
+							<HeartPressIcon style={{ color: "red" }} onClick={onPressLike} />
+						) : (
+							<HeartIcon onClick={onPressLike} />
+						)}
+					</>
+				) : (
+					<HeartIcon />
+				)}
+				{/* <Numbers>{likesCount}</Numbers> */}
 			</LikeContainer>
 		</ContainerItemStorie>
 	);

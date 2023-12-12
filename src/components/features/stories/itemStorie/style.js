@@ -22,6 +22,10 @@ export const MenuContainer = styled.div`
 
 export const LikeContainer = styled.div`
 	position: absolute;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 0.4rem;
 	right: 0.5rem;
 	bottom: 1rem;
 
@@ -34,6 +38,12 @@ export const LikeContainer = styled.div`
 	& svg:hover {
 		color: red;
 		opacity: 0.7;
+	}
+
+	& span {
+		color: white;
+		font-weight: bold;
+		font-size: 1rem;
 	}
 `;
 

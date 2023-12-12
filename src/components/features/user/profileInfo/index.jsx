@@ -121,14 +121,7 @@ export default function ProfileInfo({
 								acceppt="image/*"
 								onChange={handleUploadBanner}
 							/>
-							<EditPhotoCover
-								htmlFor="banner"
-								style={
-									banner || !banner === ""
-										? { background: "#2c2c6c", color: "white" }
-										: null
-								}
-							>
+							<EditPhotoCover htmlFor="banner">
 								<CamIcon />
 								Edit Cover Photo
 							</EditPhotoCover>

@@ -23,7 +23,7 @@ export default function ProfileMidTemplate() {
 		getPostsWithFavorites,
 	} = useContext(UserContext);
 
-	const { findAllStories, allStories } = useContext(StorieContext);
+	const { findStoriesByAt } = useContext(StorieContext);
 
 	const [user, setUser] = useState({});
 	const [equal, setEqual] = useState();
@@ -31,6 +31,7 @@ export default function ProfileMidTemplate() {
 	const [postsLike, setPostsLike] = useState([]);
 	const [postsFavorite, setPostsFavorite] = useState([]);
 	const [search, setSearch] = useState("Followings");
+	const [stories, setStories] = useState([]);
 
 	useEffect(() => {
 		setPosts([]);
@@ -46,13 +47,14 @@ export default function ProfileMidTemplate() {
 	}, [id, userInfo]);
 
 	useEffect(() => {
-		if (allStories) {
+		if (stories) {
 			searchStories();
 		}
 	}, []);
 
 	const searchStories = async () => {
-		await findAllStories();
+		const newStories = await findStoriesByAt(id);
+		setStories(newStories);
 	};
 
 	async function findUserAt() {
@@ -88,7 +90,7 @@ export default function ProfileMidTemplate() {
 		setSearch("Favorites");
 		return;
 	}
-
+	console.log(stories);
 	return (
 		<ProfileContainer>
 			{user ? (
@@ -99,7 +101,7 @@ export default function ProfileMidTemplate() {
 						updatePhoto={updatePhoto}
 						updateBanner={updateBanner}
 					/>
-					<Carrousel data={allStories} />
+					<Carrousel data={stories} setStories={setStories} profile={true} />
 					<FilterSearchMenu
 						search={search}
 						findPosts={findPosts}

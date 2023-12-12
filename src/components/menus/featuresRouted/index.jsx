@@ -58,15 +58,17 @@ export default function FeaturesRoutedMenu() {
 			<ContainerIcon>
 				<Link to={`/`}>
 					<HomeIcon
-						style={pathname === "/" ? { color: "hsl(252, 73%, 29%)" } : {}}
+						style={
+							pathname === "/"
+								? { color: `${({ theme }) => theme.secondColor}` }
+								: null
+						}
 						onMouseEnter={handleMouseEnterHome}
 						onMouseLeave={handleMouseLeaveHome}
 					/>
 				</Link>
 				<BorderSelect
-					style={
-						pathname === "/" ? { backgroundColor: "hsl(252, 73%, 29%)" } : {}
-					}
+					style={pathname !== "/" ? { backgroundColor: "transparent" } : null}
 				/>
 				{showLegendHome && <Legend>Home</Legend>}
 			</ContainerIcon>
@@ -76,8 +78,8 @@ export default function FeaturesRoutedMenu() {
 					<ProfileIcon
 						style={
 							pathname === `/profile/${userInfo.at}`
-								? { color: "hsl(252, 73%, 29%)" }
-								: {}
+								? { color: `${({ theme }) => theme.secondColor}` }
+								: null
 						}
 						onMouseEnter={handleMouseEnterProfile}
 						onMouseLeave={handleMouseLeaveProfile}
@@ -85,9 +87,9 @@ export default function FeaturesRoutedMenu() {
 				</Link>
 				<BorderSelect
 					style={
-						pathname === `/profile/${userInfo.at}`
-							? { backgroundColor: "hsl(252, 73%, 29%)" }
-							: {}
+						pathname !== `/profile/${userInfo.at}`
+							? { backgroundColor: "transparent" }
+							: null
 					}
 				/>
 				{showLegendProfile && <Legend>Profile</Legend>}
@@ -97,7 +99,9 @@ export default function FeaturesRoutedMenu() {
 				<Link to={`/events`}>
 					<EventIcon
 						style={
-							pathname === `/events` ? { color: "hsl(252, 73%, 29%)" } : {}
+							pathname === `/events`
+								? { color: `${({ theme }) => theme.secondColor}` }
+								: null
 						}
 						onMouseEnter={handleMouseEnterEvents}
 						onMouseLeave={handleMouseLeaveEvents}
@@ -105,9 +109,7 @@ export default function FeaturesRoutedMenu() {
 				</Link>
 				<BorderSelect
 					style={
-						pathname === `/events`
-							? { backgroundColor: "hsl(252, 73%, 29%)" }
-							: {}
+						pathname !== `/events` ? { backgroundColor: "transparent" } : null
 					}
 				/>
 				{showLegendEvents && <Legend>Events</Legend>}
@@ -117,7 +119,9 @@ export default function FeaturesRoutedMenu() {
 				<Link to={`/messages`}>
 					<ChatIcon
 						style={
-							pathname === `/messages` ? { color: "hsl(252, 73%, 29%)" } : {}
+							pathname === `/messages`
+								? { color: `${({ theme }) => theme.secondColor}` }
+								: null
 						}
 						onMouseEnter={handleMouseEnterMessages}
 						onMouseLeave={handleMouseLeaveMessages}
@@ -125,9 +129,7 @@ export default function FeaturesRoutedMenu() {
 				</Link>
 				<BorderSelect
 					style={
-						pathname === `/messages`
-							? { backgroundColor: "rgb(52, 131, 235)" }
-							: {}
+						pathname !== `/messages` ? { backgroundColor: "transparent" } : null
 					}
 				/>
 				{showLegendMessages && <Legend>Message</Legend>}

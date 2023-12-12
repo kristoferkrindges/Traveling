@@ -92,7 +92,11 @@ export default function CreateStorie({ handlerCreateStorie }) {
 								) : (
 									<>
 										<Preview>
-											<ItemStorie type={false} photo={imagePreview} />
+											<ItemStorie
+												type={false}
+												photo={imagePreview}
+												user={userInfo}
+											/>
 										</Preview>
 										<ButtonsContainer>
 											<LabelFile for="uploadBtn">

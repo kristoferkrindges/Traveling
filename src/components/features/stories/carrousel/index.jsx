@@ -13,7 +13,7 @@ import InstaStorie from "../instaStories";
 import { StorieContext } from "../../../../contexts/storieContext";
 import InstaStorieNew from "../instaStories/new";
 
-export default function Carrousel({ data, type }) {
+export default function Carrousel({ data, setStories, type, profile }) {
 	const { userInfo } = useContext(UserContext);
 	const { findStoriesByAt } = useContext(StorieContext);
 
@@ -24,6 +24,7 @@ export default function Carrousel({ data, type }) {
 	const [modalCreateStorie, setModalCreateStorie] = useState(false);
 	const [storieUser, setStoriesUser] = useState([]);
 	const [instaStorie, setInstaStorie] = useState(false);
+	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const handleSlide = (direction) => {
 		const slider = carrouselBodyRef.current;
@@ -72,12 +73,12 @@ export default function Carrousel({ data, type }) {
 			: setModalCreateStorie(true);
 	};
 
-	const searchStoriesUser = async (at) => {
+	const searchStoriesUser = async (at, index) => {
 		const stories = await findStoriesByAt(at);
 		setStoriesUser(stories);
+		setCurrentIndex(index);
 		handlerOpenInstaStories();
 	};
-
 	const handlerOpenInstaStories = () => {
 		instaStorie ? setInstaStorie(false) : setInstaStorie(true);
 	};
@@ -110,23 +111,26 @@ export default function Carrousel({ data, type }) {
 					/>
 				)}
 				{data &&
-					data.map((item) => (
+					data.map((item, index) => (
 						<StorieAvatar
-							key={item}
+							key={item.id}
 							user={item}
 							type={false}
+							profile={profile}
 							searchStoriesUser={searchStoriesUser}
+							index={index}
 						/>
 					))}
 			</CarrouselBody>
-			{instaStorie && (
-				<InstaStorie stories={storieUser} click={handlerOpenInstaStories} />
-				// <InstaStorieNew
-				// 	stories={storieUser}
-				// 	click={handlerOpenInstaStories}
-				// 	id={"slide"}
-				// />
-			)}
+			{instaStorie &&
+				(storieUser && storieUser.length > 0 ? (
+					<InstaStorie
+						stories={storieUser}
+						setStories={setStories}
+						click={handlerOpenInstaStories}
+						index={currentIndex}
+					/>
+				) : null)}
 		</Check>
 	);
 }
