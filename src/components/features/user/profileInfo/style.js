@@ -17,7 +17,7 @@ export const Head = styled.div`
 	border-radius: ${size.lg};
 	overflow: hidden;
 	width: 100%;
-	height: 20vh;
+	height: 180px;
 	background-color: ${({ theme }) => theme.secondColor};
 `;
 export const Bottom = styled.div`
@@ -29,7 +29,8 @@ export const Bottom = styled.div`
 	line-height: 1.5;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 	width: 90%;
-	height: 25vh;
+	/* height: 25vh; */
+	height: 250px;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -160,7 +161,7 @@ export const EditPhotoCover = styled.label`
 	border-radius: 2rem;
 	cursor: pointer;
 	transition: all 300ms ease;
-	background-color: ${({ theme }) => theme.text};
+	background-color: ${({ theme }) => theme.secondColor};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 	color: ${({ theme }) => theme.textInverse};
 	text-align: center;
@@ -168,6 +169,7 @@ export const EditPhotoCover = styled.label`
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
+
 	&:hover {
 		opacity: 0.8;
 	}

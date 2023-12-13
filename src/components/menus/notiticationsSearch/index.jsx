@@ -31,12 +31,12 @@ export default function NotificationSearchMenu({
 					<Border
 						style={
 							search === "Unread"
-								? { backgroundColor: "rgb(52, 131, 235)", top: "35px" }
+								? { backgroundColor: "hsl(252, 73%, 29%)", top: "35px" }
 								: null
 						}
 					/>
 					<Legend
-						style={search === "Unread" ? { color: "rgb(52, 131, 235)" } : null}
+						style={search === "Unread" ? { color: "hsl(252, 73%, 29%)" } : null}
 					>
 						Unread
 					</Legend>
@@ -45,12 +45,12 @@ export default function NotificationSearchMenu({
 					<Border
 						style={
 							search === "All"
-								? { backgroundColor: "rgb(52, 131, 235)", top: "35px" }
+								? { backgroundColor: "hsl(252, 73%, 29%)", top: "35px" }
 								: null
 						}
 					/>
 					<Legend
-						style={search === "All" ? { color: "rgb(52, 131, 235)" } : null}
+						style={search === "All" ? { color: "hsl(252, 73%, 29%)" } : null}
 					>
 						All
 					</Legend>
@@ -59,12 +59,12 @@ export default function NotificationSearchMenu({
 					<Border
 						style={
 							search === "Follow"
-								? { backgroundColor: "rgb(52, 131, 235)", top: "35px" }
+								? { backgroundColor: "hsl(252, 73%, 29%)", top: "35px" }
 								: null
 						}
 					/>
 					<Legend
-						style={search === "Follow" ? { color: "rgb(52, 131, 235)" } : null}
+						style={search === "Follow" ? { color: "hsl(252, 73%, 29%)" } : null}
 					>
 						Followers
 					</Legend>

@@ -6,18 +6,19 @@ import Loader from "../../../../components/loader";
 import { StorieContext } from "../../../../contexts/storieContext";
 import Post from "../../../../components/features/post/post";
 import { PostAllContainer } from "./style";
+import Carrousel from "../../../../components/features/stories/carrousel";
 export default function HomeMidTemplate() {
 	const { findAllPosts, allPosts } = useContext(PostContext);
-	const { allStories, findAllStories } = useContext(StorieContext);
+	const { allStories, setAllStories, findAllUsersWithStories } =
+		useContext(StorieContext);
 	const [postsLoaded, setPostsLoaded] = useState(false);
 
 	useEffect(() => {
 		searchPostsAndStories();
 	}, []);
-
 	const searchPostsAndStories = async () => {
 		await findAllPosts();
-		await findAllStories();
+		await findAllUsersWithStories();
 		setPostsLoaded(true);
 	};
 
@@ -29,6 +30,7 @@ export default function HomeMidTemplate() {
 		<>
 			{postsLoaded ? (
 				<>
+					<Carrousel data={allStories} setStories={setAllStories} type={true} />
 					<CreatePost />
 					{Array.isArray(allPosts) && allPosts.length > 0 ? (
 						allPosts.map((value, key) => (

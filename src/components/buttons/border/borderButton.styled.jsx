@@ -13,7 +13,7 @@ export const BorderButton = styled.button`
 	cursor: pointer;
 	transition: all 300ms ease;
 	background-color: ${({ theme }) => theme.secondColor};
-	color: white;
+	color: ${({ theme }) => theme.textInverse};
 	font-size: 1rem;
 	border: 4px solid transparent;
 	box-shadow: 0 0 0 10px ${({ theme }) => theme.container};

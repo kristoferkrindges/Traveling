@@ -7,12 +7,7 @@ export default function useStorie() {
 	const { uploadImage } = useFirebase();
 
 	const [allStories, setAllStories] = useState();
-
-	// useEffect(() => {
-	// 	if (!allStories) {
-	// 		findAllStories();
-	// 	}
-	// }, []);
+	const [likeState, setLikeState] = useState({});
 
 	async function findAllStories() {
 		try {
@@ -26,6 +21,28 @@ export default function useStorie() {
 		}
 	}
 
+	async function findAllUsersWithStories() {
+		try {
+			const data = await api.get("/stories/users").then((response) => {
+				return response.data;
+			});
+			setAllStories(data);
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	async function findStoriesByAt(id) {
+		try {
+			const response = await api.get(`/stories/users/${id}`);
+			return response.data;
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	}
+
 	async function findById(id) {
 		try {
 			const response = await api.get(`/stories/${id}`);
@@ -36,11 +53,22 @@ export default function useStorie() {
 		}
 	}
 
-	async function insert(post) {
+	async function insert(storie, file) {
 		try {
-			const data = await api.post("/stories", post).then((response) => {
+			if (file) {
+				const video = await uploadImage(file);
+				storie.video = video;
+			}
+			const data = await api.post("/stories", storie).then((response) => {
 				return response.data;
 			});
+
+			const isDataExist = allStories.some((story) => story.id === data.id);
+			if (!isDataExist) {
+				setAllStories([data, ...allStories]);
+			}
+
+			toast.success("Storie created with success!");
 			return;
 		} catch (error) {
 			try {
@@ -73,6 +101,17 @@ export default function useStorie() {
 		}
 	}
 
+	async function likeStorie(id) {
+		try {
+			await api.post(`/stories/like/${id}`).then((response) => {
+				return response.data;
+			});
+		} catch (error) {
+			console.log(error.response.data.message);
+			toast.error(error.response.data.message);
+		}
+	}
+
 	return {
 		findAllStories,
 		findById,
@@ -80,5 +119,11 @@ export default function useStorie() {
 		update,
 		deleteStorie,
 		allStories,
+		setAllStories,
+		findAllUsersWithStories,
+		findStoriesByAt,
+		likeStorie,
+		setLikeState,
+		likeState,
 	};
 }

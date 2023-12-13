@@ -4,8 +4,20 @@ import useStorie from "../hooks/useStorie";
 const StorieContext = createContext();
 
 function StorieProvider({ children }) {
-	const { findAllStories, findById, insert, update, deleteStorie, allStories } =
-		useStorie();
+	const {
+		findAllStories,
+		findById,
+		insert,
+		update,
+		deleteStorie,
+		allStories,
+		findAllUsersWithStories,
+		findStoriesByAt,
+		likeStorie,
+		setLikeState,
+		likeState,
+		setAllStories,
+	} = useStorie();
 
 	return (
 		<StorieContext.Provider
@@ -16,6 +28,12 @@ function StorieProvider({ children }) {
 				update,
 				deleteStorie,
 				allStories,
+				findAllUsersWithStories,
+				findStoriesByAt,
+				likeStorie,
+				setLikeState,
+				likeState,
+				setAllStories,
 			}}
 		>
 			{children}

@@ -8,7 +8,11 @@ export const Navigation = styled.div`
 	/* justify-content: space-around; */
 	z-index: 999;
 	/* width: 100%; */
-	/* margin-right: 5rem; */
+	margin-right: 6rem;
+
+	@media only screen and (max-width: 1400px) {
+		display: none;
+	}
 `;
 
 export const ContainerIcon = styled.span`
@@ -34,7 +38,7 @@ export const BorderSelect = styled.div`
 	height: 3px;
 	border-radius: 2rem;
 	/* padding: 1px; */
-	background-color: transparent;
+	background-color: ${({ theme }) => theme.secondColor};
 	left: -1.3rem;
 	top: 2.9rem;
 `;

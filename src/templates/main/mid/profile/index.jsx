@@ -7,7 +7,9 @@ import ProfileInfo from "../../../../components/features/user/profileInfo";
 import FilterSearchMenu from "../../../../components/menus/filterSearch";
 import { PostAllContainer } from "../home/style";
 import Post from "../../../../components/features/post/post";
-import { NotContentYet } from "./style";
+import { ProfileContainer, NotContentYet } from "./style";
+import Carrousel from "../../../../components/features/stories/carrousel";
+import { StorieContext } from "../../../../contexts/storieContext";
 
 export default function ProfileMidTemplate() {
 	let { id } = useParams();
@@ -21,12 +23,15 @@ export default function ProfileMidTemplate() {
 		getPostsWithFavorites,
 	} = useContext(UserContext);
 
+	const { findStoriesByAt } = useContext(StorieContext);
+
 	const [user, setUser] = useState({});
 	const [equal, setEqual] = useState();
 	const [posts, setPosts] = useState([]);
 	const [postsLike, setPostsLike] = useState([]);
 	const [postsFavorite, setPostsFavorite] = useState([]);
 	const [search, setSearch] = useState("Followings");
+	const [stories, setStories] = useState([]);
 
 	useEffect(() => {
 		setPosts([]);
@@ -40,6 +45,17 @@ export default function ProfileMidTemplate() {
 			findUserAt();
 		}
 	}, [id, userInfo]);
+
+	useEffect(() => {
+		if (stories) {
+			searchStories();
+		}
+	}, []);
+
+	const searchStories = async () => {
+		const newStories = await findStoriesByAt(id);
+		setStories(newStories);
+	};
 
 	async function findUserAt() {
 		const response = await findUserByAt(id);
@@ -74,9 +90,9 @@ export default function ProfileMidTemplate() {
 		setSearch("Favorites");
 		return;
 	}
-
+	console.log(stories);
 	return (
-		<>
+		<ProfileContainer>
 			{user ? (
 				<>
 					<ProfileInfo
@@ -85,6 +101,7 @@ export default function ProfileMidTemplate() {
 						updatePhoto={updatePhoto}
 						updateBanner={updateBanner}
 					/>
+					<Carrousel data={stories} setStories={setStories} profile={true} />
 					<FilterSearchMenu
 						search={search}
 						findPosts={findPosts}
@@ -174,6 +191,6 @@ export default function ProfileMidTemplate() {
 					<Loader />
 				</LoaderContainer>
 			)}
-		</>
+		</ProfileContainer>
 	);
 }

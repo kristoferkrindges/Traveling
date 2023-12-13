@@ -252,7 +252,7 @@ export const Button = styled.button`
 	border-radius: 2rem;
 	cursor: pointer;
 	transition: all 300ms ease;
-	color: white;
+	color: ${({ theme }) => theme.textInverse};
 	font-size: 1rem;
 	border: 4px solid transparent;
 	box-shadow: 0 0 0 10px ${({ theme }) => theme.container};

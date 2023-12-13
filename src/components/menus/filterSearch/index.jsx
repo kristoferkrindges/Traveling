@@ -18,34 +18,46 @@ export default function FilterSearchMenu({
 			<Options>
 				<Option onClick={findPosts}>
 					<PostIcon
-						style={search === "Posts" ? { color: "rgb(52, 131, 235)" } : null}
+						style={
+							search === "Posts" && {
+								color: `${({ theme }) => theme.secondColor}`,
+							}
+						}
 					/>
 					<Border
 						style={
-							search === "Posts"
-								? { backgroundColor: "rgb(52, 131, 235)" }
-								: null
+							search !== "Posts" ? { backgroundColor: "transparent" } : null
 						}
 					/>
 					<Legend
-						style={search === "Posts" ? { color: "rgb(52, 131, 235)" } : null}
+						style={
+							search === "Posts"
+								? { color: `${({ theme }) => theme.secondColor}` }
+								: null
+						}
 					>
 						Posts
 					</Legend>
 				</Option>
 				<Option onClick={findPostsLikes}>
 					<HeartPressIcon
-						style={search === "Likes" ? { color: "rgb(52, 131, 235)" } : null}
+						style={
+							search === "Likes" && {
+								color: `${({ theme }) => theme.secondColor}`,
+							}
+						}
 					/>
 					<Border
 						style={
-							search === "Likes"
-								? { backgroundColor: "rgb(52, 131, 235)" }
-								: null
+							search !== "Likes" ? { backgroundColor: "transparent" } : null
 						}
 					/>
 					<Legend
-						style={search === "Likes" ? { color: "rgb(52, 131, 235)" } : null}
+						style={
+							search === "Likes"
+								? { color: `${({ theme }) => theme.secondColor}` }
+								: null
+						}
 					>
 						Likes
 					</Legend>
@@ -53,19 +65,21 @@ export default function FilterSearchMenu({
 				<Option onClick={findPostsFavorites}>
 					<BookPressIcon
 						style={
-							search === "favorites" ? { color: "rgb(52, 131, 235)" } : null
+							search === "Favorites" && {
+								color: `${({ theme }) => theme.secondColor}`,
+							}
 						}
 					/>
 					<Border
 						style={
-							search === "Favorites"
-								? { backgroundColor: "rgb(52, 131, 235)" }
-								: null
+							search !== "Favorites" ? { backgroundColor: "transparent" } : null
 						}
 					/>
 					<Legend
 						style={
-							search === "favorites" ? { color: "rgb(52, 131, 235)" } : null
+							search === "Favorites"
+								? { color: `${({ theme }) => theme.secondColor}` }
+								: null
 						}
 					>
 						Favorites
