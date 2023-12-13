@@ -4,6 +4,7 @@ import { size } from "../../../../styles/variables";
 export const CarrouselContainer = styled.section`
 	max-width: 38vw;
 	min-width: 37vw;
+	/* width: 100%; */
 	background-color: ${({ theme }) => theme.container};
 	border-radius: ${size.lg};
 	padding: ${size.sm};
@@ -39,6 +40,10 @@ export const CarrouselBody = styled.div`
 
 	.carousel-status {
 		padding: 16px 0px;
+	}
+
+	@media only screen and (max-width: 992px) {
+		max-width: 930px;
 	}
 `;
 

@@ -7,7 +7,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { StorieContext } from "../../../../contexts/storieContext";
 
-export default function InstaStorie({ stories, setStories, click, index }) {
+export default function InstaStorie({
+	stories,
+	setStories,
+	click,
+	index,
+	handlerDeletStorieUserCarrousel,
+}) {
 	const { likeState, setLikeState } = useContext(StorieContext);
 	const [stateStories, setStateStories] = useState(stories);
 	const [storyKey, setStoryKey] = useState(0);
@@ -17,7 +23,6 @@ export default function InstaStorie({ stories, setStories, click, index }) {
 	}, [stories]);
 
 	useEffect(() => {
-		// Quando as histórias são alteradas, atualiza a chave única
 		setStoryKey((prevKey) => prevKey + 1);
 	}, [stories]);
 
@@ -60,26 +65,16 @@ export default function InstaStorie({ stories, setStories, click, index }) {
 		});
 	};
 
-	// const handlerDelet = async (storieId) => {
-	// 	setStories((prevStories) =>
-	// 		prevStories.filter((storie) => storie.id !== storieId)
-	// 	);
-
-	// 	if (stories.length === 1) {
-	// 		click();
-	// 	}
-	// 	setStoryKey((prevKey) => prevKey + 1);
-	// };
-
 	const handlerDelet = (storieId) => {
 		const updatedStories = stateStories.filter(
 			(storie) => storie.id !== storieId
 		);
 		setStories(updatedStories);
-		setStateStories(updatedStories);
 		if (stateStories.length === 1) {
+			handlerDeletStorieUserCarrousel();
 			click();
 		}
+		handlerDeletStorieUserCarrousel(storieId);
 	};
 
 	const storyContainerStyles = {
@@ -104,7 +99,7 @@ export default function InstaStorie({ stories, setStories, click, index }) {
 					preventDefault={true}
 					storyContainerStyles={storyContainerStyles}
 					currentIndex={index}
-					// onAllStoriesEnd={click}
+					onAllStoriesEnd={click}
 				/>
 			</ModalContainer>
 		</OverlayContainer>

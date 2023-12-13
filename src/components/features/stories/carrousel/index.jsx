@@ -83,6 +83,20 @@ export default function Carrousel({ data, setStories, type, profile }) {
 		instaStorie ? setInstaStorie(false) : setInstaStorie(true);
 	};
 
+	const handlerDeletStorieUserCarrousel = (id) => {
+		if (profile) {
+			const updatedStories = data.filter((storie) => storie.id !== id);
+			setStories(updatedStories);
+		} else {
+			if (!id) {
+				const updatedStories = data.filter(
+					(storie) => storie.at !== userInfo.at
+				);
+				setStories(updatedStories);
+			}
+		}
+	};
+
 	return (
 		<Check>
 			{modalCreateStorie && (
@@ -126,9 +140,10 @@ export default function Carrousel({ data, setStories, type, profile }) {
 				(storieUser && storieUser.length > 0 ? (
 					<InstaStorie
 						stories={storieUser}
-						setStories={setStories}
+						setStories={setStoriesUser}
 						click={handlerOpenInstaStories}
 						index={currentIndex}
+						handlerDeletStorieUserCarrousel={handlerDeletStorieUserCarrousel}
 					/>
 				) : null)}
 		</Check>
