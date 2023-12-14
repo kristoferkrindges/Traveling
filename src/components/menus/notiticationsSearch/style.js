@@ -11,3 +11,12 @@ export const NotificationMenuContainer = styled.div`
 	gap: 1rem;
 	margin-bottom: 1.5rem;
 `;
+
+export const Border = styled.div`
+	position: absolute;
+	width: 40%;
+	height: 3px;
+	border-radius: 2rem;
+	background-color: ${({ theme }) => theme.secondColor};
+	top: 34.5px;
+`;

@@ -10,7 +10,7 @@ export const PrimaryButton = styled.button`
 	cursor: pointer;
 	transition: all 300ms ease;
 	background-color: ${({ theme }) => theme.secondColor};
-	color: white;
+	color: ${({ theme }) => theme.textInverse};
 	font-size: 1rem;
 	transition: 0.5s;
 	text-align: center;

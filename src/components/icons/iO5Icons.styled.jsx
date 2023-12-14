@@ -40,7 +40,13 @@ import {
 	IoAddCircle,
 	IoPlay,
 	IoPause,
+	IoOptions,
+	IoCreate,
 } from "react-icons/io5";
+
+export const CreateIcon = styled(IoCreate)``;
+
+export const OptionsIcon = styled(IoOptions)``;
 
 export const PauseIcon = styled(IoPause)``;
 

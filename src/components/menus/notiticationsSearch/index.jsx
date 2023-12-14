@@ -1,14 +1,8 @@
 import React from "react";
-import { MessagesContainer } from "../../features/messages/messages/style";
 import HeadingContainer from "../../containers/heading";
-import {
-	Border,
-	Legend,
-	Option,
-	Options,
-} from "../../menus/filterSearch/style";
+import { Legend, Option, Options } from "../../menus/filterSearch/style";
 import SearchBar from "../../inputs/searchBar";
-import { NotificationMenuContainer } from "./style";
+import { NotificationMenuContainer, Border } from "./style";
 
 export default function NotificationSearchMenu({
 	search,
@@ -30,44 +24,24 @@ export default function NotificationSearchMenu({
 				<Option onClick={searchUnreadNotification}>
 					<Border
 						style={
-							search === "Unread"
-								? { backgroundColor: "hsl(252, 73%, 29%)", top: "35px" }
-								: null
+							search !== "Unread" ? { backgroundColor: "transparent" } : null
 						}
 					/>
-					<Legend
-						style={search === "Unread" ? { color: "hsl(252, 73%, 29%)" } : null}
-					>
-						Unread
-					</Legend>
+					<Legend>Unread</Legend>
 				</Option>
 				<Option onClick={searchAllNotification}>
 					<Border
-						style={
-							search === "All"
-								? { backgroundColor: "hsl(252, 73%, 29%)", top: "35px" }
-								: null
-						}
+						style={search !== "All" ? { backgroundColor: "transparent" } : null}
 					/>
-					<Legend
-						style={search === "All" ? { color: "hsl(252, 73%, 29%)" } : null}
-					>
-						All
-					</Legend>
+					<Legend>All</Legend>
 				</Option>
 				<Option onClick={searchFollowNotification}>
 					<Border
 						style={
-							search === "Follow"
-								? { backgroundColor: "hsl(252, 73%, 29%)", top: "35px" }
-								: null
+							search !== "Follow" ? { backgroundColor: "transparent" } : null
 						}
 					/>
-					<Legend
-						style={search === "Follow" ? { color: "hsl(252, 73%, 29%)" } : null}
-					>
-						Followers
-					</Legend>
+					<Legend>Followers</Legend>
 				</Option>
 			</Options>
 		</NotificationMenuContainer>

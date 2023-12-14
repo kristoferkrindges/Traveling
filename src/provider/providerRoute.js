@@ -9,6 +9,7 @@ import { CommentProvider } from "../contexts/commentContext";
 import { StorieProvider } from "../contexts/storieContext";
 import Routes from "../routes/routes";
 import { MessageProvider } from "../contexts/messageContext";
+import { EventProvider } from "../contexts/eventContext";
 
 export default function ProviderRoute() {
 	return (
@@ -19,11 +20,13 @@ export default function ProviderRoute() {
 						<NotificationProvider>
 							<StorieProvider>
 								<PostProvider>
-									<CommentProvider>
-										<MessageProvider>
-											<Routes />
-										</MessageProvider>
-									</CommentProvider>
+									<EventProvider>
+										<CommentProvider>
+											<MessageProvider>
+												<Routes />
+											</MessageProvider>
+										</CommentProvider>
+									</EventProvider>
 								</PostProvider>
 							</StorieProvider>
 						</NotificationProvider>

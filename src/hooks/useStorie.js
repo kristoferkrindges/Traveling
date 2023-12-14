@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
 import useFirebase from "./useFirebase";
@@ -85,6 +85,7 @@ export default function useStorie() {
 				return response.data;
 			});
 			toast.success("Updated with success!");
+			return data;
 		} catch (error) {
 			console.log(error.response.data.message);
 			toast.error(error.response.data.message);
@@ -96,6 +97,7 @@ export default function useStorie() {
 			const data = await api.delete(`/stories/${id}`).then((response) => {
 				return response.data;
 			});
+			return data;
 		} catch (error) {
 			console.log(error);
 		}
