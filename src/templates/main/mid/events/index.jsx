@@ -5,8 +5,9 @@ import { NotificationContainer, Title } from "../notification/style";
 import Notifications from "../../../../components/features/notifications";
 import { EventContext } from "../../../../contexts/eventContext";
 import EventSearchMenu from "../../../../components/menus/eventsSearch";
-import HeadingContainer from "../../../../components/containers/heading";
-import { CreatedContainer } from "./style";
+import CreateAndUpdateModal from "../../../../components/features/events/modalCreateAndUpdate";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
+import Event from "../../../../components/features/events/event";
 
 export default function EventMidTemplate() {
 	const { findAll, findMyEvents, findMyEventsAttend, findEventsNowMonth } =
@@ -15,8 +16,11 @@ export default function EventMidTemplate() {
 	const [eventsAll, setEventsAll] = useState();
 	const [myEvents, setMyEvents] = useState();
 	const [myEventsAttend, setMyEventsAttend] = useState();
+	const [eventsNow, setEventsNow] = useState();
 	const [filteredData, setFilteredData] = useState([]);
 	const [search, setSearch] = useState("All");
+	const [type, setType] = useState(true);
+	const [modal, setModal] = useState(false);
 
 	useEffect(() => {
 		if (!events) {
@@ -29,9 +33,10 @@ export default function EventMidTemplate() {
 	}, [events]);
 
 	const searchAllEvents = async () => {
-		setEvents([]);
+		// setEvents([]);
 		if (!eventsAll) {
 			const newEvents = await findAll();
+			console.log(newEvents);
 			setEventsAll(newEvents);
 			setEvents(newEvents);
 		} else {
@@ -41,25 +46,27 @@ export default function EventMidTemplate() {
 	};
 
 	const searchMyEvents = async () => {
-		setEvents([]);
+		// setEvents([]);
 		if (!myEvents) {
 			const newEvents = await findMyEvents();
+			console.log("if");
 			setMyEvents(newEvents);
 			setEvents(newEvents);
 		} else {
-			setEvents(eventsAll);
+			setEvents(myEvents);
+			console.log("else");
 		}
 		setSearch("MyEvents");
 	};
 
 	const searchMyEventsAttend = async () => {
-		setEvents([]);
+		// setEvents([]);
 		if (!myEventsAttend) {
 			const newEvents = await findMyEventsAttend();
 			setMyEventsAttend(newEvents);
 			setEvents(newEvents);
 		} else {
-			setEvents(eventsAll);
+			setEvents(myEventsAttend);
 		}
 		setSearch("MyEventsAttend");
 	};
@@ -68,19 +75,32 @@ export default function EventMidTemplate() {
 		setEvents([]);
 		if (!myEventsAttend) {
 			const newEvents = await findEventsNowMonth();
-			setMyEventsAttend(newEvents);
+			setEventsNow(newEvents);
 			setEvents(newEvents);
 		} else {
-			setEvents(eventsAll);
+			setEvents(eventsNow);
 		}
 		setSearch("EventsNow");
 	};
 
+	const handlerModal = () => {
+		setModal(modal ? false : true);
+	};
+
+	const insertEvent = (event) => {
+		setEvents([event, ...events]);
+	};
+
 	return (
 		<NotificationContainer>
-			{/* <CreatedContainer>
-				<HeadingContainer type={"Events"} text={"Events"} />
-			</CreatedContainer> */}
+			{modal && (
+				<CreateAndUpdateModal
+					click={handlerModal}
+					type={type}
+					avatarNone={AvatarNone}
+					insertEvent={insertEvent}
+				/>
+			)}
 			<EventSearchMenu
 				search={search}
 				data={events}
@@ -89,17 +109,17 @@ export default function EventMidTemplate() {
 				searchAllEvents={searchAllEvents}
 				searchMyEventsAttend={searchMyEventsAttend}
 				searchEventsNowMonth={searchEventsNowMonth}
+				handlerModal={handlerModal}
 			/>
-			{!filteredData ? (
+			{filteredData ? (
 				<>
 					{filteredData.length > 0 ? (
 						filteredData.map((value, key) => (
-							<Notifications
+							<Event
 								key={key}
-								user={value.user}
-								creator={value.creator}
-								type={value.type}
-								date={value.date}
+								photo={value.photo}
+								name={value.name}
+								creator={value.userAllResponse}
 							/>
 						))
 					) : (

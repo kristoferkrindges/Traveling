@@ -8,7 +8,6 @@ import {
 } from "../notiticationsSearch/style";
 import { CreatedContainer } from "./style";
 import { CreateIcon, OptionsIcon } from "../../icons/iO5Icons.styled";
-import { PrimaryButton } from "../../buttons/primaryButton.styled";
 import { CircleContainer } from "../../containers/circle.styled";
 
 export default function EventSearchMenu({
@@ -19,6 +18,7 @@ export default function EventSearchMenu({
 	searchAllEvents,
 	searchMyEventsAttend,
 	searchEventsNowMonth,
+	handlerModal,
 }) {
 	return (
 		<NotificationMenuContainer>
@@ -26,7 +26,7 @@ export default function EventSearchMenu({
 			<CreatedContainer>
 				<OptionsIcon />
 				<CircleContainer>
-					<CreateIcon />
+					<CreateIcon onClick={handlerModal} />
 				</CircleContainer>
 			</CreatedContainer>
 			<SearchBar

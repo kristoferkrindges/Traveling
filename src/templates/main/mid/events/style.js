@@ -11,6 +11,5 @@ export const CreatedContainer = styled.div`
 
 	svg {
 		font-size: 1.3rem;
-		cursor: pointer;
 	}
 `;

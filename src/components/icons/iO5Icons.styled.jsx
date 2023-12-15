@@ -42,7 +42,10 @@ import {
 	IoPause,
 	IoOptions,
 	IoCreate,
+	IoLocation,
 } from "react-icons/io5";
+
+export const LocateIcon = styled(IoLocation)``;
 
 export const CreateIcon = styled(IoCreate)``;
 
