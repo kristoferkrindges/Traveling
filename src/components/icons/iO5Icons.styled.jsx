@@ -43,7 +43,10 @@ import {
 	IoOptions,
 	IoCreate,
 	IoLocation,
+	IoAddOutline,
 } from "react-icons/io5";
+
+export const MoreIcon = styled(IoAddOutline)``;
 
 export const LocateIcon = styled(IoLocation)``;
 

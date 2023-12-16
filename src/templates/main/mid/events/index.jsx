@@ -120,6 +120,12 @@ export default function EventMidTemplate() {
 								photo={value.photo}
 								name={value.name}
 								creator={value.userAllResponse}
+								attendsUsers={value.usersAttends}
+								attendsCount={value.attends}
+								city={value.city}
+								zipCode={value.zipCode}
+								address={value.address}
+								eventDate={value.eventDate}
 							/>
 						))
 					) : (
