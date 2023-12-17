@@ -117,6 +117,7 @@ export default function EventMidTemplate() {
 						filteredData.map((value, key) => (
 							<Event
 								key={key}
+								object={value}
 								photo={value.photo}
 								name={value.name}
 								creator={value.userAllResponse}

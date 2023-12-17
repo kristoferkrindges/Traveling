@@ -47,6 +47,17 @@ export default function useAssistant() {
 		return timestamp;
 	};
 
+	const DateTimeConverter = (inputDateTime) => {
+		const inputDate = new Date(inputDateTime);
+
+		if (!isNaN(inputDate.getTime())) {
+			const convertedDate = inputDate.toISOString();
+			return convertedDate;
+		} else {
+			return "2023-03-23T00:00:00.000+00:00";
+		}
+	};
+
 	const handleFilter = (evt, data) => {
 		const searchWord = evt.target.value;
 		setWordEntered(searchWord);
@@ -70,5 +81,6 @@ export default function useAssistant() {
 		dateToSeconds,
 		handleFilter,
 		wordEntered,
+		DateTimeConverter,
 	};
 }

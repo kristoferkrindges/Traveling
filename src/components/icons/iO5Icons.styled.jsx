@@ -44,7 +44,13 @@ import {
 	IoCreate,
 	IoLocation,
 	IoAddOutline,
+	IoPricetags,
+	IoNewspaper,
 } from "react-icons/io5";
+
+export const TypeIcon = styled(IoNewspaper)``;
+
+export const PriceIcon = styled(IoPricetags)``;
 
 export const MoreIcon = styled(IoAddOutline)``;
 

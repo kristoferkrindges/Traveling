@@ -61,7 +61,6 @@ export const SendPhoto = styled.label`
 `;
 
 export const Separator = styled.div`
-	border-top: 2px solid ${({ theme }) => theme.textInverse};
 	margin-bottom: 1rem;
 	margin-top: 1rem;
 `;

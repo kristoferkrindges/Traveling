@@ -1,13 +1,6 @@
 import React, { useContext, useState } from "react";
 import {
 	EventContainer,
-	ContextContainer,
-	ImgBox,
-	Content,
-	Name,
-	Toggle,
-	PorcentsContainer,
-	EventImage,
 	HeaderEvent,
 	BottomEvent,
 	ContextPhoto,
@@ -17,9 +10,10 @@ import {
 	MidEvent,
 	MidContext,
 	ContentMidContext,
-	MidTitle,
 	ButtonsCointainer,
 	MidEventContainers,
+	EventContext,
+	TypeEvent,
 } from "./style";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
 import { AvatarPhoto } from "../../../images/avatar.styled";
@@ -32,6 +26,7 @@ import {
 	EllipsIcon,
 	LocateIcon,
 	MoreIcon,
+	PriceIcon,
 	ReportIcon,
 } from "../../../icons/iO5Icons.styled";
 import { UserContext } from "../../../../contexts/userContext";
@@ -52,13 +47,14 @@ export default function Event({
 	zipCode,
 	address,
 	eventDate,
+	object,
 }) {
 	const { userInfo } = useContext(UserContext);
 
 	const navigate = useNavigate();
 
 	const [ellips, setEllips] = useState(false);
-	const photoSrc = photo ? photo : AvatarNone;
+	const photoSrc = object.photo ? object.photo : AvatarNone;
 	const [open, setOpen] = useState(false);
 
 	const handlerEllips = (evt) => {
@@ -122,98 +118,86 @@ export default function Event({
 
 	return (
 		<EventContainer>
-			<ContextPhoto
-				style={{
-					backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4),
-                       rgba(0, 0, 0, 0.4)),url(${photo})`,
-				}}
-			>
-				<HeaderEvent>
-					<CirclePhoto>
-						<AvatarPhoto
-							src={creator.photo}
-							onClick={(evt) => handlerRoute(evt, creator.at)}
-						/>
-					</CirclePhoto>
-					<CirclePhoto style={{ width: `45px`, height: `45px` }}>
-						<EllipsIcon onClick={(evt) => handlerEllips(evt)} />
-						{ellips && (
-							<EllipsMenu
-								optionsMenu={
-									userInfo.at === creator.at ? optionsMenu : optionsMenuNotUser
-								}
+			<EventContext>
+				<ContextPhoto
+					style={{
+						backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4),
+                       rgba(0, 0, 0, 0.4)),url(${photoSrc})`,
+					}}
+				>
+					<HeaderEvent>
+						<CirclePhoto>
+							<AvatarPhoto
+								src={object.userAllResponse.photo}
+								onClick={(evt) => handlerRoute(evt, object.userAllResponse.at)}
 							/>
-						)}
-					</CirclePhoto>
-				</HeaderEvent>
-				<BottomEvent>
-					<LikedBy>
-						{attendsUsers.map((value, key) => (
-							<Span>
-								<MiniAvatar
-									onClick={(evt) => handlerRoute(evt, value.at)}
-									src={value.photo}
-									alt=""
+						</CirclePhoto>
+						<CirclePhoto style={{ width: `45px`, height: `45px` }}>
+							<EllipsIcon onClick={(evt) => handlerEllips(evt)} />
+							{ellips && (
+								<EllipsMenu
+									optionsMenu={
+										userInfo.at === object.userAllResponse.at
+											? optionsMenu
+											: optionsMenuNotUser
+									}
 								/>
-							</Span>
-						))}
-						<Span>
-							<MiniAvatar
-								src={
-									"https://images.squarespace-cdn.com/content/v1/5c9a71fd8665cf00012d9f8c/1573059208351-O2F605IU9Z4DBECZ1NE7/ONeg2019.GH_009_629.jpg?format=750w"
-								}
-								alt=""
-							/>
-						</Span>
-						<Span>
-							<MiniAvatar
-								src={
-									"https://images.squarespace-cdn.com/content/v1/5c9a71fd8665cf00012d9f8c/1573059208351-O2F605IU9Z4DBECZ1NE7/ONeg2019.GH_009_629.jpg?format=750w"
-								}
-								alt=""
-							/>
-						</Span>
-						<Span>
-							<MiniAvatar
-								src={
-									"https://images.squarespace-cdn.com/content/v1/5c9a71fd8665cf00012d9f8c/1573059208351-O2F605IU9Z4DBECZ1NE7/ONeg2019.GH_009_629.jpg?format=750w"
-								}
-								alt=""
-							/>
-						</Span>
-						{attendsCount > 1 && (
-							<PeopleGoing>{`+ ${attendsCount - 1} Going`}</PeopleGoing>
-						)}
-					</LikedBy>
-				</BottomEvent>
-			</ContextPhoto>
-			<MidTitle>
-				<Title>{name}</Title>
-			</MidTitle>
-			<MidEvent>
-				<MidEventContainers>
-					<MidContext>
-						<LocateIcon />
-						<ContentMidContext>{`${city}, ${zipCode}`}</ContentMidContext>
-					</MidContext>
-					<MidContext>
-						<LocateIcon />
-						<ContentMidContext>{address}</ContentMidContext>
-					</MidContext>
-					<MidContext>
-						<CalendarIcon />
-						<ContentMidContext>
-							{eventDate ? eventDate : "We don't have data yet"}
-						</ContentMidContext>
-					</MidContext>
-				</MidEventContainers>
-			</MidEvent>
-			<ButtonsCointainer>
-				<PrimaryButton>Attend</PrimaryButton>
-				<PrimaryButton>
-					<MoreIcon />
-				</PrimaryButton>
-			</ButtonsCointainer>
+							)}
+						</CirclePhoto>
+					</HeaderEvent>
+					<BottomEvent>
+						<LikedBy>
+							{object.usersAttends.map((value, key) => (
+								<Span
+									style={{
+										width: `2rem`,
+										height: `2rem`,
+									}}
+								>
+									<MiniAvatar
+										onClick={(evt) => handlerRoute(evt, value.at)}
+										src={value.photo}
+										alt=""
+									/>
+								</Span>
+							))}
+							{object.attendsCount > 1 && (
+								<PeopleGoing>{`+ ${
+									object.attendsCount - 1
+								} Going`}</PeopleGoing>
+							)}
+						</LikedBy>
+					</BottomEvent>
+				</ContextPhoto>
+				<MidEvent>
+					<TypeEvent>
+						<PrimaryButton>Party</PrimaryButton>
+					</TypeEvent>
+					<Title>Music in the Park: Summer Concert Series</Title>
+					<MidEventContainers>
+						<MidContext>
+							<LocateIcon />
+							<ContentMidContext>{`${address}, ${city}, ${zipCode}`}</ContentMidContext>
+						</MidContext>
+						<MidContext>
+							<CalendarIcon />
+							<ContentMidContext>
+								{eventDate ? eventDate : "We don't have data yet"}
+							</ContentMidContext>
+						</MidContext>
+						<MidContext>
+							<PriceIcon />
+							<ContentMidContext>{"Free"}</ContentMidContext>
+						</MidContext>
+					</MidEventContainers>
+				</MidEvent>
+				<ButtonsCointainer>
+					<PrimaryButton>Attend</PrimaryButton>
+					<PrimaryButton>
+						<MoreIcon />
+					</PrimaryButton>
+				</ButtonsCointainer>
+			</EventContext>
 		</EventContainer>
 	);
 }

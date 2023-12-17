@@ -28,6 +28,66 @@ export const ControllerLast = styled.div`
 	font-size: 100%;
 `;
 
+export const InputDetail = styled.textarea`
+	background: ${({ theme }) => theme.background};
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	resize: none;
+	scrollbar-width: none;
+	width: 100%;
+	min-height: 90px;
+	font-size: 1em;
+	color: ${({ theme }) => theme.text};
+	transition: background-color 0.5s ease-in;
+	border: 1px solid ${({ theme }) => theme.background};
+	transition: all 0.3s ease;
+	padding: 5px 25px 0px 20px;
+	height: 100%;
+`;
+
+export const ContainerInputDetails = styled.div`
+	position: relative;
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	background: ${({ theme }) => theme.background};
+	margin: auto;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+	border-radius: 25px;
+	transition: all 0.3s ease;
+	margin-bottom: 5%;
+
+	svg {
+		font-size: 1.5rem;
+	}
+`;
+
+// position: absolute;
+// 	height: 45px;
+// 	width: 100%;
+// 	border-radius: 25px;
+// 	background: ${({ theme }) => theme.background};
+// 	outline: none;
+// 	padding-left: 20px;
+// 	font-size: 1em;
+// 	color: ${({ theme }) => theme.text};
+// 	transition: background-color 0.5s ease-in;
+// 	border: 1px solid ${({ theme }) => theme.background};
+// 	transition: all 0.3s ease;
+
+export const TextArea = styled.textarea`
+	background: transparent;
+	outline: none;
+	border: none;
+	resize: none;
+	scrollbar-width: none;
+	width: 100%;
+	min-height: 90px;
+	font-size: 1rem;
+	color: ${({ theme }) => theme.text};
+`;
+
 export const EditPhoto = styled.label`
 	position: absolute;
 	bottom: -0.5rem;

@@ -10,6 +10,7 @@ function AssistantProvider({ children }) {
 		dateToSeconds,
 		handleFilter,
 		wordEntered,
+		DateTimeConverter,
 	} = useAssistant();
 	return (
 		<AssistantContext.Provider
@@ -19,6 +20,7 @@ function AssistantProvider({ children }) {
 				dateToSeconds,
 				handleFilter,
 				wordEntered,
+				DateTimeConverter,
 			}}
 		>
 			{children}

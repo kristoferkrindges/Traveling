@@ -2,13 +2,20 @@ import styled from "styled-components";
 import { size } from "../../../../styles/variables";
 
 export const EventContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+export const EventContext = styled.div`
 	position: relative;
 	background-color: ${({ theme }) => theme.container};
 	border-radius: ${size.lg};
 	padding: ${size.sm};
 	margin: 1rem 0;
-	font-size: 0.85rem;
+	font-size: 1rem;
 	line-height: 1.5;
+	width: 85%;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 
 	& a {
@@ -16,6 +23,10 @@ export const EventContainer = styled.div`
 	}
 	& img {
 		cursor: pointer;
+	}
+
+	@media only screen and (max-width: 992px) {
+		width: 100%;
 	}
 `;
 
@@ -28,22 +39,11 @@ export const ContextPhoto = styled.div`
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 300px;
+	height: 290px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	justify-content: space-between;
-`;
-
-export const Title = styled.h2`
-	color: ${({ theme }) => theme.text};
-	text-transform: uppercase;
-	letter-spacing: 0.5rem;
-	font-weight: 600;
-	line-height: 1.1em;
-	text-align: center;
-	margin-top: 2rem;
-	margin-bottom: 1rem;
 `;
 
 export const HeaderEvent = styled.div`
@@ -70,18 +70,27 @@ export const CirclePhoto = styled.div`
 
 export const MidEvent = styled.div`
 	display: flex;
-	align-items: center;
 	padding: 1rem;
-	justify-content: space-between;
+	/* align-items: center; */
+	justify-content: center;
+	flex-direction: column;
 	width: 100%;
+	gap: 1rem;
 `;
 
 export const MidEventContainers = styled.div`
 	display: flex;
-	/* align-items: center; */
+	align-items: center;
 	flex-direction: column;
 	justify-content: center;
 	gap: 1rem;
+	width: 100%;
+`;
+
+export const TypeEvent = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: start;
 	width: 100%;
 `;
 
@@ -103,6 +112,11 @@ export const MidTitle = styled.div`
 	align-items: center;
 `;
 
+export const Title = styled.h2`
+	color: ${({ theme }) => theme.text};
+	font-weight: 600;
+`;
+
 export const MidContext = styled.div`
 	display: flex;
 	align-items: center;
@@ -115,7 +129,8 @@ export const MidContext = styled.div`
 `;
 
 export const ContentMidContext = styled.span`
-	font-weight: 600;
+	font-weight: 300;
+	font-size: 0.9rem;
 `;
 
 export const BottomEvent = styled.div`

@@ -20,12 +20,16 @@ import {
 	ControllerLast,
 	PhotoContainer,
 	EditPhoto,
+	InputDetail,
+	ContainerInputDetails,
 } from "./style";
 
 import {
 	CalendarIcon,
 	EventIcon,
 	LocateIcon,
+	MoreIcon,
+	TypeIcon,
 } from "../../../icons/iO5Icons.styled";
 import { SaveContainer } from "../../post/post/style";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
@@ -52,6 +56,8 @@ export default function CreateAndUpdateModal({
 	const [zipCode, setZipCode] = useState();
 	const [eventDate, setEventDate] = useState();
 	const [filePhoto, setFilePhoto] = useState();
+	const [typeEvent, setTypeEvent] = useState();
+	const [detail, setDetail] = useState();
 
 	// useEffect(() => {
 	// 	setFirstnameChange(userInfo.firstname);
@@ -132,7 +138,7 @@ export default function CreateAndUpdateModal({
 		};
 		return event;
 	};
-
+	console.log(eventDate);
 	return (
 		<OverlayContainer>
 			<ModalContainer top={!progress ? `6%` : `40%`}>
@@ -232,14 +238,48 @@ export default function CreateAndUpdateModal({
 							</Controller>
 						</Inputs>
 						<Inputs>
-							<ControllerLast>
+							<Controller>
+								<Label>Type</Label>
+								<ContainerInput>
+									<InputName
+										type="text"
+										value={typeEvent}
+										onChange={(e) => {
+											setTypeEvent(e.target.value);
+										}}
+										minlength="3"
+										maxlength="13"
+									/>
+									<TextInput>
+										<TypeIcon />
+									</TextInput>
+								</ContainerInput>
+							</Controller>
+							<Controller>
 								<Label>Date Event</Label>
 								<ContainerInput>
-									<InputDate type="date" />
+									<InputDate
+										type="datetime-local"
+										value={eventDate}
+										onChange={(e) => {
+											setEventDate(e.target.value);
+										}}
+									/>
 									<TextInput>
 										<CalendarIcon />
 									</TextInput>
 								</ContainerInput>
+							</Controller>
+						</Inputs>
+						<Inputs>
+							<ControllerLast>
+								<Label>Details</Label>
+								<ContainerInputDetails>
+									<InputDetail />
+									<TextInput>
+										<MoreIcon />
+									</TextInput>
+								</ContainerInputDetails>
 							</ControllerLast>
 						</Inputs>
 						<Separator />
