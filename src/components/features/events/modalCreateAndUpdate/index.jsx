@@ -36,15 +36,19 @@ import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 import Loader from "../../../loader";
 import { EventContext } from "../../../../contexts/eventContext";
 import { UserContext } from "../../../../contexts/userContext";
+import { AssistantContext } from "../../../../contexts/assistantContext";
 
 export default function CreateAndUpdateModal({
 	click,
 	avatarNone,
 	type,
 	insertEvent,
+	object,
 }) {
 	const { insert, update } = useContext(EventContext);
 	const { userInfo } = useContext(UserContext);
+
+	const { DateTimeConverter } = useContext(AssistantContext);
 
 	const modalRef = useRef(null);
 
@@ -59,19 +63,20 @@ export default function CreateAndUpdateModal({
 	const [typeEvent, setTypeEvent] = useState();
 	const [detail, setDetail] = useState();
 
-	// useEffect(() => {
-	// 	setFirstnameChange(userInfo.firstname);
-	// 	setLastnameChange(userInfo.lastname);
-	// 	setPhoto(userInfo.photo);
-	// 	setAtChange(userInfo.at);
-	// 	setBanner(userInfo.banner);
-	// }, [
-	// 	userInfo.photo,
-	// 	userInfo.firstname,
-	// 	userInfo.lastname,
-	// 	userInfo.at,
-	// 	userInfo.banner,
-	// ]);
+	useEffect(() => {
+		if (type) {
+			if (object) {
+				setName(object.name);
+				setCity(object.city);
+				setAddress(object.address);
+				setPhoto(object.photo);
+				setZipCode(object.zipCode);
+				setEventDate(object.eventDate);
+				setTypeEvent(object.type);
+				setDetail(object.detail);
+			}
+		}
+	}, [object]);
 
 	useEffect(() => {
 		document.addEventListener("click", handleClickOutside);
@@ -119,7 +124,9 @@ export default function CreateAndUpdateModal({
 	};
 
 	const handlerButtonUpdate = async (evt) => {
-		await update(createEvent(evt));
+		const newEvent = await update(object.id, createEvent(evt), filePhoto);
+		console.log(newEvent);
+		insertEvent(newEvent);
 		setProgress(false);
 		click();
 	};
@@ -134,11 +141,11 @@ export default function CreateAndUpdateModal({
 			address: address,
 			zipCode: zipCode,
 			photo: photo,
+			type: typeEvent,
 			creatorId: userInfo.id,
 		};
 		return event;
 	};
-	console.log(eventDate);
 	return (
 		<OverlayContainer>
 			<ModalContainer top={!progress ? `6%` : `40%`}>
@@ -148,7 +155,7 @@ export default function CreateAndUpdateModal({
 					<Content ref={modalRef}>
 						<HeadingContainer
 							type={"InsertEvent"}
-							text={type ? "Insert Event" : "Update Event"}
+							text={!type ? "Insert Event" : "Update Event"}
 						/>
 						<Separator />
 						<PhotoEventContainer>
@@ -275,7 +282,12 @@ export default function CreateAndUpdateModal({
 							<ControllerLast>
 								<Label>Details</Label>
 								<ContainerInputDetails>
-									<InputDetail />
+									<InputDetail
+										value={detail}
+										onChange={(e) => {
+											setDetail(e.target.value);
+										}}
+									/>
 									<TextInput>
 										<MoreIcon />
 									</TextInput>
@@ -285,9 +297,9 @@ export default function CreateAndUpdateModal({
 						<Separator />
 						<SaveContainer>
 							<PrimaryButton
-								onClick={type ? handlerButtonInsert : handlerButtonUpdate}
+								onClick={!type ? handlerButtonInsert : handlerButtonUpdate}
 							>
-								{type ? "Create" : "Save"}
+								{!type ? "Create" : "Save"}
 							</PrimaryButton>
 						</SaveContainer>
 					</Content>

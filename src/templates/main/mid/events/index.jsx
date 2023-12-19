@@ -19,8 +19,9 @@ export default function EventMidTemplate() {
 	const [eventsNow, setEventsNow] = useState();
 	const [filteredData, setFilteredData] = useState([]);
 	const [search, setSearch] = useState("All");
-	const [type, setType] = useState(true);
 	const [modal, setModal] = useState(false);
+	const [object, setObject] = useState();
+	const [type, setType] = useState(false);
 
 	useEffect(() => {
 		if (!events) {
@@ -83,12 +84,20 @@ export default function EventMidTemplate() {
 		setSearch("EventsNow");
 	};
 
-	const handlerModal = () => {
+	const handlerModal = (obj, type) => {
+		setObject(obj);
+		setType(type ? type : false);
 		setModal(modal ? false : true);
 	};
 
 	const insertEvent = (event) => {
 		setEvents([event, ...events]);
+	};
+
+	const updateEvent = (newEvent) => {
+		setEvents((prevEvents) =>
+			prevEvents.map((event) => (event.id === newEvent.id ? newEvent : event))
+		);
 	};
 
 	return (
@@ -98,7 +107,8 @@ export default function EventMidTemplate() {
 					click={handlerModal}
 					type={type}
 					avatarNone={AvatarNone}
-					insertEvent={insertEvent}
+					insertEvent={!type ? insertEvent : updateEvent}
+					object={object}
 				/>
 			)}
 			<EventSearchMenu
@@ -127,6 +137,7 @@ export default function EventMidTemplate() {
 								zipCode={value.zipCode}
 								address={value.address}
 								eventDate={value.eventDate}
+								handlerModal={handlerModal}
 							/>
 						))
 					) : (

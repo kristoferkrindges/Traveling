@@ -17,7 +17,6 @@ import {
 } from "./style";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
 import { AvatarPhoto } from "../../../images/avatar.styled";
-import { Edit } from "../../../containers/headPostComment/style";
 import {
 	CalendarIcon,
 	CloseCircleIcon,
@@ -32,30 +31,16 @@ import {
 import { UserContext } from "../../../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 import EllipsMenu from "../../../menus/ellips";
-import { LikedBy, MiniAvatar, PeopleLike, Span } from "../../post/post/style";
+import { LikedBy, MiniAvatar, Span } from "../../post/post/style";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 
-export default function Event({
-	name,
-	photo,
-	creator,
-	handlerEdit,
-	handlerDelet,
-	attendsUsers,
-	attendsCount,
-	city,
-	zipCode,
-	address,
-	eventDate,
-	object,
-}) {
+export default function Event({ handlerDelet, object, handlerModal }) {
 	const { userInfo } = useContext(UserContext);
 
 	const navigate = useNavigate();
 
 	const [ellips, setEllips] = useState(false);
 	const photoSrc = object.photo ? object.photo : AvatarNone;
-	const [open, setOpen] = useState(false);
 
 	const handlerEllips = (evt) => {
 		evt.stopPropagation();
@@ -63,7 +48,7 @@ export default function Event({
 	};
 
 	const handlerButtonEdit = (evt) => {
-		handlerEdit();
+		handlerModal(object, true);
 		handlerEllips(evt);
 		return;
 	};
@@ -147,47 +132,48 @@ export default function Event({
 					</HeaderEvent>
 					<BottomEvent>
 						<LikedBy>
-							{object.usersAttends.map((value, key) => (
-								<Span
-									style={{
-										width: `2rem`,
-										height: `2rem`,
-									}}
-								>
-									<MiniAvatar
-										onClick={(evt) => handlerRoute(evt, value.at)}
-										src={value.photo}
-										alt=""
-									/>
-								</Span>
-							))}
-							{object.attendsCount > 1 && (
-								<PeopleGoing>{`+ ${
-									object.attendsCount - 1
-								} Going`}</PeopleGoing>
+							{object.usersAttends &&
+								object.usersAttends.map((value, key) => (
+									<Span
+										style={{
+											width: `2rem`,
+											height: `2rem`,
+										}}
+									>
+										<MiniAvatar
+											onClick={(evt) => handlerRoute(evt, value.at)}
+											src={value.photo}
+											alt=""
+										/>
+									</Span>
+								))}
+							{object.attends > 1 && (
+								<PeopleGoing>{`+ ${object.attends - 1} Going`}</PeopleGoing>
 							)}
 						</LikedBy>
 					</BottomEvent>
 				</ContextPhoto>
 				<MidEvent>
 					<TypeEvent>
-						<PrimaryButton>Party</PrimaryButton>
+						<PrimaryButton>{object.type}</PrimaryButton>
 					</TypeEvent>
-					<Title>Music in the Park: Summer Concert Series</Title>
+					<Title>{object.name}</Title>
 					<MidEventContainers>
 						<MidContext>
 							<LocateIcon />
-							<ContentMidContext>{`${address}, ${city}, ${zipCode}`}</ContentMidContext>
+							<ContentMidContext>{`${object.address}, ${object.city}, ${object.zipCode}`}</ContentMidContext>
 						</MidContext>
 						<MidContext>
 							<CalendarIcon />
 							<ContentMidContext>
-								{eventDate ? eventDate : "We don't have data yet"}
+								{object.eventDate ? object.eventDate : "We don't have data yet"}
 							</ContentMidContext>
 						</MidContext>
 						<MidContext>
 							<PriceIcon />
-							<ContentMidContext>{"Free"}</ContentMidContext>
+							<ContentMidContext>
+								{object.price ? object.price : "Free"}
+							</ContentMidContext>
 						</MidContext>
 					</MidEventContainers>
 				</MidEvent>
