@@ -75,6 +75,43 @@ export default function useAssistant() {
 		return filteredData;
 	};
 
+	const convertToDateISOString = (dateArray) => {
+		const [year, month, day, hour, minute] = dateArray;
+		const isoString = `${year}-${String(month).padStart(2, "0")}-${String(
+			day
+		).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(
+			minute
+		).padStart(2, "0")}`;
+		return isoString;
+	};
+
+	const formatEventDate = (dateString) => {
+		const date = new Date(dateString);
+		date.setUTCHours(date.getUTCHours() - 3);
+		const formattedDate = date.toISOString().slice(0, 16);
+		return formattedDate;
+	};
+
+	const formatDateString = (dateArray) => {
+		const rawDateString = convertToDateISOString(dateArray);
+		const date = new Date(rawDateString);
+
+		const formattedDate = date.toLocaleDateString("en-US", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		});
+
+		const formattedTime = date.toLocaleTimeString("en-US", {
+			hour: "numeric",
+			minute: "numeric",
+			hour12: true,
+		});
+
+		return `${formattedDate} - ${formattedTime}`;
+	};
+
 	return {
 		formatTimeDifference,
 		formatTime,
@@ -82,5 +119,8 @@ export default function useAssistant() {
 		handleFilter,
 		wordEntered,
 		DateTimeConverter,
+		convertToDateISOString,
+		formatEventDate,
+		formatDateString,
 	};
 }

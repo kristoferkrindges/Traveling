@@ -11,6 +11,9 @@ function AssistantProvider({ children }) {
 		handleFilter,
 		wordEntered,
 		DateTimeConverter,
+		convertToDateISOString,
+		formatEventDate,
+		formatDateString,
 	} = useAssistant();
 	return (
 		<AssistantContext.Provider
@@ -21,6 +24,9 @@ function AssistantProvider({ children }) {
 				handleFilter,
 				wordEntered,
 				DateTimeConverter,
+				convertToDateISOString,
+				formatEventDate,
+				formatDateString,
 			}}
 		>
 			{children}

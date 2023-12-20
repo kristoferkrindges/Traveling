@@ -33,9 +33,11 @@ import { useNavigate } from "react-router-dom";
 import EllipsMenu from "../../../menus/ellips";
 import { LikedBy, MiniAvatar, Span } from "../../post/post/style";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
+import { AssistantContext } from "../../../../contexts/assistantContext";
 
 export default function Event({ handlerDelet, object, handlerModal }) {
 	const { userInfo } = useContext(UserContext);
+	const { formatDateString } = useContext(AssistantContext);
 
 	const navigate = useNavigate();
 
@@ -100,7 +102,6 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 			route: null,
 		},
 	];
-
 	return (
 		<EventContainer>
 			<EventContext>
@@ -117,8 +118,11 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 								onClick={(evt) => handlerRoute(evt, object.userAllResponse.at)}
 							/>
 						</CirclePhoto>
-						<CirclePhoto style={{ width: `45px`, height: `45px` }}>
-							<EllipsIcon onClick={(evt) => handlerEllips(evt)} />
+						<CirclePhoto
+							style={{ width: `45px`, height: `45px` }}
+							onClick={(evt) => handlerEllips(evt)}
+						>
+							<EllipsIcon />
 							{ellips && (
 								<EllipsMenu
 									optionsMenu={
@@ -166,13 +170,15 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 						<MidContext>
 							<CalendarIcon />
 							<ContentMidContext>
-								{object.eventDate ? object.eventDate : "We don't have data yet"}
+								{object.eventDate
+									? formatDateString(object.eventDate)
+									: "We don't have data yet"}
 							</ContentMidContext>
 						</MidContext>
 						<MidContext>
 							<PriceIcon />
 							<ContentMidContext>
-								{object.price ? object.price : "Free"}
+								R$ {object.price ? object.price : "Free"}
 							</ContentMidContext>
 						</MidContext>
 					</MidEventContainers>

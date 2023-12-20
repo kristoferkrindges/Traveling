@@ -37,7 +37,6 @@ export default function EventMidTemplate() {
 		// setEvents([]);
 		if (!eventsAll) {
 			const newEvents = await findAll();
-			console.log(newEvents);
 			setEventsAll(newEvents);
 			setEvents(newEvents);
 		} else {

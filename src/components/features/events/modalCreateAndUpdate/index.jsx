@@ -29,6 +29,7 @@ import {
 	EventIcon,
 	LocateIcon,
 	MoreIcon,
+	PriceIcon,
 	TypeIcon,
 } from "../../../icons/iO5Icons.styled";
 import { SaveContainer } from "../../post/post/style";
@@ -48,7 +49,8 @@ export default function CreateAndUpdateModal({
 	const { insert, update } = useContext(EventContext);
 	const { userInfo } = useContext(UserContext);
 
-	const { DateTimeConverter } = useContext(AssistantContext);
+	const { convertToDateISOString, formatEventDate } =
+		useContext(AssistantContext);
 
 	const modalRef = useRef(null);
 
@@ -62,6 +64,7 @@ export default function CreateAndUpdateModal({
 	const [filePhoto, setFilePhoto] = useState();
 	const [typeEvent, setTypeEvent] = useState();
 	const [detail, setDetail] = useState();
+	const [price, setPrice] = useState();
 
 	useEffect(() => {
 		if (type) {
@@ -71,9 +74,10 @@ export default function CreateAndUpdateModal({
 				setAddress(object.address);
 				setPhoto(object.photo);
 				setZipCode(object.zipCode);
-				setEventDate(object.eventDate);
+				setEventDate(convertToDateISOString(object.eventDate));
 				setTypeEvent(object.type);
-				setDetail(object.detail);
+				setPrice(object.price ? object.price : "Free");
+				setDetail(object.details);
 			}
 		}
 	}, [object]);
@@ -125,23 +129,23 @@ export default function CreateAndUpdateModal({
 
 	const handlerButtonUpdate = async (evt) => {
 		const newEvent = await update(object.id, createEvent(evt), filePhoto);
-		console.log(newEvent);
 		insertEvent(newEvent);
 		setProgress(false);
 		click();
 	};
-
 	const createEvent = (evt) => {
 		evt.preventDefault();
 		setProgress(true);
 		const event = {
 			name: name,
-			eventDate: eventDate,
+			eventDate: formatEventDate(eventDate),
 			city: city,
 			address: address,
 			zipCode: zipCode,
 			photo: photo,
 			type: typeEvent,
+			details: detail,
+			price: price,
 			creatorId: userInfo.id,
 		};
 		return event;
@@ -173,7 +177,7 @@ export default function CreateAndUpdateModal({
 							</PhotoContainer>
 						</PhotoEventContainer>
 						<Inputs>
-							<Controller>
+							<ControllerLast>
 								<Label>Name Event</Label>
 								<ContainerInput>
 									<InputName
@@ -183,10 +187,29 @@ export default function CreateAndUpdateModal({
 											setName(e.target.value);
 										}}
 										minlength="3"
-										maxlength="21"
+										maxlength="13"
 									/>
 									<TextInput>
 										<EventIcon />
+									</TextInput>
+								</ContainerInput>
+							</ControllerLast>
+						</Inputs>
+						<Inputs>
+							<Controller>
+								<Label>Price</Label>
+								<ContainerInput>
+									<InputName
+										type="text"
+										value={price}
+										onChange={(e) => {
+											setPrice(e.target.value);
+										}}
+										minlength="3"
+										maxlength="21"
+									/>
+									<TextInput>
+										<PriceIcon />
 									</TextInput>
 								</ContainerInput>
 							</Controller>
@@ -269,7 +292,11 @@ export default function CreateAndUpdateModal({
 										type="datetime-local"
 										value={eventDate}
 										onChange={(e) => {
-											setEventDate(e.target.value);
+											const formattedDate = e.target.value
+												.split("T")
+												.join(" ")
+												.substring(0, 16);
+											setEventDate(formattedDate);
 										}}
 									/>
 									<TextInput>

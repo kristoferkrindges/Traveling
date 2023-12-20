@@ -42,7 +42,7 @@ export const InputDetail = styled.textarea`
 	transition: background-color 0.5s ease-in;
 	border: 1px solid ${({ theme }) => theme.background};
 	transition: all 0.3s ease;
-	padding: 5px 25px 0px 20px;
+	padding: 10px 25px 0px 12px;
 	height: 100%;
 `;
 
@@ -61,31 +61,6 @@ export const ContainerInputDetails = styled.div`
 	svg {
 		font-size: 1.5rem;
 	}
-`;
-
-// position: absolute;
-// 	height: 45px;
-// 	width: 100%;
-// 	border-radius: 25px;
-// 	background: ${({ theme }) => theme.background};
-// 	outline: none;
-// 	padding-left: 20px;
-// 	font-size: 1em;
-// 	color: ${({ theme }) => theme.text};
-// 	transition: background-color 0.5s ease-in;
-// 	border: 1px solid ${({ theme }) => theme.background};
-// 	transition: all 0.3s ease;
-
-export const TextArea = styled.textarea`
-	background: transparent;
-	outline: none;
-	border: none;
-	resize: none;
-	scrollbar-width: none;
-	width: 100%;
-	min-height: 90px;
-	font-size: 1rem;
-	color: ${({ theme }) => theme.text};
 `;
 
 export const EditPhoto = styled.label`
