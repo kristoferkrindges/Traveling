@@ -7,7 +7,7 @@ export const EventContainer = styled.div`
 	align-items: center;
 `;
 
-export const EventContext = styled.div`
+export const EventLayout = styled.div`
 	position: relative;
 	background-color: ${({ theme }) => theme.container};
 	border-radius: ${size.lg};

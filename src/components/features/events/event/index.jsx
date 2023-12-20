@@ -12,7 +12,7 @@ import {
 	ContentMidContext,
 	ButtonsCointainer,
 	MidEventContainers,
-	EventContext,
+	EventLayout,
 	TypeEvent,
 } from "./style";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
@@ -32,17 +32,27 @@ import { UserContext } from "../../../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 import EllipsMenu from "../../../menus/ellips";
 import { LikedBy, MiniAvatar, Span } from "../../post/post/style";
+import { EventContext } from "../../../../contexts/eventContext";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 
 export default function Event({ handlerDelet, object, handlerModal }) {
 	const { userInfo } = useContext(UserContext);
 	const { formatDateString } = useContext(AssistantContext);
+	const { findUsersEvent, toogleAttendEvent, deleteEvent } =
+		useContext(EventContext);
 
 	const navigate = useNavigate();
 
 	const [ellips, setEllips] = useState(false);
+	const [attendPress, setAttendPress] = useState(object.pressAttend);
+
 	const photoSrc = object.photo ? object.photo : AvatarNone;
+
+	const pressAttend = async () => {
+		setAttendPress(attendPress ? false : true);
+		await toogleAttendEvent(object.id);
+	};
 
 	const handlerEllips = (evt) => {
 		evt.stopPropagation();
@@ -61,9 +71,10 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 		return;
 	};
 
-	const handlerDeleted = (evt) => {
+	const handlerDeleted = async (evt) => {
 		evt.stopPropagation();
-		handlerDelet(evt);
+		handlerDelet(evt, object.id);
+		await deleteEvent(object.id);
 		handlerEllips(evt);
 	};
 
@@ -104,7 +115,7 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 	];
 	return (
 		<EventContainer>
-			<EventContext>
+			<EventLayout>
 				<ContextPhoto
 					style={{
 						backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4),
@@ -184,12 +195,14 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 					</MidEventContainers>
 				</MidEvent>
 				<ButtonsCointainer>
-					<PrimaryButton>Attend</PrimaryButton>
+					<PrimaryButton onClick={pressAttend}>
+						{attendPress ? "Not attend" : "Attend"}
+					</PrimaryButton>
 					<PrimaryButton>
 						<MoreIcon />
 					</PrimaryButton>
 				</ButtonsCointainer>
-			</EventContext>
+			</EventLayout>
 		</EventContainer>
 	);
 }

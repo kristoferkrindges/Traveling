@@ -16,11 +16,17 @@ export default function SearchBar({ data, setFilteredData, type }) {
 					.includes(searchWord.toLowerCase());
 			});
 		} else {
-			newFilter = data.filter((value) => {
-				return (value.firstname + " " + value.lastname)
-					.toLowerCase()
-					.includes(searchWord.toLowerCase());
-			});
+			if (type === "Events") {
+				newFilter = data.filter((value) => {
+					return value.name.toLowerCase().includes(searchWord.toLowerCase());
+				});
+			} else {
+				newFilter = data.filter((value) => {
+					return (value.firstname + " " + value.lastname)
+						.toLowerCase()
+						.includes(searchWord.toLowerCase());
+				});
+			}
 		}
 
 		if (searchWord === "") {

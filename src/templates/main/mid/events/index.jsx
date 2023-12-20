@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { LoaderContainer } from "../../../../components/containers/loader.styled";
 import Loader from "../../../../components/loader";
 import { NotificationContainer, Title } from "../notification/style";
-import Notifications from "../../../../components/features/notifications";
 import { EventContext } from "../../../../contexts/eventContext";
 import EventSearchMenu from "../../../../components/menus/eventsSearch";
 import CreateAndUpdateModal from "../../../../components/features/events/modalCreateAndUpdate";
@@ -99,6 +98,12 @@ export default function EventMidTemplate() {
 		);
 	};
 
+	const handlerDelet = (evt, eventId) => {
+		evt.preventDefault();
+		const updatedEvents = events.filter((event) => event.id !== eventId);
+		setEvents(updatedEvents);
+	};
+
 	return (
 		<NotificationContainer>
 			{modal && (
@@ -127,16 +132,8 @@ export default function EventMidTemplate() {
 							<Event
 								key={key}
 								object={value}
-								photo={value.photo}
-								name={value.name}
-								creator={value.userAllResponse}
-								attendsUsers={value.usersAttends}
-								attendsCount={value.attends}
-								city={value.city}
-								zipCode={value.zipCode}
-								address={value.address}
-								eventDate={value.eventDate}
 								handlerModal={handlerModal}
+								handlerDelet={handlerDelet}
 							/>
 						))
 					) : (

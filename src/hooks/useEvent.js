@@ -49,6 +49,17 @@ export default function useEvent() {
 		}
 	}
 
+	async function findUsersEvent(id) {
+		try {
+			const data = await api.get(`/events/users/${id}`).then((response) => {
+				return response.data;
+			});
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	async function insert(event, file) {
 		try {
 			if (file) {
@@ -117,5 +128,6 @@ export default function useEvent() {
 		update,
 		deleteEvent,
 		toogleAttendEvent,
+		findUsersEvent,
 	};
 }
