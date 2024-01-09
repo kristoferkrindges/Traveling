@@ -40,7 +40,25 @@ import {
 	IoAddCircle,
 	IoPlay,
 	IoPause,
+	IoOptions,
+	IoCreate,
+	IoLocation,
+	IoAddOutline,
+	IoPricetags,
+	IoNewspaper,
 } from "react-icons/io5";
+
+export const TypeIcon = styled(IoNewspaper)``;
+
+export const PriceIcon = styled(IoPricetags)``;
+
+export const MoreIcon = styled(IoAddOutline)``;
+
+export const LocateIcon = styled(IoLocation)``;
+
+export const CreateIcon = styled(IoCreate)``;
+
+export const OptionsIcon = styled(IoOptions)``;
 
 export const PauseIcon = styled(IoPause)``;
 

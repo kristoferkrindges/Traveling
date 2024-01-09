@@ -7,6 +7,8 @@ import { NotContentYet } from "../../../../templates/main/mid/profile/style";
 import Loader from "../../../loader";
 import { PostContext } from "../../../../contexts/postContext";
 import SearchBar from "../../../inputs/searchBar";
+import { EventContext } from "../../../../contexts/eventContext";
+import { OverlayContainer } from "../../../containers/overlay.styled";
 
 export default function CardFollowingsAndFollowers({
 	id,
@@ -16,6 +18,8 @@ export default function CardFollowingsAndFollowers({
 	const { getFollowers, getFollowings } = useContext(UserContext);
 
 	const { findUsersLikes, findUsersFavorites } = useContext(PostContext);
+
+	const { findUsersEvent } = useContext(EventContext);
 
 	const modalRef = useRef(null);
 
@@ -34,6 +38,9 @@ export default function CardFollowingsAndFollowers({
 		}
 		if (type === "Favorites") {
 			findFavoritesUsers();
+		}
+		if (type === "Attends") {
+			findUsersAttendEvent();
 		}
 	}, [id, type]);
 
@@ -78,33 +85,41 @@ export default function CardFollowingsAndFollowers({
 		setUsers(response || []);
 	};
 
+	const findUsersAttendEvent = async () => {
+		setUsers([]);
+		const response = await findUsersEvent(id);
+		setUsers(response || []);
+	};
+
 	const handlerClose = () => {
 		setStateModalFollowingsAndFollowers(undefined);
 	};
 
 	return (
-		<FollowersAndFollowingsContainer ref={modalRef}>
-			<HeadingContainer type={type} text={type} click={handlerClose} />
-			<SearchBar data={users} setFilteredData={setFilteredData} />
-			{users ? (
-				filteredData.length > 0 ? (
-					filteredData.map((value, key) => (
-						<UserMessages
-							key={key}
-							photo={value.photo}
-							name={value.firstname + " " + value.lastname}
-							message={"@" + value.at}
-							online={false}
-							type={false}
-							at={value.at}
-						/>
-					))
+		<OverlayContainer>
+			<FollowersAndFollowingsContainer ref={modalRef}>
+				<HeadingContainer type={type} text={type} click={handlerClose} />
+				<SearchBar data={users} setFilteredData={setFilteredData} />
+				{users ? (
+					filteredData.length > 0 ? (
+						filteredData.map((value, key) => (
+							<UserMessages
+								key={key}
+								photo={value.photo}
+								name={value.firstname + " " + value.lastname}
+								message={"@" + value.at}
+								online={false}
+								type={false}
+								at={value.at}
+							/>
+						))
+					) : (
+						<NotContentYet>This user has no {type} yet</NotContentYet>
+					)
 				) : (
-					<NotContentYet>This user has no {type} yet</NotContentYet>
-				)
-			) : (
-				<Loader />
-			)}
-		</FollowersAndFollowingsContainer>
+					<Loader />
+				)}
+			</FollowersAndFollowingsContainer>
+		</OverlayContainer>
 	);
 }

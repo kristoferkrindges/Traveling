@@ -29,17 +29,14 @@ export default function NotificationButton() {
 		<CircleContainer>
 			{count > 0 ? <CountNotification>{count}</CountNotification> : null}
 			<NotificationIcon
-				style={
-					pathname === `/notifications` ? { color: "rgb(52, 131, 235)" } : {}
-				}
 				onMouseEnter={handleMouseEnterNotifications}
 				onMouseLeave={handleMouseLeaveNotifications}
 				onClick={clickNotificationIcon}
 			/>
 			<BorderSelect
 				style={
-					pathname === `/notifications`
-						? { backgroundColor: "rgb(52, 131, 235)" }
+					pathname !== `/notifications`
+						? { backgroundColor: "transparent" }
 						: {}
 				}
 			/>

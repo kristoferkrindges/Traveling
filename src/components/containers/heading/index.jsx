@@ -7,7 +7,9 @@ import {
 	ChatIcon,
 	CloseCircleIcon,
 	EllipsIcon,
+	EventIcon,
 	HeartPressIcon,
+	MoreIcon,
 	NotificationIcon,
 	PostIcon,
 	ProfileIcon,
@@ -42,18 +44,21 @@ export default function HeadingContainer({ type, text, click }) {
 			{type === "CreateStorie" && <AddStoriesIcon />}
 			{type === "CreatePost" && <PostIcon />}
 			{type === "EditInfoUser" && <ProfileIcon />}
-			{type === "Likes" && <HeartPressIcon />}
+			{type === "Likes" && <HeartPressIcon style={{ color: "red" }} />}
 			{type === "Favorites" && <BookPressIcon />}
+			{type === "View" && <MoreIcon />}
 			<H4Title>{text}</H4Title>
-			{type !== "Messages" && type !== "Notifications" ? (
+			{type !== "Messages" && type !== "Notifications" && type !== "Events" ? (
 				<>
 					<EllipsIcon onClick={handlerEllips} />
 					{ellips && <EllipsMenu optionsMenu={optionsMenu} />}
 				</>
 			) : type === "Messages" ? (
 				<ChatIcon />
-			) : (
+			) : type === "Notifications" ? (
 				<NotificationIcon />
+			) : (
+				<EventIcon />
 			)}
 		</Heading>
 	);

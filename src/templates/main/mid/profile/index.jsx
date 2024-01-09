@@ -34,23 +34,25 @@ export default function ProfileMidTemplate() {
 	const [stories, setStories] = useState([]);
 
 	useEffect(() => {
+		start();
+	}, [id, userInfo]);
+
+	const start = async () => {
+		setStories([]);
 		setPosts([]);
 		setPostsLike([]);
 		setPostsFavorite([]);
-		if (id === userInfo.at) {
-			setUser(userInfo);
-			setEqual("Owner");
-			findPosts(id);
-		} else {
-			findUserAt();
-		}
-	}, [id, userInfo]);
-
-	useEffect(() => {
 		if (stories) {
 			searchStories();
 		}
-	}, []);
+		if (id === userInfo.at) {
+			setUser(userInfo);
+			setEqual("Owner");
+			await findPosts();
+		} else {
+			await findUserAt();
+		}
+	};
 
 	const searchStories = async () => {
 		const newStories = await findStoriesByAt(id);
@@ -59,16 +61,14 @@ export default function ProfileMidTemplate() {
 
 	async function findUserAt() {
 		const response = await findUserByAt(id);
-		findPosts(id);
+		await findPosts(id);
 		setUser(response);
 		setEqual("Profile");
 	}
 
 	async function findPosts() {
-		if (posts.length <= 0) {
-			const postsResponse = await getPostsUser(id);
-			setPosts(postsResponse);
-		}
+		const postsResponse = await getPostsUser(id);
+		setPosts(postsResponse);
 		setSearch("Posts");
 		return;
 	}
@@ -90,7 +90,6 @@ export default function ProfileMidTemplate() {
 		setSearch("Favorites");
 		return;
 	}
-	console.log(stories);
 	return (
 		<ProfileContainer>
 			{user ? (
@@ -101,7 +100,9 @@ export default function ProfileMidTemplate() {
 						updatePhoto={updatePhoto}
 						updateBanner={updateBanner}
 					/>
-					<Carrousel data={stories} setStories={setStories} profile={true} />
+					{stories && stories.length > 0 ? (
+						<Carrousel data={stories} setStories={setStories} profile={true} />
+					) : null}
 					<FilterSearchMenu
 						search={search}
 						findPosts={findPosts}

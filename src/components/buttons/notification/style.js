@@ -21,7 +21,7 @@ export const BorderSelect = styled.div`
 	width: 3rem;
 	height: 3px;
 	border-radius: 2rem;
-	background-color: transparent;
+	background-color: ${({ theme }) => theme.secondColor};
 	right: 0;
 	top: 3.4rem;
 `;

@@ -10,6 +10,11 @@ function AssistantProvider({ children }) {
 		dateToSeconds,
 		handleFilter,
 		wordEntered,
+		DateTimeConverter,
+		convertToDateISOString,
+		formatEventDate,
+		formatDateString,
+		formatDateViewEvent,
 	} = useAssistant();
 	return (
 		<AssistantContext.Provider
@@ -19,6 +24,11 @@ function AssistantProvider({ children }) {
 				dateToSeconds,
 				handleFilter,
 				wordEntered,
+				DateTimeConverter,
+				convertToDateISOString,
+				formatEventDate,
+				formatDateString,
+				formatDateViewEvent,
 			}}
 		>
 			{children}

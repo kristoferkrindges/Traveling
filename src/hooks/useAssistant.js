@@ -47,6 +47,17 @@ export default function useAssistant() {
 		return timestamp;
 	};
 
+	const DateTimeConverter = (inputDateTime) => {
+		const inputDate = new Date(inputDateTime);
+
+		if (!isNaN(inputDate.getTime())) {
+			const convertedDate = inputDate.toISOString();
+			return convertedDate;
+		} else {
+			return "2023-03-23T00:00:00.000+00:00";
+		}
+	};
+
 	const handleFilter = (evt, data) => {
 		const searchWord = evt.target.value;
 		setWordEntered(searchWord);
@@ -64,11 +75,80 @@ export default function useAssistant() {
 		return filteredData;
 	};
 
+	const convertToDateISOString = (dateArray) => {
+		const [year, month, day, hour, minute] = dateArray;
+		const isoString = `${year}-${String(month).padStart(2, "0")}-${String(
+			day
+		).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(
+			minute
+		).padStart(2, "0")}`;
+		return isoString;
+	};
+
+	const formatEventDate = (dateString) => {
+		const date = new Date(dateString);
+		date.setUTCHours(date.getUTCHours() - 3);
+		const formattedDate = date.toISOString().slice(0, 16);
+		return formattedDate;
+	};
+
+	const formatDateString = (dateArray) => {
+		const rawDateString = convertToDateISOString(dateArray);
+		const date = new Date(rawDateString);
+
+		const formattedDate = date.toLocaleDateString("en-US", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		});
+
+		const formattedTime = date.toLocaleTimeString("en-US", {
+			hour: "numeric",
+			minute: "numeric",
+			hour12: true,
+		});
+
+		return `${formattedDate} - ${formattedTime}`;
+	};
+
+	const formatDateViewEvent = (dateArray) => {
+		const months = [
+			"Jan",
+			"Feb",
+			"Mar",
+			"Apr",
+			"May",
+			"Jun",
+			"Jul",
+			"Aug",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dec",
+		];
+
+		const [year, month, day, hours, minutes] = dateArray;
+
+		const formattedDate = new Date(year, month - 1, day, hours, minutes);
+
+		const result = `${formattedDate.getDate()} ${
+			months[formattedDate.getMonth()]
+		} ${formattedDate.getFullYear()}`;
+
+		return result;
+	};
+
 	return {
 		formatTimeDifference,
 		formatTime,
 		dateToSeconds,
 		handleFilter,
 		wordEntered,
+		DateTimeConverter,
+		convertToDateISOString,
+		formatEventDate,
+		formatDateString,
+		formatDateViewEvent,
 	};
 }

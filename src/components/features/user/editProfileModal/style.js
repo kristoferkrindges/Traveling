@@ -132,8 +132,11 @@ export const TextInput = styled.h3`
 	border-radius: 0 25px 25px 0;
 	text-align: center;
 	line-height: 50px;
-	color: #fff;
+	color: ${({ theme }) => theme.textInverse};
 	font-size: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 
 export const DateBirth = styled.div`
