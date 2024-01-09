@@ -51,17 +51,12 @@ export default function ViewMoreModal({
 				/>
 				<DetailsContainer>
 					<Details>{info}</Details>
-					{/* <DateEvent>
-						<CalendarIcon />
-						{formatDateViewEvent(date)}
-					</DateEvent> */}
 				</DetailsContainer>
 				<Creator>
 					<Owner>
 						<AvatarPhoto src={ownerPhoto} onClick={handlerRoute} />
 						<Name onClick={handlerRoute}>{ownerName}</Name>
 					</Owner>
-					{/* <UserCircle /> */}
 					{formatDateViewEvent(date)}
 				</Creator>
 			</ViewMoreContainer>
