@@ -15,7 +15,7 @@ export const EventLayout = styled.div`
 	margin: 1rem 0;
 	font-size: 1rem;
 	line-height: 1.5;
-	width: 85%;
+	width: 90%;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 
 	& a {
@@ -145,6 +145,9 @@ export const PeopleGoing = styled.span`
 	font-weight: bold;
 	color: white;
 	font-size: 1.2rem;
+	&:hover {
+		opacity: 0.7;
+	}
 `;
 
 export const ImgBox = styled.div`

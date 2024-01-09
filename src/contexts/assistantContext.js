@@ -14,6 +14,7 @@ function AssistantProvider({ children }) {
 		convertToDateISOString,
 		formatEventDate,
 		formatDateString,
+		formatDateViewEvent,
 	} = useAssistant();
 	return (
 		<AssistantContext.Provider
@@ -27,6 +28,7 @@ function AssistantProvider({ children }) {
 				convertToDateISOString,
 				formatEventDate,
 				formatDateString,
+				formatDateViewEvent,
 			}}
 		>
 			{children}

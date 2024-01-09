@@ -35,17 +35,23 @@ import { LikedBy, MiniAvatar, Span } from "../../post/post/style";
 import { EventContext } from "../../../../contexts/eventContext";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 import { AssistantContext } from "../../../../contexts/assistantContext";
+import CardFollowingsAndFollowers from "../../user/cardFollowingsAndFollowers";
+import ViewMoreModal from "../viewMoreModal";
 
 export default function Event({ handlerDelet, object, handlerModal }) {
 	const { userInfo } = useContext(UserContext);
 	const { formatDateString } = useContext(AssistantContext);
-	const { findUsersEvent, toogleAttendEvent, deleteEvent } =
-		useContext(EventContext);
+	const { toogleAttendEvent, deleteEvent } = useContext(EventContext);
 
 	const navigate = useNavigate();
 
 	const [ellips, setEllips] = useState(false);
 	const [attendPress, setAttendPress] = useState(object.pressAttend);
+	const [
+		stateModalFollowingsAndFollowers,
+		setStateModalFollowingsAndFollowers,
+	] = useState(undefined);
+	const [modalView, setModalView] = useState(false);
 
 	const photoSrc = object.photo ? object.photo : AvatarNone;
 
@@ -116,6 +122,29 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 	return (
 		<EventContainer>
 			<EventLayout>
+				{stateModalFollowingsAndFollowers !== undefined && (
+					<CardFollowingsAndFollowers
+						id={object.id}
+						type={stateModalFollowingsAndFollowers}
+						setStateModalFollowingsAndFollowers={
+							setStateModalFollowingsAndFollowers
+						}
+					/>
+				)}
+				{modalView && (
+					<ViewMoreModal
+						info={object.details}
+						setModalView={setModalView}
+						date={object.eventDate}
+						ownerPhoto={object.userAllResponse.photo}
+						ownerName={
+							object.userAllResponse.firstname +
+							" " +
+							object.userAllResponse.lastname
+						}
+						handlerRoute={(evt) => handlerRoute(evt, object.userAllResponse.at)}
+					/>
+				)}
 				<ContextPhoto
 					style={{
 						backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4),
@@ -163,7 +192,9 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 									</Span>
 								))}
 							{object.attends > 1 && (
-								<PeopleGoing>{`+ ${object.attends - 1} Going`}</PeopleGoing>
+								<PeopleGoing
+									onClick={() => setStateModalFollowingsAndFollowers("Attends")}
+								>{`+ ${object.attends - 1} Going`}</PeopleGoing>
 							)}
 						</LikedBy>
 					</BottomEvent>
@@ -199,7 +230,7 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 						{attendPress ? "Not attend" : "Attend"}
 					</PrimaryButton>
 					<PrimaryButton>
-						<MoreIcon />
+						<MoreIcon onClick={() => setModalView(true)} />
 					</PrimaryButton>
 				</ButtonsCointainer>
 			</EventLayout>

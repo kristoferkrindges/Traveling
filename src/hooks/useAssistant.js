@@ -112,6 +112,33 @@ export default function useAssistant() {
 		return `${formattedDate} - ${formattedTime}`;
 	};
 
+	const formatDateViewEvent = (dateArray) => {
+		const months = [
+			"Jan",
+			"Feb",
+			"Mar",
+			"Apr",
+			"May",
+			"Jun",
+			"Jul",
+			"Aug",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dec",
+		];
+
+		const [year, month, day, hours, minutes] = dateArray;
+
+		const formattedDate = new Date(year, month - 1, day, hours, minutes);
+
+		const result = `${formattedDate.getDate()} ${
+			months[formattedDate.getMonth()]
+		} ${formattedDate.getFullYear()}`;
+
+		return result;
+	};
+
 	return {
 		formatTimeDifference,
 		formatTime,
@@ -122,5 +149,6 @@ export default function useAssistant() {
 		convertToDateISOString,
 		formatEventDate,
 		formatDateString,
+		formatDateViewEvent,
 	};
 }
