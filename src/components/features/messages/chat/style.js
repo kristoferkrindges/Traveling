@@ -182,6 +182,7 @@ export const Sent = styled.div`
 	align-self: flex-end;
 	background: ${({ theme }) => theme.secondColor};
 	border-radius: 0.75rem 0 0.75rem 0.75rem;
+	color: ${({ theme }) => theme.textInverse};
 `;
 export const Text = styled.span``;
 export const Time = styled.span`
@@ -196,6 +197,7 @@ export const Received = styled.div`
 	background: ${({ theme }) => theme.container};
 	border-radius: 0 0.75rem 0.75rem 0.75rem;
 	box-shadow: 0.25rem 0.25rem 1.5rem rgba(0, 0, 0, 0.05);
+	color: ${({ theme }) => theme.text};
 `;
 export const Bottom = styled.div`
 	background: ${({ theme }) => theme.container};

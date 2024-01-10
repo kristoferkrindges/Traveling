@@ -37,6 +37,9 @@ export default function Chat({ click, type, TestOpen }) {
 			setDropdown(false);
 		}
 	}
+	const SendMessage = (evt) => {
+		evt.preventDefault();
+	};
 	return (
 		<>
 			{type ? (
@@ -163,7 +166,7 @@ export default function Chat({ click, type, TestOpen }) {
 						)}
 					</Content>
 
-					<Bottom>
+					<Bottom onClick={SendMessage}>
 						<Form>
 							<TextArea rows="1" placeholder="Type message..."></TextArea>
 							<ButtonSend type="submit">

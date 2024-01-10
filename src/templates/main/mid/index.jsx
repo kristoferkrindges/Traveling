@@ -6,6 +6,7 @@ import ProfileMidTemplate from "./profile";
 import NotificationMidTemplate from "./notification";
 import MessagesMidTemplate from "./messages";
 import EventMidTemplate from "./events";
+import SettingsMidTemplate from "./settings";
 
 export default function MidTemplate({ type }) {
 	return (
@@ -16,6 +17,7 @@ export default function MidTemplate({ type }) {
 			{type === "Notification" && <NotificationMidTemplate />}
 			{type === "Messages" && <MessagesMidTemplate />}
 			{type === "Events" && <EventMidTemplate />}
+			{type === "Settings" && <SettingsMidTemplate />}
 		</MidContainer>
 	);
 }

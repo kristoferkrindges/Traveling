@@ -34,7 +34,12 @@ export default function HomeMidTemplate() {
 					<CreatePost />
 					{Array.isArray(allPosts) && allPosts.length > 0 ? (
 						allPosts.map((value, key) => (
-							<PostAllContainer key={key}>
+							<PostAllContainer
+								key={key}
+								style={{
+									margin: `1rem 0`,
+								}}
+							>
 								<Post
 									type={false}
 									id={value.id}

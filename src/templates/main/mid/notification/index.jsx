@@ -3,7 +3,11 @@ import { LoaderContainer } from "../../../../components/containers/loader.styled
 import Loader from "../../../../components/loader";
 import { NotificationContext } from "../../../../contexts/notificationContext";
 import NotificationSearchMenu from "../../../../components/menus/notiticationsSearch";
-import { NotificationContainer, Title } from "./style";
+import {
+	NotificationContainer,
+	NotificationContextContainer,
+	Title,
+} from "./style";
 import Notifications from "../../../../components/features/notifications";
 
 export default function NotificationMidTemplate() {
@@ -85,27 +89,29 @@ export default function NotificationMidTemplate() {
 				searchAllNotification={searchAllNotification}
 				searchUnreadNotification={searchUnreadNotification}
 			/>
-			{filteredData ? (
-				<>
-					{filteredData.length > 0 ? (
-						filteredData.map((value, key) => (
-							<Notifications
-								key={key}
-								user={value.user}
-								creator={value.creator}
-								type={value.type}
-								date={value.date}
-							/>
-						))
-					) : (
-						<Title>You have seen all your notifications</Title>
-					)}
-				</>
-			) : (
-				<LoaderContainer>
-					<Loader />
-				</LoaderContainer>
-			)}
+			<NotificationContextContainer>
+				{filteredData ? (
+					<>
+						{filteredData.length > 0 ? (
+							filteredData.map((value, key) => (
+								<Notifications
+									key={key}
+									user={value.user}
+									creator={value.creator}
+									type={value.type}
+									date={value.date}
+								/>
+							))
+						) : (
+							<Title>You have seen all your notifications</Title>
+						)}
+					</>
+				) : (
+					<LoaderContainer>
+						<Loader />
+					</LoaderContainer>
+				)}
+			</NotificationContextContainer>
 		</NotificationContainer>
 	);
 }
