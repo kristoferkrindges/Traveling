@@ -13,6 +13,7 @@ export const NotificationContainer = styled.div`
 	margin-bottom: 1rem;
 	border-radius: ${size.lg};
 	padding: ${size.sm};
+	width: 90%;
 `;
 export const Left = styled.div`
 	display: flex;

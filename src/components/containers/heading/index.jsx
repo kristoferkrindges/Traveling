@@ -13,6 +13,7 @@ import {
 	NotificationIcon,
 	PostIcon,
 	ProfileIcon,
+	SettingsIcon,
 } from "../../icons/iO5Icons.styled";
 import EllipsMenu from "../../menus/ellips";
 
@@ -48,7 +49,10 @@ export default function HeadingContainer({ type, text, click }) {
 			{type === "Favorites" && <BookPressIcon />}
 			{type === "View" && <MoreIcon />}
 			<H4Title>{text}</H4Title>
-			{type !== "Messages" && type !== "Notifications" && type !== "Events" ? (
+			{type !== "Messages" &&
+			type !== "Notifications" &&
+			type !== "Events" &&
+			type !== "Settings" ? (
 				<>
 					<EllipsIcon onClick={handlerEllips} />
 					{ellips && <EllipsMenu optionsMenu={optionsMenu} />}
@@ -57,8 +61,10 @@ export default function HeadingContainer({ type, text, click }) {
 				<ChatIcon />
 			) : type === "Notifications" ? (
 				<NotificationIcon />
-			) : (
+			) : type === "Events" ? (
 				<EventIcon />
+			) : (
+				<SettingsIcon />
 			)}
 		</Heading>
 	);

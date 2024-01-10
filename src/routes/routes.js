@@ -12,6 +12,7 @@ import ProfileTemplate from "../templates/profile";
 import NotificationPage from "../pages/notification";
 import MessagesPage from "../pages/messages";
 import EventPage from "../pages/events";
+import SettingsPage from "../pages/settings";
 
 export default function Routes() {
 	const { userInfo } = useContext(UserContext);
@@ -96,6 +97,20 @@ export default function Routes() {
 						typeof userInfo === "object" &&
 						Object.keys(userInfo).length > 0 ? (
 							<EventPage />
+						) : (
+							<AwaitPage />
+						)
+					}
+				></Route>
+			</Route>
+			<Route path="/settings" element={<PrivateRouter />}>
+				<Route
+					path="/settings"
+					element={
+						userInfo &&
+						typeof userInfo === "object" &&
+						Object.keys(userInfo).length > 0 ? (
+							<SettingsPage />
 						) : (
 							<AwaitPage />
 						)
