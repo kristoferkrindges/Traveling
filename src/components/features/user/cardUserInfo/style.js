@@ -9,7 +9,7 @@ export const Card = styled.div`
 	justify-content: space-between;
 	margin-bottom: 3.7rem;
 
-	@media only screen and (max-width: 1200px) {
+	@media only screen and (max-width: 1400px) {
 		display: none;
 	}
 `;

@@ -49,7 +49,7 @@ export default function CardProfile({ type, user, handlerRoute }) {
 						Following<Numbers>{user.followings}</Numbers>
 					</List>
 				</Lists>
-				<BorderButton>Profile</BorderButton>
+				<BorderButton style={{ fontSize: "0.8rem" }}>Profile</BorderButton>
 			</Bottom>
 		</CardProfileContainer>
 	);

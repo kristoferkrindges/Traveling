@@ -107,15 +107,35 @@ export const IconGoogle = styled(IoLogoGoogle)`
 	stroke: white;
 	color: white;
 `;
-export const HomeIcon = styled(IoHome)``;
+export const HomeIcon = styled(IoHome)`
+	&:hover {
+		transform: rotate(-10deg);
+		opacity: 0.7;
+	}
+`;
 
-export const ProfileIcon = styled(IoPersonCircle)``;
+export const ProfileIcon = styled(IoPersonCircle)`
+	&:hover {
+		transform: rotate(-10deg);
+		opacity: 0.7;
+	}
+`;
 
-export const ChatIcon = styled(IoMail)``;
+export const ChatIcon = styled(IoMail)`
+	&:hover {
+		transform: rotate(-10deg);
+		opacity: 0.7;
+	}
+`;
 
 export const NotificationIcon = styled(IoNotifications)``;
 
-export const EventIcon = styled(IoAirplane)``;
+export const EventIcon = styled(IoAirplane)`
+	&:hover {
+		transform: rotate(-10deg);
+		opacity: 0.7;
+	}
+`;
 
 export const SearchIcon = styled(IoSearch)``;
 

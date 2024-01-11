@@ -71,11 +71,11 @@ export const EditPhotoCover = styled.label`
 export const Photo = styled.div`
 	position: absolute;
 	top: -6rem;
-	height: 140px;
-	width: 140px;
+	height: 130px;
+	width: 130px;
 	border-radius: 50%;
 	padding: 3px;
-	background: ${({ theme }) => theme.background};
+	background: ${({ theme }) => theme.container};
 `;
 
 export const UserPhoto = styled.img`
@@ -83,8 +83,8 @@ export const UserPhoto = styled.img`
 	width: 100%;
 	object-fit: cover;
 	border-radius: 50%;
-	background-color: ${({ theme }) => theme.background};
-	border: 3px solid ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.container};
+	border: 3px solid ${({ theme }) => theme.container};
 	&:hover {
 		opacity: 0.5;
 	}
@@ -136,9 +136,11 @@ export const List = styled.li`
 	list-style: none;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
 	padding: 0 10px;
-	font-size: 1rem;
+	font-size: 0.8rem;
 	font-weight: 200;
 	/* color: #999; */
 	color: ${({ theme }) => theme.text};

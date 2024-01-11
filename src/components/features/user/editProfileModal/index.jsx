@@ -126,11 +126,11 @@ export default function EditProfileModal({ click, avatarNone }) {
 							/>
 							<EditPhotoCover
 								htmlFor="banneruser"
-								style={
-									banner || !banner === ""
-										? { background: "#2c2c6c", color: "white" }
-										: null
-								}
+								// style={
+								// 	banner || !banner === ""
+								// 		? { background: "#2c2c6c", color: "white" }
+								// 		: null
+								// }
 							>
 								<CamIcon />
 								Edit Cover Photo

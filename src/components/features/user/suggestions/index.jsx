@@ -26,6 +26,7 @@ export default function Suggestions() {
 					data.map((value, key) => (
 						<UsersSuggestions
 							key={key}
+							id={value.id}
 							photo={value.photo}
 							name={value.firstname + " " + value.lastname}
 							message={"@" + value.at}

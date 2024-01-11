@@ -194,12 +194,22 @@ export default function useAuth() {
 		}
 	}
 
-	async function follow(id) {
+	async function follow(id, count) {
 		try {
 			const data = await api.post(`/users/${id}/follow`).then((response) => {
 				return response.data;
 			});
-			await checkUser();
+			if (count) {
+				setUserInfo((prevUserInfo) => ({
+					...prevUserInfo,
+					followings: prevUserInfo.followings + 1,
+				}));
+			} else {
+				setUserInfo((prevUserInfo) => ({
+					...prevUserInfo,
+					followings: Math.max(prevUserInfo.followings - 1, 0),
+				}));
+			}
 			return data;
 		} catch (error) {
 			console.log(error);

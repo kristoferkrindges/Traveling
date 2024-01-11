@@ -60,6 +60,17 @@ export default function useEvent() {
 		}
 	}
 
+	async function findRandomEvent() {
+		try {
+			const data = await api.get(`/events/randoms`).then((response) => {
+				return response.data;
+			});
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	async function insert(event, file) {
 		try {
 			if (file) {
@@ -129,5 +140,6 @@ export default function useEvent() {
 		deleteEvent,
 		toogleAttendEvent,
 		findUsersEvent,
+		findRandomEvent,
 	};
 }

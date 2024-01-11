@@ -35,7 +35,6 @@ export const ContextPhoto = styled.div`
 	border-radius: ${size.lg};
 	padding: ${size.sm};
 	overflow: hidden;
-	/* background-image: ${(props) => props.img}; */
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

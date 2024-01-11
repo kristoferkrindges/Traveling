@@ -6,10 +6,6 @@ export default function useNotification() {
 		if (!count) {
 			countUnreadNotifications();
 		}
-		// const nowCount = countUnreadNotifications();
-		// if (nowCount && nowCount > 0) {
-		// 	setCount(nowCount);
-		// }
 	}, []);
 
 	async function allNotifications() {

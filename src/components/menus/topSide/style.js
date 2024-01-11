@@ -21,6 +21,10 @@ export const ContainerSideTop = styled.div`
 	z-index: 999;
 
 	@media only screen and (max-width: 1200px) {
+		width: 96%;
+	}
+
+	@media only screen and (max-width: 992px) {
 		width: 100%;
 	}
 `;

@@ -14,6 +14,7 @@ function EventProvider({ children }) {
 		deleteEvent,
 		toogleAttendEvent,
 		findUsersEvent,
+		findRandomEvent,
 	} = useEvent();
 
 	return (
@@ -28,6 +29,7 @@ function EventProvider({ children }) {
 				deleteEvent,
 				toogleAttendEvent,
 				findUsersEvent,
+				findRandomEvent,
 			}}
 		>
 			{children}

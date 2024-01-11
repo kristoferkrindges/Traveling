@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import UserMessages from "../../userMessage";
 import { Order } from "../../../settings/accountSettings/style";
 import { PrimaryButton } from "../../../../buttons/primaryButton.styled";
+import { UserContext } from "../../../../../contexts/userContext";
+import { OrderUser } from "./style";
 
-export default function UsersSuggestions({ key, photo, name, at }) {
+export default function UsersSuggestions({ key, photo, name, at, id }) {
+	const { follow } = useContext(UserContext);
+
 	const [press, setPress] = useState(false);
-	const pressFollow = (evt) => {
+
+	const pressFollow = async (evt) => {
 		evt.preventDefault();
+		setPress(press ? false : true);
+		await follow(id, !press);
 	};
 	return (
-		<Order>
+		<OrderUser>
 			<UserMessages
 				key={key}
 				photo={photo}
@@ -22,6 +29,6 @@ export default function UsersSuggestions({ key, photo, name, at }) {
 			<PrimaryButton onClick={pressFollow}>
 				{press ? "Unfollow" : "Follow"}
 			</PrimaryButton>
-		</Order>
+		</OrderUser>
 	);
 }
