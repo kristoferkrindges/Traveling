@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 import {
-	IoCloseOutline,
 	IoEllipsisHorizontal,
 	IoSendOutline,
 	IoArrowBack,
@@ -59,7 +58,7 @@ export const Wrapper = styled.div`
 `;
 export const BoxMessage = styled.div`
 	background: ${({ theme }) => theme.background};
-	border-radius: 1rem;
+	border-radius: 2rem;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
 	position: absolute;
 	right: 5rem;
@@ -73,7 +72,7 @@ export const BoxMessage = styled.div`
 
 export const BoxChat = styled.div`
 	background: ${({ theme }) => theme.background};
-	border-radius: 1rem;
+	border-radius: 2rem;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
 	overflow: hidden;
 	transition: all 0.3s ease;

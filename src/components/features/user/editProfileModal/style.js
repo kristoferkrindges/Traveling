@@ -26,6 +26,10 @@ export const Controller = styled.div`
 	flex-direction: column;
 	width: 40%;
 	font-size: 100%;
+
+	@media (max-width: 900px) {
+		width: 80%;
+	}
 `;
 
 export const Label = styled.span`

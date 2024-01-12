@@ -21,6 +21,7 @@ import {
 	EventIcon,
 	HomeIcon,
 	LogoutIcon,
+	NotificationIcon,
 	ProfileIcon,
 	SettingsIcon,
 } from "../../icons/iO5Icons.styled";
@@ -82,6 +83,16 @@ export default function SidebarMenu({ type, optionsMenu }) {
 							</Icon>
 							<Title className={pathname === "/events" && "active"}>
 								Events
+							</Title>
+						</NavLink>
+					</Item>
+					<Item className={pathname === "/notifications" && "active"}>
+						<NavLink to={`/notifications`}>
+							<Icon className={"icon"}>
+								<NotificationIcon />
+							</Icon>
+							<Title className={pathname === "/notifications" && "active"}>
+								Notifications
 							</Title>
 						</NavLink>
 					</Item>

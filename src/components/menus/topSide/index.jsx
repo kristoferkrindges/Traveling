@@ -49,7 +49,7 @@ export default function TopSideMenu({ open, handlerOpen }) {
 			</MidSideTop>
 			<RightSideTop>
 				{windowWidth > 1400 && <DarkModeButton />}
-				<NotificationButton />
+				{windowWidth > 437 && <NotificationButton />}
 				{windowWidth > 1400 && <AvatarButton />}
 				<OpenMenuButton click={handlerOpen} open={open} />
 			</RightSideTop>

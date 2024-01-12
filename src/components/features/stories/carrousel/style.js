@@ -25,7 +25,7 @@ export const CarrouselBody = styled.div`
 	overflow-x: scroll;
 	/* justify-content: center; */
 	height: 119px;
-	max-width: 731px;
+	max-width: 1200px;
 	/* max-width: 38vw; */
 	background-color: ${({ theme }) => theme.container};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
@@ -40,6 +40,14 @@ export const CarrouselBody = styled.div`
 
 	.carousel-status {
 		padding: 16px 0px;
+	}
+
+	@media only screen and (max-width: 1909px) {
+		max-width: 731px;
+	}
+
+	@media only screen and (max-width: 1200px) {
+		max-width: 760px;
 	}
 
 	@media only screen and (max-width: 992px) {

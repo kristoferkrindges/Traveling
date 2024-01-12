@@ -57,6 +57,7 @@ export const BorderButton = styled.button`
 	@media only screen and (max-width: 1450px) {
 		padding: 0.3rem 1.4rem;
 		font-size: 0.8rem;
+		top: 20px;
 	}
 
 	@media only screen and (max-width: 1100px) {

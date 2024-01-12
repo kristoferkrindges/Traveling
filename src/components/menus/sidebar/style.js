@@ -85,6 +85,18 @@ export const Items = styled.ul`
 export const LogoItem = styled.li`
 	position: relative;
 	margin-bottom: 50px;
+
+	@media only screen and (max-height: 740px) {
+		margin-bottom: 20px;
+	}
+
+	@media only screen and (max-height: 720px) {
+		margin-bottom: 10px;
+	}
+
+	@media only screen and (max-height: 600px) {
+		margin-bottom: -30px;
+	}
 `;
 export const Title = styled.div`
 	position: relative;
