@@ -6,7 +6,7 @@ import {
 	TextItem,
 	Order,
 } from "./style";
-import SliderButton from "../../../buttons/SliderButton";
+import SliderButton from "../../../buttons/sliderButton";
 import { ThemeContext } from "../../../../provider/themeProvider";
 import { UserContext } from "../../../../contexts/userContext";
 
@@ -31,7 +31,7 @@ export default function AccountSettings() {
 					<TextItem>Dark Mode</TextItem>
 					<ButtonSliderContainer>
 						Light
-						<SliderButton active={active} click={alter} />
+						<SliderButton active={active} click={alter} color={false} />
 						Dark
 					</ButtonSliderContainer>
 				</Order>
@@ -41,7 +41,11 @@ export default function AccountSettings() {
 					<TextItem>Language</TextItem>
 					<ButtonSliderContainer>
 						EN
-						<SliderButton active={activeLanguage} click={alterLanguage} />
+						<SliderButton
+							active={activeLanguage}
+							click={alterLanguage}
+							color={false}
+						/>
 						PT
 					</ButtonSliderContainer>
 				</Order>

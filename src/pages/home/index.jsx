@@ -1,6 +1,6 @@
 import React from "react";
-import HomeTemplate from "../../templates/home";
+import OriginTemplate from "../../templates/origin";
 
 export default function HomePage() {
-	return <HomeTemplate />;
+	return <OriginTemplate type={"Home"} />;
 }

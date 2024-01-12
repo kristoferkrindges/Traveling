@@ -1,12 +1,6 @@
 import React from "react";
 import { NotificationMenuContainer } from "../../../menus/notiticationsSearch/style";
-import {
-	ButtonSliderContainer,
-	SettingsContext,
-	TextItem,
-	Order,
-} from "../accountSettings/style";
-import SliderButton from "../../../buttons/SliderButton";
+import { SettingsContext, TextItem, Order } from "../accountSettings/style";
 import { CircleContainer } from "../../../containers/circle.styled";
 import { CreateIcon } from "../../../icons/iO5Icons.styled";
 

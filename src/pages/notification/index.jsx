@@ -1,6 +1,6 @@
 import React from "react";
-import NotificationTemplate from "../../templates/notification";
+import OriginTemplate from "../../templates/origin";
 
 export default function NotificationPage() {
-	return <NotificationTemplate />;
+	return <OriginTemplate type={"Notification"} />;
 }

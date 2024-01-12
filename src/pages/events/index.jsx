@@ -1,6 +1,6 @@
 import React from "react";
-import EventsTemplate from "../../templates/events";
+import OriginTemplate from "../../templates/origin";
 
 export default function EventPage() {
-	return <EventsTemplate />;
+	return <OriginTemplate type={"Events"} />;
 }

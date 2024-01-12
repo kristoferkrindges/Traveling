@@ -7,12 +7,12 @@ import { UserContext } from "../contexts/userContext";
 import HomePage from "../pages/home";
 import AwaitPage from "../pages/await";
 import AuthPage from "../pages/auth";
-import OnlyPostTemplate from "../templates/onlyPost";
-import ProfileTemplate from "../templates/profile";
 import NotificationPage from "../pages/notification";
 import MessagesPage from "../pages/messages";
 import EventPage from "../pages/events";
 import SettingsPage from "../pages/settings";
+import OnlyPostPage from "../pages/onlyPost";
+import ProfilePage from "../pages/profile";
 
 export default function Routes() {
 	const { userInfo } = useContext(UserContext);
@@ -40,7 +40,7 @@ export default function Routes() {
 						userInfo &&
 						typeof userInfo === "object" &&
 						Object.keys(userInfo).length > 0 ? (
-							<OnlyPostTemplate />
+							<OnlyPostPage />
 						) : (
 							<AwaitPage />
 						)
@@ -54,7 +54,7 @@ export default function Routes() {
 						userInfo &&
 						typeof userInfo === "object" &&
 						Object.keys(userInfo).length > 0 ? (
-							<ProfileTemplate />
+							<ProfilePage />
 						) : (
 							<AwaitPage />
 						)

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	ContainerSideTop,
 	LeftSideTop,
@@ -15,9 +15,23 @@ import { LogoTraveling } from "../../images/logo.styled";
 import { Link } from "react-router-dom";
 import SearchTopMenu from "../../inputs/search";
 import { ThemeContext } from "../../../provider/themeProvider";
+import OpenMenuButton from "../../buttons/openMenu";
 
-export default function TopSideMenu() {
+export default function TopSideMenu({ open, handlerOpen }) {
 	const { theme } = useContext(ThemeContext);
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth);
+		};
+
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
 	return (
 		<ContainerSideTop>
 			<LeftSideTop>
@@ -34,9 +48,10 @@ export default function TopSideMenu() {
 				<FeaturesRoutedMenu />
 			</MidSideTop>
 			<RightSideTop>
-				<DarkModeButton />
+				{windowWidth > 1400 && <DarkModeButton />}
 				<NotificationButton />
-				<AvatarButton />
+				{windowWidth > 1400 && <AvatarButton />}
+				<OpenMenuButton click={handlerOpen} open={open} />
 			</RightSideTop>
 		</ContainerSideTop>
 	);

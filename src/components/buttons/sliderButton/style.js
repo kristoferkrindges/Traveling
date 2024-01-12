@@ -9,7 +9,7 @@ export const SThemeToggler = styled.button`
 	height: 20px;
 	border-radius: 10px;
 	background: ${({ theme, isActive }) =>
-		!isActive ? theme.background : theme.secondColor};
+		!isActive ? theme.secondColor : theme.primary};
 	position: relative;
 `;
 
