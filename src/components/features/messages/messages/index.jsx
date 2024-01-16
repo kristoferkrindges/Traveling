@@ -7,6 +7,7 @@ import SelectOptions from "../selectOptions";
 import UserMessages from "../../user/userMessage";
 import { NotContentYet } from "../../../../templates/main/mid/profile/style";
 import Loader from "../../../loader";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
 
 export default function Messages() {
 	const { userInfo, getFollowings } = useContext(UserContext);
@@ -38,7 +39,9 @@ export default function Messages() {
 					filteredData.map((value, key) => (
 						<UserMessages
 							key={key}
-							photo={value.photo}
+							photo={
+								value.photo || !value.photo === "" ? value.photo : AvatarNone
+							}
 							name={value.firstname + " " + value.lastname}
 							message={"@" + value.at}
 							online={true}

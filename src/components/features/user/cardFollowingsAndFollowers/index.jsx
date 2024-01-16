@@ -9,6 +9,7 @@ import { PostContext } from "../../../../contexts/postContext";
 import SearchBar from "../../../inputs/searchBar";
 import { EventContext } from "../../../../contexts/eventContext";
 import { OverlayContainer } from "../../../containers/overlay.styled";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
 
 export default function CardFollowingsAndFollowers({
 	id,
@@ -105,7 +106,9 @@ export default function CardFollowingsAndFollowers({
 						filteredData.map((value, key) => (
 							<UserMessages
 								key={key}
-								photo={value.photo}
+								photo={
+									value.photo || !value.photo === "" ? value.photo : AvatarNone
+								}
 								name={value.firstname + " " + value.lastname}
 								message={"@" + value.at}
 								online={false}

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { size } from "../../../../styles/variables";
 
-export const FollowersAndFollowingsContainer = styled.div`
+export const DeletContainer = styled.div`
 	position: absolute;
 	top: 10%;
-	left: 30.4%;
+	left: 32.4%;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;

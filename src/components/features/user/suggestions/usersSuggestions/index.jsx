@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import UserMessages from "../../userMessage";
-import { Order } from "../../../settings/accountSettings/style";
 import { PrimaryButton } from "../../../../buttons/primaryButton.styled";
 import { UserContext } from "../../../../../contexts/userContext";
 import { OrderUser } from "./style";
+import AvatarNone from "../../../../../assets/images/avatarnone.png";
 
 export default function UsersSuggestions({ key, photo, name, at, id }) {
 	const { follow } = useContext(UserContext);
@@ -19,7 +19,7 @@ export default function UsersSuggestions({ key, photo, name, at, id }) {
 		<OrderUser>
 			<UserMessages
 				key={key}
-				photo={photo}
+				photo={photo || !photo === "" ? photo : AvatarNone}
 				name={name}
 				message={"@" + at}
 				online={false}

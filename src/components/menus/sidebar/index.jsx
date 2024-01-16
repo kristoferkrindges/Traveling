@@ -28,6 +28,8 @@ import {
 import { UserContext } from "../../../contexts/userContext";
 import SliderButton from "../../buttons/sliderButton";
 import { useLocation } from "react-router-dom";
+import AvatarNone from "../../../assets/images/avatarnone.png";
+
 export default function SidebarMenu({ type, optionsMenu }) {
 	const { theme } = useContext(ThemeContext);
 	const { userInfo, alterDarkMode } = useContext(UserContext);
@@ -122,9 +124,14 @@ export default function SidebarMenu({ type, optionsMenu }) {
 						<NavLink>
 							<Icon>
 								<ImgBox>
-									<AvatarPhoto src={userInfo.photo} />
+									<AvatarPhoto
+										src={
+											userInfo.photo || !userInfo.photo === ""
+												? userInfo.photo
+												: AvatarNone
+										}
+									/>
 								</ImgBox>
-								{/* <AvatarPhoto src={userInfo.photo} /> */}
 							</Icon>
 							<Title>{userInfo.firstname}</Title>
 						</NavLink>

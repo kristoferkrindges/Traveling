@@ -33,7 +33,7 @@ export default function useComment() {
 			const data = await api.post("/comments", comment).then((response) => {
 				return response.data;
 			});
-			toast.success("Comment created with success!");
+			// toast.success("Comment created with success!");
 			return data;
 		} catch (error) {
 			console.log(error);

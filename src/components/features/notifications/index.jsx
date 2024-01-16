@@ -19,6 +19,7 @@ import {
 import { AtIcon } from "../../icons/rIIcons.styled";
 import { useNavigate } from "react-router-dom";
 import { AvatarPhoto } from "../../images/avatar.styled";
+import AvatarNone from "../../../assets/images/avatarnone.png";
 
 export default function Notifications({ user, creator, type, date }) {
 	const navigate = useNavigate();
@@ -30,7 +31,9 @@ export default function Notifications({ user, creator, type, date }) {
 		<NotificationContainer>
 			<Left>
 				<AvatarPhoto
-					src={creator.photo}
+					src={
+						creator.photo || !creator.photo === "" ? creator.photo : AvatarNone
+					}
 					onClick={() => handlerRouted(creator.at)}
 				/>
 				<MessageBody>

@@ -29,10 +29,14 @@ import { AtIcon } from "../../../icons/rIIcons.styled";
 import { SaveContainer } from "../../post/post/style";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 import Loader from "../../../loader";
+import { AssistantContext } from "../../../../contexts/assistantContext";
 
 export default function EditProfileModal({ click, avatarNone }) {
 	const { userInfo, update, updatePhoto, updateBanner } =
 		useContext(UserContext);
+
+	const { convertToDateISOString, formatEventDate } =
+		useContext(AssistantContext);
 
 	const modalRef = useRef(null);
 
@@ -42,19 +46,24 @@ export default function EditProfileModal({ click, avatarNone }) {
 	const [atChange, setAtChange] = useState(userInfo.at);
 	const [photo, setPhoto] = useState(userInfo.photo);
 	const [banner, setBanner] = useState(userInfo.banner);
-
+	const [birthDate, setBirthDate] = useState();
+	console.log(userInfo.birthDate);
 	useEffect(() => {
 		setFirstnameChange(userInfo.firstname);
 		setLastnameChange(userInfo.lastname);
 		setPhoto(userInfo.photo);
 		setAtChange(userInfo.at);
 		setBanner(userInfo.banner);
+		setBirthDate(
+			userInfo.birthDate && convertToDateISOString(userInfo.birthDate)
+		);
 	}, [
 		userInfo.photo,
 		userInfo.firstname,
 		userInfo.lastname,
 		userInfo.at,
 		userInfo.banner,
+		userInfo.birthDate,
 	]);
 
 	useEffect(() => {
@@ -101,6 +110,7 @@ export default function EditProfileModal({ click, avatarNone }) {
 			firstname: firstnameChange,
 			lastname: lastnameChange,
 			at: atChange,
+			birthDate: birthDate && formatEventDate(birthDate),
 		};
 		await update(user);
 		setProgress(false);
@@ -207,7 +217,17 @@ export default function EditProfileModal({ click, avatarNone }) {
 							<Controller>
 								<Label>Birthdate</Label>
 								<ContainerInput>
-									<InputDate type="date" />
+									<InputDate
+										type="datetime-local"
+										value={birthDate}
+										onChange={(e) => {
+											const formattedDate = e.target.value
+												.split("T")
+												.join(" ")
+												.substring(0, 16);
+											setBirthDate(formattedDate);
+										}}
+									/>
 									<TextInput>
 										<CalendarIcon />
 									</TextInput>

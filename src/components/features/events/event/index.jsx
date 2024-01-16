@@ -16,6 +16,7 @@ import {
 	TypeEvent,
 } from "./style";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
+import NoPicture from "../../../../assets/images/fundoblack.jpg";
 import { AvatarPhoto } from "../../../images/avatar.styled";
 import {
 	CalendarIcon,
@@ -53,7 +54,7 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 	] = useState(undefined);
 	const [modalView, setModalView] = useState(false);
 
-	const photoSrc = object.photo ? object.photo : AvatarNone;
+	const photoSrc = object.photo ? object.photo : NoPicture;
 
 	const pressAttend = async () => {
 		setAttendPress(attendPress ? false : true);
@@ -154,7 +155,12 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 					<HeaderEvent>
 						<CirclePhoto>
 							<AvatarPhoto
-								src={object.userAllResponse.photo}
+								src={
+									object.userAllResponse.photo ||
+									!object.userAllResponse.photo === ""
+										? object.userAllResponse.photo
+										: AvatarNone
+								}
 								onClick={(evt) => handlerRoute(evt, object.userAllResponse.at)}
 							/>
 						</CirclePhoto>

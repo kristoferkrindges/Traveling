@@ -77,7 +77,7 @@ export default function CreateComment({
 						<TextArea
 							rows="1"
 							placeholder={isFocused ? "" : "Type comment..."}
-							maxLength={140}
+							maxLength={250}
 							onChange={(e) => {
 								setText(e.target.value);
 							}}

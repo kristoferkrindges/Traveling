@@ -9,6 +9,7 @@ import {
 	MidEvent,
 } from "../event/style";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
+import NoPicture from "../../../../assets/images/fundoblack.jpg";
 import { AvatarPhoto } from "../../../images/avatar.styled";
 import { useNavigate } from "react-router-dom";
 import { LikedBy, MiniAvatar, Span } from "../../post/post/style";
@@ -23,7 +24,7 @@ export default function MinEvent({ object }) {
 
 	const [attendPress, setAttendPress] = useState(object.pressAttend);
 
-	const photoSrc = object.photo ? object.photo : AvatarNone;
+	const photoSrc = object.photo ? object.photo : NoPicture;
 
 	const pressAttend = async () => {
 		setAttendPress(attendPress ? false : true);
@@ -48,7 +49,12 @@ export default function MinEvent({ object }) {
 				<HeaderEvent>
 					<CirclePhoto style={{ width: "40px", height: "40px" }}>
 						<AvatarPhoto
-							src={object.userAllResponse.photo}
+							src={
+								object.userAllResponse.photo ||
+								!object.userAllResponse.photo === ""
+									? object.userAllResponse.photo
+									: AvatarNone
+							}
 							onClick={(evt) => handlerRoute(evt, object.userAllResponse.at)}
 							style={{ width: "35px", height: "35px" }}
 						/>

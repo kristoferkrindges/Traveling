@@ -5,19 +5,41 @@ export const ViewMoreContainer = styled.div`
 	position: absolute;
 	top: 10%;
 	left: 30.4%;
-	min-width: 20vw;
-	margin: 1rem 0 0 1rem;
-	z-index: 500;
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
-	border-radius: ${size.lg};
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	background: ${({ theme }) => theme.container};
 	border-radius: ${size.lg};
-	min-width: 20vw;
 	padding: ${size.sm};
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
+	min-width: 35vw;
+	margin: 1rem 0 0 1rem;
+	z-index: 500;
 	border-bottom: 70px solid ${({ theme }) => theme.secondColor};
+
+	@media only screen and (max-width: 1920px) {
+		left: 28.5%;
+	}
+
+	@media only screen and (max-width: 1400px) {
+		left: 20.4%;
+		min-width: 50vw;
+	}
+
+	@media only screen and (max-width: 1200px) {
+		left: 15.4%;
+	}
+
+	@media only screen and (max-width: 992px) {
+		left: 1%;
+		min-width: 90%;
+	}
+
+	@media only screen and (max-width: 764px) {
+		left: 0%;
+		/* margin-left: 2px; */
+		width: 80%;
+	}
 `;
 
 export const DetailsContainer = styled.div`
@@ -28,9 +50,10 @@ export const DetailsContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
-	max-width: 33.5vw;
+	/* max-width: 33.5vw; */
 	gap: 1.5rem;
 	margin-bottom: 1rem;
+	width: 100%;
 	color: ${({ theme }) => theme.text};
 `;
 

@@ -19,6 +19,7 @@ import { AvatarPhoto } from "../../images/avatar.styled";
 import EllipsMenu from "../../menus/ellips";
 import { UserContext } from "../../../contexts/userContext";
 import CardProfile from "../../features/user/cardProfile";
+import AvatarNone from "../../../assets/images/avatarnone.png";
 
 export default function HeadPostComment({
 	type,
@@ -104,7 +105,7 @@ export default function HeadPostComment({
 			<User>
 				{!type && (
 					<AvatarPhoto
-						src={user.photo}
+						src={user.photo || !user.photo === "" ? user.photo : AvatarNone}
 						onClick={handlerRoute}
 						onMouseEnter={() => setShowCardProfile(true)}
 					/>

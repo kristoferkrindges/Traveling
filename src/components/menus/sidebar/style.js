@@ -12,9 +12,22 @@ export const SidebarContainer = styled.div`
 	transition: 0.5s;
 	padding-left: 10px;
 	overflow: hidden;
+	border-radius: 0 2rem 2rem 0;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
+	animation: progress 0.5s ease-in-out forwards;
 
 	@media only screen and (max-width: 1400px) {
 		display: block;
+	}
+
+	@keyframes progress {
+		0% {
+			width: 0;
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
 	}
 `;
 

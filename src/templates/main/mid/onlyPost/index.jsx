@@ -38,6 +38,10 @@ export default function OnlyPostMidTemplate() {
 		const comments = await findCommentsPost(id);
 		setCommentsWithPost(comments);
 	};
+	const addCommentInList = (newComment) => {
+		setCommentsWithPost((prevComments) => [newComment, ...prevComments]);
+		return;
+	};
 	const deletCommentInList = (commentId) => {
 		setCommentsWithPost((commentsWithPost) =>
 			commentsWithPost.filter((comment) => comment.id !== commentId)

@@ -46,9 +46,12 @@ import {
 	IoAddOutline,
 	IoPricetags,
 	IoNewspaper,
+	IoTrashBin,
 } from "react-icons/io5";
 
 export const TypeIcon = styled(IoNewspaper)``;
+
+export const DeletAccountIcon = styled(IoTrashBin)``;
 
 export const PriceIcon = styled(IoPricetags)``;
 

@@ -36,7 +36,12 @@ export const Border = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin-left: 1.4rem;
+	margin-top: 1px;
 	padding: 1px;
+	/* height: 76%; */
+	/* +6 */
+	/* height: 83%; */
 	height: 100%;
-	border-left: 1px solid gray;
+	/* +4 */
+	border-left: 2px solid ${({ theme }) => theme.text};
 `;
