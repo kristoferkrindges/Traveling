@@ -30,10 +30,12 @@ export default function useAuth() {
 				return response.data;
 			});
 			await authUser(data);
-			navigate(`/profile/${userInfo.at}`);
+			// navigate(`/profile/${userInfo.at}`);
+			navigate(`/`);
 			return;
 		} catch (error) {
 			try {
+				console.log(error);
 				toast.error(error.response.data.message);
 			} catch (error) {
 				console.log("Erro", error);
@@ -77,6 +79,7 @@ export default function useAuth() {
 			await api.delete("/users").then((response) => {
 				return response.data;
 			});
+			logout();
 		} catch (error) {
 			console.log(error);
 		}
@@ -108,7 +111,7 @@ export default function useAuth() {
 			return response.data;
 		} catch (error) {
 			console.log(error);
-			throw error;
+			return "User not found";
 		}
 	}
 

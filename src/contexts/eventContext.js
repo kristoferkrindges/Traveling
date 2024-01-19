@@ -15,6 +15,8 @@ function EventProvider({ children }) {
 		toogleAttendEvent,
 		findUsersEvent,
 		findRandomEvent,
+		randomEvent,
+		startRandomEvent,
 	} = useEvent();
 
 	return (
@@ -30,6 +32,8 @@ function EventProvider({ children }) {
 				toogleAttendEvent,
 				findUsersEvent,
 				findRandomEvent,
+				randomEvent,
+				startRandomEvent,
 			}}
 		>
 			{children}

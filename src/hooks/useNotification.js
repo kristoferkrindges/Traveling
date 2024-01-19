@@ -1,12 +1,7 @@
 import api from "../services/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 export default function useNotification() {
 	const [count, setCount] = useState();
-	useEffect(() => {
-		if (!count) {
-			countUnreadNotifications();
-		}
-	}, []);
 
 	async function allNotifications() {
 		try {
@@ -38,7 +33,7 @@ export default function useNotification() {
 			setCount(data);
 			return data;
 		} catch (error) {
-			console.log(error);
+			console.log(error.response);
 		}
 	}
 

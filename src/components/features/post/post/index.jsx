@@ -35,6 +35,7 @@ import {
 import ActionButtonsContainer from "../../../containers/actionButtons";
 import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 import ViewImageModal from "../../../modals/viewImage";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
 
 export default function Post({
 	type,
@@ -288,7 +289,11 @@ export default function Post({
 								<Span>
 									<MiniAvatar
 										onClick={(evt) => handlerRouteProfile(evt, value.at)}
-										src={value.photo}
+										src={
+											value.photo || !value.photo === ""
+												? value.photo
+												: AvatarNone
+										}
 										alt=""
 									/>
 								</Span>

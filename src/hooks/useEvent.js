@@ -1,9 +1,12 @@
 import api from "../services/api";
 import { toast } from "react-toastify";
 import useFirebase from "./useFirebase";
+import { useState } from "react";
 
 export default function useEvent() {
 	const { uploadImage } = useFirebase();
+
+	const [randomEvent, setRandomEvent] = useState([]);
 
 	async function findAll() {
 		try {
@@ -68,6 +71,12 @@ export default function useEvent() {
 			return data;
 		} catch (error) {
 			console.log(error);
+		}
+	}
+
+	async function startRandomEvent() {
+		if (randomEvent.length < 1) {
+			setRandomEvent(await findRandomEvent());
 		}
 	}
 
@@ -141,5 +150,7 @@ export default function useEvent() {
 		toogleAttendEvent,
 		findUsersEvent,
 		findRandomEvent,
+		randomEvent,
+		startRandomEvent,
 	};
 }

@@ -22,6 +22,7 @@ import UserMessages from "../../user/userMessage";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 import { StorieContext } from "../../../../contexts/storieContext";
 import { Numbers } from "../../../containers/actionButtons/style";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
 
 export default function ItemStorie({
 	type,
@@ -106,7 +107,7 @@ export default function ItemStorie({
 			</Photo>
 			<MenuContainer>
 				<UserMessages
-					photo={user.photo}
+					photo={user.photo || !user.photo === "" ? user.photo : AvatarNone}
 					name={`${user.firstname} ${user.lastname}`}
 					message={time ? formatTimeDifference(time) : "0 seconds ago"}
 					online={false}

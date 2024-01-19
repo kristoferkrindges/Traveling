@@ -21,9 +21,13 @@ import {
 	TwoPeople,
 	UserCircle,
 } from "../../icons/iO5Icons.styled";
+import { InputDate } from "../user/editProfileModal/style";
+import { AssistantContext } from "../../../contexts/assistantContext";
 
 export default function Auth() {
 	const { signUp, signIn } = useContext(UserContext);
+
+	const { formatEventDate } = useContext(AssistantContext);
 
 	const [emailFocused, setEmailFocused] = useState(false);
 	const [passwordFocused, setPasswordFocused] = useState(false);
@@ -39,16 +43,33 @@ export default function Auth() {
 
 	const [controllerAuth, setControllerAuth] = useState(true);
 
-	function controllerOrder() {
+	const [birthDate, setBirthDate] = useState("");
+
+	const getCurrentDateTimeString = () => {
+		const currentDate = new Date();
+
+		const year = currentDate.getFullYear();
+		const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Adiciona zero à esquerda, se necessário
+		const day = String(currentDate.getDate()).padStart(2, "0");
+		const hours = String(currentDate.getHours()).padStart(2, "0");
+		const minutes = String(currentDate.getMinutes()).padStart(2, "0");
+
+		const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+
+		return formattedDateTime;
+	};
+
+	const controllerOrder = () => {
 		if (controllerAuth) {
 			setControllerAuth(false);
 		} else {
 			setControllerAuth(true);
 		}
-	}
+	};
 
-	function handlerButtonSignUp(evt) {
+	const handlerButtonSignUp = (evt) => {
 		evt.preventDefault();
+		getCurrentDateTimeString();
 		const user = {
 			firstname: firstnameChange,
 			lastname: lastnameChange,
@@ -56,20 +77,19 @@ export default function Auth() {
 			email: emailChange,
 			photo: "",
 			banner: "",
-			birthdate: "2023-03-21T00:00:00.000+00:00",
+			birthdate: formatEventDate(getCurrentDateTimeString()),
 			password: passwordChange,
 		};
 		signUp(user);
-	}
-
-	function handlerButtonSignIn(evt) {
+	};
+	const handlerButtonSignIn = (evt) => {
 		evt.preventDefault();
 		const user = {
 			email: emailChange,
 			password: passwordChange,
 		};
 		signIn(user);
-	}
+	};
 	return (
 		<ContainerAuth gridColumns={controllerAuth ? `1.5fr 1fr` : `1fr 1.5fr`}>
 			{controllerAuth && <Logo src={Infinite} />}
@@ -174,6 +194,17 @@ export default function Auth() {
 							}}
 						/>
 					</FormInput>
+					{/* <InputDate
+						type="datetime-local"
+						value={birthDate}
+						onChange={(e) => {
+							const formattedDate = e.target.value
+								.split("T")
+								.join(" ")
+								.substring(0, 16);
+							setBirthDate(formattedDate);
+						}}
+					/> */}
 				</Fields>
 				<OrderController onClick={controllerOrder}>
 					{controllerAuth

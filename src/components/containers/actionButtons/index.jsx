@@ -66,7 +66,9 @@ export default function ActionButtonsContainer({
 						</Icon>
 						{!children && (
 							<Icon>
-								<CommentIcon />
+								<CommentIcon
+									onClick={type ? (evt) => onPressFavorite(evt) : null}
+								/>
 								<Numbers>{comments}</Numbers>
 							</Icon>
 						)}

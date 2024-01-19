@@ -15,6 +15,8 @@ import { AvatarPhoto } from "../../../images/avatar.styled";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 import { CommentContext } from "../../../../contexts/commentContext";
 import LoaderModal from "../../../modals/loader";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
+
 export default function CreateComment({
 	type,
 	commentId,
@@ -69,7 +71,13 @@ export default function CreateComment({
 			{!progress || <LoaderModal />}
 			<CreateCommentContainer>
 				<ProfilePhoto>
-					<AvatarPhoto src={userInfo.photo} />
+					<AvatarPhoto
+						src={
+							userInfo.photo || !userInfo.photo === ""
+								? userInfo.photo
+								: AvatarNone
+						}
+					/>
 					{type ? <Border /> : null}
 				</ProfilePhoto>
 				<ContextText>

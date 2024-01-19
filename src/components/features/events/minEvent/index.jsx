@@ -66,19 +66,25 @@ export default function MinEvent({ object }) {
 							object.usersAttends.map((value, key) => (
 								<Span
 									style={{
-										width: `2rem`,
-										height: `2rem`,
+										width: `1.5rem`,
+										height: `1.5rem`,
 									}}
 								>
 									<MiniAvatar
 										onClick={(evt) => handlerRoute(evt, value.at)}
-										src={value.photo}
+										src={
+											value.photo || !value.photo === ""
+												? value.photo
+												: AvatarNone
+										}
 										alt=""
 									/>
 								</Span>
 							))}
 						{object.attends > 1 && (
-							<PeopleGoing>{`+ ${object.attends - 1} Going`}</PeopleGoing>
+							<PeopleGoing style={{ fontSize: "0.8rem" }}>{`+ ${
+								object.attends - 1
+							} Going`}</PeopleGoing>
 						)}
 					</LikedBy>
 				</BottomEvent>

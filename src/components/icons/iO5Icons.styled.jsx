@@ -222,8 +222,8 @@ export const BookPressIcon = styled(IoBookmark)`
 export const CloseCircleIcon = styled(IoCloseCircle)`
 	cursor: pointer;
 	z-index: 999;
-	color: ${({ theme }) => theme.text};
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	/* color: ${({ theme }) => theme.text};
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1); */
 `;
 
 export const EditIcon = styled(IoColorWand)`

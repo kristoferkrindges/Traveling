@@ -192,7 +192,11 @@ export default function Event({ handlerDelet, object, handlerModal }) {
 									>
 										<MiniAvatar
 											onClick={(evt) => handlerRoute(evt, value.at)}
-											src={value.photo}
+											src={
+												value.photo || !value.photo === ""
+													? value.photo
+													: AvatarNone
+											}
 											alt=""
 										/>
 									</Span>

@@ -15,3 +15,11 @@ export const ProfileContainer = styled.section`
 		box-shadow: none;
 	} */
 `;
+
+export const ProfileNotFound = styled.section`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.8rem;
+	font-weight: 700;
+`;

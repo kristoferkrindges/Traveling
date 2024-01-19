@@ -10,6 +10,7 @@ import { PrimaryButton } from "../../../buttons/primaryButton.styled";
 import { toast } from "react-toastify";
 import { CommentContext } from "../../../../contexts/commentContext";
 import ActionButtonsContainer from "../../../containers/actionButtons";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
 
 export default function ParentComment({
 	user,
@@ -93,7 +94,13 @@ export default function ParentComment({
 		<Controller>
 			<Border />
 			<Extends>
-				<AvatarPhoto src={stateUser.photo} />
+				<AvatarPhoto
+					src={
+						stateUser.photo || !stateUser.photo === ""
+							? stateUser.photo
+							: AvatarNone
+					}
+				/>
 			</Extends>
 			<Right>
 				<TopContainer>

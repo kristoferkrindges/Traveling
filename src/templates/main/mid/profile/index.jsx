@@ -7,7 +7,7 @@ import ProfileInfo from "../../../../components/features/user/profileInfo";
 import FilterSearchMenu from "../../../../components/menus/filterSearch";
 import { PostAllContainer } from "../home/style";
 import Post from "../../../../components/features/post/post";
-import { ProfileContainer, NotContentYet } from "./style";
+import { ProfileContainer, NotContentYet, ProfileNotFound } from "./style";
 import Carrousel from "../../../../components/features/stories/carrousel";
 import { StorieContext } from "../../../../contexts/storieContext";
 
@@ -32,6 +32,7 @@ export default function ProfileMidTemplate() {
 	const [postsFavorite, setPostsFavorite] = useState([]);
 	const [search, setSearch] = useState("Followings");
 	const [stories, setStories] = useState([]);
+	const [found, setFound] = useState(true);
 
 	useEffect(() => {
 		start();
@@ -42,13 +43,14 @@ export default function ProfileMidTemplate() {
 		setPosts([]);
 		setPostsLike([]);
 		setPostsFavorite([]);
-		if (stories) {
-			searchStories();
-		}
 		if (id === userInfo.at) {
+			setFound(true);
 			setUser(userInfo);
 			setEqual("Owner");
 			await findPosts();
+			if (stories) {
+				searchStories();
+			}
 		} else {
 			await findUserAt();
 		}
@@ -61,9 +63,17 @@ export default function ProfileMidTemplate() {
 
 	async function findUserAt() {
 		const response = await findUserByAt(id);
-		await findPosts(id);
-		setUser(response);
-		setEqual("Profile");
+		if (response === "User not found") {
+			setFound(false);
+		} else {
+			setFound(true);
+			await findPosts(id);
+			setUser(response);
+			setEqual("Profile");
+			if (stories) {
+				searchStories();
+			}
+		}
 	}
 
 	async function findPosts() {
@@ -91,107 +101,117 @@ export default function ProfileMidTemplate() {
 		return;
 	}
 	return (
-		<ProfileContainer>
-			{user ? (
-				<>
-					<ProfileInfo
-						user={user}
-						equal={equal}
-						updatePhoto={updatePhoto}
-						updateBanner={updateBanner}
-					/>
-					{stories && stories.length > 0 ? (
-						<Carrousel data={stories} setStories={setStories} profile={true} />
-					) : null}
-					<FilterSearchMenu
-						search={search}
-						findPosts={findPosts}
-						findPostsLikes={findPostsLikes}
-						findPostsFavorites={findPostsFavorites}
-					/>
-					{search === "Posts" ? (
-						Array.isArray(posts) && posts.length > 0 ? (
-							posts.map((value, key) => (
-								<PostAllContainer key={key}>
-									<Post
-										type={false}
-										id={value.id}
-										phrase={value.phrase}
-										photo={value.img}
-										user={value.userAllResponse}
-										time={value.datepublic}
-										likes={value.likes}
-										comments={value.comments}
-										favorites={value.favorites}
-										pressLike={value.pressLike}
-										pressFavorite={value.pressFavorite}
-										alreadyEdit={value.edit}
-										usersLikes={value.usersLikes}
-									/>
-								</PostAllContainer>
-							))
-						) : (
-							<NotContentYet>This user has no posts yet</NotContentYet>
-						)
-					) : null}
+		<>
+			{found ? (
+				<ProfileContainer>
+					{user ? (
+						<>
+							<ProfileInfo
+								user={user}
+								equal={equal}
+								updatePhoto={updatePhoto}
+								updateBanner={updateBanner}
+							/>
+							{stories && stories.length > 0 ? (
+								<Carrousel
+									data={stories}
+									setStories={setStories}
+									profile={true}
+								/>
+							) : null}
+							<FilterSearchMenu
+								search={search}
+								findPosts={findPosts}
+								findPostsLikes={findPostsLikes}
+								findPostsFavorites={findPostsFavorites}
+							/>
+							{search === "Posts" ? (
+								Array.isArray(posts) && posts.length > 0 ? (
+									posts.map((value, key) => (
+										<PostAllContainer key={key}>
+											<Post
+												type={false}
+												id={value.id}
+												phrase={value.phrase}
+												photo={value.img}
+												user={value.userAllResponse}
+												time={value.datepublic}
+												likes={value.likes}
+												comments={value.comments}
+												favorites={value.favorites}
+												pressLike={value.pressLike}
+												pressFavorite={value.pressFavorite}
+												alreadyEdit={value.edit}
+												usersLikes={value.usersLikes}
+											/>
+										</PostAllContainer>
+									))
+								) : (
+									<NotContentYet>This user has no posts yet</NotContentYet>
+								)
+							) : null}
 
-					{search === "Likes" ? (
-						Array.isArray(postsLike) && postsLike.length > 0 ? (
-							postsLike.map((value, key) => (
-								<PostAllContainer key={key}>
-									<Post
-										type={false}
-										id={value.id}
-										phrase={value.phrase}
-										photo={value.img}
-										user={value.userAllResponse}
-										time={value.datepublic}
-										likes={value.likes}
-										comments={value.comments}
-										favorites={value.favorites}
-										pressLike={value.pressLike}
-										pressFavorite={value.pressFavorite}
-										alreadyEdit={value.edit}
-										usersLikes={value.usersLikes}
-									/>
-								</PostAllContainer>
-							))
-						) : (
-							<NotContentYet>This user has no likes yet</NotContentYet>
-						)
-					) : null}
+							{search === "Likes" ? (
+								Array.isArray(postsLike) && postsLike.length > 0 ? (
+									postsLike.map((value, key) => (
+										<PostAllContainer key={key}>
+											<Post
+												type={false}
+												id={value.id}
+												phrase={value.phrase}
+												photo={value.img}
+												user={value.userAllResponse}
+												time={value.datepublic}
+												likes={value.likes}
+												comments={value.comments}
+												favorites={value.favorites}
+												pressLike={value.pressLike}
+												pressFavorite={value.pressFavorite}
+												alreadyEdit={value.edit}
+												usersLikes={value.usersLikes}
+											/>
+										</PostAllContainer>
+									))
+								) : (
+									<NotContentYet>This user has no likes yet</NotContentYet>
+								)
+							) : null}
 
-					{search === "Favorites" ? (
-						Array.isArray(postsFavorite) && postsFavorite.length > 0 ? (
-							postsFavorite.map((value, key) => (
-								<PostAllContainer key={key}>
-									<Post
-										type={false}
-										id={value.id}
-										phrase={value.phrase}
-										photo={value.img}
-										user={value.userAllResponse}
-										time={value.datepublic}
-										likes={value.likes}
-										comments={value.comments}
-										favorites={value.favorites}
-										pressLike={value.pressLike}
-										pressFavorite={value.pressFavorite}
-										alreadyEdit={value.edit}
-										usersLikes={value.usersLikes}
-									/>
-								</PostAllContainer>
-							))
-						) : (
-							<NotContentYet>This user has no favorites yet</NotContentYet>
-						)
-					) : null}
-				</>
+							{search === "Favorites" ? (
+								Array.isArray(postsFavorite) && postsFavorite.length > 0 ? (
+									postsFavorite.map((value, key) => (
+										<PostAllContainer key={key}>
+											<Post
+												type={false}
+												id={value.id}
+												phrase={value.phrase}
+												photo={value.img}
+												user={value.userAllResponse}
+												time={value.datepublic}
+												likes={value.likes}
+												comments={value.comments}
+												favorites={value.favorites}
+												pressLike={value.pressLike}
+												pressFavorite={value.pressFavorite}
+												alreadyEdit={value.edit}
+												usersLikes={value.usersLikes}
+											/>
+										</PostAllContainer>
+									))
+								) : (
+									<NotContentYet>This user has no favorites yet</NotContentYet>
+								)
+							) : null}
+						</>
+					) : (
+						<LoaderContainer>
+							<Loader />
+						</LoaderContainer>
+					)}
+				</ProfileContainer>
 			) : (
-				<LoaderContainer>
-					<Loader />
-				</LoaderContainer>
+				<ProfileNotFound>Profile not found</ProfileNotFound>
 			)}
-		</ProfileContainer>
+		</>
 	);
 }
