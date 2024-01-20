@@ -5,6 +5,7 @@ import {
 	Border,
 	CommentContainer,
 	Controller,
+	ControllerAvatar,
 	Extends,
 	Right,
 	TopContainer,
@@ -162,9 +163,13 @@ export default function Comment({
 				<CommentContainer>
 					<Controller>
 						<Extends>
-							<AvatarPhoto
-								src={user.photo || !user.photo === "" ? user.photo : AvatarNone}
-							/>
+							<ControllerAvatar>
+								<AvatarPhoto
+									src={
+										user.photo || !user.photo === "" ? user.photo : AvatarNone
+									}
+								/>
+							</ControllerAvatar>
 							<Border />
 						</Extends>
 						<Right>

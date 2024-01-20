@@ -31,6 +31,8 @@ export const Extends = styled.div`
 	flex-direction: column;
 `;
 
+export const ControllerAvatar = styled.div``;
+
 export const Border = styled.div`
 	display: flex;
 	align-items: center;

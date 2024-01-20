@@ -2,9 +2,6 @@ import styled from "styled-components";
 import { size } from "../../../../styles/variables";
 
 export const CarrouselContainer = styled.section`
-	max-width: 38vw;
-	min-width: 37vw;
-	/* width: 100%; */
 	background-color: ${({ theme }) => theme.container};
 	border-radius: ${size.lg};
 	padding: ${size.sm};
@@ -25,12 +22,12 @@ export const CarrouselBody = styled.div`
 	overflow-x: scroll;
 	/* justify-content: center; */
 	height: 119px;
-	max-width: 1200px;
-	/* max-width: 38vw; */
+	width: 38vw;
 	background-color: ${({ theme }) => theme.container};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 	border-radius: ${size.lg};
 	/* padding: ${size.sm}; */
+	padding-right: 2px;
 	position: relative;
 	scroll-behavior: smooth;
 
@@ -96,11 +93,18 @@ export const ArrowRightContainer = styled.div`
 	right: 10px;
 	top: 40px;
 	font-size: 2rem;
+	/* background-color: black; */
 
 	& img {
 		width: 10px;
 		height: 10px;
 	}
+
+	/* & svg {
+		color: ${({ theme }) => theme.textInverse};
+		width: 30px;
+		height: 30px;
+	} */
 
 	&:hover {
 		opacity: 0.7;

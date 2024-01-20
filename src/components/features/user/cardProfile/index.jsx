@@ -17,9 +17,12 @@ import {
 import { UserCircle } from "../../../icons/iO5Icons.styled";
 import AvatarNone from "../../../../assets/images/avatarnone.png";
 import { BorderButton } from "../../../buttons/border/borderButton.styled";
-export default function CardProfile({ type, user, handlerRoute }) {
+export default function CardProfile({ type, user, handlerRoute, top, left }) {
 	return (
-		<CardProfileContainer onClick={(evt) => handlerRoute(evt)}>
+		<CardProfileContainer
+			onClick={(evt) => handlerRoute(evt)}
+			style={{ top: top, left: left }}
+		>
 			<Head>
 				{user.banner || !user.banner === "" ? (
 					<Banner src={user.banner} alt={"banner " + user.firstname} />
