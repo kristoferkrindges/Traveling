@@ -17,7 +17,7 @@ export default function RandomEvent() {
 			<HeadingContainer type={"Events"} text={"Events"} />
 			{randomEvent ? (
 				randomEvent.length > 0 ? (
-					randomEvent.map((value, key) => <MinEvent key={key} object={value} />)
+					<MinEvent object={randomEvent[0]} />
 				) : null
 			) : (
 				<Loader />

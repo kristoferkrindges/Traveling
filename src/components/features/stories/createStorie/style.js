@@ -9,6 +9,7 @@ export const CreateStorieContainer = styled.section`
 	background-color: ${({ theme }) => theme.container};
 	width: 500px;
 	max-height: 750px;
+	margin: 0 0.5rem 0 1rem;
 
 	& svg {
 		/* font-size: 5rem; */

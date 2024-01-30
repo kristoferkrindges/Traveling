@@ -8,6 +8,7 @@ export const CarrouselContainer = styled.section`
 	font-size: 0.85rem;
 	line-height: 1.5;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
+	width: 100%;
 	cursor: pointer;
 
 	& a {
@@ -20,13 +21,11 @@ export const CarrouselBody = styled.div`
 	flex-direction: row;
 	align-items: center;
 	overflow-x: scroll;
-	/* justify-content: center; */
 	height: 119px;
-	width: 38vw;
+	width: 100%;
 	background-color: ${({ theme }) => theme.container};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 	border-radius: ${size.lg};
-	/* padding: ${size.sm}; */
 	padding-right: 2px;
 	position: relative;
 	scroll-behavior: smooth;
@@ -39,40 +38,50 @@ export const CarrouselBody = styled.div`
 		padding: 16px 0px;
 	}
 
-	@media only screen and (max-width: 1909px) {
-		max-width: 731px;
+	@media only screen and (max-width: 2085px) {
+		width: 39vw;
 	}
 
+	@media only screen and (max-width: 1920px) {
+		width: 38.5vw;
+	}
+
+	@media only screen and (max-width: 1400px) {
+		width: 47.5vw;
+	}
 	@media only screen and (max-width: 1200px) {
-		max-width: 760px;
+		width: 62.8vw;
 	}
 
 	@media only screen and (max-width: 992px) {
-		max-width: 930px;
+		width: 95vw;
 	}
 `;
 
 export const Check = styled.section`
 	position: relative;
+	width: 100%;
 `;
 
 export const ArrowLeftContainer = styled.div`
-	width: 25px;
-	height: 25px;
+	width: 30px;
+	height: 30px;
 	position: absolute;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 999;
+	z-index: 700;
 	cursor: pointer;
 	left: 10px;
 	top: 40px;
 	font-size: 2rem;
+	background-color: ${({ theme }) => theme.text};
 
-	& img {
-		width: 10px;
-		height: 10px;
+	& svg {
+		color: ${({ theme }) => theme.textInverse};
+		width: 25px;
+		height: 25px;
 	}
 
 	&:hover {
@@ -81,30 +90,25 @@ export const ArrowLeftContainer = styled.div`
 `;
 
 export const ArrowRightContainer = styled.div`
-	width: 25px;
-	height: 25px;
+	width: 30px;
+	height: 30px;
 	position: absolute;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 999;
+	z-index: 700;
 	cursor: pointer;
-	right: 10px;
+	right: 5px;
 	top: 40px;
 	font-size: 2rem;
-	/* background-color: black; */
+	background-color: ${({ theme }) => theme.text};
 
-	& img {
-		width: 10px;
-		height: 10px;
-	}
-
-	/* & svg {
+	& svg {
 		color: ${({ theme }) => theme.textInverse};
-		width: 30px;
-		height: 30px;
-	} */
+		width: 25px;
+		height: 25px;
+	}
 
 	&:hover {
 		opacity: 0.7;

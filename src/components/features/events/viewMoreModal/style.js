@@ -2,44 +2,21 @@ import styled from "styled-components";
 import { size } from "../../../../styles/variables";
 
 export const ViewMoreContainer = styled.div`
-	position: absolute;
-	top: 10%;
-	left: 30.4%;
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
 	background: ${({ theme }) => theme.container};
 	border-radius: ${size.lg};
-	padding: ${size.sm};
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
-	min-width: 35vw;
-	margin: 1rem 0 0 1rem;
-	z-index: 500;
-	border-bottom: 70px solid ${({ theme }) => theme.secondColor};
-
-	@media only screen and (max-width: 1920px) {
-		left: 28.5%;
+	/* padding: ${size.sm}; */
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	width: 700px;
+	margin: 0 0.5rem 0 1rem;
+	max-height: 90vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none;
 	}
-
-	@media only screen and (max-width: 1400px) {
-		left: 20.4%;
-		min-width: 50vw;
-	}
-
-	@media only screen and (max-width: 1200px) {
-		left: 15.4%;
-	}
-
-	@media only screen and (max-width: 992px) {
-		left: 1%;
-		min-width: 90%;
-	}
-
-	@media only screen and (max-width: 764px) {
-		left: 0%;
-		/* margin-left: 2px; */
-		width: 80%;
-	}
+	z-index: 999;
 `;
 
 export const DetailsContainer = styled.div`
@@ -74,15 +51,17 @@ export const DateEvent = styled.div`
 	}
 `;
 
+export const HeadingView = styled.div`
+	padding: 0.5rem 1rem;
+`;
+
 export const Creator = styled.div`
-	position: absolute;
-	bottom: -4rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 95%;
-	padding: 0 0.5rem;
+	padding: 0.5rem 1rem;
 	color: ${({ theme }) => theme.textInverse};
+	background-color: ${({ theme }) => theme.secondColor};
 
 	svg {
 		font-size: 1.4rem;

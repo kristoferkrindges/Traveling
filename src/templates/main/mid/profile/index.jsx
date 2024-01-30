@@ -33,6 +33,7 @@ export default function ProfileMidTemplate() {
 	const [search, setSearch] = useState("Followings");
 	const [stories, setStories] = useState([]);
 	const [found, setFound] = useState(true);
+	const [stateLoader, setStateLoader] = useState(false);
 
 	useEffect(() => {
 		start();
@@ -77,27 +78,33 @@ export default function ProfileMidTemplate() {
 	}
 
 	async function findPosts() {
+		setStateLoader(true);
 		const postsResponse = await getPostsUser(id);
 		setPosts(postsResponse);
 		setSearch("Posts");
+		setStateLoader(false);
 		return;
 	}
 
 	async function findPostsLikes() {
+		setStateLoader(true);
 		if (postsLike.length <= 0) {
 			const postsResponse = await getPostsWithLiked(id);
 			setPostsLike(postsResponse);
 		}
 		setSearch("Likes");
+		setStateLoader(false);
 		return;
 	}
 
 	async function findPostsFavorites() {
+		setStateLoader(true);
 		if (postsFavorite.length <= 0) {
 			const postsResponse = await getPostsWithFavorites(id);
 			setPostsFavorite(postsResponse);
 		}
 		setSearch("Favorites");
+		setStateLoader(false);
 		return;
 	}
 	return (
@@ -125,83 +132,93 @@ export default function ProfileMidTemplate() {
 								findPostsLikes={findPostsLikes}
 								findPostsFavorites={findPostsFavorites}
 							/>
-							{search === "Posts" ? (
-								Array.isArray(posts) && posts.length > 0 ? (
-									posts.map((value, key) => (
-										<PostAllContainer key={key}>
-											<Post
-												type={false}
-												id={value.id}
-												phrase={value.phrase}
-												photo={value.img}
-												user={value.userAllResponse}
-												time={value.datepublic}
-												likes={value.likes}
-												comments={value.comments}
-												favorites={value.favorites}
-												pressLike={value.pressLike}
-												pressFavorite={value.pressFavorite}
-												alreadyEdit={value.edit}
-												usersLikes={value.usersLikes}
-											/>
-										</PostAllContainer>
-									))
-								) : (
-									<NotContentYet>This user has no posts yet</NotContentYet>
-								)
-							) : null}
+							{stateLoader ? (
+								<LoaderContainer>
+									<Loader />
+								</LoaderContainer>
+							) : (
+								<>
+									{search === "Posts" ? (
+										Array.isArray(posts) && posts.length > 0 ? (
+											posts.map((value, key) => (
+												<PostAllContainer key={key}>
+													<Post
+														type={false}
+														id={value.id}
+														phrase={value.phrase}
+														photo={value.img}
+														user={value.userAllResponse}
+														time={value.datepublic}
+														likes={value.likes}
+														comments={value.comments}
+														favorites={value.favorites}
+														pressLike={value.pressLike}
+														pressFavorite={value.pressFavorite}
+														alreadyEdit={value.edit}
+														usersLikes={value.usersLikes}
+													/>
+												</PostAllContainer>
+											))
+										) : (
+											<NotContentYet>This user has no posts yet</NotContentYet>
+										)
+									) : null}
 
-							{search === "Likes" ? (
-								Array.isArray(postsLike) && postsLike.length > 0 ? (
-									postsLike.map((value, key) => (
-										<PostAllContainer key={key}>
-											<Post
-												type={false}
-												id={value.id}
-												phrase={value.phrase}
-												photo={value.img}
-												user={value.userAllResponse}
-												time={value.datepublic}
-												likes={value.likes}
-												comments={value.comments}
-												favorites={value.favorites}
-												pressLike={value.pressLike}
-												pressFavorite={value.pressFavorite}
-												alreadyEdit={value.edit}
-												usersLikes={value.usersLikes}
-											/>
-										</PostAllContainer>
-									))
-								) : (
-									<NotContentYet>This user has no likes yet</NotContentYet>
-								)
-							) : null}
+									{search === "Likes" ? (
+										Array.isArray(postsLike) && postsLike.length > 0 ? (
+											postsLike.map((value, key) => (
+												<PostAllContainer key={key}>
+													<Post
+														type={false}
+														id={value.id}
+														phrase={value.phrase}
+														photo={value.img}
+														user={value.userAllResponse}
+														time={value.datepublic}
+														likes={value.likes}
+														comments={value.comments}
+														favorites={value.favorites}
+														pressLike={value.pressLike}
+														pressFavorite={value.pressFavorite}
+														alreadyEdit={value.edit}
+														usersLikes={value.usersLikes}
+													/>
+												</PostAllContainer>
+											))
+										) : (
+											<NotContentYet>This user has no likes yet</NotContentYet>
+										)
+									) : null}
 
-							{search === "Favorites" ? (
-								Array.isArray(postsFavorite) && postsFavorite.length > 0 ? (
-									postsFavorite.map((value, key) => (
-										<PostAllContainer key={key}>
-											<Post
-												type={false}
-												id={value.id}
-												phrase={value.phrase}
-												photo={value.img}
-												user={value.userAllResponse}
-												time={value.datepublic}
-												likes={value.likes}
-												comments={value.comments}
-												favorites={value.favorites}
-												pressLike={value.pressLike}
-												pressFavorite={value.pressFavorite}
-												alreadyEdit={value.edit}
-												usersLikes={value.usersLikes}
-											/>
-										</PostAllContainer>
-									))
-								) : (
-									<NotContentYet>This user has no favorites yet</NotContentYet>
-								)
-							) : null}
+									{search === "Favorites" ? (
+										Array.isArray(postsFavorite) && postsFavorite.length > 0 ? (
+											postsFavorite.map((value, key) => (
+												<PostAllContainer key={key}>
+													<Post
+														type={false}
+														id={value.id}
+														phrase={value.phrase}
+														photo={value.img}
+														user={value.userAllResponse}
+														time={value.datepublic}
+														likes={value.likes}
+														comments={value.comments}
+														favorites={value.favorites}
+														pressLike={value.pressLike}
+														pressFavorite={value.pressFavorite}
+														alreadyEdit={value.edit}
+														usersLikes={value.usersLikes}
+													/>
+												</PostAllContainer>
+											))
+										) : (
+											<NotContentYet>
+												This user has no favorites yet
+											</NotContentYet>
+										)
+									) : null}
+								</>
+							)}
 						</>
 					) : (
 						<LoaderContainer>
