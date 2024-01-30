@@ -6,7 +6,7 @@ import {
 	TextItem,
 	Order,
 } from "../accountSettings/style";
-import SliderButton from "../../../buttons/SliderButton";
+import SliderButton from "../../../buttons/sliderButton";
 
 export default function PrivacySettings() {
 	const [protect, setProtect] = useState(false);

@@ -12,6 +12,7 @@ import {
 import {
 	BookPressIcon,
 	CommentPressIcon,
+	EventIcon,
 	FollowingsIcon,
 	HeartPressIcon,
 	ReplyIcon,
@@ -19,6 +20,7 @@ import {
 import { AtIcon } from "../../icons/rIIcons.styled";
 import { useNavigate } from "react-router-dom";
 import { AvatarPhoto } from "../../images/avatar.styled";
+import AvatarNone from "../../../assets/images/avatarnone.png";
 
 export default function Notifications({ user, creator, type, date }) {
 	const navigate = useNavigate();
@@ -30,7 +32,9 @@ export default function Notifications({ user, creator, type, date }) {
 		<NotificationContainer>
 			<Left>
 				<AvatarPhoto
-					src={creator.photo}
+					src={
+						creator.photo || !creator.photo === "" ? creator.photo : AvatarNone
+					}
 					onClick={() => handlerRouted(creator.at)}
 				/>
 				<MessageBody>
@@ -54,6 +58,18 @@ export default function Notifications({ user, creator, type, date }) {
 							<Question>like your post</Question>
 						</Name>
 					)}
+					{type === "LIKECOMMENT" && (
+						<Name onClick={() => handlerRouted(creator.at)}>
+							{creator.firstname + " " + creator.lastname}{" "}
+							<Question>like your comment</Question>
+						</Name>
+					)}
+					{type === "LIKESTORIE" && (
+						<Name onClick={() => handlerRouted(creator.at)}>
+							{creator.firstname + " " + creator.lastname}{" "}
+							<Question>like your storie</Question>
+						</Name>
+					)}
 					{type === "MENTIONED" && (
 						<Name onClick={() => handlerRouted(creator.at)}>
 							{creator.firstname + " " + creator.lastname}{" "}
@@ -72,6 +88,12 @@ export default function Notifications({ user, creator, type, date }) {
 							<Question>favorite your post</Question>
 						</Name>
 					)}
+					{type === "ATTENDEVENT" && (
+						<Name onClick={() => handlerRouted(creator.at)}>
+							{creator.firstname + " " + creator.lastname}{" "}
+							<Question>attend your event</Question>
+						</Name>
+					)}
 					<TextMuted>{date}</TextMuted>
 				</MessageBody>
 			</Left>
@@ -86,7 +108,9 @@ export default function Notifications({ user, creator, type, date }) {
 						<ReplyIcon />
 					</Name>
 				)}
-				{type === "LIKEPOST" && (
+				{(type === "LIKEPOST" ||
+					type === "LIKECOMMENT" ||
+					type === "LIKESTORIE") && (
 					<Name>
 						<HeartPressIcon />
 					</Name>
@@ -104,6 +128,11 @@ export default function Notifications({ user, creator, type, date }) {
 				{type === "FAVORITEPOST" && (
 					<Name>
 						<BookPressIcon />
+					</Name>
+				)}
+				{type === "ATTENDEVENT" && (
+					<Name>
+						<EventIcon />
 					</Name>
 				)}
 			</Right>

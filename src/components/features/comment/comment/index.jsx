@@ -5,6 +5,7 @@ import {
 	Border,
 	CommentContainer,
 	Controller,
+	ControllerAvatar,
 	Extends,
 	Right,
 	TopContainer,
@@ -20,6 +21,7 @@ import { AssistantContext } from "../../../../contexts/assistantContext";
 import ParentComment from "../parentComment";
 import CreateComment from "../createComment";
 import { toast } from "react-toastify";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
 
 export default function Comment({
 	id,
@@ -60,6 +62,7 @@ export default function Comment({
 		setStateLike(pressLike);
 		setStateCountLike(likes);
 		setComment(comments);
+		setStateParentComment(false);
 	}, [phrase, user, time, alreadyEdit, pressLike, likes, comments]);
 
 	const handlerRouteProfile = (evt, at) => {
@@ -114,6 +117,7 @@ export default function Comment({
 		if (!type) {
 			await onDeletComment();
 		}
+		setComment((prevComment) => (prevComment > 0 ? prevComment - 1 : 0));
 		setProgress(false);
 	};
 
@@ -159,7 +163,13 @@ export default function Comment({
 				<CommentContainer>
 					<Controller>
 						<Extends>
-							<AvatarPhoto src={stateUser.photo} />
+							<ControllerAvatar>
+								<AvatarPhoto
+									src={
+										user.photo || !user.photo === "" ? user.photo : AvatarNone
+									}
+								/>
+							</ControllerAvatar>
 							<Border />
 						</Extends>
 						<Right>

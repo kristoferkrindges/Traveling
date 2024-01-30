@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState } from "react";
 import { SearchBarContainer, SearchInput } from "./style";
 import { SearchIcon } from "../../icons/iO5Icons.styled";
 

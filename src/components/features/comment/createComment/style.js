@@ -29,9 +29,9 @@ export const Border = styled.div`
 	position: absolute;
 	padding: 1px;
 	left: -1.4rem;
-	top: 1.3rem;
+	top: 1.5rem;
 	width: 1.2rem;
-	border-top: 1px solid gray;
+	border-top: 2px solid ${({ theme }) => theme.text};
 `;
 
 export const Area = styled.div`

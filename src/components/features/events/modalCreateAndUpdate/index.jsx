@@ -138,7 +138,7 @@ export default function CreateAndUpdateModal({
 		setProgress(true);
 		const event = {
 			name: name,
-			eventDate: formatEventDate(eventDate),
+			eventDate: eventDate ? formatEventDate(eventDate) : "2024-04-25T13:50",
 			city: city,
 			address: address,
 			zipCode: zipCode,

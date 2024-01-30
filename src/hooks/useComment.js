@@ -33,7 +33,7 @@ export default function useComment() {
 			const data = await api.post("/comments", comment).then((response) => {
 				return response.data;
 			});
-			toast.success("Comment created with success!");
+			// toast.success("Comment created with success!");
 			return data;
 		} catch (error) {
 			console.log(error);
@@ -47,7 +47,7 @@ export default function useComment() {
 				.then((response) => {
 					return response.data;
 				});
-			toast.success("Comment updated with success!");
+			// toast.success("Comment updated with success!");
 			return data;
 		} catch (error) {
 			console.log(error.response);
@@ -60,7 +60,7 @@ export default function useComment() {
 			const data = await api.delete(`/comments/${id}`).then((response) => {
 				return response.data;
 			});
-			toast.success("Comment deleted with success!");
+			// toast.success("Comment deleted with success!");
 			return data;
 		} catch (error) {
 			console.log(error);

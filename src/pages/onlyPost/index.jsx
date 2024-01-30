@@ -1,6 +1,6 @@
 import React from "react";
-import OnlyPostTemplate from "../../templates/onlyPost";
+import OriginTemplate from "../../templates/origin";
 
 export default function OnlyPostPage() {
-	return <OnlyPostTemplate />;
+	return <OriginTemplate type={"OnlyPost"} />;
 }

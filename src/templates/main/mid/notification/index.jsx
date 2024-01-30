@@ -30,7 +30,7 @@ export default function NotificationMidTemplate() {
 	useEffect(() => {
 		setFilteredData(notifications);
 	}, [notifications]);
-
+	console.log(notificationsUnread);
 	const searchUnreadNotification = async () => {
 		setNotifications([]);
 		let newNotifications;

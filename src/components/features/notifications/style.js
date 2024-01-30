@@ -48,12 +48,12 @@ export const Right = styled.div`
 	width: 25px;
 	height: 25px;
 	padding: 1.3rem;
-	border-radius: 10px;
+	border-radius: ${size.lg};
 	font-size: 1.5rem;
 
 	svg {
 		margin-top: 5px;
-		color: #ffff;
+		color: ${({ theme }) => theme.textInverse};
 	}
 
 	@media only screen and (max-width: 502px) {

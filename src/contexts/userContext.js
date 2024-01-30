@@ -31,6 +31,7 @@ function UserProvider({ children }) {
 		alterCountPosts,
 		checkUser,
 		findAll,
+		findSuggestionsUsers,
 	} = useAuth();
 	return (
 		<UserContext.Provider
@@ -62,6 +63,7 @@ function UserProvider({ children }) {
 				alterCountPosts,
 				checkUser,
 				findAll,
+				findSuggestionsUsers,
 			}}
 		>
 			{children}

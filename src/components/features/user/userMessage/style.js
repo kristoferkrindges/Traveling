@@ -4,7 +4,7 @@ export const Message = styled.div`
 	display: flex;
 	gap: 1rem;
 	align-items: center;
-	margin-bottom: 1rem;
+	/* margin-bottom: 1rem; */
 	cursor: pointer;
 	&:last-child {
 		margin: 0;

@@ -46,9 +46,12 @@ import {
 	IoAddOutline,
 	IoPricetags,
 	IoNewspaper,
+	IoTrashBin,
 } from "react-icons/io5";
 
 export const TypeIcon = styled(IoNewspaper)``;
+
+export const DeletAccountIcon = styled(IoTrashBin)``;
 
 export const PriceIcon = styled(IoPricetags)``;
 
@@ -107,15 +110,35 @@ export const IconGoogle = styled(IoLogoGoogle)`
 	stroke: white;
 	color: white;
 `;
-export const HomeIcon = styled(IoHome)``;
+export const HomeIcon = styled(IoHome)`
+	&:hover {
+		transform: rotate(-10deg);
+		opacity: 0.7;
+	}
+`;
 
-export const ProfileIcon = styled(IoPersonCircle)``;
+export const ProfileIcon = styled(IoPersonCircle)`
+	&:hover {
+		transform: rotate(-10deg);
+		opacity: 0.7;
+	}
+`;
 
-export const ChatIcon = styled(IoMail)``;
+export const ChatIcon = styled(IoMail)`
+	&:hover {
+		transform: rotate(-10deg);
+		opacity: 0.7;
+	}
+`;
 
 export const NotificationIcon = styled(IoNotifications)``;
 
-export const EventIcon = styled(IoAirplane)``;
+export const EventIcon = styled(IoAirplane)`
+	&:hover {
+		transform: rotate(-10deg);
+		opacity: 0.7;
+	}
+`;
 
 export const SearchIcon = styled(IoSearch)``;
 
@@ -199,8 +222,8 @@ export const BookPressIcon = styled(IoBookmark)`
 export const CloseCircleIcon = styled(IoCloseCircle)`
 	cursor: pointer;
 	z-index: 999;
-	color: ${({ theme }) => theme.text};
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	/* color: ${({ theme }) => theme.text};
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1); */
 `;
 
 export const EditIcon = styled(IoColorWand)`

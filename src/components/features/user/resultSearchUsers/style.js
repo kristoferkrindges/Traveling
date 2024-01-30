@@ -6,7 +6,7 @@ export const ContainerResult = styled.div`
 	left: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 0.3rem;
+	gap: 1rem;
 	background-color: ${({ theme }) => theme.container};
 	border-radius: 2rem;
 	padding: ${size.sm};

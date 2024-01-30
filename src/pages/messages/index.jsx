@@ -1,6 +1,6 @@
 import React from "react";
-import MessageTemplate from "../../templates/messages";
+import OriginTemplate from "../../templates/origin";
 
 export default function MessagesPage() {
-	return <MessageTemplate />;
+	return <OriginTemplate type={"Messages"} />;
 }

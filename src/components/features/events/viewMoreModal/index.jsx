@@ -8,9 +8,11 @@ import {
 	Creator,
 	Name,
 	ViewMoreContainer,
+	HeadingView,
 } from "./style";
 import { AssistantContext } from "../../../../contexts/assistantContext";
 import { AvatarPhoto } from "../../../images/avatar.styled";
+import { ModalContainer } from "../../../containers/modal.styled";
 
 export default function ViewMoreModal({
 	info,
@@ -43,23 +45,27 @@ export default function ViewMoreModal({
 
 	return (
 		<OverlayContainer>
-			<ViewMoreContainer ref={modalRef}>
-				<HeadingContainer
-					type={"View"}
-					text={"View More"}
-					click={handlerClose}
-				/>
-				<DetailsContainer>
-					<Details>{info}</Details>
-				</DetailsContainer>
-				<Creator>
-					<Owner>
-						<AvatarPhoto src={ownerPhoto} onClick={handlerRoute} />
-						<Name onClick={handlerRoute}>{ownerName}</Name>
-					</Owner>
-					{formatDateViewEvent(date)}
-				</Creator>
-			</ViewMoreContainer>
+			<ModalContainer top={"9%"}>
+				<ViewMoreContainer ref={modalRef}>
+					<HeadingView>
+						<HeadingContainer
+							type={"View"}
+							text={"View More"}
+							click={handlerClose}
+						/>
+					</HeadingView>
+					<DetailsContainer>
+						<Details>{info}</Details>
+					</DetailsContainer>
+					<Creator>
+						<Owner>
+							<AvatarPhoto src={ownerPhoto} onClick={handlerRoute} />
+							<Name onClick={handlerRoute}>{ownerName}</Name>
+						</Owner>
+						{formatDateViewEvent(date)}
+					</Creator>
+				</ViewMoreContainer>
+			</ModalContainer>
 		</OverlayContainer>
 	);
 }

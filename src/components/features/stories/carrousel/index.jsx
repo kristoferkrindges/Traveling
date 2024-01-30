@@ -11,7 +11,6 @@ import { UserContext } from "../../../../contexts/userContext";
 import CreateStorie from "../createStorie";
 import InstaStorie from "../instaStories";
 import { StorieContext } from "../../../../contexts/storieContext";
-import InstaStorieNew from "../instaStories/new";
 
 export default function Carrousel({ data, setStories, type, profile }) {
 	const { userInfo } = useContext(UserContext);
@@ -104,14 +103,14 @@ export default function Carrousel({ data, setStories, type, profile }) {
 			)}
 			<ArrowLeftContainer
 				onClick={() => canScrollLeft && handleSlide("left")}
-				style={{ display: canScrollLeft ? "block" : "none" }}
+				style={{ display: canScrollLeft ? "flex" : "none" }}
 			>
 				<ArrowLeftIcon />
 			</ArrowLeftContainer>
 
 			<ArrowRightContainer
 				onClick={() => canScrollRight && handleSlide("right")}
-				style={{ display: canScrollRight ? "block" : "none" }}
+				style={{ display: canScrollRight ? "flex" : "none" }}
 			>
 				<ArrowRightIcon />
 			</ArrowRightContainer>

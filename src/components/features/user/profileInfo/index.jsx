@@ -91,7 +91,6 @@ export default function ProfileInfo({
 	const handlerFollow = async (evt) => {
 		evt.preventDefault();
 		setFollowers((previousValue) => {
-			console.log(user.follow);
 			if (stateFollow) {
 				return previousValue - 1 <= 0 ? 0 : previousValue - 1;
 			} else {
@@ -100,7 +99,7 @@ export default function ProfileInfo({
 		});
 		setStateFollow(stateFollow ? true : false);
 		setPress(press ? false : true);
-		await follow(user.id);
+		await follow(user.id, !press);
 	};
 	const handlerCloseModalPhoto = (evt) => {
 		evt.stopPropagation();

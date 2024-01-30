@@ -17,6 +17,7 @@ export default function InstaStorie({
 	const { likeState, setLikeState } = useContext(StorieContext);
 	const [stateStories, setStateStories] = useState(stories);
 	const [storyKey, setStoryKey] = useState(0);
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
 	useEffect(() => {
 		setStateStories(stories);
@@ -25,6 +26,18 @@ export default function InstaStorie({
 	useEffect(() => {
 		setStoryKey((prevKey) => prevKey + 1);
 	}, [stories]);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth);
+		};
+
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
 
 	const story = stateStories.map((item, key) => ({
 		content: ({ action, isPaused, onNext, onPrevious }) => (
@@ -94,7 +107,7 @@ export default function InstaStorie({
 					loop={true}
 					isPaused={true}
 					defaultInterval={4500}
-					width={520}
+					width={windowWidth > 551 ? 520 : windowWidth < 450 ? 320 : 420}
 					height={820}
 					preventDefault={true}
 					storyContainerStyles={storyContainerStyles}

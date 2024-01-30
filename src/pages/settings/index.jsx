@@ -1,6 +1,6 @@
 import React from "react";
-import SettingsTemplate from "../../templates/settings";
+import OriginTemplate from "../../templates/origin";
 
 export default function SettingsPage() {
-	return <SettingsTemplate />;
+	return <OriginTemplate type={"Settings"} />;
 }

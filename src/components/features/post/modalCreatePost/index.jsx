@@ -112,7 +112,7 @@ export default function ModalCreatePost({ click, userInfo }) {
 										onChange={(e) => {
 											setText(e.target.value);
 										}}
-										maxLength={140}
+										maxLength={250}
 									></TextArea>
 								</Form>
 								{imagePreview ? (

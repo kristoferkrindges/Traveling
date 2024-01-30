@@ -14,7 +14,7 @@ export const Border = styled.div`
 	position: absolute;
 	padding: 1px;
 	left: -1.4rem;
-	top: 1.3rem;
+	top: 1.5rem;
 	width: 1.5rem;
-	border-top: 1px solid gray;
+	border-top: 2px solid ${({ theme }) => theme.text};
 `;

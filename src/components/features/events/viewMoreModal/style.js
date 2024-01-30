@@ -2,22 +2,21 @@ import styled from "styled-components";
 import { size } from "../../../../styles/variables";
 
 export const ViewMoreContainer = styled.div`
-	position: absolute;
-	top: 10%;
-	left: 30.4%;
-	min-width: 20vw;
-	margin: 1rem 0 0 1rem;
-	z-index: 500;
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
-	border-radius: ${size.lg};
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
 	background: ${({ theme }) => theme.container};
 	border-radius: ${size.lg};
-	min-width: 20vw;
-	padding: ${size.sm};
-	border-bottom: 70px solid ${({ theme }) => theme.secondColor};
+	/* padding: ${size.sm}; */
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	width: 700px;
+	margin: 0 0.5rem 0 1rem;
+	max-height: 90vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	z-index: 999;
 `;
 
 export const DetailsContainer = styled.div`
@@ -28,9 +27,10 @@ export const DetailsContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
-	max-width: 33.5vw;
+	/* max-width: 33.5vw; */
 	gap: 1.5rem;
 	margin-bottom: 1rem;
+	width: 100%;
 	color: ${({ theme }) => theme.text};
 `;
 
@@ -51,15 +51,17 @@ export const DateEvent = styled.div`
 	}
 `;
 
+export const HeadingView = styled.div`
+	padding: 0.5rem 1rem;
+`;
+
 export const Creator = styled.div`
-	position: absolute;
-	bottom: -4rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 95%;
-	padding: 0 0.5rem;
+	padding: 0.5rem 1rem;
 	color: ${({ theme }) => theme.textInverse};
+	background-color: ${({ theme }) => theme.secondColor};
 
 	svg {
 		font-size: 1.4rem;

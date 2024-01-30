@@ -9,7 +9,7 @@ export const Content = styled.div`
 	padding: ${size.sm};
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 	width: 700px;
-	margin: 1rem 0 0 1rem;
+	margin: 0 0.5rem 0 1rem;
 	max-height: 90vh;
 	overflow-x: hidden;
 	overflow-y: scroll;

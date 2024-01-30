@@ -21,6 +21,7 @@ export default function EventMidTemplate() {
 	const [modal, setModal] = useState(false);
 	const [object, setObject] = useState();
 	const [type, setType] = useState(false);
+	const [stateLoader, setStateLoader] = useState(false);
 
 	useEffect(() => {
 		if (!events) {
@@ -34,6 +35,7 @@ export default function EventMidTemplate() {
 
 	const searchAllEvents = async () => {
 		// setEvents([]);
+		setStateLoader(true);
 		if (!eventsAll) {
 			const newEvents = await findAll();
 			setEventsAll(newEvents);
@@ -42,24 +44,26 @@ export default function EventMidTemplate() {
 			setEvents(eventsAll);
 		}
 		setSearch("All");
+		setStateLoader(false);
 	};
 
 	const searchMyEvents = async () => {
 		// setEvents([]);
+		setStateLoader(true);
 		if (!myEvents) {
 			const newEvents = await findMyEvents();
-			console.log("if");
 			setMyEvents(newEvents);
 			setEvents(newEvents);
 		} else {
 			setEvents(myEvents);
-			console.log("else");
 		}
 		setSearch("MyEvents");
+		setStateLoader(false);
 	};
 
 	const searchMyEventsAttend = async () => {
 		// setEvents([]);
+		setStateLoader(true);
 		if (!myEventsAttend) {
 			const newEvents = await findMyEventsAttend();
 			setMyEventsAttend(newEvents);
@@ -68,9 +72,11 @@ export default function EventMidTemplate() {
 			setEvents(myEventsAttend);
 		}
 		setSearch("MyEventsAttend");
+		setStateLoader(false);
 	};
 
 	const searchEventsNowMonth = async () => {
+		setStateLoader(true);
 		setEvents([]);
 		if (!myEventsAttend) {
 			const newEvents = await findEventsNowMonth();
@@ -80,6 +86,7 @@ export default function EventMidTemplate() {
 			setEvents(eventsNow);
 		}
 		setSearch("EventsNow");
+		setStateLoader(false);
 	};
 
 	const handlerModal = (obj, type) => {
@@ -125,7 +132,11 @@ export default function EventMidTemplate() {
 				searchEventsNowMonth={searchEventsNowMonth}
 				handlerModal={handlerModal}
 			/>
-			{filteredData ? (
+			{stateLoader ? (
+				<LoaderContainer>
+					<Loader />
+				</LoaderContainer>
+			) : filteredData ? (
 				<>
 					{filteredData.length > 0 ? (
 						filteredData.map((value, key) => (

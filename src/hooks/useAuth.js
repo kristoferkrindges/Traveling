@@ -30,10 +30,12 @@ export default function useAuth() {
 				return response.data;
 			});
 			await authUser(data);
-			navigate(`/profile/${userInfo.at}`);
+			// navigate(`/profile/${userInfo.at}`);
+			navigate(`/`);
 			return;
 		} catch (error) {
 			try {
+				console.log(error);
 				toast.error(error.response.data.message);
 			} catch (error) {
 				console.log("Erro", error);
@@ -77,6 +79,7 @@ export default function useAuth() {
 			await api.delete("/users").then((response) => {
 				return response.data;
 			});
+			logout();
 		} catch (error) {
 			console.log(error);
 		}
@@ -92,13 +95,23 @@ export default function useAuth() {
 		}
 	}
 
+	async function findSuggestionsUsers() {
+		try {
+			const response = await api.get(`/users/followersRandom`);
+			return response.data;
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	}
+
 	async function findUserByAt(at) {
 		try {
 			const response = await api.get(`/users/profile/${at}`);
 			return response.data;
 		} catch (error) {
 			console.log(error);
-			throw error;
+			return "User not found";
 		}
 	}
 
@@ -184,12 +197,22 @@ export default function useAuth() {
 		}
 	}
 
-	async function follow(id) {
+	async function follow(id, count) {
 		try {
 			const data = await api.post(`/users/${id}/follow`).then((response) => {
 				return response.data;
 			});
-			await checkUser();
+			if (count) {
+				setUserInfo((prevUserInfo) => ({
+					...prevUserInfo,
+					followings: prevUserInfo.followings + 1,
+				}));
+			} else {
+				setUserInfo((prevUserInfo) => ({
+					...prevUserInfo,
+					followings: Math.max(prevUserInfo.followings - 1, 0),
+				}));
+			}
 			return data;
 		} catch (error) {
 			console.log(error);
@@ -393,5 +416,6 @@ export default function useAuth() {
 		alterCountPosts,
 		checkUser,
 		findAll,
+		findSuggestionsUsers,
 	};
 }

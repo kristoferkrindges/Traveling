@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { BorderSelect, CountNotification } from "./style";
@@ -8,13 +8,25 @@ import { Legend } from "../../menus/featuresRouted/style";
 import { NotificationContext } from "../../../contexts/notificationContext";
 
 export default function NotificationButton() {
-	const { count, setCount } = useContext(NotificationContext);
+	const { countUnreadNotifications } = useContext(NotificationContext);
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
+	const [count, setCount] = useState();
 	const [showLegendNotifications, setShowLegendNotifications] = useState(false);
+
+	useEffect(() => {
+		startCount();
+	}, []);
+
 	const handleMouseEnterNotifications = () => {
 		setShowLegendNotifications(true);
+	};
+
+	const startCount = async () => {
+		if (!count) {
+			setCount(await countUnreadNotifications());
+		}
 	};
 
 	const handleMouseLeaveNotifications = () => {
@@ -22,16 +34,15 @@ export default function NotificationButton() {
 	};
 
 	const clickNotificationIcon = () => {
-		navigate("/notifications");
 		setCount(0);
+		navigate("/notifications");
 	};
 	return (
-		<CircleContainer>
-			{count > 0 ? <CountNotification>{count}</CountNotification> : null}
+		<CircleContainer onClick={clickNotificationIcon}>
+			{count > 0 && <CountNotification>{count}</CountNotification>}
 			<NotificationIcon
 				onMouseEnter={handleMouseEnterNotifications}
 				onMouseLeave={handleMouseLeaveNotifications}
-				onClick={clickNotificationIcon}
 			/>
 			<BorderSelect
 				style={

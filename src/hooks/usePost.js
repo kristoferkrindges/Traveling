@@ -1,5 +1,5 @@
 import api from "../services/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import useFirebase from "./useFirebase";
 import useAuth from "./useAuth";

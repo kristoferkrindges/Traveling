@@ -14,6 +14,7 @@ import {
 	PostIcon,
 	ProfileIcon,
 	SettingsIcon,
+	UserCircle,
 } from "../../icons/iO5Icons.styled";
 import EllipsMenu from "../../menus/ellips";
 
@@ -52,7 +53,8 @@ export default function HeadingContainer({ type, text, click }) {
 			{type !== "Messages" &&
 			type !== "Notifications" &&
 			type !== "Events" &&
-			type !== "Settings" ? (
+			type !== "Settings" &&
+			type !== "Suggestions" ? (
 				<>
 					<EllipsIcon onClick={handlerEllips} />
 					{ellips && <EllipsMenu optionsMenu={optionsMenu} />}
@@ -63,6 +65,8 @@ export default function HeadingContainer({ type, text, click }) {
 				<NotificationIcon />
 			) : type === "Events" ? (
 				<EventIcon />
+			) : type === "Suggestions" ? (
+				<UserCircle />
 			) : (
 				<SettingsIcon />
 			)}
