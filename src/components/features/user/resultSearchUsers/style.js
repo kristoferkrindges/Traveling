@@ -17,4 +17,12 @@ export const ContainerResult = styled.div`
 		color: ${({ theme }) => theme.text};
 	}
 	z-index: 999;
+
+	@media only screen and (max-width: 692px) {
+		width: 250px;
+	}
+
+	@media only screen and (max-width: 400px) {
+		width: 200px;
+	}
 `;

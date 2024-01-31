@@ -17,6 +17,7 @@ function EventProvider({ children }) {
 		findRandomEvent,
 		randomEvent,
 		startRandomEvent,
+		setRandomEvent,
 	} = useEvent();
 
 	return (
@@ -34,6 +35,7 @@ function EventProvider({ children }) {
 				findRandomEvent,
 				randomEvent,
 				startRandomEvent,
+				setRandomEvent,
 			}}
 		>
 			{children}
