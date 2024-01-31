@@ -9,8 +9,8 @@ export const RandomContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	margin-bottom: 1.5rem;
-	margin-top: 5rem;
+	/* margin-bottom: 1.5rem; */
+	margin-top: 4rem;
 	width: 90%;
 
 	@media only screen and (max-width: 1400px) {

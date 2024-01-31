@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ThemeContext } from "../provider/themeProvider";
 import useFirebase from "./useFirebase";
+import useEvent from "./useEvent";
 
 export default function useAuth() {
 	const { uploadImage } = useFirebase();
@@ -13,6 +14,7 @@ export default function useAuth() {
 	const [userInfo, setUserInfo] = useState({});
 	const { setTheme, theme } = useContext(ThemeContext);
 	const navigate = useNavigate();
+	const { setRandomEvent } = useEvent();
 	useEffect(() => {
 		getToken();
 		const darkmode = localStorage.getItem("darkmode");
@@ -374,6 +376,7 @@ export default function useAuth() {
 
 	function logout() {
 		setAuthenticated(false);
+		setRandomEvent([]);
 		localStorage.setItem("authenticated", false);
 		localStorage.removeItem("token");
 		localStorage.removeItem("darkmode");

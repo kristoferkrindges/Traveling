@@ -152,5 +152,6 @@ export default function useEvent() {
 		findRandomEvent,
 		randomEvent,
 		startRandomEvent,
+		setRandomEvent,
 	};
 }
