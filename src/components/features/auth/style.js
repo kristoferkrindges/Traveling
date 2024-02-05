@@ -95,7 +95,7 @@ export const OrderController = styled.p`
 	}
 `;
 
-export const Button = styled.input`
+export const Button = styled.button`
 	width: 100%;
 	padding: 0.6rem 2rem;
 	font-weight: 500;
@@ -116,6 +116,11 @@ export const Button = styled.input`
 			${({ theme }) => theme.secondColor} 20%,
 			rgba(196, 196, 196, 0) 100%
 		);
+	}
+
+	& img {
+		width: 30px;
+		height: 30px;
 	}
 `;
 
