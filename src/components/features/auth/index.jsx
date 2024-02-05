@@ -23,6 +23,7 @@ import {
 } from "../../icons/iO5Icons.styled";
 import { InputDate } from "../user/editProfileModal/style";
 import { AssistantContext } from "../../../contexts/assistantContext";
+import Loader from "../../loader";
 
 export default function Auth() {
 	const { signUp, signIn } = useContext(UserContext);
@@ -42,6 +43,7 @@ export default function Auth() {
 	const [passwordChange, setPasswordChange] = useState();
 
 	const [controllerAuth, setControllerAuth] = useState(true);
+	const [loader, setLoader] = useState(false);
 
 	const [birthDate, setBirthDate] = useState("");
 
@@ -67,8 +69,9 @@ export default function Auth() {
 		}
 	};
 
-	const handlerButtonSignUp = (evt) => {
+	const handlerButtonSignUp = async (evt) => {
 		evt.preventDefault();
+		setLoader(true);
 		getCurrentDateTimeString();
 		const user = {
 			firstname: firstnameChange,
@@ -80,15 +83,18 @@ export default function Auth() {
 			birthdate: formatEventDate(getCurrentDateTimeString()),
 			password: passwordChange,
 		};
-		signUp(user);
+		await signUp(user);
+		setLoader(false);
 	};
-	const handlerButtonSignIn = (evt) => {
+	const handlerButtonSignIn = async (evt) => {
 		evt.preventDefault();
+		setLoader(true);
 		const user = {
 			email: emailChange,
 			password: passwordChange,
 		};
-		signIn(user);
+		await signIn(user);
+		setLoader(false);
 	};
 	return (
 		<ContainerAuth gridColumns={controllerAuth ? `1.5fr 1fr` : `1fr 1.5fr`}>
@@ -212,8 +218,6 @@ export default function Auth() {
 						: "Already have an account?"}
 				</OrderController>
 				<Button
-					type="submit"
-					value="Sign up"
 					onClick={
 						controllerAuth
 							? (evt) => {
@@ -223,7 +227,9 @@ export default function Auth() {
 									handlerButtonSignUp(evt);
 							  }
 					}
-				></Button>
+				>
+					{loader ? <Loader /> : controllerAuth ? "Sign in" : "Sign up"}
+				</Button>
 			</Form>
 			{!controllerAuth && <Logo src={Infinite} />}
 		</ContainerAuth>
