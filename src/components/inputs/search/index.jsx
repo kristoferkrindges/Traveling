@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { SearchBar } from "./style";
+import { MiniLoader, SearchBar } from "./style";
 import { SearchIcon } from "../../icons/iO5Icons.styled";
 import { SearchInput } from "../searchBar/style";
 import ResultSearchUsersModal from "../../features/user/resultSearchUsers";
 import { UserContext } from "../../../contexts/userContext";
 import Loader from "../../loader";
 import { ContainerResult } from "../../features/user/resultSearchUsers/style";
+import Loading from "../../../assets/images/loading.svg";
 
 export default function SearchTopMenu() {
 	const { findAll } = useContext(UserContext);
@@ -75,9 +76,9 @@ export default function SearchTopMenu() {
 				onChange={handleFilter}
 				onClick={handlerSearch}
 			/>
-			{open && loader ? (
+			{open && wordEntered && loader ? (
 				<ContainerResult>
-					<Loader />
+					<MiniLoader src={Loading} />
 				</ContainerResult>
 			) : (
 				open &&

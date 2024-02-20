@@ -9,6 +9,7 @@ import {
 } from "./style";
 import { useNavigate } from "react-router-dom";
 import { AvatarPhoto } from "../../../images/avatar.styled";
+import AvatarNone from "../../../../assets/images/avatarnone.png";
 export default function UserMessages({
 	photo,
 	name,
@@ -25,7 +26,7 @@ export default function UserMessages({
 	return (
 		<Message onClick={type ? type : (evt) => handlerRouted(evt)}>
 			<ProfilePhoto>
-				<AvatarPhoto src={photo} />
+				<AvatarPhoto src={photo ? photo : AvatarNone} />
 				{online && <Online />}
 			</ProfilePhoto>
 			<MessageBody>
