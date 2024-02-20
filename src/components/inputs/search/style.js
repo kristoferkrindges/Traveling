@@ -15,6 +15,13 @@ export const SearchBar = styled.div`
 	/* width: 290px; */
 `;
 
+export const ContentLoader = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+`;
+
 export const MiniLoader = styled.img`
 	width: 50px;
 `;
