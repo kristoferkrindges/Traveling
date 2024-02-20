@@ -4,6 +4,7 @@ import { SearchIcon } from "../../icons/iO5Icons.styled";
 import { SearchInput } from "../searchBar/style";
 import ResultSearchUsersModal from "../../features/user/resultSearchUsers";
 import { UserContext } from "../../../contexts/userContext";
+import Loader from "../../loader";
 
 export default function SearchTopMenu() {
 	const { findAll } = useContext(UserContext);
@@ -11,6 +12,7 @@ export default function SearchTopMenu() {
 	const [data, setData] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 	const [wordEntered, setWordEntered] = useState("");
+	const [loader, setLoader] = useState(false);
 	const searchInputRef = useRef(null);
 
 	useEffect(() => {
@@ -40,8 +42,10 @@ export default function SearchTopMenu() {
 	};
 
 	const searchUsers = async () => {
+		setLoader(true);
 		const users = await findAll();
 		setData(users);
+		setLoader(false);
 	};
 
 	const handlerSearch = async () => {
@@ -70,11 +74,16 @@ export default function SearchTopMenu() {
 				onChange={handleFilter}
 				onClick={handlerSearch}
 			/>
-			{open && filteredData.length > 0 && (
-				<ResultSearchUsersModal
-					result={filteredData}
-					className="resultSearchUsersModal"
-				/>
+			{loader ? (
+				<Loader />
+			) : (
+				open &&
+				filteredData.length > 0 && (
+					<ResultSearchUsersModal
+						result={filteredData}
+						className="resultSearchUsersModal"
+					/>
+				)
 			)}
 		</SearchBar>
 	);
