@@ -37,7 +37,7 @@ export default function Messages() {
 			{data ? (
 				filteredData.length > 0 ? (
 					filteredData
-						.slice(0, 6)
+						.slice(0, 5)
 						.map((value, key) => (
 							<UserMessages
 								key={key}
