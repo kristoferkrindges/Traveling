@@ -14,3 +14,7 @@ export const SearchBar = styled.div`
 	max-width: 290px;
 	/* width: 290px; */
 `;
+
+export const MiniLoader = styled.img`
+	width: 50px;
+`;
