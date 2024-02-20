@@ -5,6 +5,7 @@ import { SearchInput } from "../searchBar/style";
 import ResultSearchUsersModal from "../../features/user/resultSearchUsers";
 import { UserContext } from "../../../contexts/userContext";
 import Loader from "../../loader";
+import { ContainerResult } from "../../features/user/resultSearchUsers/style";
 
 export default function SearchTopMenu() {
 	const { findAll } = useContext(UserContext);
@@ -74,8 +75,10 @@ export default function SearchTopMenu() {
 				onChange={handleFilter}
 				onClick={handlerSearch}
 			/>
-			{loader ? (
-				<Loader />
+			{open && loader ? (
+				<ContainerResult>
+					<Loader />
+				</ContainerResult>
 			) : (
 				open &&
 				filteredData.length > 0 && (
