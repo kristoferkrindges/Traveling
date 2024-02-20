@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { MiniLoader, SearchBar } from "./style";
+import { ContentLoader, MiniLoader, SearchBar } from "./style";
 import { SearchIcon } from "../../icons/iO5Icons.styled";
 import { SearchInput } from "../searchBar/style";
 import ResultSearchUsersModal from "../../features/user/resultSearchUsers";
@@ -78,7 +78,9 @@ export default function SearchTopMenu() {
 			/>
 			{open && wordEntered && loader ? (
 				<ContainerResult>
-					<MiniLoader src={Loading} />
+					<ContentLoader>
+						<MiniLoader src={Loading} />
+					</ContentLoader>
 				</ContainerResult>
 			) : (
 				open &&
