@@ -70,5 +70,5 @@ npm start
 
 <h2 id="api">API 👨‍💻</h2>
 <a align="center" href="https://github.com/kristoferkrindges/TravelingApi" />
-  Acesse clicando aqui
+  Access by clicking here
 </a>
